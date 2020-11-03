@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "doNet5781_00_4625_0728", "doNet5781_00_4625_0728\doNet5781_00_4625_0728.csproj", "{59ABA51E-855C-4553-8DDF-4AB171646A67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Targil 01", "Targil 01\Targil 01.csproj", "{2992EA7D-0780-4B55-AD1D-A67DE28C0D85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{59ABA51E-855C-4553-8DDF-4AB171646A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59ABA51E-855C-4553-8DDF-4AB171646A67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59ABA51E-855C-4553-8DDF-4AB171646A67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2992EA7D-0780-4B55-AD1D-A67DE28C0D85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2992EA7D-0780-4B55-AD1D-A67DE28C0D85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2992EA7D-0780-4B55-AD1D-A67DE28C0D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2992EA7D-0780-4B55-AD1D-A67DE28C0D85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
