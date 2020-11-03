@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace doNet5781_00_4625_0728
 {
 
-    partial class Program
+    partial class Program4625
     {
         static void Main(string[] args)
         {

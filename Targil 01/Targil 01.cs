@@ -10,7 +10,7 @@ namespace Targil_01
     {
         static void Main(string[] args)
         {
-
+            #region switchChoice
             List<Bus> l = new List<Bus>();                                                      //create the list of buses
             string num;
             do
@@ -45,7 +45,9 @@ namespace Targil_01
             } while (num != "5");                                                               //start the loop again until the user choose 5-exit
 
         }
+        #endregion
 
+        #region auxiliaryMethods
         // Auxiliary method wich return num of bus 
 
         private static string whichBus()
@@ -106,10 +108,9 @@ namespace Targil_01
             }
             return place;
         }
-
+        #endregion
 
         #region Case1
-
 
         private static void addBusToList(List<Bus> l)
         {
@@ -201,7 +202,6 @@ namespace Targil_01
         #endregion
 
         #region Case3 
-
         private static void busModification(List<Bus> l)
         {
             int place = search(l, whichBus());
@@ -235,7 +235,6 @@ namespace Targil_01
 
 
         #region Case4 
-
         private static void displayMileage(List<Bus> l)
         {
             if (l.Count != 0)
@@ -253,8 +252,8 @@ namespace Targil_01
             }
             return;
         }
-
         #endregion
+
     }
 
 }
