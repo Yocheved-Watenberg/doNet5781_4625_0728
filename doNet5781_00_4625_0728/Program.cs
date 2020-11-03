@@ -10,6 +10,7 @@ namespace doNet5781_00_4625_0728
     {
         static void Main(string[] args)
         {
+            int x;
         }
     }
 }
