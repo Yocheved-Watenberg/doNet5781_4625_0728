@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "doNet5781_00_4625_0728", "doNet5781_00_4625_0728\doNet5781_00_4625_0728.csproj", "{59ABA51E-855C-4553-8DDF-4AB171646A67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotNet5781_00_4625_0728", "doNet5781_00_4625_0728\dotNet5781_00_4625_0728.csproj", "{59ABA51E-855C-4553-8DDF-4AB171646A67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Targil 01", "Targil 01\Targil 01.csproj", "{2992EA7D-0780-4B55-AD1D-A67DE28C0D85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotNet5781_01_4625_0728", "Targil 01\dotNet5781_01_4625_0728.csproj", "{2992EA7D-0780-4B55-AD1D-A67DE28C0D85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
