@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace dotNet5781_02_4625_0728
 {
     class BusLineStation : Station
-    {
+    { 
         public float DistanceFromLastStation { get; set; }
         public float TimeFromLastStation { get; set; }
       //  public int NewKey { get; set; }
