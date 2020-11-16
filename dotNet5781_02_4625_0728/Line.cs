@@ -148,7 +148,7 @@ namespace dotNet5781_02_4625_0728
                 float distance = 0;
                 for (int i= ++indexS1; i<=indexS2; i++)
                 {
-                    distance += StationsList[i].distanceFromLastStation;
+                    distance += StationsList[i].DistanceFromLastStation;
                 }
                 return distance;
             }
@@ -173,7 +173,7 @@ namespace dotNet5781_02_4625_0728
                 float time = 0;
                 for (int i = ++indexS1; i <= indexS2; i++)
                 {
-                    time += StationsList[i].timeFromLastStation;
+                    time += StationsList[i].TimeFromLastStation;
                 }
                 return time;
             }
