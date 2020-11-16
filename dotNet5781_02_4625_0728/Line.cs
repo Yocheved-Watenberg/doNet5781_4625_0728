@@ -21,7 +21,7 @@ namespace dotNet5781_02_4625_0728
             StationsList = myStationsList;
             Area = myArea;
             //Area = (enumArea)Enum.Parse(typeof(enumArea), myArea)
-            FirstStation = StationsList.First();                            
+            FirstStation = StationsList.First();
             //faire gaffe que la first station, son sadé time et distance de la station d'avant  soient 0 
             LastStation = StationsList.Last();
             Time = TimeBetweenTwo(FirstStation, LastStation);
@@ -50,14 +50,14 @@ namespace dotNet5781_02_4625_0728
         public void DeleteStationOfLine(int toDelete) //delete Station of a LineBus when we send the key of the station to delete
         {
             BusLineStation b = FindItemInList(toDelete);
-            if (b.StationKey!=0)
+            if (b.StationKey != 0)
             {
                 StationsList.Remove(b);
             }
         }
 
         public BusLineStation FindItemInList(int KeyToFind) // we send a station key and the function returns Station in LineBus, else returns an empty one.
-        { 
+        {
             try
             {
                 foreach (BusLineStation item in StationsList)
@@ -106,7 +106,7 @@ namespace dotNet5781_02_4625_0728
 
         #endregion
 
-        public bool StationIsInLine (Station s) //function to check if a station is in the line  
+        public bool StationIsInLine(Station s) //function to check if a station is in the line  
         {
             foreach (BusLineStation item in StationsList)
                 if (item.StationKey == s.StationKey)
@@ -115,6 +115,7 @@ namespace dotNet5781_02_4625_0728
                 }
             return false;
         }
+
 
 
         public int FindPlaceInList(BusLineStation b)   //function to find the index of the station in the list of the line, else return -1
@@ -132,7 +133,7 @@ namespace dotNet5781_02_4625_0728
 
 
         // pr les trois fonctions a venir : time et distance entre 2 stations, et tat masloul, faire une fonction commune 
-        public float DistanceBetweenTwo (BusLineStation s1, BusLineStation s2)
+        public float DistanceBetweenTwo(BusLineStation s1, BusLineStation s2)
         {
             //fr en sorte que les stations soient rangées ds la liste dans leur ordre du trajet
 
@@ -146,7 +147,7 @@ namespace dotNet5781_02_4625_0728
                 if (indexS2 < indexS1)
                     Swap(ref indexS1, ref indexS2);               //now, indexS1<indexS2
                 float distance = 0;
-                for (int i= ++indexS1; i<=indexS2; i++)
+                for (int i = ++indexS1; i <= indexS2; i++)
                 {
                     distance += StationsList[i].DistanceFromLastStation;
                 }
@@ -179,7 +180,7 @@ namespace dotNet5781_02_4625_0728
             }
             Console.WriteLine("We haven't found one of the station, in this line"); //jeter une harigaaaaaaa
             return -1;
-           
+
         }
 
         public Line SubLine(BusLineStation s1, BusLineStation s2)               //comment appeler le nv kav ??????? pareil que lancien c fo, au autre dou je sais sil est pris ? 
@@ -204,10 +205,10 @@ namespace dotNet5781_02_4625_0728
                 {
                     l2.Add(StationsList[i]);
                 }
-                return new Line(LineKey, l2,Area);
+                return new Line(LineKey, l2, Area);
             }
             Console.WriteLine("We haven't found one of the station, in this line");  //jeter une harigaaaaaaa
-            return new Line();                                                     
+            return new Line();
 
         }
 
@@ -222,54 +223,32 @@ namespace dotNet5781_02_4625_0728
         public int CompareTo(Line other)
         {
             if (Time < other.Time) return 1;
-            if (Time > other.Time)  return -1;
+            if (Time > other.Time) return -1;
             return 0;
         }
 
-        //faut il faire operateur = 
-        //faut il fr une fonction equals
-
         public Line Choice(Line other, Station beginning, Station end)            //the function returns the shortest 
-                                                                                   //cheker les input
-        { 
+                                                                                  //cheker les input
+        {
             Line choice1 = SubLine(FindItemInList(beginning.StationKey), FindItemInList(end.StationKey)); //choice1 contains the subLine for the first bus (this) 
-            Line choice2 = SubLine(other.FindItemInList(beginning.StationKey), other.FindItemInList(end.StationKey));  //choice2 contains the subLine for the second bus (other) 
+            Line choice2 = other.SubLine(other.FindItemInList(beginning.StationKey), other.FindItemInList(end.StationKey));  //choice2 contains the subLine for the second bus (other) 
             if (choice1.CompareTo(choice2) == 1) return choice1;
             if (choice1.CompareTo(choice2) == -1) return choice2;
             return choice1;                                                     //it was the same time for both
 
         }
 
+        public bool Equals(Line other)
+        {
+            if ((other == null) || (GetType() != other.GetType())||(LineKey != other.LineKey)||(Area != other.Area)||(StationsList != other.StationsList))
+            {
+                return false;
+            }  
+            
+            //verifier si ca verifie bien que chaque membre de la list est pareil
 
-
-
-
-
-
-        //// override object.Equals
-        //public override bool Equals(BusLineStation obj)
-        //{
-        //    if (obj == null || GetType() != obj.GetType())
-        //    {
-        //        return false;
-        //    }
-
-        //    bool flag = true;
-
-        //    if (StationKey!=
-
-        //    return flag;
-        //}
-
-        ////// override object.GetHashCode
-        ////public override int GetHashCode()
-        ////{
-        ////    // TODO: write your implementation of GetHashCode() here
-        ////    throw new NotImplementedException();
-        ////    return base.GetHashCode();
-        ////}
-
-
+            return true;
+        }
 
     }
 
