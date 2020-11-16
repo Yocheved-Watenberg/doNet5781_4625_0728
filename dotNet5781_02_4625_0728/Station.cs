@@ -77,7 +77,20 @@ namespace dotNet5781_02_4625_0728
 
         public Station()
         {
-        }   //ctor empty         
+        }   //ctor empty     
+
+
+
+        public bool Equals(Station other)
+        {
+
+            if ((other == null) || (GetType() != other.GetType()) || (StationKey != other.StationKey) || (Latitude != other.Latitude) || (Longitude != other.Longitude))
+            { 
+                return false;
+            }
+            return true;
+        }
+
 
     }
 }

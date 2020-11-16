@@ -47,6 +47,17 @@ namespace dotNet5781_02_4625_0728
             DistanceFromLastStation = d;
             TimeFromLastStation = t;
         }
-        
+
+
+        public bool Equals(BusLineStation other)
+        {
+
+            if ((other == null) || (GetType() != other.GetType())||(StationKey != other.StationKey)||(Latitude != other.Latitude) ||(Longitude != other.Longitude) ||(DistanceFromLastStation != other.DistanceFromLastStation) ||(TimeFromLastStation != other.TimeFromLastStation))
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }

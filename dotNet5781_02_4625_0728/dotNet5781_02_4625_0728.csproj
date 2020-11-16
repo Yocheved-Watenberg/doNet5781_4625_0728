@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="EnumArea.cs" />
     <Compile Include="BusLineStation.cs" />
+    <Compile Include="IEnumerable.cs" />
     <Compile Include="MyList.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="Line.cs" />
