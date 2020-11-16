@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_4625_0728
 {
-    class LineBus
+    enum EnumArea
     {
-    }
+        General, North, South, Center, Jerusalem
+    };
 }
