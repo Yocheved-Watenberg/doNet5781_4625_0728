@@ -61,10 +61,10 @@ namespace dotNet5781_02_4625_0728
 
             Station s1 = new Station(990, 1, 1);                       //beginnig
             BusLineStation s2 = new BusLineStation(s1, 10, 10);        //21
-            BusLineStation s3 = new BusLineStation(s1, 20, 20);        //39
+            BusLineStation s3 = new BusLineStation(s1, 2, 2);        //39
 
             Station s4 = new Station(999, 4, 4);                       //end
-            BusLineStation s5 = new BusLineStation(s4, 25, 25);        //21
+            BusLineStation s5 = new BusLineStation(s4, 45, 45);        //21
             BusLineStation s6 = new BusLineStation(s4, 50, 50);        //39
 
             List<BusLineStation> list21 = new List<BusLineStation>(); //s2 et s5
@@ -77,7 +77,7 @@ namespace dotNet5781_02_4625_0728
 
             Line line39 = new Line(39, list39, (EnumArea)3);
             Line line21 = new Line(21, list21, (EnumArea)3);
-
+            //line39.Choice(line21, s1, s4);
             Console.WriteLine(line39.Choice(line21, s1, s4));
             Console.ReadLine();
 

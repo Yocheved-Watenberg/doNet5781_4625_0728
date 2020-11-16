@@ -61,10 +61,12 @@ namespace dotNet5781_02_4625_0728
             try
             {
                 foreach (BusLineStation item in StationsList)
+                { 
                     if (item.StationKey == KeyToFind)
                     {
                         return item;
                     }
+                }
                 throw new ArgumentException("The bus station doesn't exist in the line");
             }
             catch (ArgumentException ex10)
@@ -233,7 +235,7 @@ namespace dotNet5781_02_4625_0728
                                                                                    //cheker les input
         { 
             Line choice1 = SubLine(FindItemInList(beginning.StationKey), FindItemInList(end.StationKey)); //choice1 contains the subLine for the first bus (this) 
-            Line choice2 = SubLine(other.FindItemInList(beginning.StationKey), other.FindItemInList(end.StationKey));  //choice2 contains the subLine for the second bus (other) 
+            Line choice2 = other.SubLine(other.FindItemInList(beginning.StationKey), other.FindItemInList(end.StationKey));  //choice2 contains the subLine for the second bus (other) 
             if (choice1.CompareTo(choice2) == 1) return choice1;
             if (choice1.CompareTo(choice2) == -1) return choice2;
             return choice1;                                                     //it was the same time for both
