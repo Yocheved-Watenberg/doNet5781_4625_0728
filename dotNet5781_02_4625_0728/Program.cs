@@ -205,7 +205,7 @@ namespace dotNet5781_02_4625_0728
             Console.WriteLine("e: search the buses which go through a station");
             Console.WriteLine("f: travel");
             Console.WriteLine("g: print all lines");
-            Console.WriteLine("h: print list of all stations and these lines");
+            Console.WriteLine("h: print list of all stations, and these lines");
             Console.WriteLine("i: exit:");
             string ch;
 
@@ -222,7 +222,7 @@ namespace dotNet5781_02_4625_0728
                         Console.WriteLine("chose 1 for north, 2 for south, 3 for center, 4 for jerusalem, or 0 to a general line");
                         EnumArea myArea = (EnumArea)int.Parse(Console.ReadLine());
                         List<BusLineStation> myStationsList = new List<BusLineStation>();
-                        Line l = new Line(myLineA, myStationsList,myArea);
+                        Line l = new Line(myLineA, myStationsList, myArea);
                         listLines.AddLine(l);
                         //listLines.AddLine(new Line(myLineA, myStationsList, myArea)); 
                         Console.WriteLine("succes! now put the first station of the list please, what is its number? ");
@@ -231,7 +231,10 @@ namespace dotNet5781_02_4625_0728
                         int myLatitudeA = int.Parse(Console.ReadLine());
                         Console.WriteLine("what is its longitude?");
                         int myLongitudeA = int.Parse(Console.ReadLine());
-                        l.StationsList.Add(new BusLineStation(myStationA, myLatitudeA, myLongitudeA, 0,0));
+                        BusLineStation b = new BusLineStation(myStationA, myLatitudeA, myLongitudeA, 0, 0);
+                        l.StationsList.Add(b);
+                        l.FirstStation = b;
+                        l.LastStation = b;
                         Console.WriteLine("succes!");
                         break;
 
@@ -241,6 +244,13 @@ namespace dotNet5781_02_4625_0728
                         break;
 
                     case "c":
+                        Console.WriteLine("which line do you want to remove?");
+                        int myKey = int.Parse( Console.ReadLine());
+                        Console.WriteLine("what is its first station ?");
+                         int   myFirst = int.Parse(Console.ReadLine());
+                        Console.WriteLine("what is its last station ?");
+                        int   myLast = int.Parse(Console.ReadLine());
+                        listLines.deleteALine(listLines.FindLineYoko(myKey, myFirst, myLast ));
                         break;
 
                     case "d":
@@ -257,18 +267,27 @@ namespace dotNet5781_02_4625_0728
 
                         break;
 
+
+
                     case "g":
+                        listLines.Print();
                         break;
 
-                    case "h":
+                    case "h": 
+                        foreach (Station item in Station.AllStations)
+                        {
+                            Console.WriteLine($"The buses with go through the stations {item.StationKey} are :");
+                            listLines.AllLineInStation(item.StationKey).Print();
+                        }
                         break;
 
-
-                    case "i": Console.WriteLine("bye");
+                    case "i":
+                        Console.WriteLine("bye");
                         break;
 
-                    default: Console.WriteLine("Error");
-                        break; 
+                    default:
+                        Console.WriteLine("Error");
+                        break;
 
                 }
             } while (ch != "i");
