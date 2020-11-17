@@ -220,7 +220,8 @@ namespace dotNet5781_02_4625_0728
             return new Line();
         }
 
-        IEnumerator<Line> IEnumerable.GetEnumerator()
+
+        public IEnumerator GetEnumerator()
         {
             return l.GetEnumerator();                        //return how to scan the list 
         }

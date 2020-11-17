@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_4625_0728
 {
-    internal interface IEnumerable
-    {
-        //void AddLine(Line lineToAdd);
+    //internal interface IEnumerable
+    //{
+    //    //void AddLine(Line lineToAdd);
 
-        IEnumerator<Line> GetEnumerator();
-    }
+    //    IEnumerator<Line> GetEnumerator();
+    //}
 }

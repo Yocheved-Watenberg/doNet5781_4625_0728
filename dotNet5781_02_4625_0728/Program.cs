@@ -239,7 +239,7 @@ namespace dotNet5781_02_4625_0728
                         break;
 
                     case "b":
-                        AddStatioToLine(listLines);
+                        AddStationToLine(listLines);
 
                         break;
 
@@ -272,7 +272,7 @@ namespace dotNet5781_02_4625_0728
                         (listLines.AllLineInStation(s)).Print();
                         break;
 
-                    case "f":
+                    case "f": foreach (Line item in listLines)
                         int first;
 
                         break;
@@ -308,7 +308,7 @@ namespace dotNet5781_02_4625_0728
 
         }
 
-        public static void AddStatioToLine(MyList listLines)
+        public static void AddStationToLine(MyList listLines)
         {
             Console.WriteLine("to which line number do you want to add a station ?");
             int num = listLines.HowManyIsExist(int.Parse(Console.ReadLine()));
