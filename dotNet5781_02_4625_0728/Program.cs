@@ -59,27 +59,99 @@ namespace dotNet5781_02_4625_0728
             #endregion
 
 
-            Station s1 = new Station(990, 1, 1);                       //beginnig
-            BusLineStation s2 = new BusLineStation(s1, 10, 10);        //21
-            BusLineStation s3 = new BusLineStation(s1, 2, 2);        //39
+            //Station s1 = new Station(990, 1, 1);                       //beginnig
+            //BusLineStation s2 = new BusLineStation(s1, 10, 10);        //21
+            //BusLineStation s3 = new BusLineStation(s1, 2, 2);        //39
 
-            Station s4 = new Station(999, 4, 4);                       //end
-            BusLineStation s5 = new BusLineStation(s4, 45, 45);        //21
-            BusLineStation s6 = new BusLineStation(s4, 50, 50);        //39
+            //Station s4 = new Station(999, 4, 4);                       //end
+            //BusLineStation s5 = new BusLineStation(s4, 45, 45);        //21
+            //BusLineStation s6 = new BusLineStation(s4, 50, 50);        //39
 
-            List<BusLineStation> list21 = new List<BusLineStation>(); //s2 et s5
-            List<BusLineStation> list39 = new List<BusLineStation>(); //s3 et s6
+            //List<BusLineStation> list21 = new List<BusLineStation>(); //s2 et s5
+            //List<BusLineStation> list39 = new List<BusLineStation>(); //s3 et s6
 
-            list21.Add(s2);
-            list21.Add(s5);
-            list39.Add(s3);
-            list39.Add(s6);
+            //list21.Add(s2);
+            //list21.Add(s5);
+            //list39.Add(s3);
+            //list39.Add(s6);
 
-            Line line39 = new Line(39, list39, (EnumArea)3);
-            Line line21 = new Line(21, list21, (EnumArea)3);
-            //line39.Choice(line21, s1, s4);
-            Console.WriteLine(line39.Choice(line21, s1, s4));
-            Console.ReadLine();
+            //Line line39 = new Line(39, list39, (EnumArea)3);
+            //Line line21 = new Line(21, list21, (EnumArea)3);
+            ////line39.Choice(line21, s1, s4);
+            //Console.WriteLine(line39.Choice(line21, s1, s4));
+            //Console.ReadLine();
+
+            
+Console.WriteLine("e: search the buses which go through a station");
+            Console.WriteLine("f: travel");
+            MyList listLines = new MyList();
+            int s;
+            int first;
+
+
+case "c":Console.WriteLine("Enter the number of the line you want to remove ");
+            int line = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter the first station of the line");
+            int first = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter the last station of the line");
+            int last = int.Parse(Console.ReadLine());
+            List < BusLineStation > bus= new List<BusLineStation>{new BusLineStation(line),new;
+            Line n=new Line(line,bus           )
+            int station = int.Parse(Console.ReadLine());
+            listLines.deleteALine(station);
+
+            public Line(int myLine, List<BusLineStation> myStationsList, EnumArea myArea)
+case "e":      Console.WriteLine("Enter the bus station you want to check");
+                s = Console.ReadLine();
+               listLines.AllLineInStation(stationKey s);
+            break;
+
+case "f":
+                Console.WriteLine("Enter the number of the first station");
+           int firstKey = int.Parse(Console.ReadLine());
+
+            BusLineStation b=  FindItemInList(first)
+
+
+
+                MyList path = new MyList();
+
+
+                foreach (Line item in listLines)
+            {
+                item.SubLine(first,last)
+
+
+
+
+
+
+
+            }
+
+
+case "g": listLines.print();
+            
+
+case "h":      foreach (Station item in Station.AllStations)
+               (listLines.AllLineinStation(item.StationKey)).print;
+
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
 
         }
     }

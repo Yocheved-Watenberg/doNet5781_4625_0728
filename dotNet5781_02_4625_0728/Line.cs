@@ -209,7 +209,7 @@ namespace dotNet5781_02_4625_0728
                 }
                 return new Line(LineKey, l2, Area);
             }
-            Console.WriteLine("We haven't found one of the station, in this line");  //jeter une harigaaaaaaa
+            //Console.WriteLine("We haven't found one of the station, in this line");  //jeter une harigaaaaaaa
             return new Line();
 
         }

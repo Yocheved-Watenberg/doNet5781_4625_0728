@@ -39,6 +39,37 @@ namespace dotNet5781_02_4625_0728
            
         }
 
+        //public Station(bool flagRandom)               //create a station with randomally parameters
+        //{
+        //    if (flagRandom == true)
+        //    {
+        //        StationKey = rand.Next(1, 1000000);
+        //        Latitude = (rand.NextDouble() * 2.3) + 31;
+        //        Longitude = (rand.NextDouble() * 1.2) + 34.3;
+        //    }
+        //}
+        static Random rand = new Random(DateTime.Now.Millisecond);
+        public BusLineStation(int myBusStationKey) : base(2,3)//ctor which helps us to build a BusLine Station only with its key(for creating a Line for example)
+        {
+            StationKey = myBusStationKey;
+            DistanceFromLastStation = (rand.NextDouble() * 500);
+            TimeFromLastStation = (rand.NextDouble() * 10);
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
         public BusLineStation():base(){}
 
         public BusLineStation(Station s, float d, float t) : base(s.Latitude, s.Longitude)

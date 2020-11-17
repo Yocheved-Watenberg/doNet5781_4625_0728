@@ -68,7 +68,14 @@ namespace dotNet5781_02_4625_0728
         }
 
 
+        public addStationToCheck(int myStationKey, float myLatitude, float myLongitude)
+        {
+            
 
+
+
+
+        }
 
         public override string ToString()
         {
