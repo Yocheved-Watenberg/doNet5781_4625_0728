@@ -232,10 +232,9 @@ namespace dotNet5781_02_4625_0728
                         Console.WriteLine("what is its longitude?");
                         int myLongitudeA = int.Parse(Console.ReadLine());
                         BusLineStation b = new BusLineStation(myStationA, myLatitudeA, myLongitudeA, 0, 0);
-                        /*l.StationsList.Add(b);
+                        l.StationsList.Add(b);
                         l.FirstStation = b;
-                        l.LastStation = b;*/
-                        l.AddStationToLineHelp(b, 0);
+                        l.LastStation = b;
                         Console.WriteLine("succes!");
                         break;
 
@@ -256,18 +255,15 @@ namespace dotNet5781_02_4625_0728
 
                     case "d":
                         Console.WriteLine("In which line do you want to remove a station?");
-                        int mylineKey= int.Parse(Console.ReadLine());
+                        int mylineKey = int.Parse(Console.ReadLine());
                         Console.WriteLine("What is the first station in this line");
                         int myFirstStation = int.Parse(Console.ReadLine());
                         Console.WriteLine("What is the last station in this line");
                         int myLastStation = int.Parse(Console.ReadLine());
                         Console.WriteLine("Which station do you want to remove");
                         int toRemove = int.Parse(Console.ReadLine());
-                        ( listLines.FindLineYoko(mylineKey, myFirstStation, myLastStation)).DeleteStationOfLine(toRemove);
+                        (listLines.FindLineYoko(mylineKey, myFirstStation, myLastStation)).DeleteStationOfLine(toRemove);
                         //trouve line dans laquelle tu ve enlever la station                //enleve moi celle avec le key "toRemove"
-
-
-
                         break;
 
                     case "e":
@@ -277,19 +273,8 @@ namespace dotNet5781_02_4625_0728
                         break;
 
                     case "f":
-                        Console.WriteLine("Enter the number of the first station");
-                        int firstKey = int.Parse(Console.ReadLine());
-
-                        BusLineStation b = FindItemInList(first)
-                        MyList path = new MyList();
-
-                       
-                        foreach (Line item in listLines)
-                        {
-                            item.SubLine(first, last);
-}
                         int first;
-                        SubLine(BusLineStation s1, BusLineStation s2);
+
                         break;
 
 
