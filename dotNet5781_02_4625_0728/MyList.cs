@@ -45,7 +45,7 @@ namespace dotNet5781_02_4625_0728
             }
         }
 
-        private void deleteALine(Line line)
+        public void deleteALine(Line line)
         {
             try
             {
@@ -62,19 +62,48 @@ namespace dotNet5781_02_4625_0728
             {
                 Console.WriteLine(ex.Message);
             }
-        } 
+        }
 
-        private bool IsExist(Line line)
+        //public bool IsExist(Line line)
+        //{
+        //    foreach (Line item in l)
+        //    {
+        //        if (line == item)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false ;
+        //}
+
+
+
+        public bool IsExist(Line line)
         {
             foreach (Line item in l)
             {
-                if (line == item)
-                {
-                    return true;
-                }
+                if ((line.LineKey == item.LineKey) && (line.FirstStation == item.FirstStation) && (line.LastStation == item.LastStation))
+                    return true; 
             }
-            return false ;
+            return false; 
         }
+
+
+        public int HowManyIsExist(int KeyOfLine)          //this function return 1, 2, or 0 for the number of times that this line is in the list
+        {
+            int count = 0;
+            foreach (Line item in l)
+            {
+                if (KeyOfLine == item.LineKey)
+                {
+                    count++;
+                } 
+            }
+            return count;
+        }
+
+
+
 
         public MyList AllLineInStation(int stationKey)
         {
@@ -120,7 +149,7 @@ namespace dotNet5781_02_4625_0728
             return this;
         }
 
-       private Line this[int myLineKey]
+       public Line this[int myLineKey]
         {
             get { return l[FindLine(myLineKey)]; }
             set { l[FindLine(myLineKey)] = value;  }
@@ -140,7 +169,7 @@ namespace dotNet5781_02_4625_0728
         //}
 
 
-        private int FindLine(int myLineKey)
+        public int FindLine(int myLineKey)                     //jenvoie un numero de ligne et il me sort la premiere apparation de la ligne ds la liste 
         {
             int count = 0;
             foreach (Line item in l)
@@ -166,20 +195,30 @@ namespace dotNet5781_02_4625_0728
             return -1;
         }
 
+        public Line FindLineYoko (int myKey, int myFirst, int myLast)           //a supprimer pr avi 
+        {
+            foreach (Line item in l)
+            {
+                if ((myKey==item.LineKey)&&(myFirst==item.FirstStation.StationKey)&&(myLast==item.LastStation.StationKey))
+                {
+                    return item;
+                }
+            }
+            return new Line();
+        }
 
 
-
-        //private Line FindLine(Line line)
-        //{
-        //    foreach (Line item in l)
-        //    {
-        //        if (line == item)
-        //        {
-        //            return item;
-        //        }
-        //    }
-        //    return new Line();
-        //}
+        public Line FindLine(Line line)             //we send a line to the function and the fonction return this line of the list 
+        {
+            foreach (Line item in l)
+            {
+                if (line.Equals(item))
+                {
+                    return item;
+                }
+            }
+            return new Line();
+        }
 
         IEnumerator<Line> IEnumerable.GetEnumerator()
         {

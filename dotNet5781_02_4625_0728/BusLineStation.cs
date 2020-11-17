@@ -88,6 +88,16 @@ namespace dotNet5781_02_4625_0728
             }
         }
 
-
+        //public static BusLineStation FindBusLineStation(int key)
+        //{
+        //    foreach (Station item in AllStations)
+        //    {
+        //        if (key == item.StationKey)
+        //        {
+        //            return (BusLineStation) item;
+        //        }
+        //    }
+        //    return new BusLineStation();
+        //}
     }
 }

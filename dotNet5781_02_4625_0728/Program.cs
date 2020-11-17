@@ -112,7 +112,7 @@ namespace dotNet5781_02_4625_0728
             //static Random rand = new Random(DateTime.Now.Millisecond);
 
 
-            Station s1 = new Station(true);
+            Station s1 = new Station(1,1,1);
             Station s2 = new Station(true);
             Station s3 = new Station(true);
             Station s4 = new Station(true);
@@ -167,7 +167,7 @@ namespace dotNet5781_02_4625_0728
             List<BusLineStation> list12 = new List<BusLineStation>() { new BusLineStation(s29, true), new BusLineStation(s21, true), new BusLineStation(s3, true), new BusLineStation(s23, true), };
 
 
-            Line line1 = new Line(rand.Next(1, 1000),list1,(EnumArea)rand.Next(0,4));
+            Line line1 = new Line(rand.Next(1, 1000), list1, (EnumArea)rand.Next(0,4));
             Line line2 = new Line(rand.Next(1, 1000), list2, (EnumArea)rand.Next(0, 4));
             Line line3 = new Line(rand.Next(1, 1000), list3, (EnumArea)rand.Next(0, 4));
             Line line4 = new Line(rand.Next(1, 1000), list4, (EnumArea)rand.Next(0, 4));
@@ -217,17 +217,26 @@ namespace dotNet5781_02_4625_0728
                 {
                     case "a":
                         Console.WriteLine("Which num of line do you want to add");
-                        int myLine = int.Parse(Console.ReadLine());
+                        int myLineA = int.Parse(Console.ReadLine());
                         Console.WriteLine("In which area is the line?");
                         Console.WriteLine("chose 1 for north, 2 for south, 3 for center, 4 for jerusalem, or 0 to a general line");
                         EnumArea myArea = (EnumArea)int.Parse(Console.ReadLine());
                         List<BusLineStation> myStationsList = new List<BusLineStation>();
-                        Line l = new Line(myLine, myStationsList,myArea);
+                        Line l = new Line(myLineA, myStationsList,myArea);
                         listLines.AddLine(l);
-                        Console.WriteLine("succes");
+                        //listLines.AddLine(new Line(myLineA, myStationsList, myArea)); 
+                        Console.WriteLine("succes! now put the first station of the list please, what is its number? ");
+                        int myStationA = int.Parse(Console.ReadLine());
+                        Console.WriteLine("what is its latitude?");
+                        int myLatitudeA = int.Parse(Console.ReadLine());
+                        Console.WriteLine("what is its longitude?");
+                        int myLongitudeA = int.Parse(Console.ReadLine());
+                        l.StationsList.Add(new BusLineStation(myStationA, myLatitudeA, myLongitudeA, 0,0));
+                        Console.WriteLine("succes!");
                         break;
 
                     case "b":
+                        AddStatioToLine(listLines);
 
                         break;
 
@@ -269,5 +278,46 @@ namespace dotNet5781_02_4625_0728
 
 
         }
+
+        public static void AddStatioToLine(MyList listLines)
+        {
+            Console.WriteLine("to which line number do you want to add a station ?");
+            int num = listLines.HowManyIsExist(int.Parse(Console.ReadLine()));
+            if (num == 0)
+            {
+                Console.WriteLine("this line doesn't exist, first of all you have to create a line");
+            }
+            else
+            {
+                Console.WriteLine("what is the first station of your line?");
+                int myFirstStation = int.Parse(Console.ReadLine());
+                Console.WriteLine("what is the last station of the line?");
+                int myLastStation = int.Parse(Console.ReadLine());
+                Line myline = (listLines.FindLineYoko(num, myFirstStation, myLastStation));       //verifier sil copie pas tt au lieu de matsbia
+                Console.WriteLine("which station do you want to add?");                     //faire aussi la possibilite de rajouter une nouvelle station inexistante, pas que une station existante dans dautres lignes
+                BusLineStation myNewBusLineStation = new BusLineStation(Station.FindStation(int.Parse(Console.ReadLine())), true);
+                Console.WriteLine("after which station do you want to add the station ?");
+                int myPreviousStation = int.Parse(Console.ReadLine());
+                int index = myline.FindPlaceInList(myline.FindItemInList(myPreviousStation));
+               myline.AddStationToLineHelp(myNewBusLineStation, ++index);
+            }
+        }
     }
 }
+
+// a jeter, case b 
+//BusLineStation firstB = new BusLineStation(numB, 0, 0, 0, 0);
+//BusLineStation lastB = new BusLineStation(numB, 0, 0, 0, 0);
+//List<BusLineStation> lB = new List<BusLineStation>();
+//lB.Add(firstB);
+//lB.Add(lastB);
+//// listLines.AddStation(new Line (numB, myFirstStationB, myLastStationB, (EnumArea)3))
+//FindLine
+//listLines[FindLine(myLineB)];
+//Console.WriteLine("What is the number of the station that you want to add?");
+//int myStationB = int.Parse(Console.ReadLine());
+//Console.WriteLine("what is its latitude?");
+//int myLatitudeB = int.Parse(Console.ReadLine());
+//Console.WriteLine("what is its longitude?");
+//int myLongitudeB = int.Parse(Console.ReadLine());
+//int myDistanceFromLastStation =

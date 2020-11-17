@@ -23,11 +23,7 @@ namespace dotNet5781_02_4625_0728
             //Area = (enumArea)Enum.Parse(typeof(enumArea), myArea)
             if (StationsList.Count != 0)
             {
-                //FirstStation = StationsList.First();*             
-                // LastStation = StationsList.Last();
-
                 //faire gaffe que la first station, son sadé time et distance de la station d'avant  soient 0 
-               
                 FirstStation = myStationsList[0];
                 LastStation = myStationsList[(myStationsList.Count) - 1];
                 Time = TimeBetweenTwo(FirstStation, LastStation);
@@ -40,7 +36,7 @@ namespace dotNet5781_02_4625_0728
         // il faut faire une fonction a laquelle on envoie un num de tahana et un kav 
         //et elle ns renvoie la place de la tahana ds la liste des tahanots du kav
 
-        public void AddStationToLine(BusLineStation b, int index)   // add Station to LineBus when we send Station and place in the list where we want to add it 
+        public void AddStationToLineHelp(BusLineStation b, int index)   // add Station to LineBus when we send Station and place in the list where we want to add it 
         {
             try
             {
@@ -65,15 +61,18 @@ namespace dotNet5781_02_4625_0728
 
         public BusLineStation FindItemInList(int KeyToFind) // we send a station key and the function returns Station in LineBus, else returns an empty one.
         {
-          //  try
-           // {
+            //  try
+            // {
+            if (StationsList != null)
+            {
                 foreach (BusLineStation item in StationsList)
-                { 
+                {
                     if (item.StationKey == KeyToFind)
                     {
                         return item;
                     }
                 }
+            }
             //    throw new ArgumentException("The bus station doesn't exist in the line");
             // }
             //catch (ArgumentException ex10)
@@ -132,7 +131,7 @@ namespace dotNet5781_02_4625_0728
             int mycount = 0;
             foreach (BusLineStation item in StationsList)
             {
-                if (item == b)
+                if (item.Equals(b))
                     return mycount;
                 mycount++;
             }
@@ -248,17 +247,29 @@ namespace dotNet5781_02_4625_0728
 
         }
 
+        //public bool Equals(Line other)
+        //{
+        //    if ((other == null) || (GetType() != other.GetType())||(LineKey != other.LineKey)||(Area != other.Area)||(StationsList != other.StationsList))
+        //    {
+        //        return false;
+        //    }  
+
+        //    //verifier si ca verifie bien que chaque membre de la list est pareil
+
+        //    return true;
+        //}
+
         public bool Equals(Line other)
         {
-            if ((other == null) || (GetType() != other.GetType())||(LineKey != other.LineKey)||(Area != other.Area)||(StationsList != other.StationsList))
+            if ((other == null) || (GetType() != other.GetType()) || (LineKey != other.LineKey) || (FirstStation.StationKey != other.FirstStation.StationKey) || (LastStation.StationKey != other.LastStation.StationKey))
             {
                 return false;
-            }  
-            
+            }
             //verifier si ca verifie bien que chaque membre de la list est pareil
-
             return true;
         }
+
+
 
     }
 
