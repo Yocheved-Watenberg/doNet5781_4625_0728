@@ -114,10 +114,14 @@ namespace dotNet5781_02_4625_0728
 
             Station s1 = new Station(1,1,1);
             Station s2 = new Station(true);
-            Station s3 = new Station(true);
-            Station s4 = new Station(true);
-            Station s5 = new Station(true);
-            Station s6 = new Station(true);
+            Station s3 = new Station(3,3,3);
+            // Station s3 = new Station(true);
+            Station s4 = new Station(4, 4, 4);
+            //Station s4 = new Station(true);
+            // Station s5 = new Station(true);
+            Station s5 = new Station(5,5,5);
+            Station s6 = new Station(6,6,6);
+            //Station s6 = new Station(true);
             Station s7 = new Station(true);
             Station s8 = new Station(true);
             Station s9 = new Station(true);
@@ -167,22 +171,25 @@ namespace dotNet5781_02_4625_0728
             List<BusLineStation> list12 = new List<BusLineStation>() { new BusLineStation(s29, true), new BusLineStation(s21, true), new BusLineStation(s3, true), new BusLineStation(s23, true), };
 
 
-            Line line1 = new Line(rand.Next(1, 1000), list1, (EnumArea)rand.Next(0,4));
-            Line line2 = new Line(rand.Next(1, 1000), list2, (EnumArea)rand.Next(0, 4));
+            // Line line1 = new Line(rand.Next(1, 1000), list1, (EnumArea)rand.Next(0,4));
+            Line line1 = new Line(21, list1, (EnumArea)rand.Next(0, 4));
+            //Line line2 = new Line(rand.Next(1, 1000), list2, (EnumArea)rand.Next(0, 4));
+            Line line9 = new Line(rand.Next(1, 1000), list2, (EnumArea)rand.Next(0, 4));
             Line line3 = new Line(rand.Next(1, 1000), list3, (EnumArea)rand.Next(0, 4));
             Line line4 = new Line(rand.Next(1, 1000), list4, (EnumArea)rand.Next(0, 4));
             Line line5 = new Line(rand.Next(1, 1000), list5, (EnumArea)rand.Next(0, 4));
             Line line6 = new Line(rand.Next(1, 1000), list6, (EnumArea)rand.Next(0, 4));
             Line line7 = new Line(rand.Next(1, 1000), list7, (EnumArea)rand.Next(0, 4));
             Line line8 = new Line(rand.Next(1, 1000), list8, (EnumArea)rand.Next(0, 4));
-            Line line9 = new Line(rand.Next(1, 1000), list9, (EnumArea)rand.Next(0, 4));
+            Line line2 = new Line(33, list9, (EnumArea)rand.Next(0, 4));
+            //Line line9 = new Line(rand.Next(1, 1000), list9, (EnumArea)rand.Next(0, 4));
             Line line10 = new Line(rand.Next(1, 1000), list10, (EnumArea)rand.Next(0, 4));
             Line line11 = new Line(rand.Next(1, 1000), list11, (EnumArea)rand.Next(0, 4));
             Line line12 = new Line(rand.Next(1, 1000), list12, (EnumArea)rand.Next(0, 4));
+            //Line line13= new Line(21, list12, (EnumArea)rand.Next(0, 4));
 
 
 
-             
             MyList listLines = new MyList();
             listLines.AddLine(line1);
             listLines.AddLine(line2);
@@ -232,14 +239,15 @@ namespace dotNet5781_02_4625_0728
                         Console.WriteLine("what is its longitude?");
                         int myLongitudeA = int.Parse(Console.ReadLine());
                         BusLineStation b = new BusLineStation(myStationA, myLatitudeA, myLongitudeA, 0, 0);
-                        l.StationsList.Add(b);
-                        l.FirstStation = b;
-                        l.LastStation = b;
+                        l.AddStationToLineHelp(b, 0);
+                        //l.StationsList.Add(b);
+                        //l.FirstStation = b;
+                        //l.LastStation = b;
                         Console.WriteLine("succes!");
                         break;
 
                     case "b":
-                        AddStatioToLine(listLines);
+                        AddStationToLine(listLines);
 
                         break;
 
@@ -273,7 +281,68 @@ namespace dotNet5781_02_4625_0728
                         break;
 
                     case "f":
-                        int first;
+                        Console.WriteLine("Enter the station of the departure ");
+                        int firstStationKey = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Enter the station of the arrival ");
+                        int LastStationKey = int.Parse(Console.ReadLine());
+                        MyList Line2Stations = new MyList();
+
+                        if ((!(Station.StationIsExist(firstStationKey))) || (!(Station.StationIsExist(LastStationKey))))
+                            Console.WriteLine("Station doesn't exist");
+                        else
+                        {
+                            BusLineStation a = new BusLineStation(firstStationKey);
+                            BusLineStation c = new BusLineStation(LastStationKey);
+                            foreach (Line item in listLines)
+                            {
+                                Line help = item.SubLine(a, c);
+                                if (help.LineKey != 0)
+                                { Line2Stations.AddLine(help); }
+
+                            }
+                            if (Line2Stations.l.Count != 0)
+                            {
+                                Console.WriteLine("Here all the bus you can take from the faster to the slowest;have a good trip!");
+                                Line2Stations.SortTime().Print();
+                            }
+                            else
+                                Console.WriteLine("Sorry,any bus goes through those two stations");
+
+                        }
+
+
+
+                        
+
+
+
+
+
+
+
+
+
+                    
+               //         Console.WriteLine("Enter the number of the first station");
+               //         int firstKey = int.Parse(Console.ReadLine());
+
+               //         BusLineStation b = FindItemInList(first)
+
+
+
+               //MyList path = new MyList();
+
+
+               //         foreach (Line item in listLines)
+               //         {
+               //             item.SubLine(first, last)
+         
+
+
+
+
+
+
 
                         break;
 
@@ -308,10 +377,11 @@ namespace dotNet5781_02_4625_0728
 
         }
 
-        public static void AddStatioToLine(MyList listLines)
+        public static void AddStationToLine(MyList listLines)
         {
             Console.WriteLine("to which line number do you want to add a station ?");
-            int num = listLines.HowManyIsExist(int.Parse(Console.ReadLine()));
+            int lineNum = int.Parse(Console.ReadLine());
+            int num = listLines.HowManyIsExist(lineNum);
             if (num == 0)
             {
                 Console.WriteLine("this line doesn't exist, first of all you have to create a line");
@@ -322,7 +392,7 @@ namespace dotNet5781_02_4625_0728
                 int myFirstStation = int.Parse(Console.ReadLine());
                 Console.WriteLine("what is the last station of the line?");
                 int myLastStation = int.Parse(Console.ReadLine());
-                Line myline = (listLines.FindLineYoko(num, myFirstStation, myLastStation));       //verifier sil copie pas tt au lieu de matsbia
+                Line myline = (listLines.FindLineYoko(lineNum, myFirstStation, myLastStation));       //verifier sil copie pas tt au lieu de matsbia
                 Console.WriteLine("which station do you want to add?");                     //faire aussi la possibilite de rajouter une nouvelle station inexistante, pas que une station existante dans dautres lignes
                 BusLineStation myNewBusLineStation = new BusLineStation(Station.FindStation(int.Parse(Console.ReadLine())), true);
                 Console.WriteLine("after which station do you want to add the station ?");

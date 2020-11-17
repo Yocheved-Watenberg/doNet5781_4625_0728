@@ -135,13 +135,24 @@ namespace dotNet5781_02_4625_0728
             int mycount = 0;
             foreach (BusLineStation item in StationsList)
             {
-                if (item.Equals(b))
+                if (item.Equals(b))                  // g change a revoir si on le garde #avi
+                      return mycount;
+                mycount++;
+            }
+            return -1;                       // faire une hariga ici 
+        }
+        public int FindPlaceInList2(BusLineStation b)   //function to find the index of the station in the list of the line, else return -1
+        {
+            int mycount = 0;
+            foreach (BusLineStation item in StationsList)
+            {
+                if (item.StationKey == b.StationKey)
+                    //if (item.Equals(b))                   g change a revoir si on le garde #avi
                     return mycount;
                 mycount++;
             }
             return -1;                       // faire une hariga ici 
         }
-
 
 
         // pr les trois fonctions a venir : time et distance entre 2 stations, et tat masloul, faire une fonction commune 
@@ -199,8 +210,8 @@ namespace dotNet5781_02_4625_0728
         {
             //fr en sorte que les stations soient rangées ds la liste dans leur ordre du trajet
 
-            int indexS1 = FindPlaceInList(s1);
-            int indexS2 = FindPlaceInList(s2);
+            int indexS1 = FindPlaceInList2(s1);
+            int indexS2 = FindPlaceInList2(s2);
 
             if ((indexS1 != -1) && (indexS2 != -1))
             {

@@ -163,5 +163,23 @@ namespace dotNet5781_02_4625_0728
             return new Station();
         }
 
+        public static bool StationIsExist(int key)
+        {
+            foreach (Station item in AllStations)
+            {
+                if (key == item.StationKey)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+
+
+
+
+
     }
 }
