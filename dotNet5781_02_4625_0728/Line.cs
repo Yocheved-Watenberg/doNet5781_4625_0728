@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_4625_0728
 {
-    class Line : IComparable<Line>
+     class Line : IComparable<Line>
     {
         public readonly int LineKey; //num of the bus 
         public List<BusLineStation> StationsList; //list of stations of the line 
         public BusLineStation FirstStation { get; set; }
         public BusLineStation LastStation { get; set; }
         public EnumArea Area { get; set; }
-        public float Time { get; set; }
+        public double Time { get; set; }
 
         public Line(int myLine, List<BusLineStation> myStationsList, EnumArea myArea)
         {
@@ -21,10 +21,17 @@ namespace dotNet5781_02_4625_0728
             StationsList = myStationsList;
             Area = myArea;
             //Area = (enumArea)Enum.Parse(typeof(enumArea), myArea)
-            FirstStation = StationsList.First();
-            //faire gaffe que la first station, son sadé time et distance de la station d'avant  soient 0 
-            LastStation = StationsList.Last();
-            Time = TimeBetweenTwo(FirstStation, LastStation);
+            if (StationsList.Count != 0)
+            {
+                //FirstStation = StationsList.First();*             
+                // LastStation = StationsList.Last();
+
+                //faire gaffe que la first station, son sadé time et distance de la station d'avant  soient 0 
+               
+                FirstStation = myStationsList[0];
+                LastStation = myStationsList[(myStationsList.Count) - 1];
+                Time = TimeBetweenTwo(FirstStation, LastStation);
+            }
         }  //ctor 
         public Line()
         {
@@ -58,8 +65,8 @@ namespace dotNet5781_02_4625_0728
 
         public BusLineStation FindItemInList(int KeyToFind) // we send a station key and the function returns Station in LineBus, else returns an empty one.
         {
-            try
-            {
+          //  try
+           // {
                 foreach (BusLineStation item in StationsList)
                 { 
                     if (item.StationKey == KeyToFind)
@@ -67,14 +74,14 @@ namespace dotNet5781_02_4625_0728
                         return item;
                     }
                 }
-                throw new ArgumentException("The bus station doesn't exist in the line");
-            }
-            catch (ArgumentException ex10)
-            {
-                Console.WriteLine(ex10.Message);
-            }
-
-            return new BusLineStation();
+            //    throw new ArgumentException("The bus station doesn't exist in the line");
+            // }
+            //catch (ArgumentException ex10)
+            //  {
+            //     Console.WriteLine(ex10.Message);
+            // }
+            return null; 
+          //  return new BusLineStation();
         }
 
         #region ToStringARevoirCmtPrinterList
@@ -135,7 +142,7 @@ namespace dotNet5781_02_4625_0728
 
 
         // pr les trois fonctions a venir : time et distance entre 2 stations, et tat masloul, faire une fonction commune 
-        public float DistanceBetweenTwo(BusLineStation s1, BusLineStation s2)
+        public double DistanceBetweenTwo(BusLineStation s1, BusLineStation s2)
         {
             //fr en sorte que les stations soient rangées ds la liste dans leur ordre du trajet
 
@@ -148,7 +155,7 @@ namespace dotNet5781_02_4625_0728
                     return 0;
                 if (indexS2 < indexS1)
                     Swap(ref indexS1, ref indexS2);               //now, indexS1<indexS2
-                float distance = 0;
+                double distance = 0;
                 for (int i = ++indexS1; i <= indexS2; i++)
                 {
                     distance += StationsList[i].DistanceFromLastStation;
@@ -160,7 +167,7 @@ namespace dotNet5781_02_4625_0728
             return -1;
         }
 
-        public float TimeBetweenTwo(BusLineStation s1, BusLineStation s2)
+        public double TimeBetweenTwo(BusLineStation s1, BusLineStation s2)
         {
             //fr en sorte que les stations soient rangées ds la liste dans leur ordre du trajet
 
@@ -173,7 +180,7 @@ namespace dotNet5781_02_4625_0728
                     return 0;
                 if (indexS2 < indexS1)
                     Swap(ref indexS1, ref indexS2);   //now, indexS1<indexS2
-                float time = 0;
+                double time = 0;
                 for (int i = ++indexS1; i <= indexS2; i++)
                 {
                     time += StationsList[i].TimeFromLastStation;
@@ -224,9 +231,10 @@ namespace dotNet5781_02_4625_0728
 
         public int CompareTo(Line other)
         {
-            if (Time < other.Time) return 1;
-            if (Time > other.Time) return -1;
-            return 0;
+            //if (Time < other.Time) return 1;
+            //if (Time > other.Time) return -1;
+            //return 0;
+            return Time.CompareTo(other.Time);
         }
 
         public Line Choice(Line other, Station beginning, Station end)            //the function returns the shortest 

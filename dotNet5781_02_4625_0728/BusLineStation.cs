@@ -8,11 +8,10 @@ namespace dotNet5781_02_4625_0728
 {
     class BusLineStation : Station
     { 
-        public float DistanceFromLastStation { get; set; }
-        public float TimeFromLastStation { get; set; }
-      //  public int NewKey { get; set; }
+        public double DistanceFromLastStation { get; set; }
+        public double TimeFromLastStation { get; set; }
       
-        public BusLineStation(int myBusStationKey, /*int BusNum,*/ float myLatitude, float myLongitude, float myDistanceFromLastStation, float myTimeFromLastStation) : base(myLatitude, myLongitude)
+        public BusLineStation(int myBusStationKey, double myLatitude, double myLongitude, double myDistanceFromLastStation, double myTimeFromLastStation) : base(myLatitude, myLongitude)
         {
             bool flag = false;
             try
@@ -41,7 +40,7 @@ namespace dotNet5781_02_4625_0728
 
         public BusLineStation():base(){}
 
-        public BusLineStation(Station s, float d, float t) : base(s.Latitude, s.Longitude)
+        public BusLineStation(Station s, double d, double t) : base(s.Latitude, s.Longitude)
         {
             StationKey = s.StationKey;
             DistanceFromLastStation = d;
@@ -58,6 +57,37 @@ namespace dotNet5781_02_4625_0728
             }
             return true;
         }
+
+
+        static Random rand = new Random(DateTime.Now.Millisecond);
+        public BusLineStation(Station s, bool flagRandom) : base(s.Latitude, s.Longitude)              //create a station with randomally parameters
+        {
+            if (flagRandom == true)
+            {
+                bool flag = false;
+                try
+                {
+                    if ((s.StationKey > 999999) || (s.StationKey < 0))
+                        throw new ArgumentException("The number of the station have to be a positive number of 6 digits maximum");
+                    StationKey = s.StationKey;
+                    foreach (Station item in AllStations)
+                    {
+                        if (item.StationKey == s.StationKey)
+                            flag = true; //the station is already exist 
+                    }
+                    if (flag == false) AllStations.Add(this);
+                    DistanceFromLastStation = rand.NextDouble() * 500;
+                    TimeFromLastStation = rand.NextDouble() * 10;
+
+                }
+                catch (ArgumentException ex1)
+                {
+                    Console.WriteLine(ex1.Message);
+                }
+
+            }
+        }
+
 
     }
 }
