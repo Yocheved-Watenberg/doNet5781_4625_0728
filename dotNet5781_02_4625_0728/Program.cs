@@ -254,6 +254,16 @@ namespace dotNet5781_02_4625_0728
                         break;
 
                     case "d":
+                        Console.WriteLine("In which line do you want to remove a station?");
+                        int mylineKey = int.Parse(Console.ReadLine());
+                        Console.WriteLine("What is the first station in this line");
+                        int myFirstStation = int.Parse(Console.ReadLine());
+                        Console.WriteLine("What is the last station in this line");
+                        int myLastStation = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Which station do you want to remove");
+                        int toRemove = int.Parse(Console.ReadLine());
+                        (listLines.FindLineYoko(mylineKey, myFirstStation, myLastStation)).DeleteStationOfLine(toRemove);
+                        //trouve line dans laquelle tu ve enlever la station                //enleve moi celle avec le key "toRemove"
                         break;
 
                     case "e":

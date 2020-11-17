@@ -90,7 +90,6 @@ namespace dotNet5781_02_4625_0728
         }
 
 
-        static Random rand = new Random(DateTime.Now.Millisecond);
         public BusLineStation(Station s, bool flagRandom) : base(s.Latitude, s.Longitude)              //create a station with randomally parameters
         {
             if (flagRandom == true)
