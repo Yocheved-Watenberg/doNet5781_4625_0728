@@ -382,7 +382,7 @@ namespace dotNet5781_02_4625_0728
             Console.WriteLine("to which line number do you want to add a station ?");
             int lineNum = int.Parse(Console.ReadLine());
             int num = listLines.HowManyIsExist(lineNum);
-            if (num == 0)
+            if (num ==  0)
             {
                 Console.WriteLine("this line doesn't exist, first of all you have to create a line");
             }
