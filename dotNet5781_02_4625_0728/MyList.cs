@@ -131,7 +131,7 @@ namespace dotNet5781_02_4625_0728
         {
             if (l.Count!=0)
             {
-                Console.WriteLine("The buses in this list are:");
+               // Console.WriteLine("The lines are:");
                 for (int i = 0; i < l.Count; i++)
                     Console.WriteLine(l[i].LineKey);
             }

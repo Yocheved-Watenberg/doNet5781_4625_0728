@@ -43,6 +43,8 @@ namespace dotNet5781_02_4625_0728
                 if (index > StationsList.Count)
                     throw new ArgumentException("The index isn't within the expected range.");
                 StationsList.Insert(index, b);
+                FirstStation = StationsList[0];
+                LastStation = StationsList[(StationsList.Count) - 1];
             }
             catch (ArgumentException ex9)
             {
@@ -56,6 +58,8 @@ namespace dotNet5781_02_4625_0728
             if (b.StationKey != 0)
             {
                 StationsList.Remove(b);
+                FirstStation = StationsList[0];
+                LastStation = StationsList[(StationsList.Count) - 1];
             }
         }
 
