@@ -10,7 +10,7 @@ namespace dotNet5781_02_4625_0728
 
     class MyList : IEnumerable
     {
-        List<Line> l;
+        public List<Line> l;
         public MyList()
         {
             l = new List<Line>();
@@ -197,13 +197,20 @@ namespace dotNet5781_02_4625_0728
 
         public Line FindLineYoko(int myKey, int myFirst, int myLast)           //a supprimer pr avi 
         {
+
+
             foreach (Line item in l)
-            {
-                if ((myKey == item.LineKey) && (myFirst == item.FirstStation.StationKey) && (myLast == item.LastStation.StationKey))
+            { if ((myKey == item.LineKey) && (myFirst == item.FirstStation.StationKey) && (myLast == item.LastStation.StationKey))
                 {
                     return item;
                 }
             }
+
+            //{ if (myKey == item.LineKey)
+            //        //if (myFirst == item.FirstStation.StationKey)
+            //        //    if (myLast == item.LastStation.StationKey)
+
+
             return new Line();
         }
 
@@ -220,8 +227,7 @@ namespace dotNet5781_02_4625_0728
             return new Line();
         }
 
-
-        public IEnumerator GetEnumerator()
+       public  IEnumerator GetEnumerator()
         {
             return l.GetEnumerator();                        //return how to scan the list 
         }
