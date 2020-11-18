@@ -53,11 +53,6 @@ namespace dotNet5781_02_4625_0728
             StationKey = myBusStationKey;
             DistanceFromLastStation = (rand.NextDouble() * 500);
             TimeFromLastStation = (rand.NextDouble() * 10);
-
-
-
-
-
         }
 
 

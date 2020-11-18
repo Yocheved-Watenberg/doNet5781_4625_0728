@@ -225,25 +225,50 @@ namespace dotNet5781_02_4625_0728
                     case "a":
                         Console.WriteLine("Which num of line do you want to add");
                         int myLineA = int.Parse(Console.ReadLine());
-                        Console.WriteLine("In which area is the line?");
-                        Console.WriteLine("chose 1 for north, 2 for south, 3 for center, 4 for jerusalem, or 0 to a general line");
-                        EnumArea myArea = (EnumArea)int.Parse(Console.ReadLine());
-                        List<BusLineStation> myStationsList = new List<BusLineStation>();
-                        Line l = new Line(myLineA, myStationsList, myArea);
-                        listLines.AddLine(l);
-                        //listLines.AddLine(new Line(myLineA, myStationsList, myArea)); 
-                        Console.WriteLine("succes! now put the first station of the list please, what is its number? ");
-                        int myStationA = int.Parse(Console.ReadLine());
-                        Console.WriteLine("what is its latitude?");
-                        int myLatitudeA = int.Parse(Console.ReadLine());
-                        Console.WriteLine("what is its longitude?");
-                        int myLongitudeA = int.Parse(Console.ReadLine());
-                        BusLineStation b = new BusLineStation(myStationA, myLatitudeA, myLongitudeA, 0, 0);
-                        l.AddStationToLineHelp(b, 0);
-                        //l.StationsList.Add(b);
-                        //l.FirstStation = b;
-                        //l.LastStation = b;
-                        Console.WriteLine("succes!");
+                        if (listLines.HowManyIsExist(myLineA) == 2)
+                            Console.WriteLine("Sorry, this line already exist");
+                        else
+                        {
+                            Console.WriteLine("In which area is the line?");
+                            Console.WriteLine("chose 1 for north, 2 for south, 3 for center, 4 for jerusalem, or 0 to a general line");
+                            int myArea = int.Parse(Console.ReadLine());
+                            List<BusLineStation> myStationsList = new List<BusLineStation>();
+                            Line l = new Line(myLineA, myStationsList, myArea);
+
+
+                            
+
+
+
+
+
+                            listLines.AddLine(l);
+                            //listLines.AddLine(new Line(myLineA, myStationsList, myArea)); 
+                            Console.WriteLine("succes! now put the first station of the list please, what is its number? ");
+                            int newStation = int.Parse(Console.ReadLine());
+                            Station find = Station.FindStation(newStation);
+                            if (find.StationKey == 0)
+                            {
+                                Console.WriteLine("you want to add a station that doesn't exist,what its latitude?");
+                                double latitude = double.Parse(Console.ReadLine());
+                                Console.WriteLine("what its longitude?");
+                                double longitude = double.Parse(Console.ReadLine());
+                                find.StationKey = newStation;
+                                find.Latitude = latitude;
+                                find.Longitude = longitude;
+                            }
+                            BusLineStation b= new BusLineStation(find, 0,0);
+                            l.AddStationToLineHelp(b, 0);
+
+                            //int myStationA = int.Parse(Console.ReadLine());
+                            //Console.WriteLine("what is its latitude?");
+                            //int myLatitudeA = int.Parse(Console.ReadLine());
+                            //Console.WriteLine("what is its longitude?");
+                            //int myLongitudeA = int.Parse(Console.ReadLine());
+                            //BusLineStation b = new BusLineStation(myStationA, myLatitudeA, myLongitudeA, 0, 0);
+                            //l.AddStationToLineHelp(b, 0);
+                            Console.WriteLine("succes!");
+                        }
                         break;
 
                     case "b":
@@ -258,7 +283,15 @@ namespace dotNet5781_02_4625_0728
                          int   myFirst = int.Parse(Console.ReadLine());
                         Console.WriteLine("what is its last station ?");
                         int   myLast = int.Parse(Console.ReadLine());
-                        listLines.deleteALine(listLines.FindLineYoko(myKey, myFirst, myLast ));
+                        Line Find = listLines.FindLineYoko(myKey, myFirst, myLast);
+                        if (Find.LineKey != 0) 
+                        {
+                            listLines.deleteALine(Find);
+                            Console.WriteLine("Success");
+                        }
+                        else
+                            Console.WriteLine("this line doesn't exist");
+                        
                         break;
 
                     case "d":
@@ -268,9 +301,17 @@ namespace dotNet5781_02_4625_0728
                         int myFirstStation = int.Parse(Console.ReadLine());
                         Console.WriteLine("What is the last station in this line");
                         int myLastStation = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Which station do you want to remove");
+                   
+                        Line toFind = listLines.FindLineYoko(mylineKey, myFirstStation, myLastStation);
+                        if(toFind.LineKey==0)
+                            Console.WriteLine("Sorry there is no such line");
+                        else
+                        {
+                            Console.WriteLine("Which station do you want to remove");
                         int toRemove = int.Parse(Console.ReadLine());
-                        (listLines.FindLineYoko(mylineKey, myFirstStation, myLastStation)).DeleteStationOfLine(toRemove);
+                         toFind.DeleteStationOfLine(toRemove);
+                            Console.WriteLine("success");
+                        }
                         //trouve line dans laquelle tu ve enlever la station                //enleve moi celle avec le key "toRemove"
                         break;
 
@@ -382,7 +423,7 @@ namespace dotNet5781_02_4625_0728
             Console.WriteLine("to which line number do you want to add a station ?");
             int lineNum = int.Parse(Console.ReadLine());
             int num = listLines.HowManyIsExist(lineNum);
-            if (num ==  0)
+            if (num == 0)
             {
                 Console.WriteLine("this line doesn't exist, first of all you have to create a line");
             }
@@ -393,13 +434,37 @@ namespace dotNet5781_02_4625_0728
                 Console.WriteLine("what is the last station of the line?");
                 int myLastStation = int.Parse(Console.ReadLine());
                 Line myline = (listLines.FindLineYoko(lineNum, myFirstStation, myLastStation));       //verifier sil copie pas tt au lieu de matsbia
-                Console.WriteLine("which station do you want to add?");                     //faire aussi la possibilite de rajouter une nouvelle station inexistante, pas que une station existante dans dautres lignes
-                BusLineStation myNewBusLineStation = new BusLineStation(Station.FindStation(int.Parse(Console.ReadLine())), true);
-                Console.WriteLine("after which station do you want to add the station ?");
-                int myPreviousStation = int.Parse(Console.ReadLine());
-                int index = myline.FindPlaceInList(myline.FindItemInList(myPreviousStation));
-               myline.AddStationToLineHelp(myNewBusLineStation, ++index);
-            }
+                if (myline.LineKey == 0)
+                    Console.WriteLine("You made an error, there isn't any line with those stations");
+                else
+                {
+                    Console.WriteLine("which station do you want to add?");                     //faire aussi la possibilite de rajouter une nouvelle station inexistante, pas que une station existante dans dautres lignes
+                    int newStation = int.Parse(Console.ReadLine());
+                    Station find = Station.FindStation(newStation);
+                    if (find.StationKey == 0)
+                    {
+                        Console.WriteLine("you want to add a new station,what its latitude?");
+                        double latitude = double.Parse(Console.ReadLine());
+                        Console.WriteLine("what its longitude?");
+                        double longitude = double.Parse(Console.ReadLine());
+                        find.StationKey = newStation;
+                        find.Latitude = latitude;
+                        find.Longitude = longitude;
+                    }
+                    BusLineStation myNewBusLineStation = new BusLineStation(find, true);
+                    Console.WriteLine("after which station do you want to add the station ?");
+                    int myPreviousStation = int.Parse(Console.ReadLine());
+                    BusLineStation StationBefore = myline.FindItemInList(myPreviousStation);
+                    if (StationBefore.StationKey == 0)
+                        Console.WriteLine("sorry, this station doesn't exist in this line");
+                    else
+                    {
+                        int index = myline.FindPlaceInList(StationBefore);
+                        myline.AddStationToLineHelp(myNewBusLineStation, ++index);
+                        Console.WriteLine("The station has been added");
+                    }
+                }
+        }
         }
     }
 }

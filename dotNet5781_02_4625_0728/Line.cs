@@ -15,11 +15,11 @@ namespace dotNet5781_02_4625_0728
         public EnumArea Area { get; set; }
         public double Time { get; set; }
 
-        public Line(int myLine, List<BusLineStation> myStationsList, EnumArea myArea)
+        public Line(int myLine, List<BusLineStation> myStationsList, int myArea)
         {
             LineKey = myLine;
             StationsList = myStationsList;
-            Area = myArea;
+            Area = (EnumArea)myArea;
             //Area = (enumArea)Enum.Parse(typeof(enumArea), myArea)
             if (StationsList.Count != 0)
             {
@@ -55,12 +55,14 @@ namespace dotNet5781_02_4625_0728
         public void DeleteStationOfLine(int toDelete) //delete Station of a LineBus when we send the key of the station to delete
         {
             BusLineStation b = FindItemInList(toDelete);
-            if (b.StationKey != 0)
+            if (b != null)
             {
                 StationsList.Remove(b);
                 FirstStation = StationsList[0];
                 LastStation = StationsList[(StationsList.Count) - 1];
             }
+            else
+                Console.WriteLine("this station doesn't exist");
         }
 
         public BusLineStation FindItemInList(int KeyToFind) // we send a station key and the function returns Station in LineBus, else returns an empty one.
@@ -219,7 +221,7 @@ namespace dotNet5781_02_4625_0728
                 {
                     List<BusLineStation> l1 = new List<BusLineStation>();
                     l1.Add(s1);
-                    return new Line(LineKey, l1, Area);
+                    return new Line(LineKey, l1,(int) Area);
                 }
                 if (indexS2 < indexS1)
                     Swap(ref indexS1, ref indexS2);   //now, indexS1<indexS2
@@ -228,7 +230,7 @@ namespace dotNet5781_02_4625_0728
                 {
                     l2.Add(StationsList[i]);
                 }
-                return new Line(LineKey, l2, Area);
+                return new Line(LineKey, l2, (int)Area);
             }
             //Console.WriteLine("We haven't found one of the station, in this line");  //jeter une harigaaaaaaa
             return new Line();
