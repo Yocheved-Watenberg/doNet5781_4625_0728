@@ -1,72 +1,72 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+// il faut faire une fonction a laquelle on envoie un num de tahana et un kav 
+//et elle ns renvoie la place de la tahana ds la liste des tahanots du kav
+
+// ds tostring verifier si on peut faire en sorte que ca s'imprime a l'endroit dabord le reste, et ensuite le print list 
+
+//cheker les input de choice 
+
 
 namespace dotNet5781_02_4625_0728
 {
      class Line : IComparable<Line>
-    {
-        public readonly int LineKey; //num of the bus 
-        public List<BusLineStation> StationsList; //list of stations of the line 
+     {
+        public readonly int LineKey;                            //num of the bus 
+        public List<BusLineStation> StationsList;               //list of stations of the line 
         public BusLineStation FirstStation { get; set; }
         public BusLineStation LastStation { get; set; }
         public EnumArea Area { get; set; }
-        public double Time { get; set; }
+        public double Time { get; set; }                        //Time of the whole travel of the line 
+        public Line() {}                                        //ctor empty
 
-        public Line(int myLine, List<BusLineStation> myStationsList, EnumArea myArea)
+        public Line(int myLine, List<BusLineStation> myStationsList, int myArea)       //ctor
         {
             LineKey = myLine;
             StationsList = myStationsList;
-            Area = myArea;
-            //Area = (enumArea)Enum.Parse(typeof(enumArea), myArea)
+            Area = (EnumArea)myArea;
             if (StationsList.Count != 0)
             {
-                //faire gaffe que la first station, son sadé time et distance de la station d'avant  soient 0 
                 FirstStation = myStationsList[0];
                 LastStation = myStationsList[(myStationsList.Count) - 1];
                 Time = TimeBetweenTwo(FirstStation, LastStation);
             }
-        }  //ctor 
-        public Line()
-        {
-        } //ctor empty
+        } 
 
-        // il faut faire une fonction a laquelle on envoie un num de tahana et un kav 
-        //et elle ns renvoie la place de la tahana ds la liste des tahanots du kav
-
-        public void AddStationToLineHelp(BusLineStation b, int index)   // add Station to LineBus when we send Station and place in the list where we want to add it 
+        public void AddStationToLineHelp(BusLineStation b, int index)       // add Station to LineBus when we send Station and place in the list where we want to add it 
         {
             try
             {
                 if (index > StationsList.Count)
                     throw new ArgumentException("The index isn't within the expected range.");
                 StationsList.Insert(index, b);
-                FirstStation = StationsList[0];
-                LastStation = StationsList[(StationsList.Count) - 1];
+                FirstStation = StationsList[0];                             //updates the first station
+                LastStation = StationsList[(StationsList.Count) - 1];       //updates the last station
             }
-            catch (ArgumentException ex9)
+            catch (ArgumentException ex)
             {
-                Console.WriteLine(ex9.Message);
+                Console.WriteLine(ex.Message);
             }
         }
 
-        public void DeleteStationOfLine(int toDelete) //delete Station of a LineBus when we send the key of the station to delete
+        public void DeleteStationOfLine(int toDelete)                       //delete Station of a LineBus when we send the key of the station to delete
         {
             BusLineStation b = FindItemInList(toDelete);
-            if (b.StationKey != 0)
+            if (b != null)
             {
                 StationsList.Remove(b);
-                FirstStation = StationsList[0];
-                LastStation = StationsList[(StationsList.Count) - 1];
+                FirstStation = StationsList[0];                             //updates the first station of the line
+                LastStation = StationsList[(StationsList.Count) - 1];       //updates the last station of the line 
+            }
+            else
+            {
+                Console.WriteLine("this station doesn't exist");
             }
         }
 
-        public BusLineStation FindItemInList(int KeyToFind) // we send a station key and the function returns Station in LineBus, else returns an empty one.
+        public BusLineStation FindItemInList(int KeyToFind)                // we send a station key and the function returns Station in LineBus if it is.
         {
-            //  try
-            // {
             if (StationsList != null)
             {
                 foreach (BusLineStation item in StationsList)
@@ -77,37 +77,17 @@ namespace dotNet5781_02_4625_0728
                     }
                 }
             }
-            //    throw new ArgumentException("The bus station doesn't exist in the line");
-            // }
-            //catch (ArgumentException ex10)
-            //  {
-            //     Console.WriteLine(ex10.Message);
-            // }
-            return null; 
-          //  return new BusLineStation();
+            else
+            {
+                Console.WriteLine("this station doesn't exist");
+            }
+            return null;
         }
 
-        #region ToStringARevoirCmtPrinterList
-        //public override string ToString()
-        //{
-        //    return "Bus number: " + LineKey + "\nArea: " + Area + "\nStations of the line :" + StationsList.ToString();
-        //}
-        //public override string ToString()
-        //{
-        //    return "Bus number: " + LineKey + "\nArea: " + Area + "\nStations of the line :" + PrintList();
-
-        //}
-
-        public override string ToString()
+        public override string ToString()                                  //override ToString for a line 
         {
-            return "Bus number: " + LineKey + "\nArea :" + Area + "\nStations of the line :" + PrintList();
+            return "Stations of the line:" + PrintList() + "\nBus number: " + LineKey + "\nArea :" + Area;
         }
-
-        //public string PrintList()
-        //{
-        //    foreach (BusLineStation item in StationsList)
-        //        Convert.ToString(item.StationKey);
-        //}
 
         public string PrintList()
         {
@@ -116,9 +96,7 @@ namespace dotNet5781_02_4625_0728
             return " ";
         }
 
-        #endregion
-
-        public bool StationIsInLine(Station s) //function to check if a station is in the line  
+        public bool StationIsInLine(Station s)                            //boolean function to check if a station is in a line  
         {
             foreach (BusLineStation item in StationsList)
                 if (item.StationKey == s.StationKey)
@@ -128,165 +106,133 @@ namespace dotNet5781_02_4625_0728
             return false;
         }
 
-
-
-        public int FindPlaceInList(BusLineStation b)   //function to find the index of the station in the list of the line, else return -1
-        {
+        public int FindPlaceInList(BusLineStation b)                      //function to find the index of the station in the list of the line 
+        {                                                                 
             int mycount = 0;
             foreach (BusLineStation item in StationsList)
             {
-                if (item.Equals(b))                  // g change a revoir si on le garde #avi
+                if (item.Equals(b))                                       //check all the parameters of the station
                       return mycount;
                 mycount++;
             }
-            return -1;                       // faire une hariga ici 
+            Console.WriteLine("this station doesn't exist");
+            return -1;                    
         }
-        public int FindPlaceInList2(BusLineStation b)   //function to find the index of the station in the list of the line, else return -1
+        public int FindPlaceInList2(BusLineStation b)                     //function to find the index of the station in the list of the line
         {
             int mycount = 0;
             foreach (BusLineStation item in StationsList)
             {
-                if (item.StationKey == b.StationKey)
-                    //if (item.Equals(b))                   g change a revoir si on le garde #avi
+                if (item.StationKey == b.StationKey)                    //check just if the station key is the same
                     return mycount;
                 mycount++;
             }
-            return -1;                       // faire une hariga ici 
+            Console.WriteLine("this station doesn't exist");
+            return -1;                       
         }
 
-
-        // pr les trois fonctions a venir : time et distance entre 2 stations, et tat masloul, faire une fonction commune 
-        public double DistanceBetweenTwo(BusLineStation s1, BusLineStation s2)
+        public double DistanceBetweenTwo(BusLineStation s1, BusLineStation s2)  //finds the distance between two stations in a line
         {
-            //fr en sorte que les stations soient rangées ds la liste dans leur ordre du trajet
-
-            int indexS1 = FindPlaceInList(s1);
-            int indexS2 = FindPlaceInList(s2);
+            int indexS1, indexS2;
+            Index(s1, s2, out indexS1, out indexS2);                             //finds the indexes of the stations in the line
 
             if ((indexS1 != -1) && (indexS2 != -1))
             {
-                if (indexS1 == indexS2)
-                    return 0;
-                if (indexS2 < indexS1)
-                    Swap(ref indexS1, ref indexS2);               //now, indexS1<indexS2
                 double distance = 0;
-                for (int i = ++indexS1; i <= indexS2; i++)
+                if (indexS1 != indexS2)
                 {
-                    distance += StationsList[i].DistanceFromLastStation;
+                    for (int i = ++indexS1; i <= indexS2; i++)
+                    {
+                        distance += StationsList[i].DistanceFromLastStation;      //calculates the distance 
+                    }
                 }
                 return distance;
             }
-
-            Console.WriteLine("We haven't found one of the station, in this line"); //jeter une harigaaaaaaa
+            Console.WriteLine("We haven't found one of the station, in this line"); 
             return -1;
         }
 
-        public double TimeBetweenTwo(BusLineStation s1, BusLineStation s2)
+        public double TimeBetweenTwo(BusLineStation s1, BusLineStation s2)      //finds the time between two stations in a line
         {
-            //fr en sorte que les stations soient rangées ds la liste dans leur ordre du trajet
-
-            int indexS1 = FindPlaceInList(s1);
-            int indexS2 = FindPlaceInList(s2);
+            int indexS1, indexS2;
+            Index(s1, s2, out indexS1, out indexS2);                            //finds the indexes of the stations in the line
 
             if ((indexS1 != -1) && (indexS2 != -1))
             {
-                if (indexS1 == indexS2)
-                    return 0;
-                if (indexS2 < indexS1)
-                    Swap(ref indexS1, ref indexS2);   //now, indexS1<indexS2
                 double time = 0;
-                for (int i = ++indexS1; i <= indexS2; i++)
+                if (indexS1 != indexS2)
                 {
-                    time += StationsList[i].TimeFromLastStation;
+                    for (int i = ++indexS1; i <= indexS2; i++)
+                    {
+                        time += StationsList[i].TimeFromLastStation;            //calculates the time 
+                    }
                 }
                 return time;
             }
-            Console.WriteLine("We haven't found one of the station, in this line"); //jeter une harigaaaaaaa
+            Console.WriteLine("We haven't found one of the station, in this line");
             return -1;
 
         }
 
-        public Line SubLine(BusLineStation s1, BusLineStation s2)               //comment appeler le nv kav ??????? pareil que lancien c fo, au autre dou je sais sil est pris ? 
+        public Line SubLine(BusLineStation s1, BusLineStation s2)              
         {
-            //fr en sorte que les stations soient rangées ds la liste dans leur ordre du trajet
-
-            int indexS1 = FindPlaceInList2(s1);
-            int indexS2 = FindPlaceInList2(s2);
+            int indexS1, indexS2;
+            Index(s1, s2, out indexS1, out indexS2);                            //finds the indexes of the stations in the line
 
             if ((indexS1 != -1) && (indexS2 != -1))
             {
-                if (indexS1 == indexS2)
+                if (indexS1 == indexS2)                                         //if the stations are the same one
                 {
-                    List<BusLineStation> l1 = new List<BusLineStation>();
+                    List<BusLineStation> l1 = new List<BusLineStation>();      
                     l1.Add(s1);
-                    return new Line(LineKey, l1, Area);
+                    return new Line(LineKey, l1, (int)Area);                    //returns a line with a list with just one station
                 }
-                if (indexS2 < indexS1)
-                    Swap(ref indexS1, ref indexS2);   //now, indexS1<indexS2
                 List<BusLineStation> l2 = new List<BusLineStation>();
                 for (int i = indexS1; i <= indexS2; i++)
                 {
                     l2.Add(StationsList[i]);
                 }
-                return new Line(LineKey, l2, Area);
+                return new Line(LineKey, l2, (int)Area);                        //returns the subline
             }
-            //Console.WriteLine("We haven't found one of the station, in this line");  //jeter une harigaaaaaaa
             return new Line();
-
         }
 
+        public void Index(BusLineStation s1, BusLineStation s2, out int indexS1, out int indexS2)  //finds the indexes of the lines 
+        {
+            indexS1 = FindPlaceInList(s1);
+            indexS2 = FindPlaceInList(s2);
+            if (indexS2 < indexS1)
+                Swap(ref indexS1, ref indexS2);   //now, indexS1<indexS2
+        }
 
         public static void Swap(ref int indexS1, ref int indexS2)
         {
             int temp = indexS1;
             indexS1 = indexS2;
             indexS2 = temp;
-        }
+        }           //function swap
 
-        public int CompareTo(Line other)
+        public int CompareTo(Line other)                                       //fonction CompareTo, interface IComparable
         {
-            //if (Time < other.Time) return 1;
-            //if (Time > other.Time) return -1;
-            //return 0;
             return Time.CompareTo(other.Time);
         }
 
-        public Line Choice(Line other, Station beginning, Station end)            //the function returns the shortest 
-                                                                                  //cheker les input
+        public bool Equals(Line other)                               //2 lines are equals if their key, first and last stations are equals 
+        {
+            if ((other == null) || (GetType() != other.GetType()) || (LineKey != other.LineKey) || (FirstStation.StationKey != other.FirstStation.StationKey) || (LastStation.StationKey != other.LastStation.StationKey))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public Line Choice(Line other, Station beginning, Station end)          //the function returns the shortest travel
         {
             Line choice1 = SubLine(FindItemInList(beginning.StationKey), FindItemInList(end.StationKey)); //choice1 contains the subLine for the first bus (this) 
             Line choice2 = other.SubLine(other.FindItemInList(beginning.StationKey), other.FindItemInList(end.StationKey));  //choice2 contains the subLine for the second bus (other) 
             if (choice1.CompareTo(choice2) == 1) return choice1;
             if (choice1.CompareTo(choice2) == -1) return choice2;
             return choice1;                                                     //it was the same time for both
-
         }
-
-        //public bool Equals(Line other)
-        //{
-        //    if ((other == null) || (GetType() != other.GetType())||(LineKey != other.LineKey)||(Area != other.Area)||(StationsList != other.StationsList))
-        //    {
-        //        return false;
-        //    }  
-
-        //    //verifier si ca verifie bien que chaque membre de la list est pareil
-
-        //    return true;
-        //}
-
-        public bool Equals(Line other)
-        {
-            if ((other == null) || (GetType() != other.GetType()) || (LineKey != other.LineKey) || (FirstStation.StationKey != other.FirstStation.StationKey) || (LastStation.StationKey != other.LastStation.StationKey))
-            {
-                return false;
-            }
-            //verifier si ca verifie bien que chaque membre de la list est pareil
-            return true;
-        }
-
-
-
     }
-
-
 }

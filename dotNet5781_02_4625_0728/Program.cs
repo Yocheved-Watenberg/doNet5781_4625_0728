@@ -15,113 +15,15 @@ namespace dotNet5781_02_4625_0728
             //    il faudra verifier que ca rajoute bien ds la liste de allstations a chaque appel du banay
             //    et sinn a chaque fois quon cree une station l'ajouter a la liste a l'aide de AllStations.Add(nomdelanouvellestation)
 
-            #region tests 
-            //    BusStation b = new BusStation(66551, 22, 24);
-            //    BusStation c = new BusStation(555616551, 200, 24);
-            //    Console.WriteLine(b.BusStationKey);
-            //    Console.WriteLine(c);
-            //    List<BusLineStation> mylistofbuslinestations = new List<BusLineStation>();
-            //    List<BusLineStation> l = new List<BusLineStation>();
-            //    Station s1 = new Station(990, 1, 1);
-            //    BusLineStation s2 = new BusLineStation(s1, 10, 10);
-            //    BusLineStation s3 = new BusLineStation(s1, 20, 20);
-            //    Station s6 = new Station(999, 1, 1);
-            //    BusLineStation s4 = new BusLineStation(s1, 25, 25);
-            //    BusLineStation s5 = new BusLineStation(s1, 50, 50);
-            //    new BusLineStation(990, 20, 20, 20, 20);
-            //    Station s7 = new BusLineStation(990, 20, 20, 22, 22);
-            //    Station s3 = new BusLineStation(991, 30, 30, 30, 30);
-            //    Station s4 = new BusLineStation(991, 30, 30, 60, 60);
-            //    Station s6 = new BusLineStation(995, 70, 70, 70, 70);
-            //    Station.AllStations.Add(s1);
-            //    Station.AllStations.Add(s2);
-            //    Station.AllStations.Add(s3);
-            //    mylistofbuslinestations.Add((BusLineStation)s3);
-            //    l.Add((BusLineStation)s3);
-            //    mylistofbuslinestations.Add((BusLineStation)s7);
-            //    mylistofbuslinestations.Add((BusLineStation)s6);
-            //    mylistofbuslinestations.Add((BusLineStation)s4);
-            //    l.Add((BusLineStation)s1);
-            //    l.Add((BusLineStation)s5);
-            //    l.Add((BusLineStation)s6);
-            //    Line mylinebus = new Line(21, mylistofbuslinestations, (EnumArea)3);
-            //    mylinebus.StationIsInLine(s7);
-            //    Line myl = new Line(39, l, (EnumArea)3);
-            //    Console.WriteLine(mylinebus);
-            //    mylinebus.AddStationToLine(new BusLineStation(1000, 5, 5, 5, 5), 2);
-            //    Console.WriteLine(mylinebus);
-            //    mylinebus.DeleteStationOfLine(9);
-            //    Console.WriteLine(mylinebus);
-            //    if (mylinebus.StationIsInLine(s3)) Console.WriteLine("the station is in line 21");
-            //    else Console.WriteLine("the station isnt is line 21");
-            //    Console.WriteLine(mylinebus.TimeBetweenTwo((BusLineStation)s3, (BusLineStation)s2));
-            //    Console.WriteLine(mylinebus.SubLine((BusLineStation)s2, (BusLineStation)s5));
-            //    Console.WriteLine(myl.Choice(mylinebus, s1, s6));
-            #endregion
-
-            #region testspropres
-            //Station s1 = new Station(990, 1, 1);                       //beginnig
-            //BusLineStation s2 = new BusLineStation(s1, 10, 10);        //21
-            //BusLineStation s3 = new BusLineStation(s1, 2, 2);        //39
-            //Station s4 = new Station(999, 4, 4);                       //end
-            //BusLineStation s5 = new BusLineStation(s4, 45, 45);        //21
-            //BusLineStation s6 = new BusLineStation(s4, 50, 50);        //39
-            //List<BusLineStation> list21 = new List<BusLineStation>(); //s2 et s5
-            //List<BusLineStation> list39 = new List<BusLineStation>(); //s3 et s6
-            //list21.Add(s2);
-            //list21.Add(s5);
-            //list39.Add(s3);
-            //list39.Add(s6);
-            //Line line39 = new Line(39, list39, (EnumArea)3);
-            //Line line21 = new Line(21, list21, (EnumArea)3);
-            ////line39.Choice(line21, s1, s4);
-            //Console.WriteLine(line39.Choice(line21, s1, s4));
-            //Console.ReadLine();
-            #endregion
-
-
-
-            //Station[] listedes40stations = new Station[40];            // g fait une liste de 40 stations
-            //for (int i = 0; i < 40; i++)
-            //{
-            //    listedes40stations[i] = new Station(true);
-            //}
-
-            //BusLineStation[] listede100buslinestatons = new BusLineStation[100];
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    listedes40stations[i] = new BusLineStation(listedes40stations[rand.Next(0,40)],true);
-            //}
-
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    List<BusLineStation> mylistofbuslinestations = new List<BusLineStation>() { new BusLineStation };
-            //}
-
-            // elish: creer 40 stations puis creer 10 lines ( et leur rentrer des tahanots, ds ttes les lignes fo au moins 2 tahanots, et ds chepacmb de ligne ya plus que 2 tahanots(4) ) puis ajouter les lignes au osef 
-            // jimagine que ta une mahlaka liste de ttes les lignes: fonction qui recoit les lignes et rajoute a sa list
-            // fonction qui recoit des tahanots et qui les rajoute ds le masloul dune ligne en faisant fonction qui recoit 4 tahanots et qui cree un bus
-            // ta 10 bus et 40 tahanot dc ttes tes tahanots vont etre utilisees 
-
-
-            //   List<Station> listedes40stations = new List<Station>();
-
 
             Random rand = new Random(DateTime.Now.Millisecond);
-
-            //static Random rand = new Random(DateTime.Now.Millisecond);
-
 
             Station s1 = new Station(1,1,1);
             Station s2 = new Station(true);
             Station s3 = new Station(3,3,3);
-            // Station s3 = new Station(true);
             Station s4 = new Station(4, 4, 4);
-            //Station s4 = new Station(true);
-            // Station s5 = new Station(true);
             Station s5 = new Station(5,5,5);
             Station s6 = new Station(6,6,6);
-            //Station s6 = new Station(true);
             Station s7 = new Station(true);
             Station s8 = new Station(true);
             Station s9 = new Station(true);
@@ -157,36 +59,32 @@ namespace dotNet5781_02_4625_0728
             Station s39 = new Station(true);
             Station s40 = new Station(true);
 
-            List<BusLineStation> list1 = new List<BusLineStation>() {new BusLineStation(s1, true), new BusLineStation(s2,true), new BusLineStation(s3, true), new BusLineStation(s4, true), new BusLineStation(s5, true) };
-            List<BusLineStation> list2 = new List<BusLineStation>() { new BusLineStation(s6, true), new BusLineStation(s7, true), new BusLineStation(s8, true), new BusLineStation(s9, true), new BusLineStation(s10, true) };
-            List<BusLineStation> list3 = new List<BusLineStation>() { new BusLineStation(s11, true), new BusLineStation(s12, true), new BusLineStation(s13, true), new BusLineStation(s14, true), new BusLineStation(s15, true) };
-            List<BusLineStation> list4 = new List<BusLineStation>() { new BusLineStation(s16, true), new BusLineStation(s17, true), new BusLineStation(s18, true), new BusLineStation(s19, true) , new BusLineStation(s20, true) };
-            List<BusLineStation> list5 = new List<BusLineStation>() { new BusLineStation(s21, true), new BusLineStation(s22, true), new BusLineStation(s23, true), new BusLineStation(s24, true), new BusLineStation(s25, true) };
-            List<BusLineStation> list6 = new List<BusLineStation>() { new BusLineStation(s26, true), new BusLineStation(s27, true), new BusLineStation(s28, true), new BusLineStation(s29, true), new BusLineStation(s30, true), };
-            List<BusLineStation> list7 = new List<BusLineStation>() { new BusLineStation(s31, true), new BusLineStation(s32, true), new BusLineStation(s33, true), new BusLineStation(s34, true), new BusLineStation(s35, true), };
-            List<BusLineStation> list8 = new List<BusLineStation>() { new BusLineStation(s36, true), new BusLineStation(s37, true), new BusLineStation(s38, true),new BusLineStation(s39, true), new BusLineStation(s40, true), };
-            List<BusLineStation> list9 = new List<BusLineStation>() { new BusLineStation(s1, true), new BusLineStation(s2, true), new BusLineStation(s3, true), new BusLineStation(s28, true), };
-            List<BusLineStation> list10 = new List<BusLineStation>() { new BusLineStation(s22, true), new BusLineStation(s1, true), new BusLineStation(s3, true), new BusLineStation(s38, true), };
-            List<BusLineStation> list11 = new List<BusLineStation>() { new BusLineStation(s1, true), new BusLineStation(s7, true), new BusLineStation(s8, true), new BusLineStation(s24, true), };
-            List<BusLineStation> list12 = new List<BusLineStation>() { new BusLineStation(s29, true), new BusLineStation(s21, true), new BusLineStation(s3, true), new BusLineStation(s23, true), };
+            List<BusLineStation> list1 = new List<BusLineStation>() {new BusLineStation(s1, 0, 0), new BusLineStation(s2,true), new BusLineStation(s3, true), new BusLineStation(s4, true), new BusLineStation(s5, true) };
+            List<BusLineStation> list2 = new List<BusLineStation>() { new BusLineStation(s1, 0, 0), new BusLineStation(s2, true), new BusLineStation(s3, true), new BusLineStation(s28, true), };
+            List<BusLineStation> list3 = new List<BusLineStation>() { new BusLineStation(s11, 0, 0), new BusLineStation(s12, true), new BusLineStation(s13, true), new BusLineStation(s14, true), new BusLineStation(s15, true) };
+            List<BusLineStation> list4 = new List<BusLineStation>() { new BusLineStation(s16, 0, 0), new BusLineStation(s17, true), new BusLineStation(s18, true), new BusLineStation(s19, true) , new BusLineStation(s20, true) };
+            List<BusLineStation> list5 = new List<BusLineStation>() { new BusLineStation(s21, 0, 0), new BusLineStation(s22, true), new BusLineStation(s23, true), new BusLineStation(s24, true), new BusLineStation(s25, true) };
+            List<BusLineStation> list6 = new List<BusLineStation>() { new BusLineStation(s26, 0, 0), new BusLineStation(s27, true), new BusLineStation(s28, true), new BusLineStation(s29, true), new BusLineStation(s30, true), };
+            List<BusLineStation> list7 = new List<BusLineStation>() { new BusLineStation(s31, 0, 0), new BusLineStation(s32, true), new BusLineStation(s33, true), new BusLineStation(s34, true), new BusLineStation(s35, true), };
+            List<BusLineStation> list8 = new List<BusLineStation>() { new BusLineStation(s36, 0, 0), new BusLineStation(s37, true), new BusLineStation(s38, true),new BusLineStation(s39, true), new BusLineStation(s40, true), };
+            List<BusLineStation> list9 = new List<BusLineStation>() { new BusLineStation(s6, 0, 0), new BusLineStation(s7, true), new BusLineStation(s8, true), new BusLineStation(s9, true), new BusLineStation(s10, true) };
+            List<BusLineStation> list10 = new List<BusLineStation>() { new BusLineStation(s22, 0, 0), new BusLineStation(s1, true), new BusLineStation(s3, true), new BusLineStation(s38, true), };
+            List<BusLineStation> list11 = new List<BusLineStation>() { new BusLineStation(s1, 0, 0), new BusLineStation(s7, true), new BusLineStation(s8, true), new BusLineStation(s24, true), };
+            List<BusLineStation> list12 = new List<BusLineStation>() { new BusLineStation(s29,  0, 0), new BusLineStation(s21, true), new BusLineStation(s3, true), new BusLineStation(s23, true), };
 
 
-            // Line line1 = new Line(rand.Next(1, 1000), list1, (EnumArea)rand.Next(0,4));
-            Line line1 = new Line(21, list1, (EnumArea)rand.Next(0, 4));
-            //Line line2 = new Line(rand.Next(1, 1000), list2, (EnumArea)rand.Next(0, 4));
-            Line line9 = new Line(rand.Next(1, 1000), list2, (EnumArea)rand.Next(0, 4));
-            Line line3 = new Line(rand.Next(1, 1000), list3, (EnumArea)rand.Next(0, 4));
-            Line line4 = new Line(rand.Next(1, 1000), list4, (EnumArea)rand.Next(0, 4));
-            Line line5 = new Line(rand.Next(1, 1000), list5, (EnumArea)rand.Next(0, 4));
-            Line line6 = new Line(rand.Next(1, 1000), list6, (EnumArea)rand.Next(0, 4));
-            Line line7 = new Line(rand.Next(1, 1000), list7, (EnumArea)rand.Next(0, 4));
-            Line line8 = new Line(rand.Next(1, 1000), list8, (EnumArea)rand.Next(0, 4));
-            Line line2 = new Line(33, list9, (EnumArea)rand.Next(0, 4));
-            //Line line9 = new Line(rand.Next(1, 1000), list9, (EnumArea)rand.Next(0, 4));
-            Line line10 = new Line(rand.Next(1, 1000), list10, (EnumArea)rand.Next(0, 4));
-            Line line11 = new Line(rand.Next(1, 1000), list11, (EnumArea)rand.Next(0, 4));
-            Line line12 = new Line(rand.Next(1, 1000), list12, (EnumArea)rand.Next(0, 4));
-            //Line line13= new Line(21, list12, (EnumArea)rand.Next(0, 4));
+            Line line1 = new Line(21, list1, rand.Next(0, 4));
+            Line line2 = new Line(33, list2, rand.Next(0, 4));
+            Line line3 = new Line(rand.Next(1, 1000), list3, rand.Next(0, 4));
+            Line line4 = new Line(rand.Next(1, 1000), list4, rand.Next(0, 4));
+            Line line5 = new Line(rand.Next(1, 1000), list5, rand.Next(0, 4));
+            Line line6 = new Line(rand.Next(1, 1000), list6, rand.Next(0, 4));
+            Line line7 = new Line(rand.Next(1, 1000), list7, rand.Next(0, 4));
+            Line line8 = new Line(rand.Next(1, 1000), list8, rand.Next(0, 4));
+            Line line9 = new Line(rand.Next(1, 1000), list9, rand.Next(0, 4));
+            Line line10 = new Line(rand.Next(1, 1000), list10, rand.Next(0, 4));
+            Line line11 = new Line(rand.Next(1, 1000), list11, rand.Next(0, 4));
+            Line line12 = new Line(rand.Next(1, 1000), list12, rand.Next(0, 4));
 
 
 
@@ -227,7 +125,7 @@ namespace dotNet5781_02_4625_0728
                         int myLineA = int.Parse(Console.ReadLine());
                         Console.WriteLine("In which area is the line?");
                         Console.WriteLine("chose 1 for north, 2 for south, 3 for center, 4 for jerusalem, or 0 to a general line");
-                        EnumArea myArea = (EnumArea)int.Parse(Console.ReadLine());
+                        int myArea = int.Parse(Console.ReadLine());
                         List<BusLineStation> myStationsList = new List<BusLineStation>();
                         Line l = new Line(myLineA, myStationsList, myArea);
                         listLines.AddLine(l);
@@ -253,12 +151,12 @@ namespace dotNet5781_02_4625_0728
 
                     case "c":
                         Console.WriteLine("which line do you want to remove?");
-                        int myKey = int.Parse( Console.ReadLine());
+                        int myKey = int.Parse(Console.ReadLine());
                         Console.WriteLine("what is its first station ?");
-                         int   myFirst = int.Parse(Console.ReadLine());
+                        int myFirst = int.Parse(Console.ReadLine());
                         Console.WriteLine("what is its last station ?");
-                        int   myLast = int.Parse(Console.ReadLine());
-                        listLines.deleteALine(listLines.FindLineYoko(myKey, myFirst, myLast ));
+                        int myLast = int.Parse(Console.ReadLine());
+                        listLines.deleteALine(listLines.FindLineYoko(myKey, myFirst, myLast));
                         break;
 
                     case "d":
@@ -281,7 +179,7 @@ namespace dotNet5781_02_4625_0728
                         break;
 
                     case "f":
-                        Console.WriteLine("Enter the station of the departure ");
+                        Console.WriteLine("Enter the station of the departure");
                         int firstStationKey = int.Parse(Console.ReadLine());
                         Console.WriteLine("Enter the station of the arrival ");
                         int LastStationKey = int.Parse(Console.ReadLine());
@@ -312,47 +210,16 @@ namespace dotNet5781_02_4625_0728
 
 
 
-                        
 
 
-
-
-
-
-
-
-
-                    
-               //         Console.WriteLine("Enter the number of the first station");
-               //         int firstKey = int.Parse(Console.ReadLine());
-
-               //         BusLineStation b = FindItemInList(first)
-
-
-
-               //MyList path = new MyList();
-
-
-               //         foreach (Line item in listLines)
-               //         {
-               //             item.SubLine(first, last)
-         
-
-
-
-
-
-
-
-                        break;
-
-
+                }
+                break;
 
                     case "g":
                         listLines.Print();
                         break;
 
-                    case "h": 
+                    case "h":
                         foreach (Station item in Station.AllStations)
                         {
                             Console.WriteLine($"The buses with go through the stations {item.StationKey} are :");
@@ -360,7 +227,7 @@ namespace dotNet5781_02_4625_0728
                         }
                         break;
 
-                    case "i":
+                    case "i": 
                         Console.WriteLine("bye");
                         break;
 
@@ -403,20 +270,3 @@ namespace dotNet5781_02_4625_0728
         }
     }
 }
-
-// a jeter, case b 
-//BusLineStation firstB = new BusLineStation(numB, 0, 0, 0, 0);
-//BusLineStation lastB = new BusLineStation(numB, 0, 0, 0, 0);
-//List<BusLineStation> lB = new List<BusLineStation>();
-//lB.Add(firstB);
-//lB.Add(lastB);
-//// listLines.AddStation(new Line (numB, myFirstStationB, myLastStationB, (EnumArea)3))
-//FindLine
-//listLines[FindLine(myLineB)];
-//Console.WriteLine("What is the number of the station that you want to add?");
-//int myStationB = int.Parse(Console.ReadLine());
-//Console.WriteLine("what is its latitude?");
-//int myLatitudeB = int.Parse(Console.ReadLine());
-//Console.WriteLine("what is its longitude?");
-//int myLongitudeB = int.Parse(Console.ReadLine());
-//int myDistanceFromLastStation =

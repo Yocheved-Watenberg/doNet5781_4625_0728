@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace dotNet5781_02_4625_0728
+﻿namespace dotNet5781_02_4625_0728
 {
     enum EnumArea
     {
-        General, North, South, Center, Jerusalem
+        General,            //0
+        North,              //1
+        South,              //2
+        Center,             //3
+        Jerusalem           //4
     };
 }

@@ -1,32 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//renmmer findlineyoko
 
 namespace dotNet5781_02_4625_0728
 {
-
     class MyList : IEnumerable
     {
         public List<Line> l;
-        public MyList()
+        public MyList()             //ctor 
         {
             l = new List<Line>();
         }
-        static Random rand = new Random(DateTime.Now.Millisecond);
 
-        //public MyList(int size, size2)
-        //{
-        //    l = new List<Line>();
-        //    for (int i=0; i<size; i++)
-        //    {
-        //        l.Add(new Line(rand.Next(1, 1000), new List<BusLineStation>(size2) , (EnumArea)rand.Next(0, 4)));
-        //    }
-        //}//pb le parametre liste de busline station est vide
-
-        public void AddLine(Line lineToAdd)                            //j met ttes les fonctions en private car il ve pas public, pk?
+        public void AddLine(Line lineToAdd)                   //function to add a line to MyList
         {
             try
             {
@@ -45,7 +32,7 @@ namespace dotNet5781_02_4625_0728
             }
         }
 
-        public void deleteALine(Line line)
+        public void deleteALine(Line line)                    //function to delete a line in MyList 
         {
             try
             {
@@ -64,21 +51,7 @@ namespace dotNet5781_02_4625_0728
             }
         }
 
-        //public bool IsExist(Line line)
-        //{
-        //    foreach (Line item in l)
-        //    {
-        //        if (line == item)
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    return false ;
-        //}
-
-
-
-        public bool IsExist(Line line)
+        public bool IsExist(Line line)                        //boolean function to check if a line exist in MyList
         {
             foreach (Line item in l)
             {
@@ -88,8 +61,7 @@ namespace dotNet5781_02_4625_0728
             return false;
         }
 
-
-        public int HowManyIsExist(int KeyOfLine)          //this function return 1, 2, or 0 for the number of times that this line is in the list
+        public int HowManyIsExist(int KeyOfLine)              //this function return 1, 2, or 0 for the number of times that this line is in the list
         {
             int count = 0;
             foreach (Line item in l)
@@ -102,16 +74,13 @@ namespace dotNet5781_02_4625_0728
             return count;
         }
 
-
-
-
-        public MyList AllLineInStation(int stationKey)
+        public MyList AllLineInStation(int stationKey)        //we send a station key to the function and the function returns a list of lines which go through this station
         {
             MyList listOfLine = new MyList();
-            foreach (Line item in l)
+            foreach (Line item in l)                            //for each line of MyList
             {
-                if (item.FindItemInList(stationKey) != null)
-                    listOfLine.AddLine(item);
+                if (item.FindItemInList(stationKey) != null)    //if the line goes through this station 
+                    listOfLine.AddLine(item);                   //put the line in a new list
             }
             try
             {
@@ -122,16 +91,13 @@ namespace dotNet5781_02_4625_0728
             {
                 Console.WriteLine(ex.Message);
             }
-            return listOfLine;
-
+            return listOfLine;                                  //returns the list of lines which go through this station
         }
 
-
-        public void Print()                             //print the lines of the station
+        public void Print()                                   //print the lines of MyList
         {
             if (l.Count != 0)
             {
-                // Console.WriteLine("The lines are:");
                 for (int i = 0; i < l.Count; i++)
                     Console.WriteLine(l[i].LineKey);
             }
@@ -139,37 +105,21 @@ namespace dotNet5781_02_4625_0728
             {
                 Console.WriteLine("there isn't any buses in this station");
             }
-
-
         }
 
-        public MyList SortTime()
+        public MyList SortTime()                              //sort the list of lines (compared to their time) 
         {
             l.Sort();
             return this;
         }
 
-        public Line this[int myLineKey]
+        public Line this[int myLineKey]                       //indexer
         {
             get { return l[FindLine(myLineKey)]; }
             set { l[FindLine(myLineKey)] = value; }
         }
-        // a partir de now on peut fr MyList[5]= malignepreferee (21) et il nous renvoie la ligne qui est au makom 14 de notre liste
 
-
-        //A SUPPRIMERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-        //public Line KeyStationIsInLine(int myKey) //function to check if a station is in the line  
-        //{
-        //    foreach (BusLineStation item in StationsList)
-        //        if (item.StationKey == myKey)
-        //        {
-        //            return item;
-        //        }
-        //    return new Line();
-        //}
-
-
-        public int FindLine(int myLineKey)                     //jenvoie un numero de ligne et il me sort la premiere apparation de la ligne ds la liste 
+        public int FindLine(int myLineKey)                 //we send a num of line and the function return the index of the first apparition of the line in the list
         {
             int count = 0;
             foreach (Line item in l)
@@ -195,31 +145,11 @@ namespace dotNet5781_02_4625_0728
             return -1;
         }
 
-        public Line FindLineYoko(int myKey, int myFirst, int myLast)           //a supprimer pr avi 
-        {
-
-
-            foreach (Line item in l)
-            { if ((myKey == item.LineKey) && (myFirst == item.FirstStation.StationKey) && (myLast == item.LastStation.StationKey))
-                {
-                    return item;
-                }
-            }
-
-            //{ if (myKey == item.LineKey)
-            //        //if (myFirst == item.FirstStation.StationKey)
-            //        //    if (myLast == item.LastStation.StationKey)
-
-
-            return new Line();
-        }
-
-
-        public Line FindLine(Line line)             //we send a line to the function and the fonction return this line of the list 
+        public Line FindLineYoko(int myKey, int myFirst, int myLast)     // we send the parameters and its returns the line of my list with these parameters
         {
             foreach (Line item in l)
             {
-                if (line.Equals(item))
+                if ((myKey == item.LineKey) && (myFirst == item.FirstStation.StationKey) && (myLast == item.LastStation.StationKey))
                 {
                     return item;
                 }
@@ -227,11 +157,10 @@ namespace dotNet5781_02_4625_0728
             return new Line();
         }
 
-       public  IEnumerator GetEnumerator()
+       public  IEnumerator GetEnumerator()                  //for the interface IEnumerable, we have to do the function GetEnumerator 
         {
-            return l.GetEnumerator();                        //return how to scan the list 
+            return l.GetEnumerator();                        //return how to scan MyList : like a List 
         }
-
 
     }
 
