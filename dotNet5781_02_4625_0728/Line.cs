@@ -127,7 +127,7 @@ namespace dotNet5781_02_4625_0728
                     return mycount;
                 mycount++;
             }
-            Console.WriteLine("this station doesn't exist");
+            //Console.WriteLine("this station doesn't exist");
             return -1;                       
         }
 
@@ -199,8 +199,8 @@ namespace dotNet5781_02_4625_0728
 
         public void Index(BusLineStation s1, BusLineStation s2, out int indexS1, out int indexS2)  //finds the indexes of the lines 
         {
-            indexS1 = FindPlaceInList(s1);
-            indexS2 = FindPlaceInList(s2);
+            indexS1 = FindPlaceInList2(s1);
+            indexS2 = FindPlaceInList2(s2);
             if (indexS2 < indexS1)
                 Swap(ref indexS1, ref indexS2);   //now, indexS1<indexS2
         }

@@ -113,7 +113,7 @@ namespace dotNet5781_02_4625_0728
 
 
             Station s1 = new Station(1,1,1);
-            Station s2 = new Station(true);
+            Station s2 = new Station(2,2,2);
             Station s3 = new Station(3,3,3);
             // Station s3 = new Station(true);
             Station s4 = new Station(4, 4, 4);
@@ -172,20 +172,20 @@ namespace dotNet5781_02_4625_0728
 
 
             // Line line1 = new Line(rand.Next(1, 1000), list1, (EnumArea)rand.Next(0,4));
-            Line line1 = new Line(21, list1, (EnumArea)rand.Next(0, 4));
+            Line line1 = new Line(21, list1, rand.Next(0, 4));
             //Line line2 = new Line(rand.Next(1, 1000), list2, (EnumArea)rand.Next(0, 4));
-            Line line9 = new Line(rand.Next(1, 1000), list2, (EnumArea)rand.Next(0, 4));
-            Line line3 = new Line(rand.Next(1, 1000), list3, (EnumArea)rand.Next(0, 4));
-            Line line4 = new Line(rand.Next(1, 1000), list4, (EnumArea)rand.Next(0, 4));
-            Line line5 = new Line(rand.Next(1, 1000), list5, (EnumArea)rand.Next(0, 4));
-            Line line6 = new Line(rand.Next(1, 1000), list6, (EnumArea)rand.Next(0, 4));
-            Line line7 = new Line(rand.Next(1, 1000), list7, (EnumArea)rand.Next(0, 4));
-            Line line8 = new Line(rand.Next(1, 1000), list8, (EnumArea)rand.Next(0, 4));
-            Line line2 = new Line(33, list9, (EnumArea)rand.Next(0, 4));
+            Line line9 = new Line(rand.Next(1, 1000), list2, rand.Next(0, 4));
+            Line line3 = new Line(rand.Next(1, 1000), list3, rand.Next(0, 4));
+            Line line4 = new Line(rand.Next(1, 1000), list4, rand.Next(0, 4));
+            Line line5 = new Line(rand.Next(1, 1000), list5, rand.Next(0, 4));
+            Line line6 = new Line(rand.Next(1, 1000), list6, rand.Next(0, 4));
+            Line line7 = new Line(rand.Next(1, 1000), list7, rand.Next(0, 4));
+            Line line8 = new Line(rand.Next(1, 1000), list8, rand.Next(0, 4));
+            Line line2 = new Line(33, list9, rand.Next(0, 4));
             //Line line9 = new Line(rand.Next(1, 1000), list9, (EnumArea)rand.Next(0, 4));
-            Line line10 = new Line(rand.Next(1, 1000), list10, (EnumArea)rand.Next(0, 4));
-            Line line11 = new Line(rand.Next(1, 1000), list11, (EnumArea)rand.Next(0, 4));
-            Line line12 = new Line(rand.Next(1, 1000), list12, (EnumArea)rand.Next(0, 4));
+            Line line10 = new Line(rand.Next(1, 1000), list10, rand.Next(0, 4));
+            Line line11 = new Line(rand.Next(1, 1000), list11, rand.Next(0, 4));
+            Line line12 = new Line(rand.Next(1, 1000), list12, rand.Next(0, 4));
             //Line line13= new Line(21, list12, (EnumArea)rand.Next(0, 4));
 
 
@@ -337,7 +337,7 @@ namespace dotNet5781_02_4625_0728
                             foreach (Line item in listLines)
                             {
                                 Line help = item.SubLine(a, c);
-                                if (help.LineKey != 0)
+                                if (help.StationsList != null)
                                 { Line2Stations.AddLine(help); }
 
                             }
