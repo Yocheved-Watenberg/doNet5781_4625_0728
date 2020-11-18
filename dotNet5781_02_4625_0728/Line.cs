@@ -1,14 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// il faut faire une fonction a laquelle on envoie un num de tahana et un kav 
-//et elle ns renvoie la place de la tahana ds la liste des tahanots du kav
-
-// ds tostring verifier si on peut faire en sorte que ca s'imprime a l'endroit dabord le reste, et ensuite le print list 
-
-//cheker les input de choice 
-
-
 namespace dotNet5781_02_4625_0728
 {
      class Line : IComparable<Line>
@@ -55,9 +47,17 @@ namespace dotNet5781_02_4625_0728
             BusLineStation b = FindItemInList(toDelete);
             if (b != null)
             {
-                StationsList.Remove(b);
-                FirstStation = StationsList[0];                             //updates the first station of the line
-                LastStation = StationsList[(StationsList.Count) - 1];       //updates the last station of the line 
+                if (StationsList.Count > 2)
+                {
+                     StationsList.Remove(b);
+                     FirstStation = StationsList[0];                             //updates the first station of the line
+                     LastStation = StationsList[(StationsList.Count) - 1];       //updates the last station of the line 
+                    Console.WriteLine("succes");
+                }
+                else
+                {
+                    Console.WriteLine("You can't remove a station of this line because it's the only station of this line");
+                }
             }
             else
             {
@@ -115,7 +115,6 @@ namespace dotNet5781_02_4625_0728
                       return mycount;
                 mycount++;
             }
-            Console.WriteLine("this station doesn't exist");
             return -1;                    
         }
         public int FindPlaceInList2(BusLineStation b)                     //function to find the index of the station in the list of the line

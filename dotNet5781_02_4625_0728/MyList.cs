@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-//renmmer findlineyoko
 
 namespace dotNet5781_02_4625_0728
 {
@@ -103,7 +102,7 @@ namespace dotNet5781_02_4625_0728
             }
             else
             {
-                Console.WriteLine("there isn't any buses in this station");
+                Console.WriteLine("there isn't any lines in the list");
             }
         }
 
@@ -115,11 +114,11 @@ namespace dotNet5781_02_4625_0728
 
         public Line this[int myLineKey]                       //indexer
         {
-            get { return l[FindLine(myLineKey)]; }
-            set { l[FindLine(myLineKey)] = value; }
+            get { return l[FindLineIndex(myLineKey)]; }
+            set { l[FindLineIndex(myLineKey)] = value; }
         }
 
-        public int FindLine(int myLineKey)                 //we send a num of line and the function return the index of the first apparition of the line in the list
+        public int FindLineIndex(int myLineKey)                 //we send a num of line and the function return the index of the first apparition of the line in the list
         {
             int count = 0;
             foreach (Line item in l)
@@ -145,7 +144,7 @@ namespace dotNet5781_02_4625_0728
             return -1;
         }
 
-        public Line FindLineYoko(int myKey, int myFirst, int myLast)     // we send the parameters and its returns the line of my list with these parameters
+        public Line FindLine(int myKey, int myFirst, int myLast)     // we send the parameters and its returns the line of my list with these parameters
         {
             foreach (Line item in l)
             {

@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//il reste juste un pb ds f 
+// a retenir le add rajoute a la fin de la liste
+
+//earot de line
+// il faut faire une fonction a laquelle on envoie un num de tahana et un kav et elle ns renvoie la place de la tahana ds la liste des tahanots du kav
+// ds tostring verifier si on peut faire en sorte que ca s'imprime a l'endroit dabord le reste, et ensuite le print list 
+//cheker les input de choice 
+
 
 namespace dotNet5781_02_4625_0728
 {
     class Program
     {
         static void Main(string[] args)
-        {
-
-            //    a retenir le add rajoute a la fin de la liste
-            //    il faudra verifier que ca rajoute bien ds la liste de allstations a chaque appel du banay
-            //    et sinn a chaque fois quon cree une station l'ajouter a la liste a l'aide de AllStations.Add(nomdelanouvellestation)
-
-
+        { 
             Random rand = new Random(DateTime.Now.Millisecond);
 
             Station s1 = new Station(1,1,1);
@@ -86,8 +85,6 @@ namespace dotNet5781_02_4625_0728
             Line line11 = new Line(rand.Next(1, 1000), list11, rand.Next(0, 4));
             Line line12 = new Line(rand.Next(1, 1000), list12, rand.Next(0, 4));
 
-
-
             MyList listLines = new MyList();
             listLines.AddLine(line1);
             listLines.AddLine(line2);
@@ -112,136 +109,70 @@ namespace dotNet5781_02_4625_0728
             Console.WriteLine("g: print all lines");
             Console.WriteLine("h: print list of all stations, and these lines");
             Console.WriteLine("i: exit:");
-            string ch;
 
+            string ch;
             do
             {
                 Console.WriteLine("chose one of the options");
                 ch = Console.ReadLine();
                 switch (ch)
                 {
-                    case "a":
-                        Console.WriteLine("Which num of line do you want to add");
-                        int myLineA = int.Parse(Console.ReadLine());
-                        Console.WriteLine("In which area is the line?");
-                        Console.WriteLine("chose 1 for north, 2 for south, 3 for center, 4 for jerusalem, or 0 to a general line");
-                        int myArea = int.Parse(Console.ReadLine());
-                        List<BusLineStation> myStationsList = new List<BusLineStation>();
-                        Line l = new Line(myLineA, myStationsList, myArea);
-                        listLines.AddLine(l);
-                        //listLines.AddLine(new Line(myLineA, myStationsList, myArea)); 
-                        Console.WriteLine("succes! now put the first station of the list please, what is its number? ");
-                        int myStationA = int.Parse(Console.ReadLine());
-                        Console.WriteLine("what is its latitude?");
-                        int myLatitudeA = int.Parse(Console.ReadLine());
-                        Console.WriteLine("what is its longitude?");
-                        int myLongitudeA = int.Parse(Console.ReadLine());
-                        BusLineStation b = new BusLineStation(myStationA, myLatitudeA, myLongitudeA, 0, 0);
-                        l.AddStationToLineHelp(b, 0);
-                        //l.StationsList.Add(b);
-                        //l.FirstStation = b;
-                        //l.LastStation = b;
-                        Console.WriteLine("succes!");
-                        break;
-
-                    case "b":
-                        AddStationToLine(listLines);
-
-                        break;
-
-                    case "c":
-                        Console.WriteLine("which line do you want to remove?");
-                        int myKey = int.Parse(Console.ReadLine());
-                        Console.WriteLine("what is its first station ?");
-                        int myFirst = int.Parse(Console.ReadLine());
-                        Console.WriteLine("what is its last station ?");
-                        int myLast = int.Parse(Console.ReadLine());
-                        listLines.deleteALine(listLines.FindLineYoko(myKey, myFirst, myLast));
-                        break;
-
-                    case "d":
-                        Console.WriteLine("In which line do you want to remove a station?");
-                        int mylineKey = int.Parse(Console.ReadLine());
-                        Console.WriteLine("What is the first station in this line");
-                        int myFirstStation = int.Parse(Console.ReadLine());
-                        Console.WriteLine("What is the last station in this line");
-                        int myLastStation = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Which station do you want to remove");
-                        int toRemove = int.Parse(Console.ReadLine());
-                        (listLines.FindLineYoko(mylineKey, myFirstStation, myLastStation)).DeleteStationOfLine(toRemove);
-                        //trouve line dans laquelle tu ve enlever la station                //enleve moi celle avec le key "toRemove"
-                        break;
-
+                    case "a": AddLine(listLines); break;
+                    case "b": AddStationToLine(listLines); break;
+                    case "c": DeleteLine(listLines);  break;
+                    case "d": DeleteStationInLine(listLines); break;
                     case "e":
                         Console.WriteLine("Enter the bus station you want to search");
                         int s = int.Parse(Console.ReadLine());
                         (listLines.AllLineInStation(s)).Print();
                         break;
-
-                    case "f":
-                        Console.WriteLine("Enter the station of the departure");
-                        int firstStationKey = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Enter the station of the arrival ");
-                        int LastStationKey = int.Parse(Console.ReadLine());
-                        MyList Line2Stations = new MyList();
-
-                        if ((!(Station.StationIsExist(firstStationKey))) || (!(Station.StationIsExist(LastStationKey))))
-                            Console.WriteLine("Station doesn't exist");
-                        else
-                        {
-                            BusLineStation a = new BusLineStation(firstStationKey);
-                            BusLineStation c = new BusLineStation(LastStationKey);
-                            foreach (Line item in listLines)
-                            {
-                                Line help = item.SubLine(a, c);
-                                if (help.LineKey != 0)
-                                { Line2Stations.AddLine(help); }
-
-                            }
-                            if (Line2Stations.l.Count != 0)
-                            {
-                                Console.WriteLine("Here all the bus you can take from the faster to the slowest;have a good trip!");
-                                Line2Stations.SortTime().Print();
-                            }
-                            else
-                                Console.WriteLine("Sorry,any bus goes through those two stations");
-
-                        }
-
-
-
-
-
-                }
-                break;
-
-                    case "g":
-                        listLines.Print();
-                        break;
-
+                    case "f": BestTravel(listLines); break;
+                    case "g": listLines.Print(); break;
                     case "h":
                         foreach (Station item in Station.AllStations)
                         {
-                            Console.WriteLine($"The buses with go through the stations {item.StationKey} are :");
+                            Console.WriteLine($"The buses which go through the stations {item.StationKey} are :");
                             listLines.AllLineInStation(item.StationKey).Print();
                         }
                         break;
-
-                    case "i": 
-                        Console.WriteLine("bye");
-                        break;
-
-                    default:
-                        Console.WriteLine("Error");
-                        break;
-
+                    case "i": Console.WriteLine("bye"); break;
+                    default:  Console.WriteLine("Error"); break;
                 }
             } while (ch != "i");
 
+        }
 
-
-
-
+        public static void AddLine(MyList listLines)
+        {
+            Console.WriteLine("Which num of line do you want to add");
+            int myLineA = int.Parse(Console.ReadLine());
+            if (listLines.HowManyIsExist(myLineA) == 2)
+                Console.WriteLine("Sorry, this line already exist");
+            else
+            {
+                Console.WriteLine("In which area is the line?");
+                Console.WriteLine("chose 1 for north, 2 for south, 3 for center, 4 for jerusalem, or 0 to a general line");
+                int myArea = int.Parse(Console.ReadLine());
+                List<BusLineStation> myStationsList = new List<BusLineStation>();
+                Line l = new Line(myLineA, myStationsList, myArea);
+                listLines.AddLine(l);
+                Console.WriteLine("succes! now put the first station of the list please, what is its number? ");
+                int newStation = int.Parse(Console.ReadLine());
+                Station find = Station.FindStation(newStation);
+                if (find.StationKey == 0)
+                {
+                    Console.WriteLine("you want to add a station that doesn't exist,what its latitude?");
+                    double latitude = double.Parse(Console.ReadLine());
+                    Console.WriteLine("what its longitude?");
+                    double longitude = double.Parse(Console.ReadLine());
+                    find.StationKey = newStation;
+                    find.Latitude = latitude;
+                    find.Longitude = longitude;
+                }
+                BusLineStation b = new BusLineStation(find, 0, 0);
+                l.AddStationToLineHelp(b, 0);
+                Console.WriteLine("succes!");
+            }
         }
 
         public static void AddStationToLine(MyList listLines)
@@ -249,7 +180,7 @@ namespace dotNet5781_02_4625_0728
             Console.WriteLine("to which line number do you want to add a station ?");
             int lineNum = int.Parse(Console.ReadLine());
             int num = listLines.HowManyIsExist(lineNum);
-            if (num ==  0)
+            if (num == 0)
             {
                 Console.WriteLine("this line doesn't exist, first of all you have to create a line");
             }
@@ -259,14 +190,106 @@ namespace dotNet5781_02_4625_0728
                 int myFirstStation = int.Parse(Console.ReadLine());
                 Console.WriteLine("what is the last station of the line?");
                 int myLastStation = int.Parse(Console.ReadLine());
-                Line myline = (listLines.FindLineYoko(lineNum, myFirstStation, myLastStation));       //verifier sil copie pas tt au lieu de matsbia
-                Console.WriteLine("which station do you want to add?");                     //faire aussi la possibilite de rajouter une nouvelle station inexistante, pas que une station existante dans dautres lignes
-                BusLineStation myNewBusLineStation = new BusLineStation(Station.FindStation(int.Parse(Console.ReadLine())), true);
-                Console.WriteLine("after which station do you want to add the station ?");
-                int myPreviousStation = int.Parse(Console.ReadLine());
-                int index = myline.FindPlaceInList(myline.FindItemInList(myPreviousStation));
-               myline.AddStationToLineHelp(myNewBusLineStation, ++index);
+                Line myline = (listLines.FindLine(lineNum, myFirstStation, myLastStation));
+                if (myline.LineKey == 0)
+                    Console.WriteLine("You made an error, there isn't any line with those stations");
+                else
+                {
+                    Console.WriteLine("which station do you want to add?");
+                    int newStation = int.Parse(Console.ReadLine());
+                    Station find = Station.FindStation(newStation);
+                    if (find.StationKey == 0)
+                    {
+                        Console.WriteLine("you want to add a new station,what its latitude?");
+                        double latitude = double.Parse(Console.ReadLine());
+                        Console.WriteLine("what its longitude?");
+                        double longitude = double.Parse(Console.ReadLine());
+                        find.StationKey = newStation;
+                        find.Latitude = latitude;
+                        find.Longitude = longitude;
+                    }
+                    BusLineStation myNewBusLineStation = new BusLineStation(find, true);
+                    Console.WriteLine("after which station do you want to add the station ?");
+                    int myPreviousStation = int.Parse(Console.ReadLine());
+                    BusLineStation StationBefore = myline.FindItemInList(myPreviousStation);
+                    if (StationBefore.StationKey == 0)
+                        Console.WriteLine("sorry, this station doesn't exist in this line");
+                    else
+                    {
+                        int index = myline.FindPlaceInList(StationBefore);
+                        myline.AddStationToLineHelp(myNewBusLineStation, ++index);
+                        Console.WriteLine("The station has been added");
+                    }
+                }
             }
         }
+
+        public static void DeleteLine(MyList listLines)
+        {
+            Console.WriteLine("which line do you want to remove?");
+            int myKey = int.Parse(Console.ReadLine());
+            Console.WriteLine("what is its first station ?");
+            int myFirst = int.Parse(Console.ReadLine());
+            Console.WriteLine("what is its last station ?");
+            int myLast = int.Parse(Console.ReadLine());
+            Line Find = listLines.FindLine(myKey, myFirst, myLast);
+            if (Find.LineKey != 0)
+            {
+                listLines.deleteALine(Find);
+                Console.WriteLine("Success");
+            }
+            else
+                Console.WriteLine("this line doesn't exist");
+        }
+
+        public static void DeleteStationInLine(MyList listLines)
+        {
+            Console.WriteLine("In which line do you want to remove a station?");
+            int mylineKey = int.Parse(Console.ReadLine());
+            Console.WriteLine("What is the first station in this line");
+            int myFirstStation = int.Parse(Console.ReadLine());
+            Console.WriteLine("What is the last station in this line");
+            int myLastStation = int.Parse(Console.ReadLine());
+            Line toFind = listLines.FindLine(mylineKey, myFirstStation, myLastStation);
+            if (toFind.LineKey == 0)
+                Console.WriteLine("Sorry there is no such line");
+            else
+            {
+                Console.WriteLine("Which station do you want to remove");
+                int toRemove = int.Parse(Console.ReadLine());
+                toFind.DeleteStationOfLine(toRemove);
+            }
+        }
+
+        public static void BestTravel(MyList listLines)
+        {
+            Console.WriteLine("Enter the station of the departure ");
+            int firstStationKey = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter the station of the arrival ");
+            int LastStationKey = int.Parse(Console.ReadLine());
+            MyList Line2Stations = new MyList();
+            if ((!(Station.StationIsExist(firstStationKey))) || (!(Station.StationIsExist(LastStationKey))))
+                Console.WriteLine("Station doesn't exist");
+            else
+            {
+                BusLineStation a = new BusLineStation(firstStationKey);
+                BusLineStation c = new BusLineStation(LastStationKey);
+                foreach (Line item in listLines)
+                {
+                    Line help = item.SubLine(a, c);
+                    if (help.LineKey != 0)
+                    { Line2Stations.AddLine(help); }
+                }
+                if (Line2Stations.l.Count != 0)
+                {
+                    Console.WriteLine("Here all the bus you can take from the faster to the slowest; have a good trip!");
+                    Line2Stations.SortTime().Print();
+                }
+                else
+                Console.WriteLine("Sorry,any bus goes through those two stations");
+            }
+        }
+       
     }
 }
+
