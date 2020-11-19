@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-//il reste juste un pb ds f 
-// a retenir le add rajoute a la fin de la liste
 
-//earot de line
-// il faut faire une fonction a laquelle on envoie un num de tahana et un kav et elle ns renvoie la place de la tahana ds la liste des tahanots du kav
-// ds tostring verifier si on peut faire en sorte que ca s'imprime a l'endroit dabord le reste, et ensuite le print list 
-//cheker les input de choice 
 
 
 namespace dotNet5781_02_4625_0728

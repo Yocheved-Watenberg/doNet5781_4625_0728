@@ -106,23 +106,23 @@ namespace dotNet5781_02_4625_0728
             return false;
         }
 
-        public int FindPlaceInList(BusLineStation b)                      //function to find the index of the station in the list of the line 
+        public int FindPlaceInList(BusLineStation b)                      //This function is used when we send to the user a buslinestation with all its parameters and we want to know where this buslinestation is in the list
         {                                                                 
             int mycount = 0;
             foreach (BusLineStation item in StationsList)
             {
-                if (item.Equals(b))                                       //check all the parameters of the station
+                if (item.Equals(b))                                       //Therefore,check all the parameters of the station
                       return mycount;
                 mycount++;
             }
             return -1;                    
         }
-        public int FindPlaceInList2(BusLineStation b)                     //function to find the index of the station in the list of the line
+        public int FindPlaceInList2(BusLineStation b)                     //This function is used when a user just know the Stationkey of a busLineStation and wants to know what is the place in the list of the "real" buslinestation(ie with all its parameters) 
         {
             int mycount = 0;
             foreach (BusLineStation item in StationsList)
             {
-                if (item.StationKey == b.StationKey)                    //check just if the station key is the same
+                if (item.StationKey == b.StationKey)                    //Therefore,check just if the station key is the same
                     return mycount;
                 mycount++;
             }
