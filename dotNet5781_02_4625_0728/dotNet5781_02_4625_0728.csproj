@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App.xaml.cs" />
     <Compile Include="BusLineStation.cs" />
     <Compile Include="EnumArea.cs" />
+    <Compile Include="MainWindow.xaml.cs" />
     <Compile Include="MyList.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="Line.cs" />
