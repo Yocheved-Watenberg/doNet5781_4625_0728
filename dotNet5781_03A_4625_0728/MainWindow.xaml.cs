@@ -22,10 +22,9 @@ namespace dotNet5781_03A_4625_0728
     /// </summary>
     public partial class MainWindow : Window
     {
-        MyList listTargil3A;
+        MyList busLines;
         public MainWindow()
         {
-            InitializeComponent();
             Random rand = new Random(DateTime.Now.Millisecond);
 
             Station s1 = new Station(1, 1, 1);
@@ -91,18 +90,38 @@ namespace dotNet5781_03A_4625_0728
             Line line9 = new Line(rand.Next(1, 1000), list9, rand.Next(0, 4));
             Line line10 = new Line(rand.Next(1, 1000), list10, rand.Next(0, 4));
 
-            listTargil3A = new MyList();
-            listTargil3A.AddLine(line1);
-            listTargil3A.AddLine(line2);
-            listTargil3A.AddLine(line3);
-            listTargil3A.AddLine(line4);
-            listTargil3A.AddLine(line5);
-            listTargil3A.AddLine(line6);
-            listTargil3A.AddLine(line7);
-            listTargil3A.AddLine(line8);
-            listTargil3A.AddLine(line9);
-            listTargil3A.AddLine(line10);
+            busLines = new MyList();
+            busLines.AddLine(line1);
+            busLines.AddLine(line2);
+            busLines.AddLine(line3);
+            busLines.AddLine(line4);
+            busLines.AddLine(line5);
+            busLines.AddLine(line6);
+            busLines.AddLine(line7);
+            busLines.AddLine(line8);
+            busLines.AddLine(line9);
+            busLines.AddLine(line10);
+
+           
+            InitializeComponent();
+            cbBusLines.ItemsSource = busLines;
+            cbBusLines.DisplayMemberPath = " BusLineNum ";
+            cbBusLines.SelectedIndex = 0;
+            ShowBusLine(cbBusLines.SelectedIndex);
         }
 
+        private Line currentDisplayBusLine;
+
+        private void ShowBusLine(int index)
+        {
+            currentDisplayBusLine = busLines[busLines.FindLineIndex(index)];
+            UpGrid.DataContext = currentDisplayBusLine;
+            lbBusLineStations.DataContext = currentDisplayBusLine.StationsList;
+        }
+
+        private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ShowBusLine((cbBusLines.SelectedValue as Line).LineKey);
+        }
     }
 }

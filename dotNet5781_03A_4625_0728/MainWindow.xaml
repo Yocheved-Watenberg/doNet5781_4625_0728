@@ -12,15 +12,16 @@
             <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-VerticalAlignment="Stretch" Width="auto">
+VerticalAlignment="Stretch" Width="auto" IsEnabled="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox x:Name="cbBusLines" HorizontalAlignment="Stretch" Margin="33,9,0,0" VerticalAlignment="Stretch" Width="120" Grid.Column="1"/>
-            <TextBox x:Name="tbArea" Grid.Column="3" HorizontalAlignment="Stretch" Height="23" Margin="37,14,0,0" TextWrapping="Wrap" Text="{Binding Path=Area}" VerticalAlignment="Stretch" Width="120" TextChanged="tbArea_TextChanged" FontFamily="Algerian" FontSize="16"/>
+            <ComboBox x:Name="cbBusLines" HorizontalAlignment="Stretch" Margin="33,9,0,0" VerticalAlignment="Stretch" Width="120" Grid.Column="1" SelectionChanged="cbBusLines_SelectionChanged"/>
+            <TextBox x:Name="tbArea" Grid.Column="3" HorizontalAlignment="Stretch" Height="23" Margin="37,14,0,0" TextWrapping="Wrap" Text="{Binding Path=Area}" VerticalAlignment="Stretch" Width="120" FontFamily="Algerian" FontSize="16"/>
+            <!--TextChanged="tbArea_TextChanged"-->
             <Label Content="Label" HorizontalAlignment="Left" Margin="78,0,0,0" VerticalAlignment="Top"/>
             <Label Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="88,9,0,0" VerticalAlignment="Top"/>
         </Grid>

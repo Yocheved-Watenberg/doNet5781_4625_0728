@@ -112,11 +112,17 @@ namespace dotNet5781_02_4625_0728
             return this;
         }
 
-        public Line this[int myLineKey]                       //indexer
+        public Line this[int myLineKey]                          //indexer
         {
             get { return l[FindLineIndex(myLineKey)]; }
             set { l[FindLineIndex(myLineKey)] = value; }
         }
+
+        //public Line this[int i]                                //indexer 
+        //{
+        //    get { return l[i]; }
+        //    set { l[i] = value; }
+        //}
 
         public int FindLineIndex(int myLineKey)                 //we send a num of line and the function return the index of the first apparition of the line in the list
         {
