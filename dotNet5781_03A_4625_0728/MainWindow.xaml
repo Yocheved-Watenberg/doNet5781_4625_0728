@@ -6,7 +6,23 @@
         xmlns:local="clr-namespace:dotNet5781_03A_4625_0728"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="400*"/>
+        </Grid.RowDefinitions>
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
+VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <ComboBox x:Name="cbBusLines" HorizontalAlignment="Stretch" Margin="33,9,0,0" VerticalAlignment="Stretch" Width="120" Grid.Column="1"/>
+            <TextBox x:Name="tbArea" Grid.Column="3" HorizontalAlignment="Stretch" Height="23" Margin="37,14,0,0" TextWrapping="Wrap" Text="{Binding Path=Area}" VerticalAlignment="Stretch" Width="120" TextChanged="tbArea_TextChanged" FontFamily="Algerian" FontSize="16"/>
+            <Label Content="Label" HorizontalAlignment="Left" Margin="78,0,0,0" VerticalAlignment="Top"/>
+            <Label Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="88,9,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        <ListBox x:Name="lbBusLineStations" HorizontalAlignment="Left" Height="295" Margin="31,51,0,0" Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding}" Width="705"/>    </Grid>
 </Window>
