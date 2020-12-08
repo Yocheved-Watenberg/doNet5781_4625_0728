@@ -105,16 +105,16 @@ namespace dotNet5781_03A_4625_0728
            
             InitializeComponent();
             cbBusLines.ItemsSource = busLines;
-            cbBusLines.DisplayMemberPath = " BusLineNum ";
+            cbBusLines.DisplayMemberPath = "LineKey";
             cbBusLines.SelectedIndex = 0;
-            ShowBusLine(cbBusLines.SelectedIndex);
+            //ShowBusLine(cbBusLines.SelectedIndex);
         }
 
         private Line currentDisplayBusLine;
 
         private void ShowBusLine(int index)
         {
-            currentDisplayBusLine = busLines[busLines.FindLineIndex(index)];
+            currentDisplayBusLine = busLines[index];
             UpGrid.DataContext = currentDisplayBusLine;
             lbBusLineStations.DataContext = currentDisplayBusLine.StationsList;
         }

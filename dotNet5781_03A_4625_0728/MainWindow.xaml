@@ -25,5 +25,6 @@ VerticalAlignment="Stretch" Width="auto" IsEnabled="False">
             <Label Content="Label" HorizontalAlignment="Left" Margin="78,0,0,0" VerticalAlignment="Top"/>
             <Label Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="88,9,0,0" VerticalAlignment="Top"/>
         </Grid>
-        <ListBox x:Name="lbBusLineStations" HorizontalAlignment="Left" Height="295" Margin="31,51,0,0" Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding}" Width="705"/>    </Grid>
+        <ListBox x:Name="lbBusLineStations" HorizontalAlignment="Left" Height="295" Margin="31,51,0,0" Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding}" Width="705"/>
+    </Grid>
 </Window>
