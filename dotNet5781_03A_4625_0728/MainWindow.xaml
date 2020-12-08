@@ -39,7 +39,9 @@
                       Grid.Column="2" 
                       Margin="22,10,85,6" 
                       DisplayMemberPath ="LineKey"
-                      SelectionChanged="cbBusLines_SelectionChanged" Foreground="Blue" FontSize="10"   >
+                      SelectionChanged="cbBusLines_SelectionChanged" 
+                      Foreground="Blue" 
+                      FontSize="10"   >
             </ComboBox>
             <Label Content="Area:" 
                       Grid.Column="3" 

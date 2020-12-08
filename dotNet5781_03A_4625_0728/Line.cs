@@ -5,7 +5,8 @@ namespace dotNet5781_02_4625_0728
 {
      class Line : IComparable<Line>
      {
-        public readonly int LineKey;                            //num of the bus 
+        public int LineKey { get; set; }
+   //     public readonly int LineKey;                            //num of the bus 
         public List<BusLineStation> StationsList;               //list of stations of the line 
         public BusLineStation FirstStation { get; set; }
         public BusLineStation LastStation { get; set; }
