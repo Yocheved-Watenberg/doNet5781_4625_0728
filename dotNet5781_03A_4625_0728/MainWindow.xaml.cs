@@ -23,8 +23,12 @@ namespace dotNet5781_03A_4625_0728
     public partial class MainWindow : Window
     {
         MyList busLines;
+        private Line currentDisplayBusLine;
+
         public MainWindow()
         {
+            InitializeComponent();
+
             Random rand = new Random(DateTime.Now.Millisecond);
 
             Station s1 = new Station(1, 1, 1);
@@ -102,26 +106,61 @@ namespace dotNet5781_03A_4625_0728
             busLines.AddLine(line9);
             busLines.AddLine(line10);
 
-           
-            InitializeComponent();
-            cbBusLines.ItemsSource = busLines;
-            cbBusLines.DisplayMemberPath = "LineKey";
+
+            //for (int i = 0; i < 5; ++i)
+            //{
+            //    ComboBoxItem newItem = new ComboBoxItem();
+            //    newItem.Content = "Item " + i;
+            //    cbBusLines.Items.Add(newItem);
+            //}
+
+            //for (int i = 0; i<9; i++)
+            //cbBusLines.Items.Add(new Line[] { busLines[i] });
+
+           cbBusLines.ItemsSource = busLines.l;
+          //  cbBusLines.DisplayMemberPath = ;
+            // cbBusLines.Items.Content = "bus 1";
+          //  cbBusLines.Items.ToString();
+
             cbBusLines.SelectedIndex = 0;
-            //ShowBusLine(cbBusLines.SelectedIndex);
+          // cbBusLines.Text = "cmt on ecrit qqch";
+          //  cbBusLines.Text = busLines[1].LineKey.ToString();
+            ShowBusLine(cbBusLines.SelectedIndex);
         }
 
-        private Line currentDisplayBusLine;
+            private void ShowBusLine(int index)
+            {
+                currentDisplayBusLine = busLines[index];
+                UpGrid.DataContext = currentDisplayBusLine;
+                lbBusLineStations.DataContext = currentDisplayBusLine.StationsList;
+            }
 
-        private void ShowBusLine(int index)
-        {
-            currentDisplayBusLine = busLines[index];
-            UpGrid.DataContext = currentDisplayBusLine;
-            lbBusLineStations.DataContext = currentDisplayBusLine.StationsList;
+            private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            {
+              //  ShowBusLine(busLines.FindLineIndex(cbBusLines.SelectedIndex));
+                ShowBusLine(busLines.FindLineIndex(((Line)cbBusLines.SelectedItem).LineKey));
+             //   ShowBusLine(busLines.FindLineIndex((cbBusLines.SelectedValue as Line).LineKey));
+            }
+
+            //verifier si fo mettre  IsEditable="true" ds cb 
+            //voir ds madrih cmt ils remplissent leur cb par le c#
         }
 
-        private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ShowBusLine((cbBusLines.SelectedValue as Line).LineKey);
-        }
-    }
+    // ds upgrid g enlevé   IsEnabled="False"
+    // ds cb g enlevé  IsEditable="True"
+    // l'icone naparait pa ds bin debug, et jlai mis a la main 
+    // DisplayMemberPath = "LineKey"  ds xaml ?
 }
+
+
+/*  <ComboBoxItem Content="bus 1" HorizontalAlignment="Left" Width="89"/>
+                <ComboBoxItem Content="bus 2" HorizontalAlignment="Left" Width="89"/>
+                <ComboBoxItem Content="bus 3" HorizontalAlignment="Left" Width="89"/>
+                <ComboBoxItem Content="bus 4" HorizontalAlignment="Left" Width="89"/>
+                <ComboBoxItem Content="bus 5" HorizontalAlignment="Left" Width="89"/>
+                <ComboBoxItem Content="bus 6" HorizontalAlignment="Left" Width="89"/>
+                <ComboBoxItem Content="bus 7" HorizontalAlignment="Left" Width="89"/>
+                <ComboBoxItem Content="bus 8" HorizontalAlignment="Left" Width="89"/>
+                <ComboBoxItem Content="bus 9" HorizontalAlignment="Left" Width="89"/>
+                <ComboBoxItem Content="bus 10" HorizontalAlignment="Left" Width="89"/>
+    */

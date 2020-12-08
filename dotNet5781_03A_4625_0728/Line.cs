@@ -84,9 +84,17 @@ namespace dotNet5781_02_4625_0728
             return null;
         }
 
+
+        //old tostring
+        //public override string ToString()                                  //override ToString for a line 
+        //{
+        //    return "Stations of the line:" + PrintList() + "\nBus number: " + LineKey + "\nArea :" + Area;
+        //}
+
+        //new to string
         public override string ToString()                                  //override ToString for a line 
         {
-            return "Stations of the line:" + PrintList() + "\nBus number: " + LineKey + "\nArea :" + Area;
+            return "bus" + LineKey;
         }
 
         public string PrintList()
