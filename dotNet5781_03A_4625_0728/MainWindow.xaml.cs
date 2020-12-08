@@ -22,8 +22,12 @@ namespace dotNet5781_03A_4625_0728
     /// </summary>
     public partial class MainWindow : Window
     {
-        MyList busLines;
-        private Line currentDisplayBusLine;
+        // MyList busLines;
+        //  private Line currentDisplayBusLine;
+
+        private MyList busLines { get; set; }
+        private Line currentDisplayBusLine { get; set; }
+
 
         public MainWindow()
         {
@@ -117,12 +121,12 @@ namespace dotNet5781_03A_4625_0728
             //for (int i = 0; i<9; i++)
             //cbBusLines.Items.Add(new Line[] { busLines[i] });
 
-           cbBusLines.ItemsSource = busLines.l;
+           this.cbBusLines.ItemsSource = busLines.l;
           //  cbBusLines.DisplayMemberPath = ;
             // cbBusLines.Items.Content = "bus 1";
           //  cbBusLines.Items.ToString();
 
-            cbBusLines.SelectedIndex = 0;
+            this.cbBusLines.SelectedIndex = 0;
           // cbBusLines.Text = "cmt on ecrit qqch";
           //  cbBusLines.Text = busLines[1].LineKey.ToString();
             ShowBusLine(cbBusLines.SelectedIndex);
