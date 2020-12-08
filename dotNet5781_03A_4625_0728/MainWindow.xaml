@@ -30,9 +30,15 @@
                 <ColumnDefinition Width="33*"/>
             </Grid.ColumnDefinitions>
             <Label Content="Bus Line Number: " 
-                      HorizontalAlignment="Left"  
-                      Margin="23.75,9,0,0" 
-                      VerticalAlignment="Top" FontFamily="Segoe UI Black" FontSize="18" Width="168" BorderBrush="#FF2DD1C9" Foreground="Blue" Grid.Column="1"/>
+                   HorizontalAlignment="Left"  
+                   Margin="23.75,9,0,0" 
+                   VerticalAlignment="Top" 
+                   FontFamily="Segoe UI Black" 
+                   FontSize="18" 
+                   Width="168" 
+                   BorderBrush="#FF2DD1C9" 
+                   Foreground="Blue" 
+                   Grid.Column="1"/>
             <ComboBox x:Name="cbBusLines" 
                       HorizontalAlignment="Stretch" 
                       VerticalAlignment="Stretch" 
@@ -56,7 +62,6 @@
                       Margin="20,15,0,0" 
                       VerticalAlignment="Top"   
                       FontSize="18" Background="White" Foreground="Blue" FontWeight="Bold" />
-
         </Grid>
         <ListBox x:Name="lbBusLineStations" 
                  HorizontalAlignment="Left" 
@@ -66,7 +71,11 @@
                  VerticalAlignment="Top" 
                  ItemsSource="{Binding}" 
                  Width="716" 
-                 Grid.RowSpan="2" FontFamily="Segoe UI Black" FontSize="14" FontWeight="Bold" Foreground="Blue" >
+                 Grid.RowSpan="2" 
+                 FontFamily="Segoe UI Black" 
+                 FontSize="14" 
+                 FontWeight="Bold" 
+                 Foreground="Blue" >
             <ListBox.Background>
                 <ImageBrush/>
             </ListBox.Background>
