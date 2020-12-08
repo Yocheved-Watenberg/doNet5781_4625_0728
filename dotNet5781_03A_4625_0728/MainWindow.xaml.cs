@@ -22,12 +22,8 @@ namespace dotNet5781_03A_4625_0728
     /// </summary>
     public partial class MainWindow : Window
     {
-        // MyList busLines;
-        //  private Line currentDisplayBusLine;
-
         private MyList busLines { get; set; }
         private Line currentDisplayBusLine { get; set; }
-
 
         public MainWindow()
         {
@@ -110,25 +106,8 @@ namespace dotNet5781_03A_4625_0728
             busLines.AddLine(line9);
             busLines.AddLine(line10);
 
-
-            //for (int i = 0; i < 5; ++i)
-            //{
-            //    ComboBoxItem newItem = new ComboBoxItem();
-            //    newItem.Content = "Item " + i;
-            //    cbBusLines.Items.Add(newItem);
-            //}
-
-            //for (int i = 0; i<9; i++)
-            //cbBusLines.Items.Add(new Line[] { busLines[i] });
-
-           this.cbBusLines.ItemsSource = busLines.l;
-          //  cbBusLines.DisplayMemberPath = ;
-            // cbBusLines.Items.Content = "bus 1";
-          //  cbBusLines.Items.ToString();
-
-            this.cbBusLines.SelectedIndex = 0;
-          // cbBusLines.Text = "cmt on ecrit qqch";
-          //  cbBusLines.Text = busLines[1].LineKey.ToString();
+            cbBusLines.ItemsSource = busLines;
+            cbBusLines.SelectedIndex = 0;
             ShowBusLine(cbBusLines.SelectedIndex);
         }
 
@@ -141,30 +120,7 @@ namespace dotNet5781_03A_4625_0728
 
             private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
             {
-              //  ShowBusLine(busLines.FindLineIndex(cbBusLines.SelectedIndex));
                 ShowBusLine(busLines.FindLineIndex(((Line)cbBusLines.SelectedItem).LineKey));
-             //   ShowBusLine(busLines.FindLineIndex((cbBusLines.SelectedValue as Line).LineKey));
             }
-
-            //verifier si fo mettre  IsEditable="true" ds cb 
-            //voir ds madrih cmt ils remplissent leur cb par le c#
         }
-
-    // ds upgrid g enlevé   IsEnabled="False"
-    // ds cb g enlevé  IsEditable="True"
-    // l'icone naparait pa ds bin debug, et jlai mis a la main 
-    // DisplayMemberPath = "LineKey"  ds xaml ?
 }
-
-
-/*  <ComboBoxItem Content="bus 1" HorizontalAlignment="Left" Width="89"/>
-                <ComboBoxItem Content="bus 2" HorizontalAlignment="Left" Width="89"/>
-                <ComboBoxItem Content="bus 3" HorizontalAlignment="Left" Width="89"/>
-                <ComboBoxItem Content="bus 4" HorizontalAlignment="Left" Width="89"/>
-                <ComboBoxItem Content="bus 5" HorizontalAlignment="Left" Width="89"/>
-                <ComboBoxItem Content="bus 6" HorizontalAlignment="Left" Width="89"/>
-                <ComboBoxItem Content="bus 7" HorizontalAlignment="Left" Width="89"/>
-                <ComboBoxItem Content="bus 8" HorizontalAlignment="Left" Width="89"/>
-                <ComboBoxItem Content="bus 9" HorizontalAlignment="Left" Width="89"/>
-                <ComboBoxItem Content="bus 10" HorizontalAlignment="Left" Width="89"/>
-    */

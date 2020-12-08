@@ -5,8 +5,7 @@ namespace dotNet5781_02_4625_0728
 {
      class Line : IComparable<Line>
      {
-        public int LineKey { get; set; }
-   //     public readonly int LineKey;                            //num of the bus 
+        public int LineKey { get; set; }                        //num of the bus 
         public List<BusLineStation> StationsList;               //list of stations of the line 
         public BusLineStation FirstStation { get; set; }
         public BusLineStation LastStation { get; set; }
@@ -86,16 +85,9 @@ namespace dotNet5781_02_4625_0728
         }
 
 
-        //old tostring
-        //public override string ToString()                                  //override ToString for a line 
-        //{
-        //    return "Stations of the line:" + PrintList() + "\nBus number: " + LineKey + "\nArea :" + Area;
-        //}
-
-        //new to string
         public override string ToString()                                  //override ToString for a line 
         {
-            return "bus" + LineKey;
+            return "Stations of the line:" + PrintList() + "\nBus number: " + LineKey + "\nArea :" + Area;
         }
 
         public string PrintList()
