@@ -66,7 +66,7 @@
                  VerticalAlignment="Top" 
                  ItemsSource="{Binding}" 
                  Width="716" 
-                 Grid.RowSpan="2" FontFamily="Segoe UI Black" FontSize="14" FontWeight="Bold" Foreground="Blue" >
+                 Grid.RowSpan="2" FontFamily="Segoe UI Black" FontSize="14" FontWeight="Bold" Foreground="Blue" SelectionChanged="lbBusLineStations_SelectionChanged" >
             <ListBox.Background>
                 <ImageBrush/>
             </ListBox.Background>

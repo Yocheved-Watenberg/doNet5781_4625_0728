@@ -4,22 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Targil_01
+namespace dotnet5781_03B_4625_0728
 {
     class Bus
     {
+        
         public const int GASOLINE = 1200;                                   //max of gazoline remaining after refueling
         public const int MILEAGE = 20000;                                   //max of mileage remaining before the next overhaul
 
-        public string BusNumber { get; set; }
+        public int BusNumber { get; set; }
         public DateTime FirstActivity { get; set; }
         public DateTime LastOverhaul { get; set; }
         public int Gasoline { get; set; }                                   //amount of gasoline remaining   
         public long TotalMileage { get; set; }                              //num of km that the bus travelled since its first activity
+
+        //ATTENTION  jai changé ce sadé, changer si jamais jutilise les fonctions du targil 1 !!!!!! 
         public int Mileage { get; set; }                                    //number of km that the bus traveled after the next overhaul 
-
+        public State BusState { get; set; }
         public Bus() { }                                                    //empty ctor 
-
 
         public bool gasolineVerification(int km)                            //verify if the bus can travel this num of km before the next refueling
         {
@@ -34,7 +36,7 @@ namespace Targil_01
 
         public bool mileageVerification(int km)                             //verify if the bus can travel this num of km before the next overhaul
         {
-            if ( km + Mileage > MILEAGE )                                           //check if the num of km won't exceed 20000
+            if (Mileage + km > MILEAGE)                                           //check if the num of km won't exceed 20000
             {
                 Console.WriteLine("The bus needs overhaul beause the bus will travel more than 20,000 km since the last overhaul");
                 return false;
@@ -65,4 +67,6 @@ namespace Targil_01
             return;
         }
     }
+
 }
+
