@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DS
+{
+
+    public class Class1
+    {
+        // ici il a mis la classe student a la classe Class1
+    }
+}

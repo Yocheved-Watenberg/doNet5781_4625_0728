@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace dotNet5781_03b_4625_0728.Properties
+namespace PL.Properties
 {
     /// <summary>
     ///   Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
@@ -43,7 +43,7 @@ namespace dotNet5781_03b_4625_0728.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("dotNet5781_03b_4625_0728.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PL.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
