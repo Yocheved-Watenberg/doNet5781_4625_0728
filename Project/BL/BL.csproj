@@ -4,27 +4,25 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EAA6DCA0-E7AD-4D7F-B98D-16BB24725581}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>dotNet5781_02_4625_0728</RootNamespace>
-    <AssemblyName>dotNet5781_02_4625_0728</AssemblyName>
+    <ProjectGuid>{0115863D-E397-46FB-9A14-8C5A777A0EA1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BL</RootNamespace>
+    <AssemblyName>BL</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,16 +41,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusLineStation.cs" />
-    <Compile Include="EnumArea.cs" />
-    <Compile Include="MyList.cs" />
-    <Compile Include="Station.cs" />
-    <Compile Include="Line.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="BLAPI\BLFactory.cs" />
+    <Compile Include="BLAPI\IBL.cs" />
+    <Compile Include="BLImp.cs" />
+    <Compile Include="DeepCopyUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <ProjectReference Include="..\DalObject\DalObject.csproj">
+      <Project>{c0008077-006f-4fa0-8ee9-76b175fb08eb}</Project>
+      <Name>DalObject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DLAPI.csproj">
+      <Project>{8ab13ebb-897a-4830-9eef-5e134801397f}</Project>
+      <Name>DLAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BO\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

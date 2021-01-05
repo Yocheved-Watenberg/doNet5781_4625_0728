@@ -16,12 +16,20 @@ namespace Targil_01
         public DateTime LastOverhaul { get; set; }
         public int Gasoline { get; set; }                                   //amount of gasoline remaining   
         public long TotalMileage { get; set; }                              //num of km that the bus travelled since its first activity
-        public int Mileage { get; set; }                                    //number of km that the bus can travel before the next overhaul 
+        public int Mileage { get; set; }                                    //number of km that the bus traveled after the next overhaul 
 
         public Bus() { }                                                    //empty ctor 
+        public Bus(string myBusNumber, DateTime myFirstActivity, DateTime myLastOverhaul, int myGasoline, long myTotalMileage, int myMileage)
+        {
+            BusNumber = myBusNumber;
+            FirstActivity = myFirstActivity;
+            LastOverhaul = myLastOverhaul;
+            Gasoline = myGasoline;
+            TotalMileage = myTotalMileage;
+            Mileage = myMileage;
+        }
 
-
-        public bool gasolineVerification(int km)                            //verify if the bus can travel this num of km before the next refueling
+        public bool GasolineVerification(int km)                            //verify if the bus can travel this num of km before the next refueling
         {
             if (Gasoline - km < 0)
             {
@@ -32,9 +40,9 @@ namespace Targil_01
         }
 
 
-        public bool mileageVerification(int km)                             //verify if the bus can travel this num of km before the next overhaul
+        public bool MileageVerification(int km)                             //verify if the bus can travel this num of km before the next overhaul
         {
-            if (Mileage - km < 0)                                           //check if the num of km won't exceed 20000
+            if ( km + Mileage > MILEAGE )                                           //check if the num of km won't exceed 20000
             {
                 Console.WriteLine("The bus needs overhaul beause the bus will travel more than 20,000 km since the last overhaul");
                 return false;
@@ -56,10 +64,10 @@ namespace Targil_01
                 return false;
         }
 
-        public void updateFields(int km)                                   //update fields of bus because a travel 
+        public void UpdateFields(int km)                                   //update fields of bus because a travel 
         {
             Gasoline -= km;
-            Mileage -= km;
+            Mileage += km;
             TotalMileage += km;
             Console.WriteLine("The bus can travel, the fields of the bus are updated, have a nice trip");
             return;

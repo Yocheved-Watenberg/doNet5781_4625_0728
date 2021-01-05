@@ -50,7 +50,7 @@ namespace Targil_01
         #region auxiliaryMethods
         // Auxiliary method wich return num of bus 
 
-        private static string whichBus()
+        private static string WhichBus()
         {
             Console.WriteLine("What is the bus number?");
             string num = Console.ReadLine();
@@ -63,7 +63,7 @@ namespace Targil_01
         }
 
         // Auxiliary method wich check if the num of the bus is in good format 
-        private static bool numIsCorrect(string num)
+        private static bool NumIsCorrect(string num)
         {
             if ((num.Length != 9) && (num.Length != 10)) { return false; }                              //the string have to be 9 or 10
             else
@@ -87,7 +87,7 @@ namespace Targil_01
 
         // Auxiliary method which return the place of the bus in the list if the bus exist 
 
-        private static int search(List<Bus> l, string bus)
+        private static int Search(List<Bus> l, string bus)
 
         {
             int place = -1;
@@ -112,7 +112,7 @@ namespace Targil_01
 
         #region Case1
 
-        private static void addBusToList(List<Bus> l)
+        private static void AddBusToList(List<Bus> l)
         {
 
             Bus b = new Bus() { };
@@ -137,7 +137,7 @@ namespace Targil_01
             return;
         }
 
-        private static void addName(List<Bus> l, Bus b)
+        private static void AddName(List<Bus> l, Bus b)
         {
             string id = whichBus();                                             //input the num of the bus 
             while (checkIfAlreadyExist(l, id))                                  //check if there isn't any else bus with the same name 
@@ -147,7 +147,7 @@ namespace Targil_01
             b.BusNumber = id;
         }
 
-        private static bool checkIfAlreadyExist(List<Bus> l, string id)
+        private static bool CheckIfAlreadyExist(List<Bus> l, string id)
         {
             for (int i = 0; i < l.Count; i++)                                 //for each member of the list 
             {
@@ -160,7 +160,7 @@ namespace Targil_01
             return false;
         }
 
-        private static void addDate(Bus b)
+        private static void AddDate(Bus b)
         {
             Console.WriteLine("What is the date of its first activity? Please enter it on the format : 'DD/MM/YYYY HH:MM:SS AM' ");
             string myDate = Console.ReadLine();                                   //input date
@@ -177,21 +177,21 @@ namespace Targil_01
 
         #region Case2
 
-        private static void busTravel(List<Bus> l)
+        private static void BusTravel(List<Bus> l)
         {
 
-            int place = search(l, whichBus());                                  //search a bus in the list 
+            int place = Search(l, WhichBus());                                  //search a bus in the list 
             if (place != -1)                                                    //if the bus is in the list
             {
                 Random r = new Random(DateTime.Now.Millisecond);
                 int km = r.Next(1200);                                          //the program randomally decides a number of km of travel
 
 
-                if (l[place].gasolineVerification(km))                          //if there is enought gasoline available
+                if (l[place].GasolineVerification(km))                          //if there is enought gasoline available
                 {
-                    if (l[place].mileageVerification(km))                       //and if there is enought mileage available 
+                    if (l[place].MileageVerification(km))                       //and if there is enought mileage available 
                     {
-                        l[place].updateFields(km);                              //the prgm have to update the fields of the bus
+                        l[place].UpdateFields(km);                              //the prgm have to update the fields of the bus
                     }
 
                 }
@@ -202,9 +202,9 @@ namespace Targil_01
         #endregion
 
         #region Case3 
-        private static void busModification(List<Bus> l)
+        private static void BusModification(List<Bus> l)
         {
-            int place = search(l, whichBus());
+            int place = Search(l, WhichBus());
             if (place != -1)                                                    //if the bus is in le list
             {
                 Console.WriteLine("What do you want to change ? \n 1=refueling \n 2=overhaul ");
@@ -235,7 +235,7 @@ namespace Targil_01
 
 
         #region Case4 
-        private static void displayMileage(List<Bus> l)
+        private static void DisplayMileage(List<Bus> l)
         {
             if (l.Count != 0)
             {
