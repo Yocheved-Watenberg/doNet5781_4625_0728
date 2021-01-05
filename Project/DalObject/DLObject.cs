@@ -50,11 +50,22 @@ namespace DL
         }
         public void UpdateBus(DO.Bus bus)
         {
-            throw new NotImplementedException();
+            DO.Bus myBus = DataSource.ListBus.Find(b => b.LicenseNum == bus.LicenseNum);
+            if (myBus != null)
+            {
+                DataSource.ListBus.Remove(myBus);
+                DataSource.ListBus.Add(bus.Clone());
+            }
+            else
+                throw new DO.BadBusIdException(bus.LicenseNum, $"bad bus license num: {bus.LicenseNum}");
         }
         public void UpdateBus(int licenseNum, Action<DO.Bus> update)
         {
-            throw new NotImplementedException();
+                var myBus = DataSource.ListBus.FirstOrDefault(predicate => predicate.LicenseNum == licenseNum);
+                if (myBus != null)
+                {
+                    update(myBus);
+                }
         }
         #endregion
         #region BusOnTrip
@@ -88,11 +99,22 @@ namespace DL
         }
         public void UpdateBusOnTrip(DO.BusOnTrip busOnTrip)
         {
-            throw new NotImplementedException();
+            DO.BusOnTrip myBusOnTrip = DataSource.ListBusOnTrip.Find(b => b.Id == busOnTrip.Id);
+            if (myBusOnTrip != null)
+            {
+                DataSource.ListBusOnTrip.Remove(myBusOnTrip);
+                DataSource.ListBusOnTrip.Add(busOnTrip.Clone());
+            }
+            else
+                throw new DO.BadBusOnTripIdException(busOnTrip.Id, $"bad busOnTrip id: {busOnTrip.Id}");
         }
         public void UpdateBusOnTrip(int Id, Action<DO.BusOnTrip> update)
         {
-            throw new NotImplementedException();
+            var myBusOnTrip = DataSource.ListBusOnTrip.FirstOrDefault(predicate => predicate.Id == Id);
+            if (myBusOnTrip != null)
+            {
+                update(myBusOnTrip);
+            }
         }
         #endregion
         #region AdjacentStations 
@@ -127,11 +149,22 @@ namespace DL
         }
         public void UpdateAdjacentStations(DO.AdjacentStations adjacentStations)
         {
-            throw new NotImplementedException();
+            DO.AdjacentStations adj = DataSource.ListAdjacentStations.Find(a => (a.Station1 == adjacentStations.Station1)&&(a.Station2 == adjacentStations.Station2));
+            if (adj != null)
+            {
+                DataSource.ListAdjacentStations.Remove(adj);
+                DataSource.ListAdjacentStations.Add(adjacentStations.Clone());
+            }
+            else
+                throw new DO.BadAdjacentStationsIdException(adjacentStations.Station1, adjacentStations.Station2, "theses adjacent stations doesn't exist in the list of adjacents stations");
         }
         public void UpdateAdjacentStations(int Station1, int Station2, Action<DO.AdjacentStations> update)
         {
-            throw new NotImplementedException();
+            var adj = DataSource.ListAdjacentStations.FirstOrDefault(predicate => (predicate.Station1 == Station1) && (predicate.Station2 == Station2));
+            if (adj != null)
+            {
+                update(adj);
+            }
         }
         #endregion
         #region Line 
@@ -170,12 +203,23 @@ namespace DL
 
         public void UpdateLine(DO.Line line)
         {
-            throw new NotImplementedException();
+            DO.Line myLine = DataSource.ListLine.Find(l => l.Id == line.Id);
+            if (myLine != null)
+            {
+                DataSource.ListLine.Remove(myLine);
+                DataSource.ListLine.Add(line.Clone());
+            }
+            else
+                throw new DO.BadLineIdException(line.Id, $"bad line id : {line.Id}");
         }
 
-        public void UpdateLine(int Id, Action<DO.Line> update)
+        public void UpdateLine(int id, Action<DO.Line> update)
         {
-            throw new NotImplementedException();
+            var myLine = DataSource.ListLine.FirstOrDefault(predicate => predicate.Id == id);
+            if (myLine != null)
+            {
+                update(myLine);
+            }
         }
         #endregion
         #region LineStation 
@@ -211,13 +255,26 @@ namespace DL
         }
         public void UpdateLineStation(DO.LineStation lineStation)
         {
-            throw new NotImplementedException();
+            DO.LineStation myLineStation = DataSource.ListLineStation.Find(l => (l.LineId == lineStation.LineId) && (l.Station==lineStation.Station));
+            if (myLineStation != null)
+            {
+                DataSource.ListLineStation.Remove(myLineStation);
+                DataSource.ListLineStation.Add(lineStation.Clone());
+            }
+            else
+                throw new DO.BadLineStationIdException(lineStation.LineId, lineStation.Station, "this line station doesn't exist in the list of line station");
         }
+    
 
-        public void UpdateLineStation(int LineId, Action<DO.LineStation> update)
+    public void UpdateLineStation(int LineId, int station, Action<DO.LineStation> update)
+    {
+        var myLineStation = DataSource.ListLineStation.FirstOrDefault(predicate => (predicate.LineId == LineId) && (predicate.Station == station));
+        if (myLineStation != null)
         {
-            throw new NotImplementedException();
+            update(myLineStation);
         }
+    }
+
         #endregion
         #region LineTrip 
 
@@ -255,15 +312,24 @@ namespace DL
 
         public void UpdateLineTrip(DO.LineTrip lineTrip)
         {
-            throw new NotImplementedException();
+            DO.LineTrip myLineTrip = DataSource.ListLineTrip.Find(l => (l.LineId == lineTrip.LineId)&&(l.StartAt==lineTrip.StartAt));
+            if (myLineTrip != null)
+            {
+                DataSource.ListLineTrip.Remove(myLineTrip);
+                DataSource.ListLineTrip.Add(lineTrip.Clone());
+            }
+            else
+                throw new DO.BadLineTripIdException(lineTrip.LineId, (int)lineTrip.StartAt.TotalMilliseconds, "this line trip doesn't exists in the list of line trip");
         }
-
-        public void UpdateLineTrip(int Id, Action<DO.LineTrip> update)
+        public void UpdateLineTrip(int id, TimeSpan startAt, Action<DO.LineTrip> update)
         {
-            throw new NotImplementedException();
+            var myLineTrip = DataSource.ListLineTrip.FirstOrDefault(predicate => (predicate.LineId == id)&&(predicate.StartAt==startAt));
+            if (myLineTrip != null)
+            {
+                update(myLineTrip);
+            }
         }
-
-        #endregion 
+        #endregion
         #region Station
 
         public void AddStation(DO.Station station)
@@ -300,13 +366,23 @@ namespace DL
 
         public void UpdateStation(DO.Station station)
         {
-            throw new NotImplementedException();
+            DO.Station myStation = DataSource.ListStation.Find(s => s.Code == station.Code);
+            if (myStation != null)
+            {
+                DataSource.ListStation.Remove(myStation);
+                DataSource.ListStation.Add(station.Clone());
+            }
+            else
+                throw new DO.BadStationIdException(station.Code, $"bad station code : {station.Code}");
         }
-
         public void UpdateStation(int code, Action<DO.Station> update)
         {
-            throw new NotImplementedException();
-        }
+            var myStation = DataSource.ListStation.FirstOrDefault(predicate => predicate.Code == code);
+            if (myStation != null)
+            {
+                update(myStation);
+            }
+        }      
         #endregion
         #region Trip 
 
@@ -342,14 +418,25 @@ namespace DL
         }
         public void UpdateTrip(DO.Trip trip)
         {
-            throw new NotImplementedException();
+            DO.Trip myTrip = DataSource.ListTrip.Find(t => t.Id== trip.Id);
+            if (myTrip != null)
+            {
+                DataSource.ListTrip.Remove(myTrip);
+                DataSource.ListTrip.Add(trip.Clone());
+            }
+            else
+                throw new DO.BadTripIdException(trip.Id, $"bad trip id: {trip.Id}");
         }
 
-        public void UpdateTrip(int Id, Action<DO.Trip> update)
+        public void UpdateTrip(int id, Action<DO.Trip> update)
         {
-            throw new NotImplementedException();
+            var myTrip = DataSource.ListTrip.FirstOrDefault(predicate => predicate.Id == id);
+            if (myTrip != null)
+            {
+                update(myTrip);
+            }
         }
-
+     
         #endregion
         #region User
 
@@ -383,12 +470,25 @@ namespace DL
         }
         public void UpdateUser(DO.User user)
         {
-            throw new NotImplementedException();
+            DO.User myUser = DataSource.ListUser.Find(u => u.UserName == user.UserName);
+            if (myUser != null)
+            {
+                DataSource.ListUser.Remove(myUser);
+                DataSource.ListUser.Add(user.Clone());
+            }
+            else
+            throw new DO.BadUserIdException(user.UserName, "this user doesn't exist in the list of users");
+
         }
         public void UpdateUser(string userName, Action<DO.User> update)
         {
-            throw new NotImplementedException();
+            var myUser = DataSource.ListUser.FirstOrDefault(predicate => predicate.UserName == userName);
+            if (myUser != null)
+            {
+                update(myUser);
+            }
         }
+
         #endregion
     }
 }

@@ -74,7 +74,7 @@ namespace DLAPI
         IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
         LineTrip GetLineTrip(int Id);
         void UpdateLineTrip(LineTrip lineTrip);
-        void UpdateLineTrip(int Id, Action<LineTrip> update);
+        void UpdateLineTrip(int Id, TimeSpan startAt, Action<LineTrip> update);
         void DeleteLineTrip(int id, TimeSpan startAT);
         #endregion
         #region LineStation
@@ -83,7 +83,7 @@ namespace DLAPI
         IEnumerable<LineStation> GetAllLineStationBy(Predicate<LineStation> predicate);
         LineStation GetLineStation(int LineId);
         void UpdateLineStation(LineStation lineStation);
-        void UpdateLineStation(int LineId, Action<LineStation> update);
+        void UpdateLineStation(int LineId, int station, Action<LineStation> update);
         void DeleteLineStation(int LineId, int station);
         #endregion
         //pas sure, est ce quon doit fr une liste de adjacents stations?
