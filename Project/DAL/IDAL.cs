@@ -16,9 +16,9 @@ namespace DLAPI
         // Delete - delete an instance
         #region Bus
         void AddBus(Bus bus);
+        Bus GetBus(int licenseNum);
         IEnumerable <Bus> GetAllBus();
         IEnumerable<Bus> GetAllBusBy(Predicate<Bus> predicate);
-        Bus GetBus(int licenseNum);
         void UpdateBus(Bus bus);
         void UpdateBus(int licenseNum, Action <Bus> update);
         void DeleteBus(int licenseNum);
