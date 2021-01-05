@@ -26,17 +26,17 @@ namespace DS//memamech le Idal
         }
         static void InitAllLists() //a faire
         {
-            ListPersons = new List<Person>
+            ListBus = new List<Bus>
             {
-                new Person
+                new Bus
                 {
-                    Name = "David",
-                    ID = 36,
-                    Street = "Harekefet",
-                    HouseNumber = 44,
-                    City = "Tel-Aviv",
-                    PersonalStatus = PersonalStatus.MARRIED,
-                    BirthDate = DateTime.Parse("24.03.85")
+                    LicenseNum=11111222 ,
+                    FromDate = DateTime.Parse("24.03.19"),
+                    TotalTrip=
+                    FuelRemain(int)
+                    BusState(State)
+                    MaxTravellers(int)
+                    DateTime.Parse("24.03.85")
                 },
 
                 new Person

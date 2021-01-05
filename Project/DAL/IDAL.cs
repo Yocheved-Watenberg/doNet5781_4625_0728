@@ -23,6 +23,15 @@ namespace DLAPI
         void UpdateBus(int licenseNum, Action <Bus> update);
         void DeleteBus(int licenseNum);
         #endregion
+        #region BusOnTrip
+        void AddBusOnTrip(BusOnTrip busOnTrip);
+        IEnumerable<BusOnTrip> GetBusOnTrip();
+        IEnumerable<BusOnTrip> GetAllBusOnTripBy(Predicate<BusOnTrip> predicate);
+        BusOnTrip GetBusOnTrip(int Id);
+        void UpdateBusOnTrip(BusOnTrip busOnTrip);
+        void UpdateBusOnTrip(int Id, Action<BusOnTrip> update);
+        void DeleteBusOnTrip(int Id);
+        #endregion
         #region Station
         void AddStation(Station station);
         IEnumerable<Station> GetAllStation();
@@ -41,33 +50,6 @@ namespace DLAPI
         void UpdateLine(int Id, Action<Line> update);
         void DeleteLine(int Id);
         #endregion
-        #region Trip
-        void AddTrip(Trip trip);
-        IEnumerable<Trip> GetAllTrip();
-        IEnumerable<Trip> GetAllTripBy(Predicate<Trip> predicate);
-        Trip GetTrip(int Id);
-        void UpdateTrip(Trip trip);
-        void UpdateTrip(int Id, Action<Trip> update);
-        void DeleteTrip(int Id);
-        #endregion
-        #region User
-        void AddUser(User user);
-        IEnumerable<User> GetAllUser();
-        IEnumerable<User> GetAllUserBy(Predicate<User> predicate);
-        User GetUser(string userName);
-        void UpdateUser(User user);
-        void UpdateUser(string userName, Action<User> update);
-        void DeleteUser(string userName);
-        #endregion
-        #region BusOnTrip
-        void AddBusOnTrip(BusOnTrip busOnTrip);
-        IEnumerable<BusOnTrip> GetBusOnTrip();
-        IEnumerable<BusOnTrip> GetAllBusOnTripBy(Predicate<BusOnTrip> predicate);
-        BusOnTrip GetBusOnTrip(int Id);
-        void UpdateBusOnTrip(BusOnTrip busOnTrip);
-        void UpdateBusOnTrip(int Id, Action<BusOnTrip> update);
-        void DeleteBusOnTrip(int Id);
-        #endregion
         #region LineTrip
         void AddLineTrip(LineTrip lineTrip);
         IEnumerable<LineTrip> GetLineTrip();
@@ -85,6 +67,24 @@ namespace DLAPI
         void UpdateLineStation(LineStation lineStation);
         void UpdateLineStation(int LineId, Action<LineStation> update);
         void DeleteLineStation(int LineId);
+        #endregion
+        #region Trip
+        void AddTrip(Trip trip);
+        IEnumerable<Trip> GetAllTrip();
+        IEnumerable<Trip> GetAllTripBy(Predicate<Trip> predicate);
+        Trip GetTrip(int Id);
+        void UpdateTrip(Trip trip);
+        void UpdateTrip(int Id, Action<Trip> update);
+        void DeleteTrip(int Id);
+        #endregion
+        #region User
+        void AddUser(User user);
+        IEnumerable<User> GetAllUser();
+        IEnumerable<User> GetAllUserBy(Predicate<User> predicate);
+        User GetUser(string userName);
+        void UpdateUser(User user);
+        void UpdateUser(string userName, Action<User> update);
+        void DeleteUser(string userName);
         #endregion
         //pas sure, est ce quon doit fr une liste de adjacents stations?
         #region AdjacentStations

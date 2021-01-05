@@ -11,7 +11,7 @@ namespace BL {
     //memamech ttes les fctions du ibl
 class BLImp : IBL //internal
     {
-        IDAL dl = DLFactory.GetDL();
+        IDAL Dl = DLFactory.GetDL();
 
         #region Student
         BO.Student studentDoBoAdapter(DO.Student studentDO)
