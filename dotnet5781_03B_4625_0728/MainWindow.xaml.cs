@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,26 +14,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace dotnet5781_03B_4625_0728
+namespace dotNet5781_03b_4625_0728
 {
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {public ObservableCollection<Bus> buses { get; set; } = new ObservableCollection<Bus>();
         public MainWindow()
         {
             InitializeComponent();
-            Random rand = new Random(DateTime.Now.Millisecond);
-            List<Bus> buses= new List<Bus>();
-            Bus bus01 =new Bus();
-            Bus bus02 = new Bus(); 
-            Bus bus03 = new Bus(); 
-            Bus bus04 = new Bus();  
-            Bus bus05 = new Bus(); 
-            Bus bus06 = new Bus(); 
-            Bus bus07 = new Bus(); 
-            Bus bus08 = new Bus(); 
+
+          Bus bus01 = new Bus();
+            Bus bus02 = new Bus();
+            Bus bus03 = new Bus();
+            Bus bus04 = new Bus();
+            Bus bus05 = new Bus();
+            Bus bus06 = new Bus();
+            Bus bus07 = new Bus();
+            Bus bus08 = new Bus();
             Bus bus09 = new Bus();
             Bus bus10 = new Bus();
             buses.Add(bus01);
@@ -45,7 +45,7 @@ namespace dotnet5781_03B_4625_0728
             buses.Add(bus08);
             buses.Add(bus09);
             buses.Add(bus10);
-  
+            Random rand = new Random(DateTime.Now.Millisecond);
             foreach (Bus item in buses)
             {
                 item.BusNumber = rand.Next(1000000, 99999999);
@@ -53,7 +53,7 @@ namespace dotnet5781_03B_4625_0728
                 item.Mileage = rand.Next(0, 20000);
                 item.TotalMileage = rand.Next() + item.Mileage;
                 item.BusState = 0;
-                int myYear, myMonth, myDay=1;
+                int myYear, myMonth, myDay = 1;
                 myMonth = rand.Next(1, 12);
                 if (item.BusNumber < 10000000)
                     myYear = rand.Next(2000, 2017);
@@ -67,9 +67,9 @@ namespace dotnet5781_03B_4625_0728
                     myDay = rand.Next(1, 30);
                 item.FirstActivity = new DateTime(myYear, myMonth, myDay);
 
-                DateTime myLastOverhaulDate = new DateTime(rand.Next(2000, 2020), rand.Next(1,12), rand.Next(1,28) ) ;
+                DateTime myLastOverhaulDate = new DateTime(rand.Next(2000, 2020), rand.Next(1, 12), rand.Next(1, 28));
                 while (myLastOverhaulDate < item.FirstActivity || myLastOverhaulDate > DateTime.Now)
-                myLastOverhaulDate = new DateTime(rand.Next(2000, 2020), rand.Next(1, 12), rand.Next(1, 28));
+                    myLastOverhaulDate = new DateTime(rand.Next(2000, 2020), rand.Next(1, 12), rand.Next(1, 28));
                 item.LastOverhaul = myLastOverhaulDate;
             }
 
@@ -80,7 +80,6 @@ namespace dotnet5781_03B_4625_0728
             bus02.Mileage = 19999;
 
             bus03.Gasoline = 1;
-
 
             //for (int i = 0; i < 10; ++i)
             //{
@@ -96,20 +95,34 @@ namespace dotnet5781_03B_4625_0728
             listBox.DataContext = buses;
             listBox.SelectedIndex = 0;
 
-
-
-
-
-
         }
-        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            foreach (var selectedItem in listBox.SelectedItems) { }
-        }
+        //private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    foreach (var SelectedItem in listBox.SelectedItems) { }
+        //}
 
         private void ShowBusLine(object p)
         {
             throw new NotImplementedException();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {//noa
+            AddWin addWin = new AddWin();
+            addWin.ShowDialog(); //la fenetre s occupe de gerer les inputr du user
+            addWin.Close();
+
+            //MessageBox.Show("Which line do you want to add?");
+            //    string myBusNumber = Console.ReadLine();
+
+            //Bus newBus = new Bus(myBusNumber, DateTime.Now, DateTime.Now, 1200, 0, 0);
+            //buses.Add(newBus);
+        }
+
+        private void listBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (var SelectedItem in listBox.SelectedItems) { }
+        }
     }
 }
+         

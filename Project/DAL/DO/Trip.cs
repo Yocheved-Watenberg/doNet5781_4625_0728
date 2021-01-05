@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DO
 {
-    class Trip
+    public class Trip
     {
         public int Id { get; set; }                 //mezae nessia
         public string UserName { get; set; }        //name of the user who wants to travel  

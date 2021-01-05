@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DO
+﻿namespace DO
 {
     public enum State
     {
@@ -20,7 +14,7 @@ namespace DO
         South,              //2
         Center,             //3
         Jerusalem           //4
-    };
+    }
 }
 
 
