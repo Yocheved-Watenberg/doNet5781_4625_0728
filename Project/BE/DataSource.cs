@@ -12,21 +12,81 @@ namespace DS//memamech le Idal
     {
         //rechimot de tt
         public static List<Bus> ListBus;
-        public static List<AdjacentStations> ListAdjStations;
+        public static List<AdjacentStations> ListAdjacentStations;
         public static List<BusOnTrip> ListBusOnTrip;
         public static List<Line> ListLine;
-        public static List<LineStation> ListLinStations;
-        public static List<LineTrip> ListLinTrip;
-        public static List<Station> ListStations;
+        public static List<LineStation> ListLineStation;
+        public static List<LineTrip> ListLineTrip;
+        public static List<Station> ListStation;
         public static List<Trip> ListTrip;
         public static List<User> ListUser;
         static DataSource()
         {
             InitAllLists();//pour initialiser ttes les lists
         }
-        //static void InitAllLists() //a faire
-        //{
+        static void InitAllLists() //a faire
+        {
+            ListPersons = new List<Person>
+            {
+                new Person
+                {
+                    Name = "David",
+                    ID = 36,
+                    Street = "Harekefet",
+                    HouseNumber = 44,
+                    City = "Tel-Aviv",
+                    PersonalStatus = PersonalStatus.MARRIED,
+                    BirthDate = DateTime.Parse("24.03.85")
+                },
 
-        //}
+                new Person
+                {
+                    Name = "Yossi",
+                    ID = 23,
+                    Street = "Moshe Dayan",
+                    HouseNumber = 145,
+                    City = "Jerusalem",
+                    PersonalStatus = PersonalStatus.SINGLE,
+                    BirthDate = DateTime.Parse("13.10.95")
+                },
+
+                new Person
+                {
+                    Name = "Roni",
+                    ID = 15,
+                    Street = "Dayan",
+                    HouseNumber = 33,
+                    City = "Petach Tikva",
+                    PersonalStatus = PersonalStatus.MARRIED,
+                    BirthDate = DateTime.Parse("14.02.98")
+                },
+
+                new Person
+                {
+                    Name = "Shira",
+                    ID = 3,
+                    Street = "Moshe",
+                    HouseNumber = 33,
+                    City = "Eilat",
+                    PersonalStatus = PersonalStatus.SINGLE,
+                    BirthDate = DateTime.Parse("13.10.95")
+                },
+
+                new Person
+                {
+                    Name = "Gila",
+                    ID = 67,
+                    Street = "Marom",
+                    HouseNumber = 56,
+                    City = "Givataiim",
+                    PersonalStatus = PersonalStatus.MARRIED,
+                    BirthDate = DateTime.Parse("14.11.90")
+                }
+
+
+            };
+
+
+        }
     }
 }
