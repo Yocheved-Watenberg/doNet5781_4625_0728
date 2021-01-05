@@ -13,18 +13,19 @@ namespace DO
         public TimeSpan PrevStationAt { get; set; }                           //time past in the last station
         public TimeSpan NextStationAt { get; set; }                            //how much time to the next station
         public string DriverName { get; set; }                                 //name of the driver //optionel//rajouter vaad?
-        BusOnTrip(int myId,int myLicenseNum, int myLineId, TimeSpan myPlannedTakeOff, TimeSpan myActualTakeOff ,int myPrevStation, TimeSpan myPrevStationAt, TimeSpan myNextStationAt, string myDriverName)
-        {
-            Id = myId;
-            LicenseNum = myLicenseNum;
-            LineId = myLineId;
-            PlannedTakeOff = myPlannedTakeOff;
-            ActualTakeOff = myActualTakeOff;
-            PrevStation = myPrevStation;
-            PrevStationAt = myPrevStationAt;
-            NextStationAt = myNextStationAt;
-            DriverName = myDriverName;
-        }
+
+        //BusOnTrip(int myId,int myLicenseNum, int myLineId, TimeSpan myPlannedTakeOff, TimeSpan myActualTakeOff ,int myPrevStation, TimeSpan myPrevStationAt, TimeSpan myNextStationAt, string myDriverName)
+        //{
+        //    Id = myId;
+        //    LicenseNum = myLicenseNum;
+        //    LineId = myLineId;
+        //    PlannedTakeOff = myPlannedTakeOff;
+        //    ActualTakeOff = myActualTakeOff;
+        //    PrevStation = myPrevStation;
+        //    PrevStationAt = myPrevStationAt;
+        //    NextStationAt = myNextStationAt;
+        //    DriverName = myDriverName;
+        //}
 
     }
 }

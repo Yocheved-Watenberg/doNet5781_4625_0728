@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 //chacune des fctions ouvre le kovets, lit qq chose et est mahzir cette chose
 //faire attention a s occuper des harigots
 using DLAPI;
-using DO;
 //using DO;
 using DS;
 
@@ -20,179 +19,148 @@ namespace DL
         DLObject() { } // default => private
         public static DLObject Instance { get => instance; }// The public Instance property to use
         #endregion
-
         #region Bus
         public void AddBus(DO.Bus bus)
-        {
-            //DO.Person per = DataSource.ListPersons//oleh larechimot.Find(p => p.ID == id)//est mafil la fction find //avour kal evar p si le Id est egal a celui de person(celui qui a ete recu);
-            //if (per != null)//
-            //    DataSource.ListPerson.Add (per.Clone());//tamid maatikim netounim //copie ds ma list//CLONE=copy ctor
-            //else
-            //    throw new DO.BadPersonIdException(id, $"bad person id: {id}");//exceptions ds Do
-
-            DO.Bus myBus = DataSource.ListBus.Find(someBus => someBus.LicenseNum == bus.LicenseNum);
-            if (myBus != null)
-                DataSource.ListBus.Add(myBus.Clone());
-            else
-                throw new DO.BadBusIdException(bus.LicenseNum, $"bad bus license number: {bus.LicenseNum}");//exceptions ds Do
+        { 
+            if (DataSource.ListBus.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum) != null)
+               throw new DO.BadBusIdException(bus.LicenseNum, "this bus already exists in the list of bus");
+           DataSource.ListBus.Add(bus.Clone());
         }
-
         public void DeleteBus(int licenseNum)
         {
             throw new NotImplementedException();
         }
-        public Bus GetBus(int licenseNum)
+        public DO.Bus GetBus(int licenseNum)
         {
             throw new NotImplementedException();
         }
-        public IEnumerable<Bus> GetAllBus()
+        public IEnumerable<DO.Bus> GetAllBus()
         {
             throw new NotImplementedException();
         }
-        public IEnumerable<Bus> GetAllBusBy(Predicate<Bus> predicate)
+        public IEnumerable<DO.Bus> GetAllBusBy(Predicate<DO.Bus> predicate)
         {
             throw new NotImplementedException();
         }
-        public void UpdateBus(Bus bus)
+        public void UpdateBus(DO.Bus bus)
         {
             throw new NotImplementedException();
         }
-        public void UpdateBus(int licenseNum, Action<Bus> update)
+        public void UpdateBus(int licenseNum, Action<DO.Bus> update)
         {
             throw new NotImplementedException();
         }
         #endregion
-
         #region BusOnTrip
-
-
-        public void AddBusOnTrip(BusOnTrip busOnTrip)
+        public void AddBusOnTrip(DO.BusOnTrip busOnTrip)
         {
-            throw new NotImplementedException();
+            if (DataSource.ListBusOnTrip.FirstOrDefault(b => b.LicenseNum == busOnTrip.LicenseNum) != null)
+                throw new DO.BadBusOnTripIdException(busOnTrip.LicenseNum, "this busOnTrip already exists in the list of busOnTrip");
+            DataSource.ListBusOnTrip.Add(busOnTrip.Clone());
         }
-
         public void DeleteBusOnTrip(int Id)
         {
             throw new NotImplementedException();
         }
-
-    
-        public IEnumerable<BusOnTrip> GetBusOnTrip()
+        public IEnumerable<DO.BusOnTrip> GetBusOnTrip()
         {
             throw new NotImplementedException();
         }
-
-        public BusOnTrip GetBusOnTrip(int Id)
+        public DO.BusOnTrip GetBusOnTrip(int Id)
         {
             throw new NotImplementedException();
         }
-
-        public IEnumerable<BusOnTrip> GetAllBusOnTripBy(Predicate<BusOnTrip> predicate)
+        public IEnumerable<DO.BusOnTrip> GetAllBusOnTripBy(Predicate<DO.BusOnTrip> predicate)
         {
             throw new NotImplementedException();
         }
-
-        public void UpdateBusOnTrip(BusOnTrip busOnTrip)
+        public void UpdateBusOnTrip(DO.BusOnTrip busOnTrip)
         {
             throw new NotImplementedException();
         }
-
-        public void UpdateBusOnTrip(int Id, Action<BusOnTrip> update)
+        public void UpdateBusOnTrip(int Id, Action<DO.BusOnTrip> update)
         {
             throw new NotImplementedException();
         }
-
-
         #endregion
         #region AdjacentStations 
-
-        public void AddAdjacentStations(AdjacentStations adjacentStations)
+        public void AddAdjacentStations(DO.AdjacentStations adjacentStations)
         {
-            throw new NotImplementedException();
-
+            if ((DataSource.ListAdjacentStations.FirstOrDefault(s => s.Station1 == adjacentStations.Station1) != null)&&(DataSource.ListAdjacentStations.FirstOrDefault(s => s.Station2 == adjacentStations.Station2) != null))
+                throw new DO.BadAdjacentStationsIdException(adjacentStations.Station1, adjacentStations.Station2, "theses adjacent stations already exists in the list of adjacents stations");
+            DataSource.ListAdjacentStations.Add(adjacentStations.Clone());
         }
         public void DeleteAdjacentStations(int Station1, int Station2)
         {
             throw new NotImplementedException();
         }
-
-
-        public IEnumerable<AdjacentStations> GetAdjacentStations()
+        public IEnumerable<DO.AdjacentStations> GetAdjacentStations()
         {
             throw new NotImplementedException();
         }
-
-        public AdjacentStations GetAdjacentStations(int Station1, int Station2)
+        public DO.AdjacentStations GetAdjacentStations(int Station1, int Station2)
         {
             throw new NotImplementedException();
         }
-
-
-        public IEnumerable<AdjacentStations> GetAllAdjacentStationsBy(Predicate<AdjacentStations> predicate)
+        public IEnumerable<DO.AdjacentStations> GetAllAdjacentStationsBy(Predicate<DO.AdjacentStations> predicate)
         {
             throw new NotImplementedException();
         }
-
-        public void UpdateAdjacentStations(AdjacentStations adjacentStations)
+        public void UpdateAdjacentStations(DO.AdjacentStations adjacentStations)
         {
             throw new NotImplementedException();
         }
-
-        public void UpdateAdjacentStations(int Station1, int Station2, Action<AdjacentStations> update)
+        public void UpdateAdjacentStations(int Station1, int Station2, Action<DO.AdjacentStations> update)
         {
             throw new NotImplementedException();
         }
-
-
-
-
         #endregion
         #region Line 
-        public void AddLine(Line line)
+        public void AddLine(DO.Line line)
         {
-            DO.Line myLine = DataSource.ListLine.Find(someLine => someLine.Id == line.Id);
-            if (myLine != null)
-                DataSource.ListLine.Add (myLine.Clone());
-            else
-                throw new DO.BadLineIdException(line.Id, $"bad line id: {line.Id}");//exceptions ds Do
+            if (DataSource.ListLine.FirstOrDefault(l => l.Id == line.Id) != null)
+                throw new DO.BadLineIdException(line.Id, "this line already exists in the list of lines");
+            DataSource.ListLine.Add(line.Clone());
         }
         public void DeleteLine(int Id)
         {
             throw new NotImplementedException();
         }
 
-        public Line GetLine(int Id)
+        public DO.Line GetLine(int Id)
         {
             throw new NotImplementedException();
         }
 
 
-        public IEnumerable<Line> GetAllLine()
+        public IEnumerable<DO.Line> GetAllLine()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Line> GetAllLineBy(Predicate<Line> predicate)
+        public IEnumerable<DO.Line> GetAllLineBy(Predicate<DO.Line> predicate)
         {
             throw new NotImplementedException();
         }
 
 
-        public void UpdateLine(Line line)
+        public void UpdateLine(DO.Line line)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateLine(int Id, Action<Line> update)
+        public void UpdateLine(int Id, Action<DO.Line> update)
         {
             throw new NotImplementedException();
         }
         #endregion
         #region LineStation 
 
-        public void AddLineStation(LineStation lineStation)
+        public void AddLineStation(DO.LineStation lineStation)
         {
-            throw new NotImplementedException();
+            if ((DataSource.ListLineStation.FirstOrDefault(l => l.LineId == lineStation.LineId) != null)&&(DataSource.ListLineStation.FirstOrDefault(l => l.Station == lineStation.Station) != null))
+                throw new DO.BadLineStationIdException(lineStation.LineId, lineStation.Station, "this line station already exists in the list of line station");
+            DataSource.ListLineStation.Add(lineStation.Clone());
         }
 
 
@@ -203,32 +171,32 @@ namespace DL
 
 
 
-        public IEnumerable<LineStation> GetLineStation()
+        public IEnumerable<DO.LineStation> GetLineStation()
         {
             throw new NotImplementedException();
         }
 
-        public LineStation GetLineStation(int LineId)
+        public DO.LineStation GetLineStation(int LineId)
         {
             throw new NotImplementedException();
         }
-        public IEnumerable<LineStation> GetAllLineStationBy(Predicate<LineStation> predicate)
+        public IEnumerable<DO.LineStation> GetAllLineStationBy(Predicate<DO.LineStation> predicate)
         {
             throw new NotImplementedException();
         }
-        public void UpdateLineStation(LineStation lineStation)
+        public void UpdateLineStation(DO.LineStation lineStation)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateLineStation(int LineId, Action<LineStation> update)
+        public void UpdateLineStation(int LineId, Action<DO.LineStation> update)
         {
             throw new NotImplementedException();
         }
         #endregion
         #region LineTrip 
 
-        public void AddLineTrip(LineTrip lineTrip)
+        public void AddLineTrip(DO.LineTrip lineTrip)
         {
             throw new NotImplementedException();
         }
@@ -237,26 +205,26 @@ namespace DL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<LineTrip> GetLineTrip()
+        public IEnumerable<DO.LineTrip> GetLineTrip()
         {
             throw new NotImplementedException();
         }
 
-        public LineTrip GetLineTrip(int Id)
+        public DO.LineTrip GetLineTrip(int Id)
         {
             throw new NotImplementedException();
         }
-        public IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateLineTrip(LineTrip lineTrip)
+        public IEnumerable<DO.LineTrip> GetAllLineTripBy(Predicate<DO.LineTrip> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateLineTrip(int Id, Action<LineTrip> update)
+        public void UpdateLineTrip(DO.LineTrip lineTrip)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateLineTrip(int Id, Action<DO.LineTrip> update)
         {
             throw new NotImplementedException();
         }
@@ -264,7 +232,7 @@ namespace DL
         #endregion
         #region Station
 
-        public void AddStation(Station station)
+        public void AddStation(DO.Station station)
         {
             throw new NotImplementedException();
         }
@@ -275,34 +243,34 @@ namespace DL
 
 
 
-        public Station GetStation(int code)
+        public DO.Station GetStation(int code)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Station> GetAllStation()
+        public IEnumerable<DO.Station> GetAllStation()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Station> GetAllStationBy(Predicate<Station> predicate)
+        public IEnumerable<DO.Station> GetAllStationBy(Predicate<DO.Station> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateStation(Station station)
+        public void UpdateStation(DO.Station station)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateStation(int code, Action<Station> update)
+        public void UpdateStation(int code, Action<DO.Station> update)
         {
             throw new NotImplementedException();
         }
         #endregion
         #region Trip 
 
-        public void AddTrip(Trip trip)
+        public void AddTrip(DO.Trip trip)
         {
             throw new NotImplementedException();
         }
@@ -313,25 +281,25 @@ namespace DL
         }
 
 
-        public Trip GetTrip(int Id)
+        public DO.Trip GetTrip(int Id)
         {
             throw new NotImplementedException();
         }
-        public IEnumerable<Trip> GetAllTrip()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Trip> GetAllTripBy(Predicate<Trip> predicate)
-        {
-            throw new NotImplementedException();
-        }
-        public void UpdateTrip(Trip trip)
+        public IEnumerable<DO.Trip> GetAllTrip()
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateTrip(int Id, Action<Trip> update)
+        public IEnumerable<DO.Trip> GetAllTripBy(Predicate<DO.Trip> predicate)
+        {
+            throw new NotImplementedException();
+        }
+        public void UpdateTrip(DO.Trip trip)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateTrip(int Id, Action<DO.Trip> update)
         {
             throw new NotImplementedException();
         }
@@ -339,7 +307,7 @@ namespace DL
         #endregion
         #region User
 
-        public void AddUser(User user)
+        public void AddUser(DO.User user)
         {
             throw new NotImplementedException();
         }
@@ -347,23 +315,23 @@ namespace DL
         {
             throw new NotImplementedException();
         }
-        public User GetUser(string userName)
+        public DO.User GetUser(string userName)
         {
             throw new NotImplementedException();
         }
-        public IEnumerable<User> GetAllUser()
+        public IEnumerable<DO.User> GetAllUser()
         {
             throw new NotImplementedException();
         }
-        public IEnumerable<User> GetAllUserBy(Predicate<User> predicate)
+        public IEnumerable<DO.User> GetAllUserBy(Predicate<DO.User> predicate)
         {
             throw new NotImplementedException();
         }
-        public void UpdateUser(User user)
+        public void UpdateUser(DO.User user)
         {
             throw new NotImplementedException();
         }
-        public void UpdateUser(string userName, Action<User> update)
+        public void UpdateUser(string userName, Action<DO.User> update)
         {
             throw new NotImplementedException();
         }
