@@ -4,7 +4,7 @@ namespace DO
 {
     public class BusOnTrip
     {
-        public int Id { get; set; }                                           //bus id
+        public int Id { get; set; }                                           //bus id, mispar rats 
         public int LicenseNum { get; set; }                                  //attention ca doit etre unique //fr un interface? //license number,first entity key of the bus
         public int LineId { get; set; }                                      //id of the line,second entity key
         public TimeSpan PlannedTakeOff { get; set; }                         //departure time for the formal line,third entity key

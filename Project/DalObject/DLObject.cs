@@ -21,14 +21,20 @@ namespace DL
         #endregion
         #region Bus
         public void AddBus(DO.Bus bus)
-        { 
+        {
             if (DataSource.ListBus.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum) != null)
-               throw new DO.BadBusIdException(bus.LicenseNum, "this bus already exists in the list of bus");
-           DataSource.ListBus.Add(bus.Clone());
+                throw new DO.BadBusIdException(bus.LicenseNum, "this bus already exists in the list of bus");
+            DataSource.ListBus.Add(bus.Clone());
         }
         public void DeleteBus(int licenseNum)
         {
-            throw new NotImplementedException();
+            DO.Bus myBus = DataSource.ListBus.Find(b => b.LicenseNum == licenseNum);
+            if (myBus != null)
+            {
+                DataSource.ListBus.Remove(myBus);
+            }
+            else
+                throw new DO.BadBusIdException(licenseNum, $"bad person id: {licenseNum}");
         }
         public DO.Bus GetBus(int licenseNum)
         {
@@ -54,15 +60,21 @@ namespace DL
         #region BusOnTrip
         public void AddBusOnTrip(DO.BusOnTrip busOnTrip)
         {
-            if (DataSource.ListBusOnTrip.FirstOrDefault(b => b.LicenseNum == busOnTrip.LicenseNum) != null)
-                throw new DO.BadBusOnTripIdException(busOnTrip.LicenseNum, "this busOnTrip already exists in the list of busOnTrip");
+            if (DataSource.ListBusOnTrip.FirstOrDefault(b => b.Id == busOnTrip.Id) != null)
+                throw new DO.BadBusOnTripIdException(busOnTrip.Id, "this busOnTrip already exists in the list of busOnTrip");
             DataSource.ListBusOnTrip.Add(busOnTrip.Clone());
         }
         public void DeleteBusOnTrip(int Id)
         {
-            throw new NotImplementedException();
+            DO.BusOnTrip myBusOnTrip = DataSource.ListBusOnTrip.Find(b => b.Id == Id);
+            if (myBusOnTrip != null)
+            {
+                DataSource.ListBusOnTrip.Remove(myBusOnTrip);
+            }
+            else
+                throw new DO.BadBusOnTripIdException(Id, $"bad busOnTrip id: {Id}");
         }
-        public IEnumerable<DO.BusOnTrip> GetBusOnTrip()
+    public IEnumerable<DO.BusOnTrip> GetBusOnTrip()
         {
             throw new NotImplementedException();
         }
@@ -86,13 +98,20 @@ namespace DL
         #region AdjacentStations 
         public void AddAdjacentStations(DO.AdjacentStations adjacentStations)
         {
-            if ((DataSource.ListAdjacentStations.FirstOrDefault(s => s.Station1 == adjacentStations.Station1) != null)&&(DataSource.ListAdjacentStations.FirstOrDefault(s => s.Station2 == adjacentStations.Station2) != null))
-                throw new DO.BadAdjacentStationsIdException(adjacentStations.Station1, adjacentStations.Station2, "theses adjacent stations already exists in the list of adjacents stations");
+            List<DO.AdjacentStations> myList = DataSource.ListAdjacentStations.FindAll(s => s.Station1 == adjacentStations.Station1);
+            if (myList.FirstOrDefault(adj => adj.Station2 == adjacentStations.Station2) != null)
+                throw new DO.BadAdjacentStationsIdException(adjacentStations.Station1, adjacentStations.Station2, "theses adjacent stations already exist in the list of adjacents stations");
             DataSource.ListAdjacentStations.Add(adjacentStations.Clone());
         }
-        public void DeleteAdjacentStations(int Station1, int Station2)
+        public void DeleteAdjacentStations(int station1, int station2)
         {
-            throw new NotImplementedException();
+            DO.AdjacentStations adj = DataSource.ListAdjacentStations.Find(a => (a.Station1 == station1)&&(a.Station2 == station2));
+            if (adj != null)
+            {
+                DataSource.ListAdjacentStations.Remove(adj);
+            }
+            else
+            throw new DO.BadAdjacentStationsIdException(station1, station2, "theses adjacent stations doesn't exist in the list of adjacents stations");
         }
         public IEnumerable<DO.AdjacentStations> GetAdjacentStations()
         {
@@ -122,11 +141,16 @@ namespace DL
                 throw new DO.BadLineIdException(line.Id, "this line already exists in the list of lines");
             DataSource.ListLine.Add(line.Clone());
         }
-        public void DeleteLine(int Id)
+        public void DeleteLine(int id)
         {
-            throw new NotImplementedException();
+            DO.Line myLine = DataSource.ListLine.Find(l => l.Id == id);
+            if (myLine != null)
+            {
+                DataSource.ListLine.Remove(myLine);
+            }
+            else
+                throw new DO.BadLineIdException(id, $"bad line id: {id}");
         }
-
         public DO.Line GetLine(int Id)
         {
             throw new NotImplementedException();
@@ -158,24 +182,25 @@ namespace DL
 
         public void AddLineStation(DO.LineStation lineStation)
         {
-            if ((DataSource.ListLineStation.FirstOrDefault(l => l.LineId == lineStation.LineId) != null)&&(DataSource.ListLineStation.FirstOrDefault(l => l.Station == lineStation.Station) != null))
+            List<DO.LineStation> myList = DataSource.ListLineStation.FindAll(s => s.LineId == lineStation.LineId);
+            if (myList.FirstOrDefault(l => l.Station == lineStation.Station) != null)
                 throw new DO.BadLineStationIdException(lineStation.LineId, lineStation.Station, "this line station already exists in the list of line station");
             DataSource.ListLineStation.Add(lineStation.Clone());
         }
-
-
-        public void DeleteLineStation(int LineId)
+        public void DeleteLineStation(int id, int station)
         {
-            throw new NotImplementedException();
+            DO.LineStation myLineStation = DataSource.ListLineStation.Find(l => (l.LineId == id)&&(l.Station==station));
+            if (myLineStation != null)
+            {
+                DataSource.ListLineStation.Remove(myLineStation);
+            }
+            else
+                throw new DO.BadLineStationIdException(id, station, "this line station doesn't exist in the list of line station");
         }
-
-
-
         public IEnumerable<DO.LineStation> GetLineStation()
         {
             throw new NotImplementedException();
         }
-
         public DO.LineStation GetLineStation(int LineId)
         {
             throw new NotImplementedException();
@@ -198,11 +223,20 @@ namespace DL
 
         public void AddLineTrip(DO.LineTrip lineTrip)
         {
-            throw new NotImplementedException();
+            List<DO.LineTrip> myList = DataSource.ListLineTrip.FindAll(l => l.LineId == lineTrip.LineId);
+            if (myList.FirstOrDefault(l => l.StartAt == lineTrip.StartAt) != null)
+                throw new DO.BadLineTripIdException(lineTrip.LineId, (int)lineTrip.StartAt.TotalMilliseconds, "this line trip already exists in the list of line trip");
+            DataSource.ListLineTrip.Add(lineTrip.Clone());
         }
-        public void DeleteLineTrip(int Id)
+        public void DeleteLineTrip(int id, TimeSpan startAt)
         {
-            throw new NotImplementedException();
+            DO.LineTrip myLineTrip = DataSource.ListLineTrip.Find(l => (l.LineId == id)&&(l.StartAt==startAt));
+            if (myLineTrip != null)
+            {
+                DataSource.ListLineTrip.Remove(myLineTrip);
+            }
+            else
+                throw new DO.BadLineTripIdException(id, (int)startAt.TotalMilliseconds, "this line trip doesn't exists in the list of line trip");
         }
 
         public IEnumerable<DO.LineTrip> GetLineTrip()
@@ -229,19 +263,25 @@ namespace DL
             throw new NotImplementedException();
         }
 
-        #endregion
+        #endregion 
         #region Station
 
         public void AddStation(DO.Station station)
         {
-            throw new NotImplementedException();
+            if (DataSource.ListStation.FirstOrDefault(s => s.Code == station.Code) != null)
+                throw new DO.BadStationIdException(station.Code, "this station already exists in the list of stations");
+            DataSource.ListStation.Add(station.Clone());
         }
         public void DeleteStation(int code)
         {
-            throw new NotImplementedException();
+            DO.Station myStation = DataSource.ListStation.Find(s => s.Code == code);
+            if (myStation != null)
+            {
+                DataSource.ListStation.Remove(myStation);
+            }
+            else
+                throw new DO.BadStationIdException(code, "this station doesn't exist in the list of station");
         }
-
-
 
         public DO.Station GetStation(int code)
         {
@@ -272,15 +312,21 @@ namespace DL
 
         public void AddTrip(DO.Trip trip)
         {
-            throw new NotImplementedException();
+            if (DataSource.ListTrip.FirstOrDefault(t => t.Id == trip.Id) != null)
+                throw new DO.BadTripIdException(trip.Id, "this trip already exists in the list of trips");
+            DataSource.ListTrip.Add(trip.Clone());
         }
 
-        public void DeleteTrip(int Id)
+        public void DeleteTrip(int id)
         {
-            throw new NotImplementedException();
+            DO.Trip myTrip = DataSource.ListTrip.Find(t => t.Id==id);
+            if (myTrip != null)
+            {
+                DataSource.ListTrip.Remove(myTrip);
+            }
+            else
+                throw new DO.BadTripIdException(id, "this trip doesn't exist in the list of trip");
         }
-
-
         public DO.Trip GetTrip(int Id)
         {
             throw new NotImplementedException();
@@ -309,11 +355,19 @@ namespace DL
 
         public void AddUser(DO.User user)
         {
-            throw new NotImplementedException();
+            if (DataSource.ListUser.FirstOrDefault(u => u.UserName == user.UserName) != null)
+                throw new DO.BadUserIdException(user.UserName, "this user already exists in the list of user");
+            DataSource.ListUser.Add(user.Clone());
         }
-        public void DeleteUser(string userName)
+        public void DeleteUser(string user)
         {
-            throw new NotImplementedException();
+            DO.User myUser = DataSource.ListUser.Find(u => u.UserName == user);
+            if (myUser != null)
+            {
+                DataSource.ListUser.Remove(myUser);
+            }
+            else
+                throw new DO.BadUserIdException(user, "this user doesn't exist in the list of users");
         }
         public DO.User GetUser(string userName)
         {
@@ -336,6 +390,5 @@ namespace DL
             throw new NotImplementedException();
         }
         #endregion
-    }  
- }
-
+    }
+}

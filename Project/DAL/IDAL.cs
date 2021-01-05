@@ -75,7 +75,7 @@ namespace DLAPI
         LineTrip GetLineTrip(int Id);
         void UpdateLineTrip(LineTrip lineTrip);
         void UpdateLineTrip(int Id, Action<LineTrip> update);
-        void DeleteLineTrip(int Id);
+        void DeleteLineTrip(int id, TimeSpan startAT);
         #endregion
         #region LineStation
         void AddLineStation(LineStation lineStation);
@@ -84,7 +84,7 @@ namespace DLAPI
         LineStation GetLineStation(int LineId);
         void UpdateLineStation(LineStation lineStation);
         void UpdateLineStation(int LineId, Action<LineStation> update);
-        void DeleteLineStation(int LineId);
+        void DeleteLineStation(int LineId, int station);
         #endregion
         //pas sure, est ce quon doit fr une liste de adjacents stations?
         #region AdjacentStations
