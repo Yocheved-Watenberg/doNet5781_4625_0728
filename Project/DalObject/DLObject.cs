@@ -38,15 +38,27 @@ namespace DL
         }
         public DO.Bus GetBus(int licenseNum)
         {
-            throw new NotImplementedException();
+            DO.Bus bus = DataSource.ListBus.Find(b => b.LicenseNum == licenseNum);
+
+            if (bus != null)
+                return bus.Clone();
+            else
+                throw new DO.BadBusIdException(licenseNum, $"bad bus license num : {licenseNum}");
         }
         public IEnumerable<DO.Bus> GetAllBus()
         {
-            throw new NotImplementedException();
+            return from bus in DataSource.ListBus
+                   select bus.Clone();
         }
         public IEnumerable<DO.Bus> GetAllBusBy(Predicate<DO.Bus> predicate)
         {
-            throw new NotImplementedException();
+            if (predicate != null)
+            {
+                return from bus in DataSource.ListBus
+                       where predicate(bus)
+                       select bus.Clone();
+            }
+            return GetAllBus();
         }
         public void UpdateBus(DO.Bus bus)
         {
@@ -85,17 +97,29 @@ namespace DL
             else
                 throw new DO.BadBusOnTripIdException(Id, $"bad busOnTrip id: {Id}");
         }
-    public IEnumerable<DO.BusOnTrip> GetBusOnTrip()
+        public IEnumerable<DO.BusOnTrip> GetAllBusOnTrip()
         {
-            throw new NotImplementedException();
+            return from busOnTrip in DataSource.ListBusOnTrip
+                   select busOnTrip.Clone();
         }
         public DO.BusOnTrip GetBusOnTrip(int Id)
         {
-            throw new NotImplementedException();
+            DO.BusOnTrip busOnTrip = DataSource.ListBusOnTrip.Find(b => b.Id == Id);
+
+            if (busOnTrip != null)
+                return busOnTrip.Clone();
+            else
+                 throw new DO.BadBusOnTripIdException(Id, $"bad busOnTrip id: {Id}");
         }
         public IEnumerable<DO.BusOnTrip> GetAllBusOnTripBy(Predicate<DO.BusOnTrip> predicate)
         {
-            throw new NotImplementedException();
+            if (predicate != null)
+            {
+                return from busOnTrip in DataSource.ListBusOnTrip
+                       where predicate(busOnTrip)
+                       select busOnTrip.Clone();
+            }
+            return GetAllBusOnTrip();
         }
         public void UpdateBusOnTrip(DO.BusOnTrip busOnTrip)
         {
@@ -135,17 +159,29 @@ namespace DL
             else
             throw new DO.BadAdjacentStationsIdException(station1, station2, "theses adjacent stations doesn't exist in the list of adjacents stations");
         }
-        public IEnumerable<DO.AdjacentStations> GetAdjacentStations()
+        public IEnumerable<DO.AdjacentStations> GetAllAdjacentStations()
         {
-            throw new NotImplementedException();
+            return from adj in DataSource.ListAdjacentStations
+                   select adj.Clone();
         }
-        public DO.AdjacentStations GetAdjacentStations(int Station1, int Station2)
+        public DO.AdjacentStations GetAdjacentStations(int station1, int station2)
         {
-            throw new NotImplementedException();
+            DO.AdjacentStations adj = DataSource.ListAdjacentStations.Find(a => (a.Station1 == station1) && (a.Station2 == station2));
+
+            if (adj != null)
+                return adj.Clone();
+            else
+                 throw new DO.BadAdjacentStationsIdException(station1, station2, "theses adjacent stations doesn't exist in the list of adjacents stations");
         }
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStationsBy(Predicate<DO.AdjacentStations> predicate)
         {
-            throw new NotImplementedException();
+            if (predicate != null)
+            {
+                return from adj in DataSource.ListAdjacentStations
+                       where predicate(adj)
+                       select adj.Clone();
+            }
+            return GetAllAdjacentStations();
         }
         public void UpdateAdjacentStations(DO.AdjacentStations adjacentStations)
         {
@@ -184,22 +220,32 @@ namespace DL
             else
                 throw new DO.BadLineIdException(id, $"bad line id: {id}");
         }
-        public DO.Line GetLine(int Id)
+        public DO.Line GetLine(int id)
         {
-            throw new NotImplementedException();
-        }
+            DO.Line line = DataSource.ListLine.Find(l => l.Id == id);
 
+            if (line != null)
+                return line.Clone();
+            else
+                throw new DO.BadLineIdException(id, $"bad line id: {id}");
+        }
 
         public IEnumerable<DO.Line> GetAllLine()
         {
-            throw new NotImplementedException();
+            return from line in DataSource.ListLine
+                   select line.Clone();
         }
 
         public IEnumerable<DO.Line> GetAllLineBy(Predicate<DO.Line> predicate)
         {
-            throw new NotImplementedException();
+            if (predicate != null)
+            {
+                return from line in DataSource.ListLine
+                       where predicate(line)
+                       select line.Clone();
+            }
+            return GetAllLine();
         }
-
 
         public void UpdateLine(DO.Line line)
         {
@@ -241,17 +287,29 @@ namespace DL
             else
                 throw new DO.BadLineStationIdException(id, station, "this line station doesn't exist in the list of line station");
         }
-        public IEnumerable<DO.LineStation> GetLineStation()
+        public IEnumerable<DO.LineStation> GetAllLineStation()
         {
-            throw new NotImplementedException();
+            return from lineStation in DataSource.ListLineStation
+                   select lineStation.Clone();
         }
-        public DO.LineStation GetLineStation(int LineId)
+        public DO.LineStation GetLineStation(int id, int station)
         {
-            throw new NotImplementedException();
+            DO.LineStation lineStation = DataSource.ListLineStation.Find(l => (l.LineId == id) && (l.Station == station));
+
+            if (lineStation != null)
+                return lineStation.Clone();
+            else
+                throw new DO.BadLineStationIdException(id, station, "this line station doesn't exist in the list of line station");
         }
         public IEnumerable<DO.LineStation> GetAllLineStationBy(Predicate<DO.LineStation> predicate)
         {
-            throw new NotImplementedException();
+            if (predicate != null)
+            {
+                return from lineStation in DataSource.ListLineStation
+                       where predicate(lineStation)
+                       select lineStation.Clone();
+            }
+            return GetAllLineStation();
         }
         public void UpdateLineStation(DO.LineStation lineStation)
         {
@@ -296,18 +354,30 @@ namespace DL
                 throw new DO.BadLineTripIdException(id, (int)startAt.TotalMilliseconds, "this line trip doesn't exists in the list of line trip");
         }
 
-        public IEnumerable<DO.LineTrip> GetLineTrip()
+        public IEnumerable<DO.LineTrip> GetAllLineTrip()
         {
-            throw new NotImplementedException();
+            return from lineTrip in DataSource.ListLineTrip
+                   select lineTrip.Clone();
         }
 
-        public DO.LineTrip GetLineTrip(int Id)
+        public DO.LineTrip GetLineTrip(int id, TimeSpan startAt)
         {
-            throw new NotImplementedException();
+            DO.LineTrip lineTrip = DataSource.ListLineTrip.Find(l => (l.LineId == id) && (l.StartAt == startAt));
+
+            if (lineTrip != null)
+                return lineTrip.Clone();
+            else
+                throw new DO.BadLineTripIdException(id, (int)startAt.TotalMilliseconds, "this line trip doesn't exists in the list of line trip");
         }
         public IEnumerable<DO.LineTrip> GetAllLineTripBy(Predicate<DO.LineTrip> predicate)
         {
-            throw new NotImplementedException();
+            if (predicate != null)
+            {
+                return from lineTrip in DataSource.ListLineTrip
+                       where predicate(lineTrip)
+                       select lineTrip.Clone();
+            }
+            return GetAllLineTrip();
         }
 
         public void UpdateLineTrip(DO.LineTrip lineTrip)
@@ -351,17 +421,29 @@ namespace DL
 
         public DO.Station GetStation(int code)
         {
-            throw new NotImplementedException();
+            DO.Station station = DataSource.ListStation.Find(s => s.Code == code);
+
+            if (station != null)
+                return station.Clone();
+            else
+                throw new DO.BadStationIdException(code, "this station doesn't exist in the list of station");
         }
 
         public IEnumerable<DO.Station> GetAllStation()
         {
-            throw new NotImplementedException();
+            return from station in DataSource.ListStation
+                   select station.Clone();
         }
 
         public IEnumerable<DO.Station> GetAllStationBy(Predicate<DO.Station> predicate)
         {
-            throw new NotImplementedException();
+            if (predicate != null)
+            {
+                return from station in DataSource.ListStation
+                       where predicate(station)
+                       select station.Clone();
+            }
+            return GetAllStation();
         }
 
         public void UpdateStation(DO.Station station)
@@ -403,18 +485,30 @@ namespace DL
             else
                 throw new DO.BadTripIdException(id, "this trip doesn't exist in the list of trip");
         }
-        public DO.Trip GetTrip(int Id)
+        public DO.Trip GetTrip(int id)
         {
-            throw new NotImplementedException();
+            DO.Trip trip = DataSource.ListTrip.Find(t => t.Id == id);
+
+            if (trip != null)
+                return trip.Clone();
+            else
+                throw new DO.BadTripIdException(id, "this trip doesn't exist in the list of trip");
         }
         public IEnumerable<DO.Trip> GetAllTrip()
         {
-            throw new NotImplementedException();
+            return from trip in DataSource.ListTrip
+                   select trip.Clone();
         }
 
         public IEnumerable<DO.Trip> GetAllTripBy(Predicate<DO.Trip> predicate)
         {
-            throw new NotImplementedException();
+            if (predicate != null)
+            {
+                return from trip in DataSource.ListTrip
+                       where predicate(trip)
+                       select trip.Clone();
+            }
+            return GetAllTrip();
         }
         public void UpdateTrip(DO.Trip trip)
         {
@@ -446,27 +540,39 @@ namespace DL
                 throw new DO.BadUserIdException(user.UserName, "this user already exists in the list of user");
             DataSource.ListUser.Add(user.Clone());
         }
-        public void DeleteUser(string user)
+        public void DeleteUser(string name)
         {
-            DO.User myUser = DataSource.ListUser.Find(u => u.UserName == user);
+            DO.User myUser = DataSource.ListUser.Find(u => u.UserName == name);
             if (myUser != null)
             {
                 DataSource.ListUser.Remove(myUser);
             }
             else
-                throw new DO.BadUserIdException(user, "this user doesn't exist in the list of users");
+                throw new DO.BadUserIdException(name, "this user doesn't exist in the list of users");
         }
-        public DO.User GetUser(string userName)
+        public DO.User GetUser(string name)
         {
-            throw new NotImplementedException();
+            DO.User user = DataSource.ListUser.Find(u => u.UserName == name);
+
+            if (user != null)
+                return user.Clone();
+            else
+                throw new DO.BadUserIdException(name, "this user doesn't exist in the list of users");
         }
         public IEnumerable<DO.User> GetAllUser()
         {
-            throw new NotImplementedException();
+            return from user in DataSource.ListUser
+                   select user.Clone();
         }
         public IEnumerable<DO.User> GetAllUserBy(Predicate<DO.User> predicate)
         {
-            throw new NotImplementedException();
+            if (predicate != null)
+            {
+                return from user in DataSource.ListUser
+                       where predicate(user)
+                       select user.Clone();
+            }
+            return GetAllUser();
         }
         public void UpdateUser(DO.User user)
         {
