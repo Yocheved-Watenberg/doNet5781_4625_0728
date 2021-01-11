@@ -4,26 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
-namespace DalObject
-{//using DO;
 
-    namespace DL
+namespace DL
+{
+    static class Cloning
     {
-        static class Cloning
+        internal static T Clone<T>(this T original) where T : new()
+
         {
-            internal static T Clone<T>(this T original) where T : new()
+            T copyToObject = new T();
+            //T copyToObject = (T)Activator.CreateInstance(typeof(T));
 
-            {
-                T copyToObject = new T();
-                //T copyToObject = (T)Activator.CreateInstance(typeof(T));
+            foreach (PropertyInfo propertyInfo in typeof(T).GetProperties())
+                propertyInfo.SetValue(copyToObject, propertyInfo.GetValue(original, null), null);
 
-                foreach (PropertyInfo propertyInfo in typeof(T).GetProperties())
-                    propertyInfo.SetValue(copyToObject, propertyInfo.GetValue(original, null), null);
-
-                return copyToObject;
-            }
-
+            return copyToObject;
         }
-    }
 
+    }
 }
