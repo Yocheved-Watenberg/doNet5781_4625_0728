@@ -84,34 +84,6 @@ namespace DLAPI
         void UpdateUser(string userName, Action<User> update);
         void DeleteUser(string userName);
         #endregion
-        #region BusOnTrip
-        void AddBusOnTrip(BusOnTrip busOnTrip);
-        IEnumerable<BusOnTrip> GetBusOnTrip();
-        IEnumerable<BusOnTrip> GetAllBusOnTripBy(Predicate<BusOnTrip> predicate);
-        BusOnTrip GetBusOnTrip(int Id);
-        void UpdateBusOnTrip(BusOnTrip busOnTrip);
-        void UpdateBusOnTrip(int Id, Action<BusOnTrip> update);
-        void DeleteBusOnTrip(int Id);
-        #endregion
-        #region LineTrip
-        void AddLineTrip(LineTrip lineTrip);
-        IEnumerable<LineTrip> GetLineTrip();
-        IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
-        LineTrip GetLineTrip(int Id);
-        void UpdateLineTrip(LineTrip lineTrip);
-        void UpdateLineTrip(int Id, Action<LineTrip> update);
-        void DeleteLineTrip(int Id);
-        #endregion
-        #region LineStation
-        void AddLineStation(LineStation lineStation);
-        IEnumerable<LineStation> GetLineStation();
-        IEnumerable<LineStation> GetAllLineStationBy(Predicate<LineStation> predicate);
-        LineStation GetLineStation(int LineId);
-        void UpdateLineStation(LineStation lineStation);
-        void UpdateLineStation(int LineId, Action<LineStation> update);
-        void DeleteLineStation(int LineId);
-        #endregion
-        //pas sure, est ce quon doit fr une liste de adjacents stations?
         #region AdjacentStations
         void AddAdjacentStations(AdjacentStations adjacentStations);
         IEnumerable<AdjacentStations> GetAllAdjacentStations();
@@ -121,7 +93,5 @@ namespace DLAPI
         void UpdateAdjacentStations(int Station1, int Station2, Action<AdjacentStations> update);
         void DeleteAdjacentStations(int Station1, int Station2);
         #endregion
-
-        
     }
 }
