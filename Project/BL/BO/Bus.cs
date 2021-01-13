@@ -7,7 +7,7 @@ using static BL.BO.Enum;
 
 namespace BL.BO
 {
-    class Bus
+   public class Bus
     {
         public int LicenseNum { get; set; }                                  //attention ca doit etre unique //bus number
         public DateTime FromDate { get; set; }                                //date of its first activity
