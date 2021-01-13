@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BL.BO
 {
-    class Enum
+    public class Enum
     {
         public enum State
         {

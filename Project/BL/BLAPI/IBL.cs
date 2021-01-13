@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using BO;
+using BL.BO;
 
 
 namespace BLAPI
@@ -13,23 +13,30 @@ namespace BLAPI
         //Add bus to the list
         //get all bus in station
         //etc...
-        #region Student
-        //BO.Student GetStudent(int id);
-        //IEnumerable<BO.Student> GetAllStudents();
-        //IEnumerable<BO.ListedPerson> GetStudentIDNameList();
+        #region Line
+       Line GetLine(int id);
+       void AddLine(Line line);
+       IEnumerable<Line> GetAllLine();
+       IEnumerable<Line> GetAllLineBy(Predicate<Line> predicate); 
+        void UpdateLine(Line line);
+        void UpdateLine(int Id, Action<Line> update);
+        void DeleteLine(int id);
+        IEnumerable<LineStation> GetListOfLineStations();
 
-        //IEnumerable<BO.Student> GetStudentsBy(Predicate<BO.Student> predicate);
-
-        //void UpdateStudentPersonalDetails(BO.Student student);
-
-        //void DeleteStudent(int id);
 
         #endregion
 
-        #region StudentInCourse
-        //void AddStudentInCourse(int perID, int courseID, float grade = 0);
-        //void UpdateStudentGradeInCourse(int perID, int courseID, float grade);
-        //void DeleteStudentInCourse(int perID, int courseID);
+
+
+        #region Bus
+        void AddBus(Bus bus);
+        Bus GetBus(int licenseNum);
+        IEnumerable<Bus> GetAllBus();
+        IEnumerable<Bus> GetAllBusBy(Predicate<Bus> predicate);
+        void UpdateBus(Bus bus);
+        void UpdateBus(int licenseNum, Action<Bus> update);
+        void DeleteBus(int licenseNum);
+        
 
         #endregion
 

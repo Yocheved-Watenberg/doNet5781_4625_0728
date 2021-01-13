@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BL.BO
 {
-    class Station
+    public class Station
     {
         public int Code { get; set; }                                  //attention ca doit etre unique // number of the station //attribute feature
         public string Name { get; set; }                               //name of the station
@@ -15,4 +15,4 @@ namespace BL.BO
         public string Adress { get; set; }                            //adress of the station optionnel
     }
 }
-}
+

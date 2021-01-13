@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace BL.BO
 {
-    class LineStation:Station                                           //a lineStation is a Station in which the line goes throuh
+    public class LineStation:Station                                           //a lineStation is a Station in which the line goes throuh
     {
-        public int LineId { get; set; }                                //line number (first attribute feature)
-        public int Station { get; set; }                               //station number(second attribute feature)
+        public int LineId { get; set; }                                //pour effacer une station ds une ligne mezae qui va m aider a le fr
         public int LineStationIndex { get; set; }                      //place of the station in the line
         public int PrevStation { get; set; }                           //?
         public int NextStation { get; set; }                           //?

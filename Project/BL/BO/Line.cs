@@ -7,7 +7,7 @@ using static BL.BO.Enum;
 
 namespace BL.BO
 {
-    class Line
+    public class Line
     {
         public int Id { get; set; }                                         //Busline number(rats automati)
         public int Code { get; set; }                                       //line number                                  

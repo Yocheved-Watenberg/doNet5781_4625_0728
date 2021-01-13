@@ -2,7 +2,7 @@
 {
     public class LineStation
     {
-        public int LineId { get; set; }                                //line number (first attribute feature)
+        public int LineId { get; set; }                                //pour effacer une station ds une ligne mezae qui va m aider a le fr
         public int Station { get; set; }                               //station number(second attribute feature)
         public int LineStationIndex { get; set; }                      //place of the station in the line
         public int PrevStation { get; set; }                           //?
