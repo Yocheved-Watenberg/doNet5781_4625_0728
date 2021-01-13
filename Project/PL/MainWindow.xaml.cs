@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BLAPI;
 
 namespace PL
 {
@@ -20,10 +21,34 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+       IBL bl = BLFactory.GetBL("1");
         public MainWindow()
         {
             InitializeComponent();
-
         }
+        private void btnGO_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (rbAdmin.IsChecked == true)
+            {
+                ChoiceAdmin win = new ChoiceAdmin(bl);  
+                win.Show();
+            }
+            else
+            {
+                MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+        }
+
     }
 }
+
+
+
+
+
+
+
+       
+      
+    

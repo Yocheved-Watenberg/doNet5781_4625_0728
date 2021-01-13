@@ -15,13 +15,28 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Logique d'interaction pour AddWindows.xaml
+    /// Logique d'interaction pour ChoiceAdmin.xaml
     /// </summary>
-    public partial class AddWindows : Window
+    public partial class ChoiceAdmin : Window
     {
-        public AddWindows()
+        public ChoiceAdmin()
         {
             InitializeComponent();
+        }
+
+        private void btnStation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnLine_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnBus_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
