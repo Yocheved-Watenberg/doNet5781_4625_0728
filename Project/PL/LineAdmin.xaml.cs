@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLAPI;
+using BL.BO;
+using BL;
 
 namespace PL
 {
@@ -21,7 +23,7 @@ namespace PL
     public partial class LineAdmin : Window
     {      
         IBL bl;
-        BO.Line curLine;
+        BL.BO.Line curLine;
         public LineAdmin(IBL _bl)
         {
             InitializeComponent();

@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="StationAdmin.xaml.cs">
+      <DependentUpon>StationAdmin.xaml</DependentUpon>
+    </Compile>
     <Page Include="ChoiceAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -81,6 +84,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="StationAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -100,9 +107,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Properties\DataSources\App.datasource" />
-    <None Include="Properties\DataSources\BL.BLImp.datasource" />
-    <None Include="Properties\DataSources\MainWindow.datasource" />
     <None Include="Properties\DataSources\PL.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\PL.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">

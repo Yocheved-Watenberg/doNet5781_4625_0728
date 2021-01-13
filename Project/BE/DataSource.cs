@@ -311,7 +311,7 @@ namespace DS//memamech le Idal
                     Latitude=31.735511,
                     Adress="Bar Yehuda Boulevard",
                   },
-                    
+
  new Station
                   {
                    Code=18112,
@@ -549,7 +549,7 @@ namespace DS//memamech le Idal
                     Latitude=31.977409,
                     Adress="Haim Bar-Lev Street",
                  },
-                                    
+
                                        new Station
                  {
                     Code=38852,
@@ -582,8 +582,8 @@ namespace DS//memamech le Idal
                     Latitude=31.874963,
                     Adress="Harotem 3",
                  },
-                                           
-                                           
+
+
                                            new Station {
                     Code=60413,
                     Name="Rachel's Tomb",
@@ -607,7 +607,7 @@ namespace DS//memamech le Idal
                     Adress="Uziel 130",
                  },
 
-                                             
+
                                                    new Station {
                     Code=60028,
                     Name="Rabbi Pardes/Zocarman",
@@ -725,7 +725,7 @@ namespace DS//memamech le Idal
                     Latitude=32.073112,
                     Adress="Ammunition Hill",              //Tel Aviv
                  },
-                                                        
+
                                                         new Station {
                     Code=21024,
                     Name="Leonardo da Vinci / Kaplan",
@@ -2454,7 +2454,7 @@ new LineStation{
         LineStationIndex=0,
         PrevStation= 0 ,
         NextStation= 61157,
-        },
+         },
     new LineStation{
         LineId=ListLine[8].Id,
         Station= 61157,
@@ -2656,75 +2656,10 @@ new LineTrip
 },
 };
             #endregion 
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
     };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        }
-    }
 }
+    
+
