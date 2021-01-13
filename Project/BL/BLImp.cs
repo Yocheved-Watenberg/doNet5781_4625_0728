@@ -14,9 +14,9 @@ class BLImp : IBL //internal
         IDAL Dl = DLFactory.GetDL();
 
         #region Student
-        BO.Student studentDoBoAdapter(DO.Student studentDO)
+        BO.Student studentDoBoAdapter(DO.Student studentDO)     //
         {
-            BO.Student studentBO = new BO.Student();
+            BO.Student studentBO = new BO.Student();            //bone student de BO
             DO.Person personDO;
             int id = studentDO.ID;
             try
@@ -27,7 +27,7 @@ class BLImp : IBL //internal
             {
                 throw new BO.BadStudentIdException("Student ID is illegal", ex);
             }
-            personDO.CopyPropertiesTo(studentBO);
+            personDO.CopyPropertiesTo(studentBO);   //kah a person chel aDo et donne  le au student du BO
             //studentBO.ID = personDO.ID;
             //studentBO.BirthDate = personDO.BirthDate;
             //studentBO.City = personDO.City;
@@ -36,12 +36,12 @@ class BLImp : IBL //internal
             //studentBO.Street = personDO.Street;
             //studentBO.PersonalStatus = (BO.PersonalStatus)(int)personDO.PersonalStatus;
 
-            studentDO.CopyPropertiesTo(studentBO);
+            studentDO.CopyPropertiesTo(studentBO); //kah a STUDENT chel aDo et donne  le au student du BO
             //studentBO.StartYear = studentDO.StartYear;
             //studentBO.Status = (BO.StudentStatus)(int)studentDO.Status;
             //studentBO.Graduation = (BO.StudentGraduate)(int)studentDO.Graduation;
 
-            studentBO.ListOfCourses = from sic in dl.GetStudentsInCourseList(sic => sic.PersonId == id)
+            studentBO.ListOfCourses = from sic /*student in course*/in dl.GetStudentsInCourseList(sic => sic.PersonId == id)// copie tte la list de courses
                                       let course = dl.GetCourse(sic.CourseId)
                                       select course.CopyToStudentCourse(sic);
             //new BO.StudentCourse()
@@ -57,21 +57,21 @@ class BLImp : IBL //internal
             return studentBO;
         }
 
-        public BO.Student GetStudent(int id)
+        public BO.Student GetStudent(int id)            //veut recevoir du dl le student
         {
-            DO.Student studentDO;
+            DO.Student studentDO;                       
             try
             {
-                studentDO = dl.GetStudent(id);
+                studentDO = dl.GetStudent(id);          //va au DO et donne moi le student
             }
             catch (DO.BadPersonIdException ex)
             {
                 throw new BO.BadStudentIdException("Person id does not exist or he is not a student", ex);
             }
-            return studentDoBoAdapter(studentDO);
+            return studentDoBoAdapter(studentDO);           //si trouve ps va a adapter
         }
 
-        public IEnumerable<BO.Student> GetAllStudents()
+        public IEnumerable<BO.Student> GetAllStudents() // mm chose que student ms avc ttes les lists
         {
             //return from item in dl.GetStudentListWithSelectedFields( (stud) => { return GetStudent(stud.ID); } )
             //       let student = item as BO.Student
@@ -125,7 +125,7 @@ class BLImp : IBL //internal
 
         }
 
-        public void DeleteStudent(int id)
+        public void DeleteStudent(int id)// ne ps oublie d effacer la person le student et from all the courses
         {
             try
             {

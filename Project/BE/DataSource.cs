@@ -311,14 +311,7 @@ namespace DS//memamech le Idal
                     Latitude=31.735511,
                     Adress="Bar Yehuda Boulevard",
                   },
-                    new Station
-                  {
-                   Code=18316,
-                    Name="Bar Yehuda Boulevard/Muata Gur",
-                    Longitude=34.749583,
-                    Latitude=31.735434,
-                    Adress="Bar Yehuda Boulevard 54",
-                  },
+                    
  new Station
                   {
                    Code=18112,
@@ -342,23 +335,6 @@ namespace DS//memamech le Idal
                     Longitude=34.732568,
                     Latitude=31.716725,
                     Adress="Habeher Street",
-                  },
- new Station
-                  {
-                   Code=35515,
-                    Name="Ben Ami's camp/Exit",
-                    Longitude=34.743063,
-                    Latitude=31.939094,
-                    Adress="Ben Ami Street",
-                  },
-
- new Station
-                  {
-                   Code=35512,
-                    Name="Ben Ami's camp/Entry",
-                    Longitude=34.939,
-                    Latitude=31.982104,
-                    Adress="Ben Ami Street",
                   },
 
                  new Station
@@ -573,22 +549,7 @@ namespace DS//memamech le Idal
                     Latitude=31.977409,
                     Adress="Haim Bar-Lev Street",
                  },
-                                     new Station
-                 {
-                    Code=38848,
-                    Name="Well being center lev hasharon",
-                    Longitude=34.912708,
-                    Latitude=32.300345,
-                    Adress="Lev Street",
-                 },
-                                      new Station   //way back
-                 {
-                    Code=38849,
-                    Name="Well being center lev hasharon",
-                    Longitude=34.912602,
-                    Latitude=32.301347,
-                    Adress="Lev Street",
-                 },
+                                    
                                        new Station
                  {
                     Code=38852,
@@ -621,30 +582,8 @@ namespace DS//memamech le Idal
                     Latitude=31.874963,
                     Adress="Harotem 3",
                  },
-                                           new Station
-                 {
-                    Code=38859,
-                    Name="Willow",
-                    Longitude=34.910842,
-                    Latitude=32.300035,
-                    Adress="Willow Street",
-                 },
-                                            new Station
-                 {
-                    Code=38860,
-                    Name="Introduction of the cotton/Murad fig",
-                    Longitude=34.948647,
-                    Latitude=32.305234,
-                    Adress="More hagefen Street",
-                 },
-                                            new Station
-                 {
-                    Code=60413,
-                    Name="Rachel's Tomb",
-                    Longitude=35.202604,
-                    Latitude=31.720193,
-                    Adress="Hevron path",
-                 },
+                                           
+                                           
                                            new Station {
                     Code=60413,
                     Name="Rachel's Tomb",
@@ -668,27 +607,7 @@ namespace DS//memamech le Idal
                     Adress="Uziel 130",
                  },
 
-                                             new Station {
-                    Code=1222,
-                    Name="Sderot Herzl/Mount Herzl",
-                    Longitude=35.28287,
-                    Latitude=31.54335,
-                    Adress="Herzl Street",
-                 },
-                 //                              new Station {
-                 //   Code=977,
-                 //   Name="Uziel/Mavo Uri",
-                 //   Longitude=35.46543,
-                 //   Latitude=31.55897,
-                 //   Adress="Uziel 45",
-                 //},
-                 //                                new Station {
-                 //   Code=978,
-                 //   Name="Uziel/Mavo Frenkel",
-                 //   Longitude=35.52389,
-                 //   Latitude=31.65321,
-                 //   Adress="Uziel 25",
-                 //},
+                                             
                                                    new Station {
                     Code=60028,
                     Name="Rabbi Pardes/Zocarman",
@@ -806,13 +725,7 @@ namespace DS//memamech le Idal
                     Latitude=32.073112,
                     Adress="Ammunition Hill",              //Tel Aviv
                  },
-                                                        new Station {//way back
-                    Code=21023,
-                    Name="Peace Train Station",
-                    Longitude=34.79339,
-                    Latitude=32.072666,
-                    Adress="Ammunition Hill",              //Tel Aviv
-                 },
+                                                        
                                                         new Station {
                     Code=21024,
                     Name="Leonardo da Vinci / Kaplan",
@@ -1148,7 +1061,7 @@ Adress="Belly",          //Jerusalem
 
               new Line
       {  Id = LineIdCounter++,//AUTOMATI
-            Code =44 ,//way back a changer
+            Code =42 ,//way back a changer
             Area = (Areas)1,//North,Tzfat/Mifalei Barkan
             FirstStation =63422,//"Shaham / Ivory",
     LastStation =  57964,// Nof Habashan Two,
@@ -1162,7 +1075,7 @@ Adress="Belly",          //Jerusalem
                 },
                  new Line
       {                       Id = LineIdCounter++,//AUTOMATI
-            Code =28 ,
+            Code =22 ,
             Area = (Areas)3,//Kiriat Ekron
             FirstStation =30770,// King Hassan II / Bossi St. George,
     LastStation =  38855 , //Herzl/Goni
@@ -1675,8 +1588,7 @@ new AdjacentStations {
          Station1=  58002 ,
          Station2= 57965,
          Distance=1800,
-         Time=TimeSpan.Parse("00.09.55"),
-      },
+         Time=TimeSpan.Parse("00.09.55"),      },
 new AdjacentStations {
          Station1= 57965,
          Station2= 57964,
@@ -1896,31 +1808,871 @@ new AdjacentStations {
                 },
             };
 
-#endregion
-                #region LineStation
-            ListLineStation=new List<LineStation>{
+            #endregion
+            #region LineStation
+            ListLineStation = new List<LineStation>{
+            //1st line
+                new LineStation{
+        LineId=ListLine[0].Id,
+        Station= 38832,
+        LineStationIndex=0,
+        PrevStation= 0,                 //No previous station  bcz it s the first station                     
+        NextStation= 38838,
+        },
+             new LineStation{
+        LineId=ListLine[0].Id,
+        Station= 38838,
+        LineStationIndex=1,
+        PrevStation= 38832,
+        NextStation= 38839,
+        },
+             new LineStation{
+        LineId=ListLine[0].Id,
+        Station= 38839,
+        LineStationIndex=2,
+        PrevStation= 38838,
+        NextStation= 38840,
+        },
+             new LineStation{
+        LineId=ListLine[0].Id,
+        Station= 38840,
+        LineStationIndex=3,
+        PrevStation= 38839,
+        NextStation= 38841,
+        },
+              new LineStation{
+        LineId=ListLine[0].Id,
+        Station= 38841,
+        LineStationIndex=4,
+        PrevStation= 38840,
+        NextStation= 38842,
+        },
+
+              new LineStation{
+        LineId=ListLine[0].Id,
+        Station= 38842,
+        LineStationIndex=5,
+        PrevStation= 38841,
+        NextStation= 38844,
+        },
+               new LineStation{
+        LineId=ListLine[0].Id,
+        Station= 38844,
+        LineStationIndex=6,
+        PrevStation= 38842,
+        NextStation= 38845,
+        },
+                new LineStation{
+        LineId=ListLine[0].Id,
+        Station= 38845,
+        LineStationIndex=7,
+        PrevStation= 38844,
+        NextStation= 38846,
+        },
+                new LineStation{
+        LineId=ListLine[0].Id,
+        Station= 38846,
+        LineStationIndex=8,
+        PrevStation= 38845,
+        NextStation= 38855,
+        },
+                 new LineStation{
+        LineId=ListLine[0].Id,
+        Station= 38855,
+        LineStationIndex=9,
+        PrevStation= 38846,
+        NextStation= 0,
+        },
+                 //2nd line
+                   new LineStation{
+        LineId=ListLine[1].Id,
+        Station= 35505,
+        LineStationIndex=0,
+        PrevStation= 0,
+        NextStation= 38834,
+        },
+                     new LineStation{
+        LineId=ListLine[1].Id,
+        Station= 38834,
+        LineStationIndex=1,
+        PrevStation= 35505,
+        NextStation= 38837,
+        },
+                       new LineStation{
+        LineId=ListLine[1].Id,
+        Station= 38837,
+        LineStationIndex=2,
+        PrevStation= 38834,
+        NextStation= 38852,
+        },
+                         new LineStation{
+        LineId=ListLine[1].Id,
+        Station= 38852,
+        LineStationIndex=4,
+        PrevStation= 38837,
+        NextStation= 38856,
+        },
+                           new LineStation{
+        LineId=ListLine[1].Id,
+        Station= 38856,
+        LineStationIndex=5,
+        PrevStation= 38852,
+        NextStation= 38833,
+        },
+                             new LineStation{
+        LineId=ListLine[1].Id,
+        Station= 38833,
+        LineStationIndex=6,
+        PrevStation= 38856,
+        NextStation= 38847,
+        },
+                               new LineStation{
+        LineId=ListLine[1].Id,
+        Station= 38847,
+        LineStationIndex=7,
+        PrevStation= 38833,
+        NextStation= 38862,
+        },
+                               new LineStation{
+        LineId=ListLine[1].Id,
+        Station= 38862,
+        LineStationIndex=8,
+        PrevStation= 38847,
+        NextStation= 38863,
+        },
+                                 new LineStation{
+        LineId=ListLine[1].Id,
+        Station= 38863,
+        LineStationIndex=9,
+        PrevStation= 38862,
+        NextStation= 0,
+        },
+                                 //3rd line
+ new LineStation{
+        LineId=ListLine[2].Id,
+        Station= 12550,
+        LineStationIndex=0,
+        PrevStation= 0,
+        NextStation= 18317,
+        },
+ new LineStation{
+        LineId=ListLine[2].Id,
+        Station= 18317,
+        LineStationIndex=1,
+        PrevStation= 12550,
+        NextStation= 18112,
+        },
+ new LineStation{
+        LineId=ListLine[2].Id,
+        Station= 18112,
+        LineStationIndex=2,
+        PrevStation= 18317,
+        NextStation= 18111,
+        },
+ new LineStation{
+        LineId=ListLine[2].Id,
+        Station= 18111,
+        LineStationIndex=3,
+        PrevStation= 18112,
+        NextStation= 12551,
+        },
+ new LineStation{
+        LineId=ListLine[2].Id,
+        Station= 12551,
+        LineStationIndex=4,
+        PrevStation= 18111,
+        NextStation= 10030 ,
+        },
+ new LineStation{
+        LineId=ListLine[2].Id,
+        Station= 10030 ,
+        LineStationIndex=5,
+        PrevStation= 12551,
+        NextStation= 10038,
+        },
+ new LineStation{
+        LineId=ListLine[2].Id,
+        Station= 10038,
+        LineStationIndex=6,
+        PrevStation= 10030,
+        NextStation= 10039,
+        },
+
+ new LineStation{
+        LineId=ListLine[2].Id,
+        Station= 10039,
+        LineStationIndex=7,
+        PrevStation= 10038,
+        NextStation= 10040,
+        },
+ new LineStation{
+        LineId=ListLine[2].Id,
+        Station= 10040,
+        LineStationIndex=8,
+        PrevStation= 10039,
+        NextStation= 10045,
+        },
+ new LineStation{
+        LineId=ListLine[2].Id,
+        Station= 10045,
+        LineStationIndex=9,
+        PrevStation= 10040,
+        NextStation= 0,
+        },
+ //4th line
+ new LineStation{
+        LineId=ListLine[3].Id,
+        Station= 844,
+        LineStationIndex=0,
+        PrevStation= 0,
+        NextStation= 1493,
+        },
+  new LineStation{
+        LineId=ListLine[3].Id,
+        Station= 1493,
+        LineStationIndex=1,
+        PrevStation= 844,
+        NextStation= 60028,
+        },
+   new LineStation{
+        LineId=ListLine[3].Id,
+        Station= 60028,
+        LineStationIndex=2,
+        PrevStation= 1493,
+        NextStation= 61157,
+        },
+    new LineStation{
+        LineId=ListLine[3].Id,
+        Station= 61157,
+        LineStationIndex=3,
+        PrevStation= 60028,
+        NextStation= 62000,
+        },
+ new LineStation{
+        LineId=ListLine[3].Id,
+        Station= 62000,
+        LineStationIndex=4,
+        PrevStation= 61157,
+        NextStation= 1130,
+        },
+ new LineStation{
+        LineId=ListLine[3].Id,
+        Station= 1130,
+        LineStationIndex=5,
+        PrevStation= 62000,
+        NextStation= 20637,
+        },
+ new LineStation{
+        LineId=ListLine[3].Id,
+        Station= 20637,
+        LineStationIndex=6,
+        PrevStation= 1130,
+        NextStation= 6117,
+        },
+ new LineStation{
+        LineId=ListLine[3].Id,
+        Station= 6117,
+        LineStationIndex=7,
+        PrevStation= 20637,
+        NextStation= 6116,
+        },
+ new LineStation{
+        LineId=ListLine[3].Id,
+        Station= 6116,
+        LineStationIndex=8,
+        PrevStation= 6117,
+        NextStation= 6114,
+        },
+ new LineStation{
+        LineId=ListLine[3].Id,
+        Station= 6114,
+        LineStationIndex=9,
+        PrevStation= 6116,
+        NextStation= 0,
+        },
+ //5th line
+ new LineStation{
+        LineId=ListLine[4].Id,
+        Station= 20640,
+        LineStationIndex=0,
+        PrevStation= 0,
+        NextStation= 20641,
+        },
+ new LineStation{
+        LineId=ListLine[4].Id,
+        Station= 20641,
+        LineStationIndex=1,
+        PrevStation= 20640,
+        NextStation= 20902,
+        },
+ new LineStation{
+        LineId=ListLine[4].Id,
+        Station= 20902,
+        LineStationIndex=2,
+        PrevStation= 20641,
+        NextStation= 21000,
+        },
+ new LineStation{
+        LineId=ListLine[4].Id,
+        Station= 21000,
+        LineStationIndex=3,
+        PrevStation= 20902,
+        NextStation= 21005,
+        },
+ new LineStation{
+        LineId=ListLine[4].Id,
+        Station= 21005,
+        LineStationIndex=4,
+        PrevStation= 21000,
+        NextStation= 21006,
+        },
+ new LineStation{
+        LineId=ListLine[4].Id,
+        Station= 21006,
+        LineStationIndex=5,
+        PrevStation= 21005,
+        NextStation= 21022,
+        },
+ new LineStation{
+        LineId=ListLine[4].Id,
+        Station= 21022,
+        LineStationIndex=6,
+        PrevStation= 21006,
+        NextStation= 21024,
+        },
+ new LineStation{
+        LineId=ListLine[4].Id,
+        Station= 21024,
+        LineStationIndex=7,
+        PrevStation= 21022,
+        NextStation= 21028,
+        },
+ new LineStation{
+        LineId=ListLine[4].Id,
+        Station= 21028,
+        LineStationIndex=8,
+        PrevStation= 21024,
+        NextStation= 21030,
+        },
+ new LineStation{
+        LineId=ListLine[4].Id,
+        Station= 21030,
+        LineStationIndex=9,
+        PrevStation= 21028,
+        NextStation= 0,
+        },
+ //6th line
+ new LineStation{
+        LineId=ListLine[5].Id,
+        Station= 60945,
+        LineStationIndex=0,
+        PrevStation= 0,
+        NextStation= 63097,
+        },
+ new LineStation{
+        LineId=ListLine[5].Id,
+        Station= 63097,
+        LineStationIndex=1,
+        PrevStation= 60945,
+        NextStation= 63125,
+        },
+ new LineStation{
+        LineId=ListLine[5].Id,
+        Station= 63125,
+        LineStationIndex=2,
+        PrevStation= 63097,
+        NextStation= 63410,
+        },
+ new LineStation{
+        LineId=ListLine[5].Id,
+        Station= 63410,
+        LineStationIndex=3,
+        PrevStation=63125 ,
+        NextStation= 63411,
+        },
+ new LineStation{
+        LineId=ListLine[5].Id,
+        Station= 63411,
+        LineStationIndex=4,
+        PrevStation= 63410,
+        NextStation= 63412,
+        },
+ new LineStation{
+        LineId=ListLine[5].Id,
+        Station= 63412,
+        LineStationIndex=5,
+        PrevStation= 63411,
+        NextStation= 63413,
+        },
+ new LineStation{
+        LineId=ListLine[5].Id,
+        Station= 63413,
+        LineStationIndex=6,
+        PrevStation= 63412,
+        NextStation= 63414,
+        },
+ new LineStation{
+        LineId=ListLine[5].Id,
+        Station= 63414,
+        LineStationIndex=7,
+        PrevStation= 63413,
+        NextStation= 63424,
+        },
+ new LineStation{
+        LineId=ListLine[5].Id,
+        Station= 63424,
+        LineStationIndex=8,
+        PrevStation= 63414,
+        NextStation= 63425,
+        },
+ new LineStation{
+        LineId=ListLine[5].Id,
+        Station= 63425,
+        LineStationIndex=9,
+        PrevStation= 63424,
+        NextStation= 0,
+        },
+ //7th line 
+  new LineStation{
+        LineId=ListLine[6].Id,
+        Station= 63407,
+        LineStationIndex=0,
+        PrevStation= 0,
+        NextStation= 63415,
+        },
+   new LineStation{
+        LineId=ListLine[6].Id,
+        Station= 63415,
+        LineStationIndex=1,
+        PrevStation= 63407,
+        NextStation= 63417,
+        },
+   new LineStation{
+        LineId=ListLine[6].Id,
+        Station= 63417,
+        LineStationIndex=2,
+        PrevStation= 63415,
+        NextStation= 63419,
+        },
+   new LineStation{
+        LineId=ListLine[6].Id,
+        Station= 63419,
+        LineStationIndex=3,
+        PrevStation= 63417,
+        NextStation= 63421,
+        },
+   new LineStation{
+        LineId=ListLine[6].Id,
+        Station= 63421,
+        LineStationIndex=4,
+        PrevStation= 63419,
+        NextStation= 63434,
+        },
+   new LineStation{
+        LineId=ListLine[6].Id,
+        Station= 63434,
+        LineStationIndex=5,
+        PrevStation= 63421,
+        NextStation= 63434,
+        },
+   new LineStation{
+        LineId=ListLine[6].Id,
+        Station= 63435,
+        LineStationIndex=6,
+        PrevStation= 63434,
+        NextStation= 57962,
+        },
+   new LineStation{
+        LineId=ListLine[6].Id,
+        Station= 57962,
+        LineStationIndex=7,
+        PrevStation= 63435,
+        NextStation= 57963,
+        },
+   new LineStation{
+        LineId=ListLine[6].Id,
+        Station= 57963,
+        LineStationIndex=8,
+        PrevStation= 57962,
+        NextStation= 58007,
+        },
+   new LineStation{
+        LineId=ListLine[6].Id,
+        Station= 58007,
+        LineStationIndex=9,
+        PrevStation= 57963,
+        NextStation= 0,
+        },
+   //8th line
+   new LineStation{
+        LineId=ListLine[7].Id,
+        Station= 63422,
+        LineStationIndex=0,
+        PrevStation= 0,
+        NextStation= 63420,
+        },
+   new LineStation{
+        LineId=ListLine[7].Id,
+        Station= 63420,
+        LineStationIndex=1,
+        PrevStation= 63422,
+        NextStation= 63418,
+        },
+new LineStation{
+        LineId=ListLine[7].Id,
+        Station= 63418,
+        LineStationIndex=2,
+        PrevStation= 63420,
+        NextStation= 63416,
+        },
+new LineStation{
+        LineId=ListLine[7].Id,
+        Station= 63416,
+        LineStationIndex=3,
+        PrevStation= 63418,
+        NextStation= 63408 ,
+        },
+new LineStation{
+        LineId=ListLine[7].Id,
+        Station= 63408 ,
+        LineStationIndex=4,
+        PrevStation= 63416,
+        NextStation= 58006,
+        },
+
+new LineStation{
+        LineId=ListLine[7].Id,
+        Station= 58006,
+        LineStationIndex=5,
+        PrevStation= 63408,
+        NextStation= 58005,
+        },
+new LineStation{
+        LineId=ListLine[7].Id,
+        Station= 58005,
+        LineStationIndex=6,
+        PrevStation= 58006,
+        NextStation= 58002,
+        },
+new LineStation{
+        LineId=ListLine[7].Id,
+        Station= 58002,
+        LineStationIndex=7,
+        PrevStation= 58005,
+        NextStation= 57965,
+        },
+new LineStation{
+        LineId=ListLine[7].Id,
+        Station= 57965,
+        LineStationIndex=8,
+        PrevStation= 58002,
+        NextStation= 57964,
+        },
+new LineStation{
+        LineId=ListLine[7].Id,
+        Station= 57964,
+        LineStationIndex=9,
+        PrevStation= 57965 ,
+        NextStation= 0,
+        },
+//9th line
+new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 30770 ,
+        LineStationIndex=0,
+        PrevStation= 0 ,
+        NextStation= 31088,
+        },
+new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 31088,
+        LineStationIndex=1,
+        PrevStation= 30770  ,
+        NextStation= 31089,
+        },
+                new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 31089,
+        LineStationIndex=2,
+        PrevStation= 31088 ,
+        NextStation= 31090,
+        },
+                new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 31090 ,
+        LineStationIndex=3,
+        PrevStation= 31089 ,
+        NextStation= 31403,
+        },
+                new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 31403,
+        LineStationIndex=4,
+        PrevStation= 31090  ,
+        NextStation= 34751,
+        },
+                new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 34751,
+        LineStationIndex=5,
+        PrevStation= 31403 ,
+        NextStation= 38844,
+        },
+                new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 38844,
+        LineStationIndex=6,
+        PrevStation= 34751 ,
+        NextStation= 38845,
+        },
+                new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 38845,
+        LineStationIndex=7,
+        PrevStation= 38844 ,
+        NextStation= 38846,
+        },
+                new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 38846,
+        LineStationIndex=8,
+        PrevStation= 38845 ,
+        NextStation= 38855,
+        },
+                new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 38855,
+        LineStationIndex=9,
+        PrevStation= 38846 ,
+        NextStation= 0,
+        },
+                //10th line
+               
+  new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 60028,
+        LineStationIndex=0,
+        PrevStation= 0 ,
+        NextStation= 61157,
+        },
+    new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 61157,
+        LineStationIndex=1,
+        PrevStation= 60028 ,
+        NextStation= 60413,
+        },
+      new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 60413,
+        LineStationIndex=2,
+        PrevStation= 61157 ,
+        NextStation= 20638,
+        },
+        new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 20638,
+        LineStationIndex=3,
+        PrevStation= 60413 ,
+        NextStation= 84 ,
+        },
+          new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 84 ,
+        LineStationIndex=4,
+        PrevStation= 20638 ,
+        NextStation= 83 ,
+        },
             new LineStation{
-         LineId=                                 //line number (first attribute feature)
-        Station=                               //station number(second attribute feature)
-        LineStationIndex=                       //place of the station in the line
-        PrevStation=                          //?
-        NextStation=                         //?
-    }
+        LineId=ListLine[8].Id,
+        Station= 83 ,
+        LineStationIndex=5,
+        PrevStation= 84  ,
+        NextStation= 78,
+        },
+              new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 78,
+        LineStationIndex=6,
+        PrevStation= 83  ,
+        NextStation= 77,
+        },
+                new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 77,
+        LineStationIndex=7,
+        PrevStation= 78 ,
+        NextStation= 76,
+        },
+                  new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 76,
+        LineStationIndex=8,
+        PrevStation= 77 ,
+        NextStation= 0,
+        },
+                    new LineStation{
+        LineId=ListLine[8].Id,
+        Station= 73,
+        LineStationIndex=9,
+        PrevStation= 76 ,
+        NextStation= 0,
+        },
+            };
+
+
+            #endregion
+            #region User
+            ListUser = new List<User>
+            {
+new User                    //if the users is an admin his password should containonly letters, otherwise only numbers
+{
+    UserName= "David",
+    Password= "1234" ,
+    Admin=false,
+},
+new User
+{
+    UserName= "Esther",
+    Password= "4567" ,
+    Admin=false,
+},
+new User
+{
+    UserName= "Sarah",
+    Password= "7890" ,
+    Admin=false,
+},
+new User
+{
+    UserName= "Myriam",
+    Password= "myri" ,
+    Admin=true,
+},
+new User
+{
+    UserName= "Naomie",
+    Password= "naoo" ,
+    Admin=true,
+},
+new User
+{
+    UserName= "Yehoudit",
+    Password= "3452" ,
+    Admin=false,
+},
+new User
+{
+    UserName= "Meir",
+    Password= "meir" ,
+    Admin=true,
+},
+new User
+{
+    UserName= "Aron",
+    Password= "2622" ,
+    Admin=false,
+},
+new User
+{
+    UserName= "Michael",
+    Password= "3454" ,
+    Admin=false,
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
+            };
+            #endregion
+            #region LineTrip
+            ListLineTrip = new List<LineTrip>
+            {
+                new LineTrip
+{
+    LineId=ListLine[0].Id,
+    StartAt=TimeSpan.Parse("06.00.00"),
+    Frequency=TimeSpan.Parse("00.20.00"),
+    FinishedAt=TimeSpan.Parse("00.00.00"),
+},
+new LineTrip
+{
+    LineId=ListLine[1].Id,
+    StartAt=TimeSpan.Parse("07.00.00"),
+    Frequency=TimeSpan.Parse("00.10.00"),
+    FinishedAt=TimeSpan.Parse("00.00.00"),
+},
+new LineTrip
+{
+    LineId=ListLine[2].Id,
+    StartAt=TimeSpan.Parse("06.25.00"),
+    Frequency=TimeSpan.Parse("00.30.00"),
+    FinishedAt=TimeSpan.Parse("01.00.00"),
+},
+new LineTrip
+{
+    LineId=ListLine[3].Id,
+    StartAt=TimeSpan.Parse("07.40.00"),
+    Frequency=TimeSpan.Parse("00.10.00"),
+    FinishedAt=TimeSpan.Parse("01.30.00"),
+},
+new LineTrip
+{
+    LineId=ListLine[4].Id,
+    StartAt=TimeSpan.Parse("07.20.00"),
+    Frequency=TimeSpan.Parse("00.15.00"),
+    FinishedAt=TimeSpan.Parse("23.00.00"),
+},
+new LineTrip
+{
+    LineId=ListLine[5].Id,
+    StartAt=TimeSpan.Parse("05.30.00"),
+    Frequency=TimeSpan.Parse("00.20.00"),
+    FinishedAt=TimeSpan.Parse("23.30.00"),
+},
+new LineTrip
+{
+    LineId=ListLine[6].Id,
+    StartAt=TimeSpan.Parse("05.45.00"),
+    Frequency=TimeSpan.Parse("00.40.00"),
+    FinishedAt=TimeSpan.Parse("00.30.00"),
+},
+new LineTrip
+{
+    LineId=ListLine[7].Id,
+    StartAt=TimeSpan.Parse("08.00.00"),
+    Frequency=TimeSpan.Parse("00.15.00"),
+    FinishedAt=TimeSpan.Parse("00.40.00"),
+},
+new LineTrip
+{
+    LineId=ListLine[8].Id,
+    StartAt=TimeSpan.Parse("09.00.00"),
+    Frequency=TimeSpan.Parse("00.18.00"),
+    FinishedAt=TimeSpan.Parse("00.20.00"),
+},
+new LineTrip
+{
+    LineId=ListLine[9].Id,
+    StartAt=TimeSpan.Parse("07.00.00"),
+    Frequency=TimeSpan.Parse("00.10.00"),
+    FinishedAt=TimeSpan.Parse("00.15.00"),
+},
 };
+            #endregion 
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    };
 
 
 
