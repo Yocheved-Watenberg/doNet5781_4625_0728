@@ -15,6 +15,6 @@ namespace BL.BO
         public int FuelRemain { get; set; }                                  //amount of gasoline remaining   
         public State BusState { get; set; }                                  //data to know if the bus is able to travel
         public int MaxTravellers { get; set; }                               //meda optionel //maximum of travellers the bus can travel with
-        public Line line { get; set; }
+        public Line line { get; set; }                                       // a bus goes through a line 
     }
 }

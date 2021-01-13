@@ -2,8 +2,8 @@
 {
    public class Line
     {
-        public int Id { get; set; }                                         //line number
-        public int Code { get; set; }                                  //bus number
+        public int Id { get; set; }                                         //Busline number(rats automati)
+        public int Code { get; set; }                                       //line number
         public Areas Area { get; set; }                                 //in which area the bus travel
         public int FirstStation { get; set; }                           //name of the first station
         public double LastStation { get; set; }                         //name of the last station
