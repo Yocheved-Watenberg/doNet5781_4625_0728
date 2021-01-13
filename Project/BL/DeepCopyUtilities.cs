@@ -28,13 +28,18 @@ namespace BL
             from.CopyPropertiesTo(to);
             return to;
         }
-        public static BO.StudentCourse CopyToStudentCourse(this DO.Course course, DO.StudentInCourse sic)
+        public static BO.Station CopyToLineStation(this DO.Station Station)
         {
-            BO.StudentCourse result = (BO.StudentCourse)course.CopyPropertiesToNew(typeof(BO.StudentCourse));
-            // propertys' names changed? copy them here...
-            result.Grade = sic.Grade;
+            BO.Station result = (BO.Station)Station.CopyPropertiesToNew(typeof(BO.Station));
+            ////a completer si besoin propertys' names changed? copy them here...
+            //result.Grade = sic.Grade;
             return result;
+        
         }
+
+
+
+       
     }
 }
 

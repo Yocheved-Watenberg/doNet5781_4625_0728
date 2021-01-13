@@ -4,6 +4,7 @@ using System.Linq;
 using DLAPI;
 using BLAPI;
 using System.Threading;
+using BL.BO;
 
 //using BO;
 
@@ -11,39 +12,46 @@ namespace BL {
     //memamech ttes les fctions du ibl
 class BLImp : IBL //internal
     {
-        IDAL Dl = DLFactory.GetDL();
+        IDAL dl = DLFactory.GetDL();
 
-        #region Student
-        BO.Student studentDoBoAdapter(DO.Student studentDO)     //
+        #region Line
+        BO.Line lineDoBoAdapter(DO.Line lineDO)     //
         {
-            BO.Student studentBO = new BO.Student();            //bone student de BO
-            DO.Person personDO;
-            int id = studentDO.ID;
-            try
-            {
-                personDO = dl.GetPerson(id);
-            }
-            catch (DO.BadPersonIdException ex)
-            {
-                throw new BO.BadStudentIdException("Student ID is illegal", ex);
-            }
-            personDO.CopyPropertiesTo(studentBO);   //kah a person chel aDo et donne  le au student du BO
-            //studentBO.ID = personDO.ID;
-            //studentBO.BirthDate = personDO.BirthDate;
-            //studentBO.City = personDO.City;
-            //studentBO.Name = personDO.Name;
-            //studentBO.HouseNumber = personDO.HouseNumber;
-            //studentBO.Street = personDO.Street;
-            //studentBO.PersonalStatus = (BO.PersonalStatus)(int)personDO.PersonalStatus;
+            BO.Line lineBO = new BO.Line();            //bone student de BO
+                                                       //DO.LineStation
+                                                       //    Person personDO;
+                                                       int id = lineDO.Id;
+                                                       //try
+                                                       //{
+                                                       //    personDO = dl.GetPerson(id);
+                                                       //}
+                                                       //catch (DO.BadPersonIdException ex)
+                                                       //{
+                                                       //    throw new BO.BadStudentIdException("Student ID is illegal", ex);
+                                                       //}
 
-            studentDO.CopyPropertiesTo(studentBO); //kah a STUDENT chel aDo et donne  le au student du BO
+            //BO.Student studentBO = new BO.Student();
+            //DO.Person personDO;
+            //int id = studentDO.ID;
+            lineDO.CopyPropertiesTo(lineBO);   //kah a person chel aDo et donne  le au student du BO
+                                               //studentBO.ID = personDO.ID;
+                                               //studentBO.BirthDate = personDO.BirthDate;
+                                               //studentBO.City = personDO.City;
+                                               //studentBO.Name = personDO.Name;
+                                               //studentBO.HouseNumber = personDO.HouseNumber;
+                                               //studentBO.Street = personDO.Street;
+                                               //studentBO.PersonalStatus = (BO.PersonalStatus)(int)personDO.PersonalStatus;
+
+            //kah a STUDENT chel aDo et donne  le au student du BO
             //studentBO.StartYear = studentDO.StartYear;
             //studentBO.Status = (BO.StudentStatus)(int)studentDO.Status;
             //studentBO.Graduation = (BO.StudentGraduate)(int)studentDO.Graduation;
-
-            studentBO.ListOfCourses = from sic /*student in course*/in dl.GetStudentsInCourseList(sic => sic.PersonId == id)// copie tte la list de courses
-                                      let course = dl.GetCourse(sic.CourseId)
-                                      select course.CopyToStudentCourse(sic);
+            //studentBO.ListOfCourses = from sic in dl.GetStudentsInCourseList(sic => sic.PersonId == id)
+            //                          let course = dl.GetCourse(sic.CourseId)
+            //                          select course.CopyToStudentCourse(sic);
+            lineBO.ListOfStations /*query on Do.lineStation withlineId=XXX*/  = from allStation in dl.GetAllLineStationBy(l => l.LineId == id)// copie tte la list de courses
+                                    let station = dl.GetStation(allStation.LineId)
+                                    select station.CopyToLineStation(allStation);
             //new BO.StudentCourse()
             //{
             //    ID = course.ID,
@@ -54,15 +62,16 @@ class BLImp : IBL //internal
             //    Grade = sic.Grade
             //};
 
-            return studentBO;
+            return lineBO;
         }
 
-        public BO.Student GetStudent(int id)            //veut recevoir du dl le student
-        {
-            DO.Student studentDO;                       
+                  //veut recevoir du dl le student
+        
+            public BO.Line getLine(int myCode,Station FirstStation,Station LastStation) {   //the first and last station are here to tell us what's the line(because two lines can have the same code)
+            DO.Line lineDO;                       
             try
             {
-                studentDO = dl.GetStudent(id);          //va au DO et donne moi le student
+               lineDO = dl.GetLine( l => l.Id == id);          //va au DO et donne moi le student
             }
             catch (DO.BadPersonIdException ex)
             {
@@ -180,6 +189,175 @@ class BLImp : IBL //internal
             //{
             //    throw new BO.BadStudentIdCourseIDException("Student ID and Course ID is Not exist", ex);
             //}
+        }
+
+        public Line GetLine(int id)
+        {
+           
+            
+            
+            
+            
+            
+            throw new NotImplementedException();
+        }
+
+        public void AddLine(Line line)
+        { DO.Line DoLine = new DO.Line();
+            line.CopyPropertiesTo(DoLine);
+            foreach(LineStation item in line.ListOfLineStations)
+            {
+
+            }
+            
+                if (DataSource.ListLine.FirstOrDefault(l => l.Id == line.Id) != null)
+                    throw new DO.BadLineIdException(line.Id, "this line already exists in the list of lines");
+                DataSource.ListLine.Add(line.Clone());
+            }
+            throw new NotImplementedException();
+        }
+
+        
+        BO.Student studentDoBoAdapter(DO.Student studentDO)
+        {
+            BO.Student studentBO = new BO.Student();
+            DO.Person personDO;
+            int id = studentDO.ID;
+            try
+            {
+                personDO = dl.GetPerson(id);
+            }
+            catch (DO.BadPersonIdException ex)
+            {
+                throw new BO.BadStudentIdException("Student ID is illegal", ex);
+            }
+            personDO.CopyPropertiesTo(studentBO);
+            //studentBO.ID = personDO.ID;
+            //studentBO.BirthDate = personDO.BirthDate;
+            //studentBO.City = personDO.City;
+            //studentBO.Name = personDO.Name;
+            //studentBO.HouseNumber = personDO.HouseNumber;
+            //studentBO.Street = personDO.Street;
+            //studentBO.PersonalStatus = (BO.PersonalStatus)(int)personDO.PersonalStatus;
+
+            studentDO.CopyPropertiesTo(studentBO);
+            //studentBO.StartYear = studentDO.StartYear;
+            //studentBO.Status = (BO.StudentStatus)(int)studentDO.Status;
+            //studentBO.Graduation = (BO.StudentGraduate)(int)studentDO.Graduation;
+
+            studentBO.ListOfCourses = from sic in dl.GetStudentsInCourseList(sic => sic.PersonId == id)
+                                      let course = dl.GetCourse(sic.CourseId)
+                                      select course.CopyToStudentCourse(sic);
+            //new BO.StudentCourse()
+            //{
+            //    ID = course.ID,
+            //    Number = course.Number,
+            //    Name = course.Name,
+            //    Year = course.Year,
+            //    Semester = (BO.Semester)(int)course.Semester,
+            //    Grade = sic.Grade
+            //};
+
+            return studentBO;
+        }
+    public IEnumerable<Line> GetAllLine()
+    {
+        throw new NotImplementedException();
+        }
+
+        public IEnumerable<Line> GetAllLineBy(Predicate<Line> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateLine(Line line)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateLine(int Id, Action<Line> update)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteLine(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<LineStation> GetListOfLineStations()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddBus(Bus bus)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Bus GetBus(int licenseNum)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Bus> GetAllBus()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Bus> GetAllBusBy(Predicate<Bus> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateBus(Bus bus)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateBus(int licenseNum, Action<Bus> update)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteBus(int licenseNum)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddStation(Station station)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Station> GetAllStation()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Station> GetAllStationBy(Predicate<Station> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Station GetStation(int code)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateStation(Station station)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateStation(int code, Action<Station> update)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteStation(int code)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 

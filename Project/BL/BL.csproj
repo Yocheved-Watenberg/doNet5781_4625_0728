@@ -44,13 +44,14 @@
     <Compile Include="BLAPI\BLFactory.cs" />
     <Compile Include="BLAPI\IBL.cs" />
     <Compile Include="BLImp.cs" />
-    <Compile Include="BO\AdjacentStations.cs" />
+    <Compile Include="BO\brouillon.cs" />
     <Compile Include="BO\Bus.cs" />
     <Compile Include="BO\Enum.cs" />
     <Compile Include="BO\Line.cs" />
     <Compile Include="BO\LineStation.cs" />
     <Compile Include="BO\LineTrip.cs" />
     <Compile Include="BO\Station.cs" />
+    <Compile Include="BO\Trip.cs" />
     <Compile Include="DeepCopyUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,6 +65,8 @@
       <Name>DLAPI</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Properties\DataSources\BLImp.datasource" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

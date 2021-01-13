@@ -36,12 +36,19 @@ namespace BLAPI
         void UpdateBus(Bus bus);
         void UpdateBus(int licenseNum, Action<Bus> update);
         void DeleteBus(int licenseNum);
-        
+
 
         #endregion
 
-        #region Course
-        //IEnumerable<BO.Course> GetAllCourses();
-        #endregion
+        #region Station
+        void AddStation(Station station);
+        IEnumerable<Station> GetAllStation();
+        IEnumerable<Station> GetAllStationBy(Predicate<Station> predicate);
+        Station GetStation(int code);
+        void UpdateStation(Station station);
+        void UpdateStation(int code, Action<Station> update);
+        void DeleteStation(int code);
+        #endregion//IEnumerable<BO.Course> GetAllCourses();
+
     }
 }

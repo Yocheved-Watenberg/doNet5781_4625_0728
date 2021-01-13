@@ -9,13 +9,11 @@ namespace BL.BO
 {
     public class Line
     {
-        public int Id { get; set; }                                         //Busline number(rats automati)
+        public int Id { get; set; }                                         //Isnt shown on Pl ,Busline number(rats automati)
         public int Code { get; set; }                                       //line number                                  
         public Areas Area { get; set; }                                     //in which area the bus travel
-        public int FirstStation { get; set; }                               //name of the first station
-        public double LastStation { get; set; }                              //name of the last station
-        public IEnumerable<DO.AdjacentStations> ListOfAdjacentStations { get; set; }    // has the list of all the adjacents stations of the line
-        public IEnumerable<LineStation> ListOfLineStations { get; set; }                //has the list of all the stations
-
+   
+        public IEnumerable<BO.LineStation> ListOfStations { get; set; }                //has the list of all the Linestations
+        //query on Do.lineStation withlineId=XXX
     }
 }

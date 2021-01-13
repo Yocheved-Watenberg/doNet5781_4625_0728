@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.DO;
 using DO;
 
 
@@ -26,8 +27,7 @@ namespace DS//memamech le Idal
             InitAllLists();//pour initialiser ttes les lists
         }
 
-        public static int LineIdCounter { get; private set; } = 0;
-        public static int BusOnTripIdCounter { get; private set; } = 0;
+       
 
         static void InitAllLists() //a faire
         {
@@ -1004,8 +1004,8 @@ Adress="Belly",          //Jerusalem
             ListLine = new List<Line>
  {new Line
       {
-            Id = LineIdCounter++,
-            Code =21,
+            Id = Static.LineIdCounter++,
+            Code = 21,
             Area = (Areas)3, //Kiriat EKron
             FirstStation = 38832,//Herzl / Intersection Bilo
             LastStation = 38855,// Herzl/Goni
@@ -1013,7 +1013,7 @@ Adress="Belly",          //Jerusalem
 
       new Line
       {
-            Id = LineIdCounter++,//AUTOMATI
+            Id = Static.LineIdCounter++,//AUTOMATI
             Code =33 ,
             Area = (Areas)3,//Rehovot,Geoulim
             FirstStation = 35505,//Herzl Rotshild
@@ -1021,14 +1021,14 @@ Adress="Belly",          //Jerusalem
       },
      new Line
       {
-            Id = LineIdCounter++,//AUTOMATI
+            Id = Static.LineIdCounter++,//AUTOMATI
             Code =45 ,
             Area = (Areas)2,//Avigdor,Ofakim
             FirstStation = 12550,//"Station on Sderot / Sdocks"
             LastStation =  10045,// Herzl/Angel Avenue",
      },
                new Line
-      {                Id = LineIdCounter++,//AUTOMATI
+      {                Id = Static.LineIdCounter++,//AUTOMATI
             Code =55 ,
             Area = (Areas)4,//Jerusalem
             FirstStation = 844, //Uziel/Michlin,
@@ -1036,7 +1036,7 @@ Adress="Belly",          //Jerusalem
                },
 
                  new Line
-      {              Id = LineIdCounter++,//AUTOMATI
+      {              Id = Static.LineIdCounter++,//AUTOMATI
             Code =58 ,
             Area = (Areas)0,//Jerusalem
             FirstStation =20640,// Mahal / Rabbi Alenkawa,
@@ -1045,14 +1045,14 @@ Adress="Belly",          //Jerusalem
 
                        new Line
       {
-                           Id = LineIdCounter++,//AUTOMATI
+                           Id = Static.LineIdCounter++,//AUTOMATI
             Code =36 ,
             Area = (Areas)3,//Jerusalem
             FirstStation =60945, //Sha'ar HaGai / Zionism Road,
     LastStation =  63425,// "Moriah / Beautiful view",",
                        },
                                                 new Line
-      { Id = LineIdCounter++,//AUTOMATI
+      { Id = Static.LineIdCounter++,//AUTOMATI
             Code =44 ,
             Area = (Areas)1,//North
             FirstStation =63407, // Barkan / Halamish Road,
@@ -1060,28 +1060,28 @@ Adress="Belly",          //Jerusalem
     },
 
               new Line
-      {  Id = LineIdCounter++,//AUTOMATI
+      {  Id = Static.LineIdCounter++,//AUTOMATI
             Code =42 ,//way back a changer
             Area = (Areas)1,//North,Tzfat/Mifalei Barkan
             FirstStation =63422,//"Shaham / Ivory",
     LastStation =  57964,// Nof Habashan Two,
               },
                 new Line
-      {                       Id = LineIdCounter++,//AUTOMATI
+      {                       Id = Static.LineIdCounter++,//AUTOMATI
             Code =28 ,
             Area = (Areas)3,//Kiriat Ekron
             FirstStation =30770,// King Hassan II / Bossi St. George,
     LastStation =  38855 , //Herzl/Goni
                 },
                  new Line
-      {                       Id = LineIdCounter++,//AUTOMATI
+      {                       Id = Static.LineIdCounter++,//AUTOMATI
             Code =22 ,
             Area = (Areas)3,//Kiriat Ekron
             FirstStation =30770,// King Hassan II / Bossi St. George,
     LastStation =  38855 , //Herzl/Goni
                 },
                   new Line
-      {   Id = LineIdCounter++,//AUTOMATI
+      {   Id = Static.LineIdCounter++,//AUTOMATI
             Code = 34,
             Area = (Areas)3,//Jerusalem
             FirstStation =60028,// Rabbi Pardes/Zocarman,
@@ -1688,7 +1688,7 @@ new AdjacentStations {
             ListBusOnTrip = new List<BusOnTrip>
             { new BusOnTrip
             {
-                Id = BusOnTripIdCounter++,
+                Id = Static.BusOnTripIdCounter++,
                 LicenseNum = 00003939,
                 LineId = ListLine[0].Id,
                 PlannedTakeOff = TimeSpan.Parse("06.00.00"),
@@ -1700,7 +1700,7 @@ new AdjacentStations {
             },
                 new BusOnTrip
                 {
-                    Id = BusOnTripIdCounter++,
+                    Id = Static.BusOnTripIdCounter++,
                     LicenseNum = 11112121,
                     LineId = ListLine[1].Id,
                     PlannedTakeOff = TimeSpan.Parse("06.00.00"),
@@ -1712,7 +1712,7 @@ new AdjacentStations {
                 },
                 new BusOnTrip
                 {
-                    Id = BusOnTripIdCounter++,
+                    Id = Static.BusOnTripIdCounter++,
                     LicenseNum = 22223333,
                     LineId = ListLine[2].Id,
                     PlannedTakeOff = TimeSpan.Parse("07.00.00"),
@@ -1724,7 +1724,7 @@ new AdjacentStations {
                 },
                 new BusOnTrip
                 {
-                    Id = BusOnTripIdCounter++,
+                    Id = Static.BusOnTripIdCounter++,
                     LicenseNum = 33333535,
                     LineId = ListLine[3].Id,
                     PlannedTakeOff = TimeSpan.Parse("07.00.00"),
@@ -1736,7 +1736,7 @@ new AdjacentStations {
                 },
                 new BusOnTrip
                 {
-                    Id = BusOnTripIdCounter++,
+                    Id = Static.BusOnTripIdCounter++,
                     LicenseNum = 44443939,
                     LineId = ListLine[4].Id,
                     PlannedTakeOff = TimeSpan.Parse("09.00.00"),
@@ -1748,7 +1748,7 @@ new AdjacentStations {
                 },
                 new BusOnTrip
                 {
-                    Id = BusOnTripIdCounter++,
+                    Id = Static.BusOnTripIdCounter++,
                     LicenseNum = 66661616,
                     LineId = ListLine[5].Id,
                     PlannedTakeOff = TimeSpan.Parse("06.30.00"),
@@ -1760,7 +1760,7 @@ new AdjacentStations {
                 },
                 new BusOnTrip
                 {
-                    Id = BusOnTripIdCounter++,
+                    Id = Static.BusOnTripIdCounter++,
                     LicenseNum = 77774040,
                     LineId = ListLine[6].Id,
                     PlannedTakeOff = TimeSpan.Parse("05.00.00"),
@@ -1772,7 +1772,7 @@ new AdjacentStations {
                 },
                 new BusOnTrip
                 {
-                    Id = BusOnTripIdCounter++,
+                    Id = Static.BusOnTripIdCounter++,
                     LicenseNum = 88880505,
                     LineId = ListLine[7].Id,
                     PlannedTakeOff = TimeSpan.Parse("05.00.00"),
@@ -1784,7 +1784,7 @@ new AdjacentStations {
                 },
                 new BusOnTrip
                 {
-                    Id = BusOnTripIdCounter++,
+                    Id = Static.BusOnTripIdCounter++,
                     LicenseNum = 99993131,
                     LineId = ListLine[8].Id,
                     PlannedTakeOff = TimeSpan.Parse("05.00.00"),
@@ -1796,7 +1796,7 @@ new AdjacentStations {
                 },
                 new BusOnTrip
                 {
-                    Id = BusOnTripIdCounter++,
+                    Id = Static.BusOnTripIdCounter++,
                     LicenseNum = 10103232,
                     LineId = ListLine[9].Id,
                     PlannedTakeOff = TimeSpan.Parse("05.00.00"),
