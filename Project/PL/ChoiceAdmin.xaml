@@ -10,6 +10,5 @@
         <Label Content="What do you want to see or update?" HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="#FF1DBCD4"/>
         <Button x:Name="btnLine" Content="Line"  Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnLine_Click" Margin="325,150,325,200"/>
         <Button x:Name="btnStation" Content="Station" Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnStation_Click" Margin="500,150,150,200"/>
-        <Button x:Name="btnBus" Content="Bus" Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnBus_Click" Margin="150,150,500,200"/>
     </Grid>
 </Window>

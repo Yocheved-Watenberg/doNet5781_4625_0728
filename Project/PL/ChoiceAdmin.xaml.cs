@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BLAPI;
 
 namespace PL
 {
@@ -19,24 +20,30 @@ namespace PL
     /// </summary>
     public partial class ChoiceAdmin : Window
     {
-        public ChoiceAdmin()
+        IBL bl = BLFactory.GetBL("1");
+
+        public ChoiceAdmin(IBL _bl)
         {
             InitializeComponent();
+            bl = _bl;
         }
 
-        private void btnStation_Click(object sender, RoutedEventArgs e)
+                private void btnStation_Click(object sender, RoutedEventArgs e)
         {
-
+            StationAdmin win = new StationAdmin(bl);
+            win.Show();
         }
 
         private void btnLine_Click(object sender, RoutedEventArgs e)
         {
-
+            LineAdmin win = new LineAdmin(bl);
+            win.Show();
         }
 
         private void btnBus_Click(object sender, RoutedEventArgs e)
         {
-
+            BusAdmin win = new BusAdmin(bl);
+            win.Show();
         }
     }
 }
