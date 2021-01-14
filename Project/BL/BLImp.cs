@@ -15,7 +15,7 @@ namespace BL {
         IDAL dl = DLFactory.GetDL();
 
         #region Line
-        BO.Line LineDoBoAdapter(DO.Line lineDO)     //
+        public BL.BO.Line LineDoBoAdapter(DO.Line lineDO)     //
         {
             BO.Line lineBO = new BO.Line();            
             int id = lineDO.Id;
@@ -53,6 +53,59 @@ namespace BL {
 
         //veut recevoir du dl le student
 
+        public void AddLine(Line line)
+        {
+            DO.Line DoLine = new DO.Line();
+            line.CopyPropertiesTo(DoLine);
+            foreach (LineStation item in line.ListOfLineStations)
+            {
+
+            }
+
+            if (DataSource.ListLine.FirstOrDefault(l => l.Id == line.Id) != null)
+                throw new DO.BadLineIdException(line.Id, "this line already exists in the list of lines");
+            DataSource.ListLine.Add(line.Clone());
+
+            throw new NotImplementedException();
+        }
+     //   public void DeleteStudent(int id)// ne ps oublie d effacer la person le student et from all the courses
+        //{
+        //    try
+        //    {
+        //        dl.DeletePerson(id);
+        //        dl.DeleteStudent(id);
+        //        dl.DeleteStudentFromAllCourses(id);
+        //    }
+        //    catch (DO.BadPersonIdCourseIDException ex)
+        //    {
+        //        throw new BO.BadStudentIdCourseIDException("Student ID and Course ID is Not exist", ex);
+        //    }
+        //    catch (DO.BadPersonIdException ex)
+        //    {
+        //        throw new BO.BadStudentIdException("Person id does not exist or he is not a student", ex);
+        //    }
+        //}
+        public void DeleteLine(int id)
+        {
+            throw new NotImplementedException();
+        }
+        public void AddStationToLine(LineStation lineStation, LineStation previous)
+        {
+            throw new NotImplementedException();
+        }
+        public void DeleteStationOfLine(int stationId, int lineId)
+        {
+            throw new NotImplementedException();
+        }
+        public IEnumerable<BO.Line> GetAllLine()
+        {
+            return from item in dl.GetAllLine()
+                   select LineDoBoAdapter(item);
+        }
+        public IEnumerable<LineStation> GetAllLineStationsInLine()
+        {
+            throw new NotImplementedException();
+        }
         public BO.Line GetLine(int myCode, Station FirstStation, Station LastStation) {   //the first and last station are here to tell us what's the line(because two lines can have the same code)
             DO.Line lineDO;
             try
@@ -66,127 +119,54 @@ namespace BL {
             return LineDoBoAdapter(lineDO);           
         } 
 
-     
-        public IEnumerable<BO.Line> GetStudentsBy(Predicate<BO.Line> predicate)
-        {
-            throw new NotImplementedException();
-        }
+        //public IEnumerable<BO.Line> GetStudentsBy(Predicate<BO.Line> predicate)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public IEnumerable<BO.ListedPerson> GetStudentIDNameList()
-        {
-            return from item in dl.GetStudentListWithSelectedFields((Func<DO.Student, object>)((stud) =>
-            {
-                try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-                return new BO.ListedPerson() { ID = stud.ID, Name = dl.GetPerson(stud.ID).Name };
-            }))
-                   let student = item as BO.ListedPerson
-                   //orderby student.ID
-                   select student;
-        }
+        //public IEnumerable<BO.ListedPerson> GetStudentIDNameList()
+        //{
+        //    return from item in dl.GetStudentListWithSelectedFields((Func<DO.Student, object>)((stud) =>
+        //    {
+        //        try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
+        //        return new BO.ListedPerson() { ID = stud.ID, Name = dl.GetPerson(stud.ID).Name };
+        //    }))
+        //           let student = item as BO.ListedPerson
+        //           //orderby student.ID
+        //           select student;
+        //}
 
-        public void UpdateStudentPersonalDetails(BO.Student student)
-        {
-            //Update DO.Person            
-            DO.Person personDO = new DO.Person();
-            student.CopyPropertiesTo(personDO);
-            try
-            {
-                dl.UpdatePerson(personDO);
-            }
-            catch (DO.BadPersonIdException ex)
-            {
-                throw new BO.BadStudentIdException("Student ID is illegal", ex);
-            }
+        //public void UpdateStudentPersonalDetails(BO.Student student)
+        //{
+        //    //Update DO.Person            
+        //    DO.Person personDO = new DO.Person();
+        //    student.CopyPropertiesTo(personDO);
+        //    try
+        //    {
+        //        dl.UpdatePerson(personDO);
+        //    }
+        //    catch (DO.BadPersonIdException ex)
+        //    {
+        //        throw new BO.BadStudentIdException("Student ID is illegal", ex);
+        //    }
 
-            //Update DO.Student            
-            DO.Student studentDO = new DO.Student();
-            student.CopyPropertiesTo(studentDO);
-            try
-            {
-                dl.UpdateStudent(studentDO);
-            }
-            catch (DO.BadPersonIdException ex)
-            {
-                throw new BO.BadStudentIdException("Student ID is illegal", ex);
-            }
+        //    //Update DO.Student            
+        //    DO.Student studentDO = new DO.Student();
+        //    student.CopyPropertiesTo(studentDO);
+        //    try
+        //    {
+        //        dl.UpdateStudent(studentDO);
+        //    }
+        //    catch (DO.BadPersonIdException ex)
+        //    {
+        //        throw new BO.BadStudentIdException("Student ID is illegal", ex);
+        //    }
 
-        }
-
-        public void DeleteStudent(int id)// ne ps oublie d effacer la person le student et from all the courses
-        {
-            try
-            {
-                dl.DeletePerson(id);
-                dl.DeleteStudent(id);
-                dl.DeleteStudentFromAllCourses(id);
-            }
-            catch (DO.BadPersonIdCourseIDException ex)
-            {
-                throw new BO.BadStudentIdCourseIDException("Student ID and Course ID is Not exist", ex);
-            }
-            catch (DO.BadPersonIdException ex)
-            {
-                throw new BO.BadStudentIdException("Person id does not exist or he is not a student", ex);
-            }
-        }
-
-        
-
-       
-        public void AddLine(Line line)
-        { DO.Line DoLine = new DO.Line();
-            line.CopyPropertiesTo(DoLine);
-            foreach(LineStation item in line.ListOfLineStations)
-            {
-
-            }
-            
-                if (DataSource.ListLine.FirstOrDefault(l => l.Id == line.Id) != null)
-                    throw new DO.BadLineIdException(line.Id, "this line already exists in the list of lines");
-                DataSource.ListLine.Add(line.Clone());
-            
-            throw new NotImplementedException();
-        }
-
-        
-        
-    public IEnumerable<BO.Line> GetAllLine()
-    {
-        return from item in dl.GetAllLine()
-               select LineDoBoAdapter(item);
-        
-    }
-
-        public IEnumerable<Line> GetAllLineBy(Predicate<Line> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateLine(Line line)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateLine(int Id, Action<Line> update)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteLine(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<LineStation> GetListOfLineStations()
-        {
-            throw new NotImplementedException();
-        }
-
-
+        //} 
         #endregion
 
         #region Stations
-        BO.Station StationDoBoAdapter(DO.Station stationDO)     //
+        BO.Station StationDoBoAdapter(DO.Station stationDO)     
         {
             BO.Station stationBO = new BO.Station();
             int id = stationDO.Code;
@@ -221,38 +201,29 @@ namespace BL {
 
             return lineBO;
         }
-        public void AddStation(Station station)
+        public void AddStation(Station station)   //tres simple creer juste la station, pas bsn de dire les lignes qui pasent par cette station
+                                                  //pr creer ou leadken les lignes qui passent par cette station jle fais direct par line
         {
             throw new NotImplementedException();
         }
-
+        public void DeleteStation(int code)
+        {
+            throw new NotImplementedException();
+        }
         public IEnumerable<Station> GetAllStation()
         {
             return from item in dl.GetAllStation()
                    select StationDoBoAdapter(item);
         }
-
-        public IEnumerable<Station> GetAllStationBy(Predicate<Station> predicate)
+        public IEnumerable<Line> GetAllLineInStation()
         {
             throw new NotImplementedException();
         }
-
-        public Station GetStation(int code)
+        public IEnumerable<AdjacentStations> GetAllAdjacentStations()
         {
             throw new NotImplementedException();
         }
-
         public void UpdateStation(Station station)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateStation(int code, Action<Station> update)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteStation(int code)
         {
             throw new NotImplementedException();
         }
@@ -278,7 +249,6 @@ namespace BL {
         //}
 
         #endregion
-
 
     }
 }

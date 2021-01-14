@@ -34,8 +34,6 @@ namespace PL
 
             // DU PROJET 3A 
 
-            //cbLines.DataContext = bl.GetAllLine();
-
             //cbLines.ItemsSource = busLines;
             //cbLines.SelectedIndex = 0;
             //ShowBusLine(cbLines.SelectedIndex);
