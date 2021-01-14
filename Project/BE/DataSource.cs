@@ -1167,7 +1167,7 @@ Adress="Belly",          //Jerusalem
  {new AdjacentStations
       { Station1=38832,
          Station2=38838,
-        Distance=200,
+          Distance=200,
          Time=TimeSpan.Parse("00.00.50"),
       },
       new AdjacentStations {

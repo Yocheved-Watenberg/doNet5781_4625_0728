@@ -1,4 +1,6 @@
-﻿namespace DO
+﻿using System;
+
+namespace DO
 {
     public class Station
     {
@@ -7,5 +9,10 @@
         public double Longitude { get; set; }                         //longitude of the station
         public double Latitude { get; set; }                          //latitude of the station
         public string Adress { get; set; }                            //adress of the station optionnel
+
+        public static explicit operator Station(LineStation v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
