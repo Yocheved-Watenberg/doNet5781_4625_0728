@@ -10,9 +10,6 @@ namespace DO
         public double Latitude { get; set; }                          //latitude of the station
         public string Adress { get; set; }                            //adress of the station optionnel
 
-        public static explicit operator Station(LineStation v)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
