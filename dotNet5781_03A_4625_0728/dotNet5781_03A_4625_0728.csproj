@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DeepCopyUtilities.cs" />
     <Compile Include="MyList.cs" />
     <Compile Include="Station.cs" />
     <Page Include="MainWindow.xaml">
