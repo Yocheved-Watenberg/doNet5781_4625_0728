@@ -47,6 +47,7 @@
     <Compile Include="BO\brouillon.cs" />
     <Compile Include="BO\Bus.cs" />
     <Compile Include="BO\Enum.cs" />
+    <Compile Include="BO\Exceptions.cs" />
     <Compile Include="BO\Line.cs" />
     <Compile Include="BO\LineStation.cs" />
     <Compile Include="BO\LineTrip.cs" />

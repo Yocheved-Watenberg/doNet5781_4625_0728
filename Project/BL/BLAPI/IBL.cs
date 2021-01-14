@@ -14,7 +14,7 @@ namespace BLAPI
         //get all bus in station
         //etc...
         #region Line
-       Line GetLine(int id);
+        Line GetLine( int myCode, Station FirstStation, Station LastStation);
        void AddLine(Line line);
        IEnumerable<Line> GetAllLine();
        IEnumerable<Line> GetAllLineBy(Predicate<Line> predicate); 
@@ -22,20 +22,6 @@ namespace BLAPI
         void UpdateLine(int Id, Action<Line> update);
         void DeleteLine(int id);
         IEnumerable<LineStation> GetListOfLineStations();
-
-
-        #endregion
-
-
-
-        #region Bus
-        void AddBus(Bus bus);
-        Bus GetBus(int licenseNum);
-        IEnumerable<Bus> GetAllBus();
-        IEnumerable<Bus> GetAllBusBy(Predicate<Bus> predicate);
-        void UpdateBus(Bus bus);
-        void UpdateBus(int licenseNum, Action<Bus> update);
-        void DeleteBus(int licenseNum);
 
 
         #endregion
