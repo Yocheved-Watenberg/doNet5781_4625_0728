@@ -43,23 +43,23 @@ namespace BL {
 
         //veut recevoir du dl le student
 
-        public void AddLine(Line line,/*Station station1,Station station2*/)
+        public void AddLine(Line line)
         {
             DO.Line DoLine = new DO.Line();
             line.CopyPropertiesTo(DoLine);
             DO.LineStation LineStationDO1, LineStationDO2;
             try
             {
-                LineStationDO1 = (DO.Station)dl.GetLineStation((line.ListOfStations.ToList())[0].LineId, (line.ListOfStations.ToList())[0].StationCode) ;
-                LineStationDO2 = (DO.Station)dl.GetStation(station2.Code);
+                LineStationDO1 = (DO.LineStation)dl.GetLineStation((line.ListOfStations.ToList())[0].LineId, (line.ListOfStations.ToList())[0].StationCode) ;
+                LineStationDO2 = (DO.LineStation)dl.GetLineStation((line.ListOfStations.ToList()).Last().LineId, line.ListOfStations.ToList().Last().StationCode);
 
             }
             catch (DO.BadStationIdException ex)
             {
                 throw new BO.BadStationException("The code of the station does not exist", ex);
             }
-            DoLine.FirstStation = station1.Code;
-            DoLine.LastStation = station2.Code;
+            DoLine.FirstStation = LineStationDO1.StationCode;
+            DoLine.LastStation = LineStationDO2.StationCode;
             dl.AddLine(DoLine);
 
 
@@ -156,11 +156,14 @@ namespace BL {
             BO.Station stationBO = new BO.Station();
             int id = stationDO.Code;
             stationDO.CopyPropertiesTo(stationBO);   //kah a person chel aDo et donne  le au student du BO
-            stationBO.ListOfLine /*query on Do.lineStation withlineId=XXX*/  = from allLine in dl.GetAllLineBy(l => l.Id == id)// copie tte la list de courses
-                                                                                let line = dl.GetLine(allLine.Id)
-                                                                                select line.CopyToLine();                       // a fr
-    
+            stationBO.ListOfLine = from allLine in dl.GetAllLineBy(l => l.Code == id)
+                                   let line = dl.GetLine(allLine.Id)
+                                   select line.CopyToLine();                       // a fr
 
+
+            //courseBO.Lecturers = from lic in dl.GetLecturersInCourseList(lic => lic.CourseId == id)
+            //                     let course = dl.GetCourse(lic.CourseId)
+            //                     select (BO.CourseLecturer)course.CopyPropertiesToNew(typeof(BO.CourseLecturer)
             return stationBO;
         }
         public Station GetStation(int code)
