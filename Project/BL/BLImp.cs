@@ -13,7 +13,7 @@ namespace BL {
     class BLImp : IBL //internal
     {
         IDAL dl = DLFactory.GetDL();
-
+        
         #region Line
         public BL.BO.Line LineDoBoAdapter(DO.Line lineDO)     //
         {
