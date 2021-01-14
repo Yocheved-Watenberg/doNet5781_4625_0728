@@ -5,6 +5,7 @@ using DLAPI;
 using BLAPI;
 using System.Threading;
 using BL.BO;
+using static BL.BO.Enum;
 
 //using BO;
 
@@ -80,15 +81,16 @@ class BLImp : IBL //internal
             return studentDoBoAdapter(studentDO);           //si trouve ps va a adapter
         }
 
-        public IEnumerable<BO.Student> GetAllStudents() // mm chose que student ms avc ttes les lists
+        public IEnumerable<BO.Line> GetAllLine()
         {
             //return from item in dl.GetStudentListWithSelectedFields( (stud) => { return GetStudent(stud.ID); } )
             //       let student = item as BO.Student
             //       orderby student.ID
             //       select student;
-            return from item in dl.GetAllStudents()
-                   select studentDoBoAdapter(item);
+            return from item in dl.GetAllLine()
+                   select lineDoBoAdapter(item);
         }
+
         public IEnumerable<BO.Student> GetStudentsBy(Predicate<BO.Student> predicate)
         {
             throw new NotImplementedException();
@@ -192,13 +194,7 @@ class BLImp : IBL //internal
         }
 
         public Line GetLine(int id)
-        {
-           
-            
-            
-            
-            
-            
+        { 
             throw new NotImplementedException();
         }
 
@@ -259,10 +255,6 @@ class BLImp : IBL //internal
             //};
 
             return studentBO;
-        }
-    public IEnumerable<Line> GetAllLine()
-    {
-        throw new NotImplementedException();
         }
 
         public IEnumerable<Line> GetAllLineBy(Predicate<Line> predicate)
@@ -359,30 +351,32 @@ class BLImp : IBL //internal
         {
             throw new NotImplementedException();
         }
-        #endregion
+    #endregion
 
-        #region Course
+    #region Course
 
-        //BO.Course courseDoBoAdapter(DO.Course courseDO)
-        //{
-        //    BO.Course courseBO = new BO.Course();
-        //    int id = courseDO.ID;
-        //    courseDO.CopyPropertiesTo(courseBO);
+    //BO.Course courseDoBoAdapter(DO.Course courseDO)
+    //{
+    //    BO.Course courseBO = new BO.Course();
+    //    int id = courseDO.ID;
+    //    courseDO.CopyPropertiesTo(courseBO);
 
-        //    courseBO.Lecturers = from lic in dl.GetLecturersInCourseList(lic => lic.CourseId == id)
-        //                         let course = dl.GetCourse(lic.CourseId)
-        //                         select (BO.CourseLecturer)course.CopyPropertiesToNew(typeof(BO.CourseLecturer));
-        //    return courseBO;
-        //}
-        //public IEnumerable<BO.Course> GetAllCourses()
-        //{
-        //    return from crsDO in dl.GetAllCourses()
-        //           select courseDoBoAdapter(crsDO);
-        //}
+    //    courseBO.Lecturers = from lic in dl.GetLecturersInCourseList(lic => lic.CourseId == id)
+    //                         let course = dl.GetCourse(lic.CourseId)
+    //                         select (BO.CourseLecturer)course.CopyPropertiesToNew(typeof(BO.CourseLecturer));
+    //    return courseBO;
+    //}
+    //public IEnumerable<BO.Course> GetAllCourses()
+    //{
+    //    return from crsDO in dl.GetAllCourses()
+    //           select courseDoBoAdapter(crsDO);
+    //}
 
-        #endregion
+    #endregion
 
 
-    }
+}
+
+
 }
 
