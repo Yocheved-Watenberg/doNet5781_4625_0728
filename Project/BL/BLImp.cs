@@ -6,9 +6,11 @@ using BLAPI;
 using System.Threading;
 using BL.BO;
 
-//using BO;
 
-namespace BL {
+
+namespace BL
+{
+    
     //memamech ttes les fctions du ibl
     class BLImp : IBL //internal
     {
@@ -19,37 +21,28 @@ namespace BL {
         {
             BO.Line lineBO = new BO.Line();            
             int id = lineDO.Id;
-            lineDO.CopyPropertiesTo(lineBO);   //kah a person chel aDo et donne  le au student du BO
-                                               //studentBO.ID = personDO.ID;
-                                               //studentBO.BirthDate = personDO.BirthDate;
-                                               //studentBO.City = personDO.City;
-                                               //studentBO.Name = personDO.Name;
-                                               //studentBO.HouseNumber = personDO.HouseNumber;
-                                               //studentBO.Street = personDO.Street;
-                                               //studentBO.PersonalStatus = (BO.PersonalStatus)(int)personDO.PersonalStatus;
+            lineDO.CopyPropertiesTo(lineBO);   //copies all the fields from the DO to the Bo
 
-            //kah a STUDENT chel aDo et donne  le au student du BO
-            //studentBO.StartYear = studentDO.StartYear;
-            //studentBO.Status = (BO.StudentStatus)(int)studentDO.Status;
-            //studentBO.Graduation = (BO.StudentGraduate)(int)studentDO.Graduation;
-            //studentBO.ListOfCourses = from sic in dl.GetStudentsInCourseList(sic => sic.PersonId == id)
-            //                          let course = dl.GetCourse(sic.CourseId)
-            //                          select course.CopyToStudentCourse(sic);
-            lineBO.ListOfStations /*query on Do.lineStation withlineId=XXX*/  = from allStation in dl.GetAllLineStationBy(l => l.LineId == id)// copie tte la list de courses
-                                                                                let station = dl.GetStation(allStation.LineId)
-                                                                                select station.CopyToLineStation(allStation);
-            //new BO.StudentCourse()
-            //{
-            //    ID = course.ID,
-            //    Number = course.Number,
-            //    Name = course.Name,
-            //    Year = course.Year,
-            //    Semester = (BO.Semester)(int)course.Semester,
-            //    Grade = sic.Grade
-            //};
-
+            lineBO.ListOfStations /*query on Do.lineStation withlineId=XXX*/  =
+                from allStation in dl.GetAllLineStationBy(l => l.LineId == id)
+                let lineStation = dl.GetLineStation(allStation.LineId, allStation.StationCode)             //creates a line station with the line id                                                        
+                select lineStation.CopyToLineStation(allStation);
             return lineBO;
         }
+        public BO.Line GetLine(int myCode, Station FirstStation, Station LastStation)
+        {   //the first and last station are here to tell us what's the line(because two lines can have the same code)
+            DO.Line lineDO;
+            try
+            {
+                lineDO = (DO.Line)dl.GetAllLineBy(l => l.Code == myCode && (l.FirstStation) == FirstStation.Code && (l.LastStation) == LastStation.Code);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineException("The code of the line does not exist or the stations are not in the line", ex);
+            }
+            return LineDoBoAdapter(lineDO);
+        }
+
 
         //veut recevoir du dl le student
 
@@ -57,10 +50,10 @@ namespace BL {
         {
             DO.Line DoLine = new DO.Line();
             line.CopyPropertiesTo(DoLine);
-            foreach (LineStation item in line.ListOfLineStations)
-            {
+            //foreach (LineStation item in line.ListOfLineStations)
+            //{
 
-            }
+            //}
 
             if (DataSource.ListLine.FirstOrDefault(l => l.Id == line.Id) != null)
                 throw new DO.BadLineIdException(line.Id, "this line already exists in the list of lines");
@@ -106,19 +99,7 @@ namespace BL {
         {
             throw new NotImplementedException();
         }
-        public BO.Line GetLine(int myCode, Station FirstStation, Station LastStation) {   //the first and last station are here to tell us what's the line(because two lines can have the same code)
-            DO.Line lineDO;
-            try
-            {
-                lineDO = (DO.Line)dl.GetAllLineBy(l => l.Code == myCode && (l.FirstStation) == FirstStation.Code && (l.LastStation) == LastStation.Code);
-            }
-            catch (DO.BadLineIdException ex)
-            {
-                throw new BO.BadLineException("The code of the line does not exist or the stations are not in the line", ex);
-            }
-            return LineDoBoAdapter(lineDO);           
-        } 
-
+       
         //public IEnumerable<BO.Line> GetStudentsBy(Predicate<BO.Line> predicate)
         //{
         //    throw new NotImplementedException();
@@ -170,23 +151,8 @@ namespace BL {
         {
             BO.Station stationBO = new BO.Station();
             int id = stationDO.Code;
-            stationDO.CopyPropertiesTo(stationBO);   //kah a person chel aDo et donne  le au student du BO
-                                               //studentBO.ID = personDO.ID;
-                                               //studentBO.BirthDate = personDO.BirthDate;
-                                               //studentBO.City = personDO.City;
-                                               //studentBO.Name = personDO.Name;
-                                               //studentBO.HouseNumber = personDO.HouseNumber;
-                                               //studentBO.Street = personDO.Street;
-                                               //studentBO.PersonalStatus = (BO.PersonalStatus)(int)personDO.PersonalStatus;
-
-            //kah a STUDENT chel aDo et donne  le au student du BO
-            //studentBO.StartYear = studentDO.StartYear;
-            //studentBO.Status = (BO.StudentStatus)(int)studentDO.Status;
-            //studentBO.Graduation = (BO.StudentGraduate)(int)studentDO.Graduation;
-            //studentBO.ListOfCourses = from sic in dl.GetStudentsInCourseList(sic => sic.PersonId == id)
-            //                          let course = dl.GetCourse(sic.CourseId)
-            //                          select course.CopyToStudentCourse(sic);
-            stationBO.ListOfLine /*query on Do.lineStation withlineId=XXX*/  = from allLine in dl.GetAllStationBy(l => l.LineId == id)// copie tte la list de courses
+            stationDO.CopyPropertiesTo(stationBO);                          //copies all the fields from the DO to the Bo
+            stationBO.ListOfLine /*query on Do.lineStation withlineId=XXX*/  = from allLine in dl.GetAllStationBy(l => l.Id == id)// copie tte la list de courses
                                                                                 let station = dl.GetStation(allStation.LineId)
                                                                                 select station.CopyToLineStation(allStation);
             //new BO.StudentCourse()
