@@ -107,6 +107,19 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\BL.BO.AdjacentStations.datasource" />
+    <None Include="Properties\DataSources\BL.BO.BadLineException.datasource" />
+    <None Include="Properties\DataSources\BL.BO.BadStationException.datasource" />
+    <None Include="Properties\DataSources\BL.BO.Bus.datasource" />
+    <None Include="Properties\DataSources\BL.BO.Enum+Areas.datasource" />
+    <None Include="Properties\DataSources\BL.BO.Enum+State.datasource" />
+    <None Include="Properties\DataSources\BL.BO.Enum.datasource" />
+    <None Include="Properties\DataSources\BL.BO.Line.datasource" />
+    <None Include="Properties\DataSources\BL.BO.LineStation.datasource" />
+    <None Include="Properties\DataSources\BL.BO.LineTrip.datasource" />
+    <None Include="Properties\DataSources\BL.BO.Station.datasource" />
+    <None Include="Properties\DataSources\BLAPI.BLFactory.datasource" />
+    <None Include="Properties\DataSources\BLAPI.IBL.datasource" />
     <None Include="Properties\DataSources\PL.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\PL.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">

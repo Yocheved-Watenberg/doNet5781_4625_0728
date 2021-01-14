@@ -29,11 +29,9 @@ namespace PL
             InitializeComponent();
             bl = _bl;
 
-
             // DU PROJET 3A 
 
-            //cbLines.ItemsSource = busLines;
-            //cbLines.SelectedIndex = 0;
+            //cbLines.ItemsSource =  liste de ttes les lines;
             //ShowBusLine(cbLines.SelectedIndex);
 
 
@@ -74,17 +72,6 @@ namespace PL
             UpGrid.DataContext = curLine;
             lbLineStations.DataContext = curLine.StationsList;
         }
-
-
-
-        // liste de ttes les lines:  busLines 
-
-
-
-
-
-
-
 
 
 
