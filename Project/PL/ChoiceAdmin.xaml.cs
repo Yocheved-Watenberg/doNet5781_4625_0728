@@ -28,7 +28,7 @@ namespace PL
             bl = _bl;
         }
 
-                private void btnStation_Click(object sender, RoutedEventArgs e)
+        private void btnStation_Click(object sender, RoutedEventArgs e)
         {
             StationAdmin win = new StationAdmin(bl);
             win.Show();
@@ -37,12 +37,6 @@ namespace PL
         private void btnLine_Click(object sender, RoutedEventArgs e)
         {
             LineAdmin win = new LineAdmin(bl);
-            win.Show();
-        }
-
-        private void btnBus_Click(object sender, RoutedEventArgs e)
-        {
-            BusAdmin win = new BusAdmin(bl);
             win.Show();
         }
     }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace DLAPI
    
 {
-    public interface IDAL // eze peoulot aleha lessapek li (on s en fout cmt tu fais) pr que BL marche
+    public interface IDAL
     {
         //For each class, the interface allows the functions below:
         // Create - add new instance

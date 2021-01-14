@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//chacune des fctions ouvre le kovets, lit qq chose et est mahzir cette chose
-//faire attention a s occuper des harigots
 using DLAPI;
 //using DO;
 using DS;
 
 namespace DL
 {
-    sealed class DLObject : IDAL    //internal //af ehad yahol larechet
+    sealed class DLObject : IDAL    
     {
         #region singelton
         static readonly DLObject instance = new DLObject();
@@ -173,7 +171,6 @@ namespace DL
             else
                  throw new DO.BadAdjacentStationsIdException(station1, station2, "theses adjacent stations doesn't exist in the list of adjacents stations");
         }
-  
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStationsBy(Predicate<DO.AdjacentStations> predicate)
         {
             if (predicate != null)
@@ -193,7 +190,7 @@ namespace DL
                 DataSource.ListAdjacentStations.Add(adjacentStations.Clone());
             }
             else
-                throw new DO.BadAdjacentStationsIdException(adjacentStations.Station1, adjacentStations.Station2, "theses adjacent stations doesn't exist in the list of adjacents stations");
+                throw new DO.BadAdjacentStationsIdException(adjacentStations.Station1, adjacentStations.Station2, "these adjacent stations doesn't exist in the list of adjacents stations");
         }
         public void UpdateAdjacentStations(int Station1, int Station2, Action<DO.AdjacentStations> update)
         {
@@ -248,7 +245,7 @@ namespace DL
             return GetAllLine();
         }
 
-    }
+    
 
         public void UpdateLine(DO.Line line)
         {
@@ -603,3 +600,5 @@ namespace DL
         #endregion
     }
 }
+
+

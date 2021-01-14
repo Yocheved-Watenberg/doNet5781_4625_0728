@@ -28,26 +28,20 @@ namespace BL
             from.CopyPropertiesTo(to);
             return to;
         }
-        public static BO.LineStation CopyToLineStation(this DO.LineStation Station)
-        {
-            BO.LineStation result = (BO.LineStation)Station.CopyPropertiesToNew(typeof(BO.LineStation));
-            ////a completer si besoin propertys' names changed? copy them here...
-            //result.Grade = sic.Grade;
-            return result;
-        
-        }
+
+        //a remettre
+
+        //public static BO.LineStation CopyToLineStation(this DO.LineStation Station)
+        //{
+        //    BO.LineStation result = (BO.LineStation)Station.CopyPropertiesToNew(typeof(BO.LineStation));
+        //    ////a completer si besoin propertys' names changed? copy them here...
+        //    //result.Grade = sic.Grade;
+        //    return result;
+
+        //}
 
 
 
        
     }
-}
-
-
-
-
-
-
-
-
 }
