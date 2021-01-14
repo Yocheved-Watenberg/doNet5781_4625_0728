@@ -12,9 +12,23 @@ namespace BL.BO
             public int ID;
             public BadLineException(string message, Exception innerException) :
                 base(message, innerException) => ID = ((DO.BadLineIdException)innerException).ID;
-            public override string ToString() => base.ToString() + $", bad student id: {ID}";
+            public override string ToString() => base.ToString() + $", bad line id: {ID}";
         }
     //a revoir en cas d erreur
+
+
+
+    [Serializable]
+    public class BadStationException : Exception
+    {
+        public int code;
+        public BadStationException(string message, Exception innerException) :
+            base(message, innerException) => code = ((DO.BadStationIdException)innerException).code;
+        public override string ToString() => base.ToString() + $", bad station code: {code}";
+    }
+    //a revoir en cas d erreur
+
+   
         [Serializable]
         public class BadLecturerIdException : Exception
         {

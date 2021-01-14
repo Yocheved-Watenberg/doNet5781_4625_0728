@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BL.BO
 {
-    public class LineStation                                           //a lineStation is a Station in which the line goes throuh
+    public class LineStation                                           
     {  public int LineId { get; set; }                                //pour effacer une station ds une ligne mezae qui va m aider a le fr
         public double DistanceFromLastStation { get; set; }
         public TimeSpan TimeFromLastStation { get; set; }

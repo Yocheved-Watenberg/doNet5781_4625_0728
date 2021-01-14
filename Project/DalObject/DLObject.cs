@@ -273,13 +273,13 @@ namespace DL
         public void AddLineStation(DO.LineStation lineStation)
         {
             List<DO.LineStation> myList = DataSource.ListLineStation.FindAll(s => s.LineId == lineStation.LineId);
-            if (myList.FirstOrDefault(l => l.Station == lineStation.Station) != null)
-                throw new DO.BadLineStationIdException(lineStation.LineId, lineStation.Station, "this line station already exists in the list of line station");
+            if (myList.FirstOrDefault(l => l.StationCode == lineStation.StationCode) != null)
+                throw new DO.BadLineStationIdException(lineStation.LineId, lineStation.StationCode, "this line station already exists in the list of line station");
             DataSource.ListLineStation.Add(lineStation.Clone());
         }
         public void DeleteLineStation(int id, int station)
         {
-            DO.LineStation myLineStation = DataSource.ListLineStation.Find(l => (l.LineId == id)&&(l.Station==station));
+            DO.LineStation myLineStation = DataSource.ListLineStation.Find(l => (l.LineId == id)&&(l.StationCode==station));
             if (myLineStation != null)
             {
                 DataSource.ListLineStation.Remove(myLineStation);
@@ -294,7 +294,7 @@ namespace DL
         }
         public DO.LineStation GetLineStation(int id, int station)
         {
-            DO.LineStation lineStation = DataSource.ListLineStation.Find(l => (l.LineId == id) && (l.Station == station));
+            DO.LineStation lineStation = DataSource.ListLineStation.Find(l => (l.LineId == id) && (l.StationCode == station));
 
             if (lineStation != null)
                 return lineStation.Clone();
@@ -313,20 +313,20 @@ namespace DL
         }
         public void UpdateLineStation(DO.LineStation lineStation)
         {
-            DO.LineStation myLineStation = DataSource.ListLineStation.Find(l => (l.LineId == lineStation.LineId) && (l.Station==lineStation.Station));
+            DO.LineStation myLineStation = DataSource.ListLineStation.Find(l => (l.LineId == lineStation.LineId) && (l.StationCode==lineStation.StationCode));
             if (myLineStation != null)
             {
                 DataSource.ListLineStation.Remove(myLineStation);
                 DataSource.ListLineStation.Add(lineStation.Clone());
             }
             else
-                throw new DO.BadLineStationIdException(lineStation.LineId, lineStation.Station, "this line station doesn't exist in the list of line station");
+                throw new DO.BadLineStationIdException(lineStation.LineId, lineStation.StationCode, "this line station doesn't exist in the list of line station");
         }
     
 
     public void UpdateLineStation(int LineId, int station, Action<DO.LineStation> update)
     {
-        var myLineStation = DataSource.ListLineStation.FirstOrDefault(predicate => (predicate.LineId == LineId) && (predicate.Station == station));
+        var myLineStation = DataSource.ListLineStation.FirstOrDefault(predicate => (predicate.LineId == LineId) && (predicate.StationCode == station));
         if (myLineStation != null)
         {
             update(myLineStation);
