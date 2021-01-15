@@ -28,9 +28,29 @@ namespace BL
         }
 
         public void AddStationToLine(BO.LineStation lineStation, BO.LineStation previous)
+
+        //veut recevoir du dl le student
+
+        public void AddLine(Line line)
         {
             throw new NotImplementedException();
         }
+            DO.Line DoLine = new DO.Line();
+            line.CopyPropertiesTo(DoLine);
+            DO.LineStation LineStationDO1, LineStationDO2;
+            try
+            {
+                LineStationDO1 = (DO.LineStation)dl.GetLineStation((line.ListOfStations.ToList())[0].LineId, (line.ListOfStations.ToList())[0].StationCode) ;
+                LineStationDO2 = (DO.LineStation)dl.GetLineStation((line.ListOfStations.ToList()).Last().LineId, line.ListOfStations.ToList().Last().StationCode);
+
+            }
+            catch (DO.BadStationIdException ex)
+            {
+                throw new BO.BadStationException("The code of the station does not exist", ex);
+            }
+            DoLine.FirstStation = LineStationDO1.StationCode;
+            DoLine.LastStation = LineStationDO2.StationCode;
+            dl.AddLine(DoLine);
 
         public void DeleteLine(int id)
         {
