@@ -28,5 +28,38 @@ namespace PL
             bl = _bl;
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
+            // Charger les données en définissant la propriété CollectionViewSource.Source :
+            // stationViewSource.Source = [source de données générique]
+        }
+
+        private void stationDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void stationCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cbStationCode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void lbLineStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void AdressTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

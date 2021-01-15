@@ -65,7 +65,7 @@
         </Grid>
         <ListBox x:Name="lbLineStations" 
                  HorizontalAlignment="Left" 
-                 Height="289" 
+                 Height="211" 
                  Margin="41,24,0,0" 
                  Grid.Row="1" 
                  VerticalAlignment="Top" 
