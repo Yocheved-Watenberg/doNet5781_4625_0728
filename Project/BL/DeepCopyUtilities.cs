@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using DL;
-using System.Device.Location;
+//using System.Device.Location;
 
 namespace BL
 {// pour pouvoir prendre plusieurs mahlakots et les rassembler en 1 (ex list de notes chez le student). du cp different de clone
@@ -37,20 +37,27 @@ namespace BL
         {
             BO.LineStation result = (BO.LineStation)lineStation.CopyPropertiesToNew(typeof(BO.LineStation)); //mets dans result une BO.LineStation, a partir de la DO.LineStation 
           //  DO.Station myStation = dl.GetStation(lineStation.StationCode);  //a suppprimer  
-          Station myStation = GetStation(int code); 
+          //Station myStation = GetStation(int code); 
             result.StationName = myStation.Name;
             //  int previousIndex = --(lineStation.LineStationIndex);
             // DO.AdjacentStations adj = GetAdjacentStations(myStation, GetStation(previousLineStation.StationCode));   //poubelle 
 
             //ca marche ma amara tro cool?
             var sCoord = new GeoCoordinate(myStation.Longitude, myStation.Latitude);
-            var eCoord = new GeoCoordinate(((Station)previousLineStation).Longitude, ((Station)previousLineStation).Latitude);
-            var distance = sCoord.GetDistanceTo(eCoord);
+            //var eCoord = new GeoCoordinate(((Station)previousLineStation).Longitude, ((Station)previousLineStation).Latitude);
+            //var distance = sCoord.GetDistanceTo(eCoord);
 
-            result.DistanceFromLastStation = distance*1.5;
+          //  result.DistanceFromLastStation = distance*1.5;
             result.TimeFromLastStation = TimeSpan.FromSeconds(result.DistanceFromLastStation/8) ;
             //DL.GetAllAdjacentStationsBy(adj => adj.station2 == stat);
             return result;
+        }
+        public static BO.Line CopyToLine(this DO.Line line)
+        {
+            BO.Line result = (BO.Line)line.CopyPropertiesToNew(typeof(BO.Line));
+            result.ListOfStations=
+            return result;
+
         }
 
         //copytolinestation en construction

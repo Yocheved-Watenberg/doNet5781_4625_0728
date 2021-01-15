@@ -157,6 +157,10 @@ namespace DL
             else
             throw new DO.BadAdjacentStationsIdException(station1, station2, "theses adjacent stations doesn't exist in the list of adjacents stations");
         }
+        public void DeleteAdjacentsStationsFrom(DO.AdjacentStations adj) 
+        {
+            DataSource.ListAdjacentStations.Remove(adj);
+        }
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStations()
         {
             return from adj in DataSource.ListAdjacentStations
@@ -195,6 +199,14 @@ namespace DL
         public void UpdateAdjacentStations(int Station1, int Station2, Action<DO.AdjacentStations> update)
         {
             var adj = DataSource.ListAdjacentStations.FirstOrDefault(predicate => (predicate.Station1 == Station1) && (predicate.Station2 == Station2));
+            if (adj != null)
+            {
+                update(adj);
+            }
+        }
+        public void UpdateAdjacentStations(int StationToChange, Action<DO.AdjacentStations> update)
+        {
+            var adj = DataSource.ListAdjacentStations.FirstOrDefault(predicate => (predicate.Station1 == StationToChange) || (predicate.Station2 == StationToChange));
             if (adj != null)
             {
                 update(adj);
