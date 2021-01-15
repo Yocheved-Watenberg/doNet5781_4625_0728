@@ -68,12 +68,12 @@ namespace PL
             }
         }
 
-        private void ShowBusLine(int index)
-        {
-            curLine = DS.DataSource.ListLine[index];
-            UpGrid.DataContext = curLine;
-            lbLineStations.DataContext = curLine.StationsList;
-        }
+        //private void ShowBusLine(int index)
+        //{
+        //    curLine = DS.DataSource.ListLine[index];
+        //    UpGrid.DataContext = curLine;
+        //    lbLineStations.DataContext = curLine.StationsList;
+        //}
 
 
 

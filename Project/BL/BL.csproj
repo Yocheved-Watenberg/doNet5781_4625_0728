@@ -58,9 +58,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DalObject\DalObject.csproj">
+    <ProjectReference Include="..\DalObject\DLObject.csproj">
       <Project>{c0008077-006f-4fa0-8ee9-76b175fb08eb}</Project>
-      <Name>DalObject</Name>
+      <Name>DLObject</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DLAPI.csproj">
       <Project>{8ab13ebb-897a-4830-9eef-5e134801397f}</Project>

@@ -92,7 +92,9 @@ namespace DLAPI
         AdjacentStations GetAdjacentStations(int Station1,int Station2);
         void UpdateAdjacentStations(AdjacentStations adjacentStations);
         void UpdateAdjacentStations(int Station1, int Station2, Action<AdjacentStations> update);
+        void UpdateAdjacentStations(int StationToChange, Action<AdjacentStations> update);
         void DeleteAdjacentStations(int Station1, int Station2);
+        void DeleteAdjacentsStationsFrom(DO.AdjacentStations adj);
         #endregion
     }
 }

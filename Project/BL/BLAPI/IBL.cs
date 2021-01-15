@@ -26,7 +26,7 @@ namespace BLAPI
        void AddStation(Station station);       
        void DeleteStation(int code);
        IEnumerable<Station> GetAllStation();
-       IEnumerable<BL.BO.Line> GetAllLineInStation();
+       IEnumerable<BL.BO.Line> GetAllLineInStation(Station s);
        IEnumerable<AdjacentStations> GetAllAdjacentStations();
         BL.BO.AdjacentStations adjacentStationsDoBoAdapter(DO.AdjacentStations adjDO);
        void UpdateStation(Station station);
