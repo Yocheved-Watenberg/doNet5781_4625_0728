@@ -20,7 +20,7 @@ namespace PL
     /// </summary>
     public partial class StationAdmin : Window
     {
-
+        //we don't allow to upadate the station code, because it's the id 
         IBL bl;
         BL.BO.Station curStation;
         public StationAdmin(IBL _bl)
