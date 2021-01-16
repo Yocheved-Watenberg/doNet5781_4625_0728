@@ -15,6 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLObject", "DalObject\DLObj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotNet5781_03A_4625_0728", "..\dotNet5781_03A_4625_0728\dotNet5781_03A_4625_0728.csproj", "{AAF00DAB-A8A1-4A23-8E89-0CEA383EFEBB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02DF153A-E3BC-4791-93F5-C7801061B6C3}"
+	ProjectSection(SolutionItems) = preProject
+		config.xml = config.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

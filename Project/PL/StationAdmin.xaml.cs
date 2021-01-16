@@ -39,26 +39,49 @@ namespace PL
 
         private void stationDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            throw new NotImplementedException(); 
         }
 
         private void stationCheckBox_Checked(object sender, RoutedEventArgs e)
         {
+            throw new NotImplementedException();
 
         }
 
         private void cbStationCode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            throw new NotImplementedException();
 
         }
 
         private void lbLineStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            throw new NotImplementedException();
 
         }
 
         private void AdressTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            throw new NotImplementedException();
+
+        }
+
+        private void btDeleteStation_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+
+
+        }
+
+        private void btAddStation_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+
+        }
+
+        private void btUpdateStation_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
 
         }
     }
