@@ -11,14 +11,15 @@ namespace BLAPI
     public interface IBL
     {
        #region Line
-       BL.BO.Line LineDoBoAdapter(DO.Line lineDO); 
-       void AddLine(Line line);                  //allows only after the user entered two stations
+       BL.BO.Line LineDoBoAdapter(DO.Line lineDO);
+        BL.BO.LineStation LineStationDoBoAdapter(DO.LineStation lineDO);
+        void AddLine(Line line);                  //allows only after the user entered two stations
        void DeleteLine(int id);
        void AddStationToLine(LineStation lineStation, LineStation previous);
        void DeleteStationOfLine(int stationId, int lineId);
        Line GetLine(int myCode, Station FirstStation, Station LastStation);
        IEnumerable<Line> GetAllLine();
-       IEnumerable<LineStation> GetAllLineStationsInLine(Line line);    
+       IEnumerable<LineStation> GetAllLineStationsInLine(Line line);
        #endregion
 
        #region Station

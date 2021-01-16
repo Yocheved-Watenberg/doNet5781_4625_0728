@@ -44,10 +44,11 @@
                       VerticalAlignment="Stretch" 
                       Grid.Column="2" 
                       Margin="22,10,85,6" 
-                      DisplayMemberPath ="Code"
+                      ItemsSource="{Binding}" 
+                      DisplayMemberPath ="Code" 
                       SelectionChanged="cbLines_SelectionChanged" 
                       Foreground="Blue" 
-                      FontSize="10"   >
+                      FontSize="10"  >
             </ComboBox>
             <Label Content="Area:" 
                       Grid.Column="3" 

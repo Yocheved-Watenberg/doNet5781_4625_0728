@@ -29,7 +29,6 @@ namespace PL
         }
         private void btnGO_Click(object sender, RoutedEventArgs e)
         {
-
             if (rbAdmin.IsChecked == true)
             {
                 ChoiceAdmin win = new ChoiceAdmin(bl);  

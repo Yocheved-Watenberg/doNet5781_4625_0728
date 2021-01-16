@@ -59,18 +59,18 @@ namespace BL
         {
             try
             {
-              IEnumerable<Line> lineInStation= from ls in dl.GetAllLineStationBy(ls => ls.StationCode == s.Code)    
+               IEnumerable<Line> lineInStation= from ls in dl.GetAllLineStationBy(ls => ls.StationCode == s.Code)    
                                            //searches all the LineStations which have the same code than the station sent 
                                            let line = dl.GetLine(ls.LineId)
                                            //creates a line from the Id of the LineStation
-                                            select line.CopyToLine();
+                                            select LineDoBoAdapter(line);
                 return lineInStation;
             }
-            catch(DO.BadStationIdException ex)
+            catch (DO.BadStationIdException ex)
             {
                 throw new BO.BadStationException("This station does not exist", ex);
             }
-            
+
         }
         public IEnumerable<BO.Station> GetAllStation()
         {
@@ -94,20 +94,12 @@ namespace BL
         {
             BO.Station stationBO = new BO.Station();
             stationDO.CopyPropertiesTo(stationBO);
-            stationBO.ListOfLine = from allLine in dl.GetAllLineStationBy(l => l.StationCode == stationDO.Code)           //searches in all the lineStation which one has the code of the station
-                                   let line = dl.GetLine(allLine.LineId)
-                                   select line.CopyToLine();                                                               // 
+            //stationBO.ListOfLine = from allLine in dl.GetAllLineStationBy(l => l.StationCode == stationDO.Code)           //searches in all the lineStation which one has the code of the station
+            //                       let line = dl.GetLine(allLine.LineId)
+            //                       select line.CopyToLine();                                                               // 
             return stationBO;
         }
-        //public BO.Station LineStationDoBoAdapter(DO.LineStation stationDO)
-        //{
-        //    BO.Station stationBO = new BO.Station();
-        //    stationDO.CopyPropertiesTo(stationBO);
-        //    stationBO.ListOfLine = from allLine in dl.GetAllLineBy(l => l.Code == stationDO.Code)
-        //                           let line = dl.GetLine(allLine.Id)
-        //                           select line.CopyToLine();                        // a fr
-        //    return stationBO;
-        //}
+
         public void UpdateStation(BO.Station station)
         {
             DO.Station stationDO = new DO.Station();
@@ -193,16 +185,16 @@ namespace BL
         }
         public IEnumerable<LineStation> GetAllLineStationsInLine(Line line)
         {
-            try 
+            try
             {
-               IEnumerable<DO.LineStation> lineStation= dl.GetAllLineStationBy(l => l.LineId == line.Id);
-               
+                IEnumerable<DO.LineStation> lineStationDO = dl.GetAllLineStationBy(l => l.LineId == line.Id);
+                return from item in lineStationDO 
+                select LineStationDoBoAdapter(item); 
             }
             catch(DO.BadLineIdException ex)
             {
                 throw new BO.BadLineException("This line does not exist", ex);
             }
-            return lineStation;
         }
         public BO.Line GetLine(int myCode, BO.Station FirstStation, BO.Station LastStation)
         {   //the first and last station are here to tell us what's the line(because two lines can have the same code)
@@ -222,10 +214,18 @@ namespace BL
             BO.Line lineBO = new BO.Line();
             lineDO.CopyPropertiesTo(lineBO);
             lineBO.ListOfStations = from allStation in dl.GetAllLineStationBy(l => l.LineId == lineDO.Id)
-                                    let station = dl.GetStation(allStation.LineId);
-            select station.CopyToLineStation();
+                                 //   let station = dl.GetStation(allStation.LineId)
+                                    select LineStationDoBoAdapter(allStation);
             return lineBO;
         }
+       public BL.BO.LineStation LineStationDoBoAdapter(DO.LineStation lineStationDO)
+        {
+            BO.LineStation lineStationBO = new BO.LineStation();
+            lineStationDO.CopyPropertiesTo(lineStationBO);
+            //il faut rajouter distance et time 
+            return lineStationBO;
+        }
+
         #endregion
         #region adjacentStation
         public BL.BO.AdjacentStations adjacentStationsDoBoAdapter(DO.AdjacentStations adjDO)
