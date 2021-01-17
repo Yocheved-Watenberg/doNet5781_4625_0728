@@ -14,9 +14,6 @@ namespace DO
         {
             throw new NotImplementedException();
         }
-        public override string ToString()                                                //override ToString for a station
-        {
-            return "Station number: " + Code + ",  " + Name + " " + Latitude + "°N " + Longitude + "°E"+Adress;
-        }
+       
     }
 }

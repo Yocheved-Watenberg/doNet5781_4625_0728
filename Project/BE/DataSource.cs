@@ -7,8 +7,8 @@ using DAL.DO;
 using DO;
 
 
-namespace DS//memamech le Idal
-{//a garder??       // ici il a mis la classe student a la classe Class1
+namespace DS
+{
 
     public static class DataSource
     {
