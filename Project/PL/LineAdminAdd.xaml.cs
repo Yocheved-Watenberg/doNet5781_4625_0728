@@ -27,8 +27,7 @@ namespace PL
         {
             InitializeComponent();
             bl = _bl;
-            cbAreas.ItemsSource = System.Enum.GetValues(typeof(BL.BO.Enum.Areas));
-           
+            cbAreas.ItemsSource = System.Enum.GetValues(typeof(BL.BO.Enum.Areas));    
             lbListOfStations.DataContext = bl.GetAllStation();
         }
 
