@@ -242,8 +242,9 @@ namespace DL
 
         public IEnumerable<DO.Line> GetAllLine()
         {
-            return from line in DataSource.ListLine
-                   select line.Clone();
+            IEnumerable<DO.Line> lines = from line in DataSource.ListLine
+                                         select line/*.Clone();*/;
+            return lines;
         }
 
         public IEnumerable<DO.Line> GetAllLineBy(Predicate<DO.Line> predicate)

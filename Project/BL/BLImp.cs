@@ -223,6 +223,7 @@ namespace BL
             BO.LineStation lineStationBO = new BO.LineStation();
             lineStationDO.CopyPropertiesTo(lineStationBO);
             //il faut rajouter distance et time 
+            lineStationBO.StationName = dl.GetStation(lineStationDO.StationCode).Name;
             return lineStationBO;
         }
 

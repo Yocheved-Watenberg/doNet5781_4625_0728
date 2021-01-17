@@ -14,6 +14,10 @@ namespace BL.BO
         public TimeSpan TimeFromLastStation { get; set; }
         public string StationName { get; set; }                               //name of the station
         public int PrevStation { get; set; }
-        public int NextStation { get; set; }                           
+        public int NextStation { get; set; }
+        public override string ToString()                                                //override ToString for a Linestation
+        {
+            return "Station number: " + StationCode + ",  " +/*+ DistanceFromLastStation + " " + TimeFromLastStation + " "*/ "Station name: " + StationName + " " ;
+        }                                                   //a reflechir si on met et si oui a initialiser
     }
 }
