@@ -7,5 +7,6 @@
         public int LineStationIndex { get; set; }                      //place of the station in the line
         public int PrevStation { get; set; }                           //?
         public int NextStation { get; set; }                           //?
+        
     }
 }

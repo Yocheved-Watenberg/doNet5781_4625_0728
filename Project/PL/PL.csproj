@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LineAdminAdd.xaml.cs">
+      <DependentUpon>LineAdminAdd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StationAdmin.xaml.cs">
       <DependentUpon>StationAdmin.xaml</DependentUpon>
     </Compile>
@@ -63,6 +66,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LineAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LineAdminAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -56,6 +56,12 @@ namespace PL
             }
         }
 
+        private void butAdd_Click(object sender, RoutedEventArgs e)
+        {
+            LineAdminAdd win = new LineAdminAdd(bl);
+            win.Show();
+        }
+
         //private void btUpdateStudent_Click(object sender, RoutedEventArgs e)
         //{
         //    try

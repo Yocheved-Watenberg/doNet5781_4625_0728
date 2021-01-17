@@ -7,8 +7,8 @@ using DAL.DO;
 using DO;
 
 
-namespace DS//memamech le Idal
-{//a garder??       // ici il a mis la classe student a la classe Class1
+namespace DS
+{
 
     public static class DataSource
     {
@@ -1066,108 +1066,29 @@ Adress="Belly",          //Jerusalem
             FirstStation =63422,//"Shaham / Ivory",
     LastStation =  57964,// Nof Habashan Two,
               },
-                new Line
-      {                       Id = Static.LineIdCounter++,//AUTOMATI
-            Code =28 ,
-            Area = (Areas)3,//Kiriat Ekron
-            FirstStation =30770,// King Hassan II / Bossi St. George,
-    LastStation =  38855 , //Herzl/Goni
-                },
                  new Line
-      {                       Id = Static.LineIdCounter++,//AUTOMATI
+      {     Id = Static.LineIdCounter++,//AUTOMATI
             Code =22 ,
             Area = (Areas)3,//Kiriat Ekron
             FirstStation =30770,// King Hassan II / Bossi St. George,
-    LastStation =  38855 , //Herzl/Goni
+            LastStation =  38855 , //Herzl/Goni
                 },
                   new Line
-      {   Id = Static.LineIdCounter++,//AUTOMATI
+      {     Id = Static.LineIdCounter++,//AUTOMATI
             Code = 34,
             Area = (Areas)3,//Jerusalem
             FirstStation =60028,// Rabbi Pardes/Zocarman,
-    LastStation =  73 ,// Golda Meir Boulevard / The Poet Acej
+            LastStation =  73 ,// Golda Meir Boulevard / The Poet Acej
      },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//a jeter
-      //          new Line
-      //{
-      //      Id = LineIdCounter++,//AUTOMATI
-      //      Code =21 ,
-      //      Area = (Areas)4,
-      //      FirstStation = 1130,//"El Toel / Al Mazar",
-      //      LastStation =20637,//"Lehi / Operation Kadesh",
-      //},
-      //new Line
-      //{
-      //      Id = LineIdCounter++,//AUTOMATI
-      //      Code =21 ,
-      //      Area = (Areas)3,//bat yam,gueoulim
-      //      FirstStation = 35505,//Herzl Rotshild
-      //      LastStation =38863,//Expand 2
-      //},
-      //new Line
-      //{
-      //      Id = LineIdCounter++,//AUTOMATI
-      //      Code =21 ,
-      //      Area = (Areas)0,       //Tel Aviv
-      //      FirstStation = 20639,//="Mahal / Rabbi Alenkawa"
-      //      LastStation =20641,//Bayas Behachat/Mkhel
-      //},
-      // new Line
-      //{
-      //      Id =LineIdCounter++ ,//AUTOMATI
-      //      Code=35 ,
-      //      Area = (Areas)3,// Rechovot
-      //      FirstStation = 38856,//"Rotation/demonstration",
-      //      LastStation =38859,//"Willow",
-      //},
-      //  new Line
-      //{
-      //      Id =LineIdCounter++ ,//AUTOMATI
-      //      Code=28 ,
-      //      Area = (Areas)2,// Shaar Haneguev/Kiryat Malhaki
-      //      FirstStation = 12550,//"Station on Sderot / Sdocks"
-      //      LastStation =18317,//"Bar Yehuda Boulevard/Muata Gur"
-      //},
-
-
-
-
-
-
 
  };
             #endregion
             #region AdjacentStations
             ListAdjacentStations = new List<AdjacentStations>
- {new AdjacentStations
-      { Station1=38832,
+ {      new AdjacentStations
+      {  Station1=38832,
          Station2=38838,
-          Distance=200,
+         Distance=200,
          Time=new TimeSpan(00,00,50),
       },
       new AdjacentStations {
@@ -2450,70 +2371,70 @@ new LineStation{
                 //10th line
                
   new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[9].Id,
         StationCode= 60028,
         LineStationIndex=0,
         PrevStation= 0 ,
         NextStation= 61157,
          },
     new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[9].Id,
         StationCode= 61157,
         LineStationIndex=1,
         PrevStation= 60028 ,
         NextStation= 60413,
         },
       new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[9].Id,
         StationCode= 60413,
         LineStationIndex=2,
         PrevStation= 61157 ,
         NextStation= 20638,
         },
         new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[9].Id,
         StationCode= 20638,
         LineStationIndex=3,
         PrevStation= 60413 ,
         NextStation= 84 ,
         },
           new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[9].Id,
         StationCode= 84 ,
         LineStationIndex=4,
         PrevStation= 20638 ,
         NextStation= 83 ,
         },
             new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[9].Id,
         StationCode= 83 ,
         LineStationIndex=5,
         PrevStation= 84  ,
         NextStation= 78,
         },
               new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[9].Id,
         StationCode= 78,
         LineStationIndex=6,
         PrevStation= 83  ,
         NextStation= 77,
         },
                 new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[9].Id,
         StationCode= 77,
         LineStationIndex=7,
         PrevStation= 78 ,
         NextStation= 76,
         },
                   new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[9].Id,
         StationCode= 76,
         LineStationIndex=8,
         PrevStation= 77 ,
         NextStation= 0,
         },
                     new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[9].Id,
         StationCode= 73,
         LineStationIndex=9,
         PrevStation= 76 ,
@@ -2609,7 +2530,7 @@ new LineTrip
 new LineTrip
 {
     LineId=ListLine[3].Id,
-    StartAt=TimeSpan.Parse("07.40.00"),
+    StartAt=new TimeSpan(07,40, 00),
     Frequency= new TimeSpan(00,15,00),
     FinishedAt=new TimeSpan(01,30,00),
 },
