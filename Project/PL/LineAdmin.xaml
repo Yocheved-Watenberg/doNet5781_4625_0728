@@ -5,12 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="LineAdmin" Height="450" Width="800">
+        Title="LineAdmin" Height="450" Width="800" WindowStartupLocation="CenterScreen">
 
     <Grid x:Name="MainGrid">
-        <Grid.Background>
-            <ImageBrush ImageSource="870x489_capture2_0.jpg" Opacity="0.25"/>
-        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="47*"/>
             <RowDefinition Height="168*"/>
@@ -100,6 +97,7 @@
 
 
         </Button>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="96,147,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
 
     </Grid>
 

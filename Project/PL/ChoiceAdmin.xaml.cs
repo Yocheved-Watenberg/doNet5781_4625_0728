@@ -39,5 +39,10 @@ namespace PL
             LineAdmin win = new LineAdmin(bl);
             win.Show();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close(); 
+        }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BL.BO;assembly=BL" x:Class="PL.StationAdmin"
         mc:Ignorable="d"
-        Title="StationAdmin" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="StationAdmin" Height="450" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <CollectionViewSource x:Key="stationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Station}, CreateList=True}"/>
     </Window.Resources>
@@ -52,6 +52,7 @@
 
                 <Label Content="List of all Lines in this station:" Grid.Column="2" HorizontalAlignment="Left" Margin="26,54,0,0" VerticalAlignment="Top" Height="23" Width="413"/>
                 <ListBox x:Name="lbLineStations"   HorizontalAlignment="Left" Height="131"  Margin="57,104,0,0" VerticalAlignment="Top" ItemsSource="{Binding}"  Width="280"  FontFamily="Segoe UI Black"   FontSize="14"  FontWeight="Bold"  Foreground="Blue" Grid.Column="1" />
+                <Button Content="Back" HorizontalAlignment="Left" Margin="109,374,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
             </Grid>
         </Grid>
     </Grid>
