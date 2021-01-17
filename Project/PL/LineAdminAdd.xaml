@@ -33,5 +33,7 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
+        <ComboBox x:Name="cbLines" HorizontalAlignment="Left" VerticalAlignment="Top" Width="117" RenderTransformOrigin="1.38,8.103" Margin="614,225,0,0" Height="25"  SelectedItem="{Binding }"/>
+
     </Grid>
 </Window>
