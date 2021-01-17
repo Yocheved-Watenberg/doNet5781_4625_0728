@@ -257,8 +257,6 @@ namespace DL
             return GetAllLine();
         }
 
-    
-
         public void UpdateLine(DO.Line line)
         {
             DO.Line myLine = DataSource.ListLine.Find(l => l.Id == line.Id);

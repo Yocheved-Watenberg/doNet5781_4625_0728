@@ -42,7 +42,7 @@
                     <Label Content="Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
                     <TextBox x:Name="latitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                     <Label Content="Adress:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-                    <TextBox x:Name="AdressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Adress, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="AdressTextBox_TextChanged"/>
+                    <TextBox x:Name="AdressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Adress, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"  />
                 </Grid>
 
                 <Button x:Name="btDeleteStation" Content="Delete Current Station" HorizontalAlignment="Left" Margin="224,294,0,0" VerticalAlignment="Top" Width="162" Height="34" Background="#FFC56853" Grid.Column="1" Click="btDeleteStation_Click"/>
@@ -51,7 +51,7 @@
                 <Button x:Name="btUpdateStation" Content="Aplly Changes on Station Details" HorizontalAlignment="Left" Margin="72,288,0,0" VerticalAlignment="Top" Width="234" Height="28" Background="#FFD1DA16" Click="btUpdateStation_Click"/>
 
                 <Label Content="List of all Lines in this station:" Grid.Column="2" HorizontalAlignment="Left" Margin="26,54,0,0" VerticalAlignment="Top" Height="23" Width="413"/>
-                <ListBox x:Name="lbLineStations"   HorizontalAlignment="Left" Height="131"  Margin="57,104,0,0" VerticalAlignment="Top" ItemsSource="{Binding}"  Width="280"  FontFamily="Segoe UI Black"   FontSize="14"  FontWeight="Bold"  Foreground="Blue" SelectionChanged="lbLineStations_SelectionChanged" Grid.Column="1" />
+                <ListBox x:Name="lbLineStations"   HorizontalAlignment="Left" Height="131"  Margin="57,104,0,0" VerticalAlignment="Top" ItemsSource="{Binding}"  Width="280"  FontFamily="Segoe UI Black"   FontSize="14"  FontWeight="Bold"  Foreground="Blue" Grid.Column="1" />
             </Grid>
         </Grid>
     </Grid>

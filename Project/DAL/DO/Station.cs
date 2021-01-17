@@ -9,10 +9,5 @@ namespace DO
         public double Longitude { get; set; }                         //longitude of the station
         public double Latitude { get; set; }                          //latitude of the station
         public string Adress { get; set; }                            //adress of the station optionnel
-
-        public object StationDoBoAdapter()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
