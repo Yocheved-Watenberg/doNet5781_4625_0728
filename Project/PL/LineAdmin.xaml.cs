@@ -67,6 +67,7 @@ namespace PL
             MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
         }
 
+
         #region  student example 
         //private void btUpdateStudent_Click(object sender, RoutedEventArgs e)
         //{
@@ -187,6 +188,9 @@ namespace PL
         //}
         #endregion
 
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close(); 
+        }
     }
 }

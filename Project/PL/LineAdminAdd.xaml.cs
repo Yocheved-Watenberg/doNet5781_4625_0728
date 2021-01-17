@@ -31,6 +31,11 @@ namespace PL
 
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close(); 
+        }
+
         //private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
         //    curLine = cbLines.SelectedItem as BL.BO.Line;
@@ -42,16 +47,16 @@ namespace PL
         //    }
         //}
 
-    //    private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    //    {
-            
-    //        curArea = cbAreas.SelectedItem as BL.BO.Enum.Areas;
-    //        tbArea.DataContext = curLine;
+        //    private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //    {
 
-    //        if (curLine != null)
-    //        {
-    //            RefreshAllLinesGrid();
-    //        }
-    //    }
+        //        curArea = cbAreas.SelectedItem as BL.BO.Enum.Areas;
+        //        tbArea.DataContext = curLine;
+
+        //        if (curLine != null)
+        //        {
+        //            RefreshAllLinesGrid();
+        //        }
+        //    }
     }
 }
