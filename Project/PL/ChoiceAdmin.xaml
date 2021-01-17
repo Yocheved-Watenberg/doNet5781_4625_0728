@@ -7,9 +7,12 @@
         mc:Ignorable="d"
         Title="ChoiceAdmin" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="fond.jpg" Opacity="0.75"/>
+        </Grid.Background>
         <Label Content="What do you want to see or update?" HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="#FF1DBCD4"/>
         <Button x:Name="btnLine" Content="Line"  Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnLine_Click" Margin="325,150,325,200"/>
         <Button x:Name="btnStation" Content="Station" Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnStation_Click" Margin="500,150,150,200"/>
-        <Button Content="Back" HorizontalAlignment="Left" Margin="40,380,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click"/>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="20,380,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click"/>
     </Grid>
 </Window>

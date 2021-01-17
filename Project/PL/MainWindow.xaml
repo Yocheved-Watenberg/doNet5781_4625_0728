@@ -6,18 +6,18 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-  
+
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="870x489_capture2_0.jpg" Opacity="0.25"/>
+            <ImageBrush ImageSource="870x489_capture2_0.jpg" Opacity="0.5"/>
         </Grid.Background>
-        <Label Content="Welcome to the bus logiciel" HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="#FF1DBCD4"/>
-        <GroupBox Header="Choose Option:" HorizontalAlignment="Left" Height="186" Margin="115,136,0,0" VerticalAlignment="Top" Width="333" FontSize="16" FontStyle="Italic" FontWeight="SemiBold">
+        <Label Content="Welcome !" HorizontalAlignment="Left" Margin="276,48,0,0" VerticalAlignment="Top" Height="66" Width="196" FontWeight="Bold" FontStyle="Italic" FontSize="30" Foreground="#FF00B4C8" Background="{x:Null}"/>
+        <GroupBox Header="" HorizontalAlignment="Left" Height="222" Margin="159,114,0,0" VerticalAlignment="Top" Width="380" FontSize="16" FontStyle="Italic" FontWeight="SemiBold">
             <StackPanel Margin="21,20,29,24">
-                <RadioButton x:Name ="rbAdmin" Content="Admin" Height="24" IsChecked="True"/>
-                <RadioButton x:Name ="rbUser" Content="User" Height="23" Margin="0,0,-10.8,0" HorizontalAlignment="Right" Width="282"/>
+                <RadioButton x:Name ="rbAdmin" Content="I'm an admin" Height="50" HorizontalAlignment="Left" IsChecked="True" FontSize="25" FontFamily="Aharoni" Background="#FF00B4C8" />
+                <RadioButton x:Name ="rbUser" Content="I'm a user" Height="50" Margin="0,0,-10.8,0" HorizontalAlignment="Left" FontSize="25" FontWeight="Normal" FontFamily="Aharoni" FontStyle="Normal" Background="#FF00B4C8"/>
             </StackPanel>
         </GroupBox>
-        <Button x:Name="btnGO" Content="GO" HorizontalAlignment="Left" Height="42" Margin="230,346,0,0" VerticalAlignment="Top" Width="105" Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click"/>
+        <Button x:Name="btnGO" Content="GO" HorizontalAlignment="Left" Height="42" Margin="230,346,0,0" VerticalAlignment="Top" Width="105" Background="#FF00B4C8" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click"/>
     </Grid>
 </Window>

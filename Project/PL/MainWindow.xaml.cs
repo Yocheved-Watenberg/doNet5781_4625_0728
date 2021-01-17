@@ -40,6 +40,10 @@ namespace PL
             }
         }
 
+        private void rbAdmin_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
 
