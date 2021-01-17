@@ -10,7 +10,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="fond.jpg" Opacity="0.5"/>
         </Grid.Background>
-        <Label Content="                    Add line:" HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="24" Foreground="#FF1DBCD4"/>
+        <Label Content=" Add line:" HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="24" Foreground="#FF1DBCD4"/>
         <Label Content="In which area ?" Margin="45,142,552.6,233" FontSize="16" FontFamily="Segoe UI Black">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -19,7 +19,7 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
-        <ComboBox x:Name="cbAreas" HorizontalAlignment="Left" VerticalAlignment="Top" Width="117" RenderTransformOrigin="1.38,8.103" Margin="307,142,0,0" Height="25"  SelectedItem="{Binding Area}"/>
+        <ComboBox x:Name="cbAreas" HorizontalAlignment="Left" VerticalAlignment="Top" Width="117" RenderTransformOrigin="1.38,8.103" Margin="307,142,0,0" Height="25"  SelectedItem="{Binding Area}" SelectionChanged="cbAreas_SelectionChanged"/>
         <Label Content="How many stations do you want the line to go through ?" Margin="45,225,285.6,156" FontSize="16" FontFamily="Segoe UI Black">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -28,14 +28,8 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
-        <Label Content="And the last one?" Margin="45,297,552.6,56" FontSize="16" FontFamily="Segoe UI Black">
-            <Label.Foreground>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0"/>
-                    <GradientStop Color="#FF43C0E7" Offset="1"/>
-                </LinearGradientBrush>
-            </Label.Foreground>
-        </Label>
         <Button Content="Back" HorizontalAlignment="Left" Margin="20,380,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <ComboBox x:Name="cbStations" HorizontalAlignment="Left" VerticalAlignment="Top" Width="117" RenderTransformOrigin="1.38,8.103" Margin="606,225,0,0" Height="25"  SelectedItem="{Binding Station}" SelectionChanged="cbStations_SelectionChanged"/>
     </Grid>
+    
 </Window>

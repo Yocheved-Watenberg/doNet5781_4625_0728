@@ -58,9 +58,11 @@ namespace PL
 
         private void butAdd_Click(object sender, RoutedEventArgs e)
         {
-            //LineAdminAdd win = new LineAdminAdd(bl);
-            //win.Show();
-            MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            LineAdminAdd win = new LineAdminAdd(bl);
+            win.Show();
+
+          
+            /*MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk)*/;
         }
         private void butUpdate_Click(object sender, RoutedEventArgs e)
         {
