@@ -76,7 +76,8 @@ namespace PL
         }
         private void btAddStation_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            StationAdminAdd win = new StationAdminAdd(bl);
+            win.Show();
         }
         private void btUpdateStation_Click(object sender, RoutedEventArgs e)
         {

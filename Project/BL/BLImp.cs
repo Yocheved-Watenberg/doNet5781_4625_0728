@@ -36,9 +36,7 @@ namespace BL
                 throw new BO.BadStationException("This station already exist", ex);
             }
             dl.AddStation(DoStation);
-}
-
-         
+}    
         public void DeleteStation(int code)
         {
 
@@ -99,7 +97,6 @@ namespace BL
             //                       select line.CopyToLine();                                                               // 
             return stationBO;
         }
-
         public void UpdateStation(BO.Station station)
         {
             DO.Station stationDO = new DO.Station();
@@ -114,6 +111,19 @@ namespace BL
             }
             
            
+        }
+        public IEnumerable<BO.Station> GetAllStationBy(Predicate<BO.Station> predicate)
+        {
+            if (predicate != null)
+            {
+                return from station in dl.GetAllStationBy((Predicate<DO.Station>)predicate)
+                       select StationDoBoAdapter(station);
+
+                //return from station in dl.GetAllStation()
+                //       where predicate(station)
+                //       select StationDoBoAdapter(station);
+            }
+            return GetAllStation();
         }
         #endregion
         #region Line

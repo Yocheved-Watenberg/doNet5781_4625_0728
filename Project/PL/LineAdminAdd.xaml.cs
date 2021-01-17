@@ -22,26 +22,28 @@ namespace PL
     public partial class LineAdminAdd : Window
     {
         IBL bl;
-        BL.BO.Enum.Areas curArea;
+       // BL.BO.Enum.Areas curArea;
         public LineAdminAdd(IBL _bl)
         {
             InitializeComponent();
             bl = _bl;
             cbAreas.ItemsSource = System.Enum.GetValues(typeof(BL.BO.Enum.Areas));
-
+           
+            lbListOfStations.DataContext = bl.GetAllStation();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)     //button back
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close(); 
+            this.Close();
         }
 
-     
-
-        private void cbAreas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-
+            //    lbListOfStations.SelectedItems
+            MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
         }
+
+
 
         //private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{

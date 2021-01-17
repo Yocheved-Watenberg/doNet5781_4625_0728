@@ -10,8 +10,9 @@
         <Grid.Background>
             <ImageBrush ImageSource="fond.jpg" Opacity="0.5"/>
         </Grid.Background>
-        <Label Content=" Add line:" HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="24" Foreground="#FF1DBCD4"/>
-        <Label Content="In which area ?" Margin="45,142,552.6,233" FontSize="16" FontFamily="Segoe UI Black">
+
+
+        <Label Content="In which area do you want to add a line ?" Margin="45,24,393,354" FontSize="16" FontFamily="Segoe UI Black">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
@@ -19,8 +20,8 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
-        <ComboBox x:Name="cbAreas" HorizontalAlignment="Left" VerticalAlignment="Top" Width="117" RenderTransformOrigin="1.38,8.103" Margin="307,142,0,0" Height="25"  SelectedItem="{Binding Area}" SelectionChanged="cbAreas_SelectionChanged"/>
-        <Label Content="How many stations do you want the line to go through ?" Margin="45,225,285.6,156" FontSize="16" FontFamily="Segoe UI Black">
+
+        <Label Content="Select the stations you want to add to the line:" Margin="45,60,286,321" FontSize="16" FontFamily="Segoe UI Black">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
@@ -28,8 +29,13 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
+
+
         <Button Content="Back" HorizontalAlignment="Left" Margin="20,380,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <ComboBox x:Name="cbStations" HorizontalAlignment="Left" VerticalAlignment="Top" Width="117" RenderTransformOrigin="1.38,8.103" Margin="606,225,0,0" Height="25"  SelectedItem="{Binding Station}" SelectionChanged="cbStations_SelectionChanged"/>
+        <ComboBox x:Name="cbAreas" HorizontalAlignment="Left" Margin="404,28,0,0" VerticalAlignment="Top" Width="120" Height="27"/>
+        <ListBox x:Name="lbListOfStations" HorizontalAlignment="Left" Height="213" Margin="45,103,0,0" VerticalAlignment="Top" Width="615" ItemsSource="{Binding}" SelectionMode="Multiple" />
+        <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="316,338,0,0" VerticalAlignment="Top" Width="146" Height="44" Background="#FFDDDDDB" FontFamily="Harrington" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" FontSize="18" Foreground="#FF132CB4" Click="btnCreate_Click"/>
+
     </Grid>
-    
+
 </Window>
