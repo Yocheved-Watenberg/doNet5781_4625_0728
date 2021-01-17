@@ -17,7 +17,7 @@ namespace BL.BO
         public int NextStation { get; set; }
         public override string ToString()                                                //override ToString for a Linestation
         {
-            return "Station number: " + StationCode + ",  " +/*+ DistanceFromLastStation + " " + TimeFromLastStation + " "*/ "Station name: " + StationName + " " ;
-        }                                                   //a reflechir si on met et si oui a initialiser
+            return "Station number: " + StationCode + ",  " + "Station name: " + StationName + " " + "Line number: " + LineId;
+        }                                                  
     }
 }

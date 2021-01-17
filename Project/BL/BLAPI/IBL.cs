@@ -32,7 +32,10 @@ namespace BLAPI
         BL.BO.AdjacentStations adjacentStationsDoBoAdapter(DO.AdjacentStations adjDO);
        void UpdateStation(Station station);
        Station GetStation(int code);
+        IEnumerable<Station> GetAllStationBy(Predicate<Station> predicate);
+
         #endregion
 
     }
 }
+

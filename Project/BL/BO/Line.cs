@@ -17,7 +17,7 @@ namespace BL.BO
                                                                                        //query on Do.lineStation withlineId=XXX
         public override string ToString()                                                //override ToString for a station
         {
-            return "Line number: " + Code + ",  " + Area + " " ;
+            return "Line number:" + Code + ", Area:" + Area;
         }
     }
 }
