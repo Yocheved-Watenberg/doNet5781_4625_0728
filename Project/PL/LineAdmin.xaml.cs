@@ -58,10 +58,16 @@ namespace PL
 
         private void butAdd_Click(object sender, RoutedEventArgs e)
         {
-            LineAdminAdd win = new LineAdminAdd(bl);
-            win.Show();
+            //LineAdminAdd win = new LineAdminAdd(bl);
+            //win.Show();
+            MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+        }
+        private void butUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
         }
 
+        #region  student example 
         //private void btUpdateStudent_Click(object sender, RoutedEventArgs e)
         //{
         //    try
@@ -179,6 +185,8 @@ namespace PL
         //        MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
         //    }
         //}
+        #endregion
+
 
     }
 }
