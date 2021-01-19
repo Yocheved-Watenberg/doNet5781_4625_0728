@@ -16,13 +16,12 @@ namespace BL
     class BLImp : IBL //internal
     {
         IDAL dl = DLFactory.GetDL();
-        static Random rand = new Random(DateTime.Now.Millisecond);
+        Random rand = new Random(DateTime.Now.Millisecond);
 
         #region Station
         public void AddStation(BO.Station station)   //tres simple creer juste la station, pas bsn de dire les lignes qui pasent par cette station
                                                      //pr creer ou leadken les lignes qui passent par cette station jle fais direct par line
         {
-
             DO.Station DoStation = new DO.Station();
             try
             {
@@ -38,6 +37,7 @@ namespace BL
             }
             dl.AddStation(DoStation);
         }
+
         public void DeleteStation(int code)
         {
 
@@ -142,50 +142,42 @@ namespace BL
             lineStationDO.CopyPropertiesTo(lineStation);
             dl.AddLineStation(lineStationDO);
         }
-
-
         public void AddLine(BO.Line line)
         {
-        List<LineStation> listStations = line.ListOfStations.ToList();
-        DO.Line DoLine = new DO.Line();
-        line.CopyPropertiesTo(DoLine);
-    
-                //DO.LineStation LineStationDO1, LineStationDO2;   
-                //LineStationDO1 = (DO.LineStation) dl.GetLineStation((listStations)[0].LineId, (listStations)[0].StationCode);
-                //LineStationDO2 = (DO.LineStation) dl.GetLineStation((listStations).Last().LineId, listStations.Last().StationCode);
-             
-            for (int i = 0; i < listStations.Count()-1; i++)
+            List<LineStation> listStations = line.ListOfStations.ToList();
+            DO.Line DoLine = new DO.Line();
+            line.CopyPropertiesTo(DoLine);
+
+            //DO.LineStation LineStationDO1, LineStationDO2;   
+            //LineStationDO1 = (DO.LineStation) dl.GetLineStation((listStations)[0].LineId, (listStations)[0].StationCode);
+            //LineStationDO2 = (DO.LineStation) dl.GetLineStation((listStations).Last().LineId, listStations.Last().StationCode);
+
+            for (int i = 0; i < listStations.Count() - 1; i++)
             {
-                       DO.AdjacentStations adjStat = dl.GetAdjacentStations(listStations[i].StationCode, listStations[i + 1].StationCode);
-                       if(adjStat==null)                                        //meaning there aren't already two Adjacents Stations 
-                       {
-                        DO.AdjacentStations newAdjStat = new DO.AdjacentStations();
-                        newAdjStat.Station1 = listStations[i].StationCode;
-                        newAdjStat.Station2 = listStations[i + 1].StationCode;
-                        newAdjStat.Distance = GetDistanceTo(StationLineStationAdapter(listStations[i]), StationLineStationAdapter(listStations[i + 1]))*1.5;
-                        int timeSec = (int)newAdjStat.Distance * (rand.Next()%5)/ (rand.Next()%5);
-                        newAdjStat.Time = new TimeSpan(00,00,timeSec) ;
-                        dl.AddAdjacentStations(newAdjStat);
-                       }
+                DO.AdjacentStations adjStat = dl.GetAdjacentStations(listStations[i].StationCode, listStations[i + 1].StationCode);
+                if (adjStat == null)                                        //meaning there aren't already two Adjacents Stations 
+                {
+                    DO.AdjacentStations newAdjStat = new DO.AdjacentStations();
+                    newAdjStat.Station1 = listStations[i].StationCode;
+                    newAdjStat.Station2 = listStations[i + 1].StationCode;
+                    newAdjStat.Distance = GetDistanceTo(StationLineStationAdapter(listStations[i]), StationLineStationAdapter(listStations[i + 1])) * 1.5;
+                    int timeSec = (int)newAdjStat.Distance * (rand.Next() % 5) / (rand.Next() % 5);
+                    newAdjStat.Time = new TimeSpan(00, 00, timeSec);
+                    dl.AddAdjacentStations(newAdjStat);
+                }
             }
-        DoLine.FirstStation = listStations[0].StationCode;
-        DoLine.LastStation = (listStations.Last()).StationCode;
-        dl.AddLine(DoLine);
+            DoLine.FirstStation = listStations[0].StationCode;
+            DoLine.LastStation = (listStations.Last()).StationCode;
+            dl.AddLine(DoLine);
         }
-        
-            
-
-
-
-
         public void DeleteLine(int id)
         {
             try
             {
                 dl.DeleteLine(id);      //first delete the line itself
-                IEnumerable<DO.LineStation> lineStation=dl.GetAllLineStationBy(l => l.LineId == id);
-                foreach(DO.LineStation item in lineStation) { dl.DeleteLineStation(item.LineId, item.StationCode); }
-                                        //but also all the lineStations which are related to this line                                                                                                                                                                                   
+                IEnumerable<DO.LineStation> lineStation = dl.GetAllLineStationBy(l => l.LineId == id);
+                foreach (DO.LineStation item in lineStation) { dl.DeleteLineStation(item.LineId, item.StationCode); }
+              //  but also all the lineStations which are related to this line
             }
             catch (DO.BadStationIdException ex)
             {
@@ -279,11 +271,10 @@ namespace BL
         }
         #endregion
 
-        private double GetDistanceTo(this Station s1, Station s2)           //donne la distance a vol doiseau entre deux stations
+        private double GetDistanceTo(Station s1, Station s2)           //donne la distance a vol doiseau entre deux stations
         {
             return Math.Sqrt(Math.Pow(s1.Longitude - s2.Longitude, 2) + Math.Pow(s1.Latitude - s2.Latitude, 2));
         }
-
         private Station StationLineStationAdapter(LineStation l)
         {
             return GetStation(l.StationCode);

@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BL.BO;
 using BLAPI;
-using DLAPI.DO;
 
 
 
@@ -30,7 +29,7 @@ namespace PL
            InitializeComponent();
             bl = _bl;
             cbAreas.ItemsSource = System.Enum.GetValues(typeof(BL.BO.Enum.Areas));    
-            lbListOfStations.DataContext = bl.GetStation();
+            lbListOfStations.DataContext = bl.GetAllStation();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -47,11 +46,11 @@ namespace PL
             }
             BL.BO.Line newline = new BL.BO.Line();
             newline.Area = (BL.BO.Enum.Areas)cbAreas.SelectedItem;   //cbAreas.SelectedItem as BL.BO.Enum.Areas;
-            int isNum;
-            int.TryParse(tbCode.Text, out isNum);
-            if (isNum==1)
-            { 
-                newline.Code = int.Parse(tbCode.Text);
+            bool isNum = int.TryParse(tbCode.Text, out int theNum);
+            if (isNum)
+            {
+                //  newline.Code = int.Parse(tbCode.Text);
+                newline.Code = theNum; 
             }
             else
             {
@@ -59,13 +58,10 @@ namespace PL
             }
             newline.Id = Static.GetCounterDO();
             newline.ListOfStations = (IEnumerable<LineStation>)lbListOfStations.SelectedItems;
-            bl.AddLine(newline);      
+            bl.AddLine(newline);
         }
 
         
-
-
-
         //private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
         //    curLine = cbLines.SelectedItem as BL.BO.Line;
