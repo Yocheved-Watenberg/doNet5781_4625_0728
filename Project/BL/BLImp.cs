@@ -128,6 +128,7 @@ namespace BL
         }
         #endregion
         #region Line
+
         public void AddStationToLine(BO.LineStation lineStation, BO.LineStation previous)
         {//can only add a Station which already exists
             try
@@ -228,7 +229,22 @@ namespace BL
             }
             return LineDoBoAdapter(lineDO);
         }
-        public BO.Line LineDoBoAdapter(DO.Line lineDO)
+
+        public Line GetLine(int myCode)
+        {
+            DO.Line lineDO;
+            try
+            {
+                lineDO = (DO.Line)dl.GetLine(myCode);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineException("The code of the line does not exist ", ex);
+            }
+            return LineDoBoAdapter(lineDO);
+        }
+    
+    public BO.Line LineDoBoAdapter(DO.Line lineDO)
         {
             BO.Line lineBO = new BO.Line();
             lineDO.CopyPropertiesTo(lineBO);

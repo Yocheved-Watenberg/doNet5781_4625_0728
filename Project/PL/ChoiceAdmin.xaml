@@ -8,9 +8,9 @@
         Title="ChoiceAdmin" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
-            <ImageBrush Opacity="0.75" ImageSource="fond.jpg"/>
+            <ImageBrush Opacity="0.5" ImageSource="ligne de bus VRAI.jpg"/>
         </Grid.Background>
-        <Button x:Name="btnLine" Click="btnLine_Click" Margin="281,43,312,209" Foreground="{x:Null}">
+        <Button x:Name="btnLine" Click="btnLine_Click" Margin="10,10,583.6,242" Foreground="{x:Null}">
             <Button.Template>
                 <ControlTemplate>
                     <Border CornerRadius="100" BorderThickness="5" BorderBrush="#FF4496CF" Margin="0,0,0,0">
@@ -29,7 +29,7 @@
             </Button.Template>
         </Button>
 
-        <Button x:Name="btnStation" Background="#FF4496CF" Click="btnStation_Click" Margin="504,132,50,148">
+        <Button x:Name="btnStation" Background="#FF4496CF" Click="btnStation_Click" Margin="508,238,58.6,42">
             <Button.Template>
                 <ControlTemplate>
                     <Border CornerRadius="100" BorderThickness="5" BorderBrush="#FF4496CF" Margin="0,-38,24,0">
