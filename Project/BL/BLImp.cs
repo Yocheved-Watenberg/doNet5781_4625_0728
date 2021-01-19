@@ -273,7 +273,7 @@ namespace BL
         //    }
 
             #endregion
-            #region adjacentStation
+        #region adjacentStation
             public BL.BO.AdjacentStations adjacentStationsDoBoAdapter(DO.AdjacentStations adjDO)
         {
             BL.BO.AdjacentStations adjBO = new BL.BO.AdjacentStations();
