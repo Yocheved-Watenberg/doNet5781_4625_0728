@@ -56,21 +56,7 @@ namespace PL
             bool isNum = int.TryParse(tbCode.Text, out int theNum);
             if (isNum)
             {
-               
-                try
-                {
-                    //  newline.Code = int.Parse(tbCode.Text);
-                    if (bl.GetLine(theNum) == null)            //there is no such line 
-                    {
-                        newline.Code = theNum;
-                    }
-                    
-                }
-                catch 
-                {
-                    throw new ExistingLineCodeException("This code is already used for an existing line");
-                }
-              
+                newline.Code = theNum;
             }
             else
             {
@@ -85,28 +71,25 @@ namespace PL
             //                                  //creates a line from the Id of the LineStation
             //                                  select LineDoBoAdapter(line);
             //return lineInStation;
-            
-            
-            
-            
-            //IEnumerable<LineStation> newLineStation;
-            //from allLs in lbListOfStations.SelectedItems
-            //let ls = new LineStation
-            //{
-            //    LineId =allLs.LineId,
-            //    StationCode = allLs.StationCode,
-            //    //DistanceFromLastStation=       ,
-            //    //TimeFromLastStation =          ,
-            //    StationName = allLs.StationName, 
-            //    //PrevStation = ,
-            //    //NextStation = ,
-            //}
-            //     select 
 
-            
-            ////  newline.ListOfStations = lbListOfStations.SelectedItems;
-            
-            bl.AddLine(newline);
+
+
+
+            IEnumerable<LineStation> newLineStation;
+            from allLs in lbListOfStations.SelectedItems
+            select ls = new LineStation
+            {
+                LineId = allLs.LineId,
+                StationCode = allLs.StationCode,
+              //  DistanceFromLastStation=,
+           //     TimeFromLastStation =          ,
+                StationName = allLs.StationName,
+            }
+
+
+       //  newline.ListOfStations = lbListOfStations.SelectedItems;
+
+       bl.AddLine(newline);
         }
 
         private void btnSelectStations_Click(object sender, RoutedEventArgs e)
