@@ -20,7 +20,7 @@ namespace BL
         #region Station
         public void AddStation(BO.Station station)   //tres simple creer juste la station, pas bsn de dire les lignes qui pasent par cette station
                                                   //pr creer ou leadken les lignes qui passent par cette station jle fais direct par line
-{
+        {
 
             DO.Station DoStation = new DO.Station();
             try
