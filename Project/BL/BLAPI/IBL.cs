@@ -20,10 +20,11 @@ namespace BLAPI
        Line GetLine(int myCode, Station FirstStation, Station LastStation);
        IEnumerable<Line> GetAllLine();
        IEnumerable<LineStation> GetAllLineStationsInLine(Line line);
-       #endregion
+        //IEnumerable<LineStation> GetLineStationsInLine(Predicate<Line> predicate);
+        #endregion
 
-       #region Station
-       Station StationDoBoAdapter(DO.Station stationDO);
+        #region Station
+        Station StationDoBoAdapter(DO.Station stationDO);
        void AddStation(Station station);       
        void DeleteStation(int code);
        IEnumerable<Station> GetAllStation();
