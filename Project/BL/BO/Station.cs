@@ -14,6 +14,8 @@ namespace BL.BO
         public double Latitude { get; set; }                          //latitude of the station
         public string Adress { get; set; }                            //adress of the station optionnel
                                                                       //public IEnumerable<Line> ListOfLine { get; set; }
+        public bool IsDeleted { get; set; } = false; 
+
         public override string ToString()                             //override ToString for a station
         {
             return "Station number: " + Code + ",  Station Name: " + Name + ", Station Adress: " + Adress;

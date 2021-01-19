@@ -58,6 +58,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BE\DS.csproj">
+      <Project>{fc1ab4f6-aec8-47d2-b4ce-1e618a2621ac}</Project>
+      <Name>DS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DalObject\DLObject.csproj">
       <Project>{c0008077-006f-4fa0-8ee9-76b175fb08eb}</Project>
       <Name>DLObject</Name>

@@ -5,7 +5,7 @@ using DLAPI;
 using BLAPI;
 using System.Threading;
 using BL.BO;
-//using BO;
+using DS;
 
 //let student = item as bool.Student
 //    orderby student.ID
@@ -22,20 +22,19 @@ namespace BL
         public void AddStation(BO.Station station)   //tres simple creer juste la station, pas bsn de dire les lignes qui pasent par cette station
                                                      //pr creer ou leadken les lignes qui passent par cette station jle fais direct par line
         {
-            DO.Station DoStation = new DO.Station();
+            //    if (DataSource.ListStation.Exists(s => s.Code == station.Code))
+            //        throw new BO.BadStationException("This station already exist", ex);
+            //}
+            DO.Station myDoStation = new DO.Station();
+            station.CopyPropertiesTo(myDoStation);
             try
             {
-                if ((DO.Station)dl.GetStation(station.Code) == null)                //if it finds a station with this code it sent, that s means that the station already exists
-                {
-                    station.CopyPropertiesTo(DoStation);
-
-                }
+                dl.AddStation(myDoStation);
             }
             catch (DO.BadStationIdException ex)
             {
                 throw new BO.BadStationException("This station already exist", ex);
             }
-            dl.AddStation(DoStation);
         }
 
         public void DeleteStation(int code)
@@ -124,7 +123,10 @@ namespace BL
                 //       where predicate(station)
                 //       select StationDoBoAdapter(station);
             }
-            return GetAllStation();
+         else
+            {
+                return GetAllStation();
+            }
         }
         #endregion
         #region Line
@@ -171,6 +173,7 @@ namespace BL
             DoLine.LastStation = (listStations.Last()).StationCode;
             dl.AddLine(DoLine);
         }
+
         public void DeleteLine(int id)
         {
             try
@@ -209,12 +212,32 @@ namespace BL
             {
                 IEnumerable<DO.LineStation> lineStationDO = dl.GetAllLineStationBy(l => l.LineId == line.Id);
                 return from item in lineStationDO 
-                select LineStationDoBoAdapter(item); 
+                select LineStationDoBoAdapter(item);
+
             }
             catch(DO.BadLineIdException ex)
             {
                 throw new BO.BadLineException("This line does not exist", ex);
             }
+        }
+
+        public IEnumerable<Station> GetAllStationInLine(Line l) 
+        {
+            return from item in GetAllLineStationsInLine(l)
+                   select StationLineStationAdapter(item);                 
+        }
+
+        public IEnumerable<Station> GetAllStationsInLines(IEnumerable<Line> lines)//a metttre ds le ibl 
+        {
+            List<Station> newList = new List<Station>(); 
+            foreach (Line line in lines)
+            {
+                foreach (Station station in GetAllStationInLine(line))
+                {
+                    newList.Add(station);
+                }
+            }
+           return newList.Distinct(); 
         }
         public BO.Line GetLine(int myCode, BO.Station FirstStation, BO.Station LastStation)
         {   //the first and last station are here to tell us what's the line(because two lines can have the same code)
@@ -261,20 +284,20 @@ namespace BL
             lineStationBO.StationName = dl.GetStation(lineStationDO.StationCode).Name;
             return lineStationBO;
         }
-        //A FINIR
-        //IEnumerable<LineStation> GetLineStationsInLine(Predicate<Line> predicate)
-        //{
-        //    if (predicate != null)
-        //    {
-        //        //return from station in dl.GetAllLineStationBy((Predicate<DO.LineStation>)predicate);
-        //        return from station in dl.GetAllLineBy(lS => lS. ;
-        //        select StationDoBoAdapter(station);
 
-        //    }
+        public IEnumerable<BO.Line> GetAllLineBy(Predicate<DO.Line> predicate)
+        {
+            return from item in dl.GetAllLineBy(predicate)
+                   select LineDoBoAdapter(item);
+        }
 
+        public IEnumerable<Station> GetStationByArea(BL.BO.Enum.Areas myArea)
+        {
+           return GetAllStationsInLines(GetAllLineBy(l => (BL.BO.Enum.Areas)l.Area == myArea));
+        }
             #endregion
-        #region adjacentStation
-            public BL.BO.AdjacentStations adjacentStationsDoBoAdapter(DO.AdjacentStations adjDO)
+            #region adjacentStation
+        public BL.BO.AdjacentStations adjacentStationsDoBoAdapter(DO.AdjacentStations adjDO)
         {
             BL.BO.AdjacentStations adjBO = new BL.BO.AdjacentStations();
             adjDO.CopyPropertiesTo(adjBO);
@@ -295,6 +318,12 @@ namespace BL
         {
             return GetStation(l.StationCode);
         }
+
+        private Line LineStationLineAdapter (LineStation l)
+        {
+            return LineDoBoAdapter(dl.GetLine(l.LineId));
+        }
+
 
     }
 }

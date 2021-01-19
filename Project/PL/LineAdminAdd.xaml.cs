@@ -28,8 +28,7 @@ namespace PL
         {
            InitializeComponent();
             bl = _bl;
-            cbAreas.ItemsSource = System.Enum.GetValues(typeof(BL.BO.Enum.Areas));    
-            lbListOfStations.DataContext = bl.GetAllStation();
+            cbAreas.ItemsSource = System.Enum.GetValues(typeof(BL.BO.Enum.Areas));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -110,7 +109,13 @@ namespace PL
             bl.AddLine(newline);
         }
 
-        
+        private void btnSelectStations_Click(object sender, RoutedEventArgs e)
+        {
+            lbListOfStations.DataContext = bl.GetStationByArea((BL.BO.Enum.Areas)cbAreas.SelectedItem);
+        }
+
+
+
         //private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
         //    curLine = cbLines.SelectedItem as BL.BO.Line;

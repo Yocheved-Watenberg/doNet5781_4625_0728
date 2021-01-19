@@ -1,4 +1,5 @@
-﻿using BLAPI;
+﻿using BL.BO;
+using BLAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,49 @@ namespace PL
         {
             InitializeComponent();
             bl = _bl; 
+        }
+
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        {
+            Station newStation = new Station(); 
+            if (int.TryParse(tbCode.Text, out int theCode))
+            {
+                newStation.Code = theCode;
+            }
+            else
+            {
+                throw new BadFormatException("You have to put only numbers for the code!");
+            }
+            //verifier que le code n'existe pas deja 
+
+            newStation.Name = tbName.Text;
+            newStation.Adress = tbAdress.Text;
+
+            if (double.TryParse(tbLongitude.Text, out double theLongitude))
+            {
+                newStation.Longitude = theLongitude;
+            }
+            else
+            {
+                throw new BadFormatException("You have to put a valid num for the longitude!");
+            }
+
+
+            if (double.TryParse(tbLatitude.Text, out double theLatitude))
+            {
+                newStation.Latitude = theLatitude;
+            }
+            else
+            {
+                throw new BadFormatException("You have to put a valid num for the latitude!");
+            }
+
+            bl.AddStation(newStation);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
