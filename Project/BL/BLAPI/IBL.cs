@@ -20,7 +20,7 @@ namespace BLAPI
        Line GetLine(int myCode, Station FirstStation, Station LastStation);
        IEnumerable<Line> GetAllLine();
        IEnumerable<LineStation> GetAllLineStationsInLine(Line line);
-        IEnumerable<LineStation> GetAllLineStationsInLine(Predicate<Station> predicate);    // 
+        //IEnumerable<LineStation> GetLineStationsInLine(Predicate<Line> predicate);
         #endregion
 
         #region Station

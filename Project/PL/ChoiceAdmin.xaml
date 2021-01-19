@@ -8,11 +8,46 @@
         Title="ChoiceAdmin" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="fond.jpg" Opacity="0.75"/>
+            <ImageBrush Opacity="0.75" ImageSource="fond.jpg"/>
         </Grid.Background>
-        <Label Content="What do you want to see or update?" HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="#FF1DBCD4"/>
-        <Button x:Name="btnLine" Content="Line"  Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnLine_Click" Margin="325,150,325,200"/>
-        <Button x:Name="btnStation" Content="Station" Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnStation_Click" Margin="500,150,150,200"/>
+        <Button x:Name="btnLine" Click="btnLine_Click" Margin="281,43,312,209" Foreground="{x:Null}">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="100" BorderThickness="5" BorderBrush="#FF4496CF" Margin="0,0,0,0">
+                        <TextBlock     Text="Click here to have access to the lines" 
+                                       Foreground="#FF4496CF" 
+                                       HorizontalAlignment="Center"                                           
+                                       Height="40"
+                                       TextAlignment="Center"
+                                       TextWrapping="Wrap"
+                                       FontFamily="Kristen ITC"
+                                       FontWeight="Bold" 
+                                       FontSize="16">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button x:Name="btnStation" Background="#FF4496CF" Click="btnStation_Click" Margin="504,132,50,148">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="100" BorderThickness="5" BorderBrush="#FF4496CF" Margin="0,-38,24,0">
+                        <TextBlock Text="Click here to have access to the stations" Foreground="#FF4496CF" 
+                                       HorizontalAlignment="Center"                                           
+                                       Height="40"
+                                       TextAlignment="Center"
+                                       TextWrapping="Wrap"
+                                       FontFamily="Kristen ITC"
+                                       FontWeight="Bold"
+                                       FontSize="16">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+
         <Button Content="Back" HorizontalAlignment="Left" Margin="20,380,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click"/>
     </Grid>
 </Window>

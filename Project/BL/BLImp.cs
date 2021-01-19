@@ -261,10 +261,20 @@ namespace BL
             lineStationBO.StationName = dl.GetStation(lineStationDO.StationCode).Name;
             return lineStationBO;
         }
+        //A FINIR
+        //IEnumerable<LineStation> GetLineStationsInLine(Predicate<Line> predicate)
+        //{
+        //    if (predicate != null)
+        //    {
+        //        //return from station in dl.GetAllLineStationBy((Predicate<DO.LineStation>)predicate);
+        //        return from station in dl.GetAllLineBy(lS => lS. ;
+        //        select StationDoBoAdapter(station);
 
-        #endregion
-        #region adjacentStation
-        public BL.BO.AdjacentStations adjacentStationsDoBoAdapter(DO.AdjacentStations adjDO)
+        //    }
+
+            #endregion
+            #region adjacentStation
+            public BL.BO.AdjacentStations adjacentStationsDoBoAdapter(DO.AdjacentStations adjDO)
         {
             BL.BO.AdjacentStations adjBO = new BL.BO.AdjacentStations();
             adjDO.CopyPropertiesTo(adjBO);
