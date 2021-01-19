@@ -9,7 +9,11 @@ namespace BL.BO
 {
    public class Static
     {
-        public static int LineIdCounterBO { get; set; } = DAL.DO.Static.LineIdCounter;
-        
+       // public static int LineIdCounterBO { get; set; } = DAL.DO.Static.LineIdCounter;     
+        public static int GetCounterDO()                // function to get the LineIdCounter of the DO(which will be used in the PL)
+        {
+            DAL.DO.Static.LineIdCounter++;
+            return DAL.DO.Static.LineIdCounter;
+        }
     }
 }

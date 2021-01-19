@@ -55,7 +55,6 @@
     <Compile Include="BO\Station.cs" />
     <Compile Include="BO\Trip.cs" />
     <Compile Include="DeepCopyUtilities.cs" />
-    <Compile Include="GeoCoordinate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

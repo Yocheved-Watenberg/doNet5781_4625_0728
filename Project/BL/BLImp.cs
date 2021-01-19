@@ -17,9 +17,10 @@ namespace BL
     {
         IDAL dl = DLFactory.GetDL();
 
+
         #region Station
         public void AddStation(BO.Station station)   //tres simple creer juste la station, pas bsn de dire les lignes qui pasent par cette station
-                                                  //pr creer ou leadken les lignes qui passent par cette station jle fais direct par line
+                                                     //pr creer ou leadken les lignes qui passent par cette station jle fais direct par line
         {
 
             DO.Station DoStation = new DO.Station();
@@ -31,12 +32,12 @@ namespace BL
 
                 }
             }
-             catch(DO.BadStationIdException ex)
+            catch (DO.BadStationIdException ex)
             {
                 throw new BO.BadStationException("This station already exist", ex);
             }
             dl.AddStation(DoStation);
-}    
+        }
         public void DeleteStation(int code)
         {
 
@@ -51,17 +52,17 @@ namespace BL
             {
                 throw new BO.BadStationException("This station does not exist", ex);
             }
-    
+
         }
         public IEnumerable<BO.Line> GetAllLineInStation(BO.Station s)   //a revoir renvoie t elle vrmnt bo.line, ps plutot do.line
         {
             try
             {
-               IEnumerable<Line> lineInStation= from ls in dl.GetAllLineStationBy(ls => ls.StationCode == s.Code)    
-                                           //searches all the LineStations which have the same code than the station sent 
-                                           let line = dl.GetLine(ls.LineId)
-                                           //creates a line from the Id of the LineStation
-                                            select LineDoBoAdapter(line);
+                IEnumerable<Line> lineInStation = from ls in dl.GetAllLineStationBy(ls => ls.StationCode == s.Code)
+                                                      //searches all the LineStations which have the same code than the station sent 
+                                                  let line = dl.GetLine(ls.LineId)
+                                                  //creates a line from the Id of the LineStation
+                                                  select LineDoBoAdapter(line);
                 return lineInStation;
             }
             catch (DO.BadStationIdException ex)
@@ -103,14 +104,14 @@ namespace BL
             station.CopyPropertiesTo(stationDO);
             try
             {
-               dl.UpdateStation(stationDO);
+                dl.UpdateStation(stationDO);
             }
             catch (DO.BadStationIdException ex)
             {
                 throw new BO.BadStationException("This station doesn't exist", ex);
             }
-            
-           
+
+
         }
         public IEnumerable<BO.Station> GetAllStationBy(Predicate<BO.Station> predicate)
         {
@@ -131,7 +132,7 @@ namespace BL
         {//can only add a Station which already exists
             try
             {
-               dl.GetStation(lineStation.StationCode);
+                dl.GetStation(lineStation.StationCode);
             }
             catch (DO.BadStationIdException ex)
             {
@@ -141,26 +142,50 @@ namespace BL
             lineStationDO.CopyPropertiesTo(lineStation);
             dl.AddLineStation(lineStationDO);
         }
+    
+
         public void AddLine(BO.Line line)
         {
-            DO.Line DoLine = new DO.Line();
-            line.CopyPropertiesTo(DoLine);
-            DO.LineStation LineStationDO1, LineStationDO2;
+        List<LineStation> listStations = line.ListOfStations.ToList();
+        DO.Line DoLine = new DO.Line();
+        line.CopyPropertiesTo(DoLine);
+        DO.LineStation LineStationDO1, LineStationDO2;
+           
             try
             {
-                LineStationDO1 = (DO.LineStation)dl.GetLineStation((line.ListOfStations.ToList())[0].LineId, (line.ListOfStations.ToList())[0].StationCode);
-                LineStationDO2 = (DO.LineStation)dl.GetLineStation((line.ListOfStations.ToList()).Last().LineId, line.ListOfStations.ToList().Last().StationCode);
+                LineStationDO1 = (DO.LineStation) dl.GetLineStation((listStations)[0].LineId, (listStations)[0].StationCode);
+                LineStationDO2 = (DO.LineStation) dl.GetLineStation((listStations).Last().LineId, listStations.Last().StationCode);
+                for (int i = 0; i < listStations.Count(); i++)
+                {
+                       DO.AdjacentStations adjStat = dl.GetAdjacentStations(listStations[i].StationCode, listStations[i + 1].StationCode);
+                       if(adjStat==null)                                        //meaning there aren't already two Adjacents Stations 
+                       {
+                        DO.AdjacentStations newAdjStat = new DO.AdjacentStations();
+                        newAdjStat.Station1 = listStations[i].StationCode;
+                        newAdjStat.Station2 = listStations[i + 1].StationCode;
+                        newAdjStat.Time =                   ;
+                        newAdjStat.Distance = GetDistanceTo();
+                        dl.AddAdjacentStations(newAdjStat);
+                       }
 
+                }
             }
             catch (DO.BadStationIdException ex)
             {
                 throw new BO.BadStationException("The code of the station does not exist", ex);
             }
+
+        DoLine.FirstStation = LineStationDO1.StationCode;
+        DoLine.LastStation = LineStationDO2.StationCode;
+        dl.AddLine(DoLine);
+        
+        }
+        
             
-            DoLine.FirstStation = LineStationDO1.StationCode;
-            DoLine.LastStation = LineStationDO2.StationCode;
-            dl.AddLine(DoLine);
-}
+
+
+
+
         public void DeleteLine(int id)
         {
             try
@@ -251,70 +276,11 @@ namespace BL
                    select adjacentStationsDoBoAdapter(item);
         }
         #endregion
-        #region student pr exemple, a supprimer apres
 
-        //   public void DeleteStudent(int id)// ne ps oublie d effacer la person le student et from all the courses
-        //{
-        //    try
-        //    {
-        //        dl.DeletePerson(id);
-        //        dl.DeleteStudent(id);
-        //        dl.DeleteStudentFromAllCourses(id);
-        //    }
-        //    catch (DO.BadPersonIdCourseIDException ex)
-        //    {
-        //        throw new BO.BadStudentIdCourseIDException("Student ID and Course ID is Not exist", ex);
-        //    }
-        //    catch (DO.BadPersonIdException ex)
-        //    {
-        //        throw new BO.BadStudentIdException("Person id does not exist or he is not a student", ex);
-        //    }
-        //}
-        //public IEnumerable<BO.Line> GetStudentsBy(Predicate<BO.Line> predicate)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public IEnumerable<BO.ListedPerson> GetStudentIDNameList()
-        //{
-        //    return from item in dl.GetStudentListWithSelectedFields((Func<DO.Student, object>)((stud) =>
-        //    {
-        //        try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-        //        return new BO.ListedPerson() { ID = stud.ID, Name = dl.GetPerson(stud.ID).Name };
-        //    }))
-        //           let student = item as BO.ListedPerson
-        //           //orderby student.ID
-        //           select student;
-        //}
-
-        //public void UpdateStudentPersonalDetails(BO.Student student)
-        //{
-        //    //Update DO.Person            
-        //    DO.Person personDO = new DO.Person();
-        //    student.CopyPropertiesTo(personDO);
-        //    try
-        //    {
-        //        dl.UpdatePerson(personDO);
-        //    }
-        //    catch (DO.BadPersonIdException ex)
-        //    {
-        //        throw new BO.BadStudentIdException("Student ID is illegal", ex);
-        //    }
-
-        //    //Update DO.Student            
-        //    DO.Student studentDO = new DO.Student();
-        //    student.CopyPropertiesTo(studentDO);
-        //    try
-        //    {
-        //        dl.UpdateStudent(studentDO);
-        //    }
-        //    catch (DO.BadPersonIdException ex)
-        //    {
-        //        throw new BO.BadStudentIdException("Student ID is illegal", ex);
-        //    }
-
-        //} 
-        #endregion
+        public double GetDistanceTo(this Station s, double longitude, double latitude)
+        {
+            return Math.Sqrt(Math.Pow(s.Longitude - longitude, 2) + Math.Pow(s.Latitude - latitude, 2));
+        }
     }
 }
 

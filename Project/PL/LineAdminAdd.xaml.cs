@@ -30,7 +30,7 @@ namespace PL
            InitializeComponent();
             bl = _bl;
             cbAreas.ItemsSource = System.Enum.GetValues(typeof(BL.BO.Enum.Areas));    
-            lbListOfStations.DataContext = bl.GetAllStation();
+            lbListOfStations.DataContext = bl.GetStation();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -48,10 +48,10 @@ namespace PL
             BL.BO.Line newline = new BL.BO.Line();
             newline.Area = (BL.BO.Enum.Areas)cbAreas.SelectedItem;   //cbAreas.SelectedItem as BL.BO.Enum.Areas;
             newline.Code = ;
-            newline.Id = Static.LineIdCounterBO++;
-            newline.ListOfStations = lbListOfStations.SelectedItems;
+            newline.Id = Static.GetCounterDO();
+            newline.ListOfStations = (IEnumerable<LineStation>)lbListOfStations.SelectedItems;
             bl.AddLine(newline);
-           // MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+         
         }
 
         
