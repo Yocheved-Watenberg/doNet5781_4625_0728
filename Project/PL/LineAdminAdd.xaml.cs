@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BL.BO;
 using BLAPI;
+using DLAPI.DO;
+
+
 
 namespace PL
 {
@@ -22,10 +25,9 @@ namespace PL
     public partial class LineAdminAdd : Window
     {
         IBL bl;
-       // BL.BO.Enum.Areas curArea;
         public LineAdminAdd(IBL _bl)
         {
-            InitializeComponent();
+           InitializeComponent();
             bl = _bl;
             cbAreas.ItemsSource = System.Enum.GetValues(typeof(BL.BO.Enum.Areas));    
             lbListOfStations.DataContext = bl.GetAllStation();
@@ -38,9 +40,21 @@ namespace PL
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            //    lbListOfStations.SelectedItems
-            MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            int s = lbListOfStations.SelectedItems.Count;
+            if  (s< 2)
+            {
+                throw new LessThanTwoStationsException("you have to select more stations");
+            }
+            BL.BO.Line newline = new BL.BO.Line();
+            newline.Area = (BL.BO.Enum.Areas)cbAreas.SelectedItem;   //cbAreas.SelectedItem as BL.BO.Enum.Areas;
+            newline.Code = ;
+            newline.Id = Static.LineIdCounterBO++;
+            newline.ListOfStations = lbListOfStations.SelectedItems;
+            bl.AddLine(newline);
+           // MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
         }
+
+        
 
 
 
