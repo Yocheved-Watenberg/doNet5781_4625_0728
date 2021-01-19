@@ -15,9 +15,10 @@ namespace BL.BO
    
         public IEnumerable<BO.LineStation> ListOfStations { get; set; }                //has the list of all the Linestations
                                                                                        //query on Do.lineStation withlineId=XXX
+        public bool IsDeleted { get; set; } = false; 
         public override string ToString()                                                //override ToString for a station
         {
-            return "Line number:" + Code + ", Area:" + Area;
+            return "Line number:" + Code + ", Area:" + Area ;
         }
     }
 }

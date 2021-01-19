@@ -217,7 +217,7 @@ namespace DL
         public void AddLine(DO.Line line)
         {
             if (DataSource.ListLine.FirstOrDefault(l => l.Id == line.Id) != null)
-                throw new DO.BadLineIdException(line.Id, "this line already exists in the list of lines");
+                throw new DO.BadLineIdException(line.Id, "this line already exists in the list of lines or this id has been used for a deleted line");
             DataSource.ListLine.Add(line.Clone());
         }
         public void DeleteLine(int id)
@@ -225,15 +225,16 @@ namespace DL
             DO.Line myLine = DataSource.ListLine.Find(l => l.Id == id);
             if (myLine != null)
             {
-                DataSource.ListLine.Remove(myLine);
+                myLine.IsDeleted = true; 
+              //  DataSource.ListLine.Remove(myLine);
             }
             else
                 throw new DO.BadLineIdException(id, $"bad line id: {id}");
         }
         public DO.Line GetLine(int id)
         {
-            DO.Line line = DataSource.ListLine.Find(l => l.Id == id);
-
+            DO.Line line = DataSource.ListLine.Find(l => (l.Id == id) && (l.IsDeleted == false)
+);
             if (line != null)
                 return line.Clone();
             else
@@ -242,16 +243,15 @@ namespace DL
 
         public IEnumerable<DO.Line> GetAllLine()
         {
-            IEnumerable<DO.Line> lines = from line in DataSource.ListLine
-                                         select line/*.Clone();*/;
-            return lines;
+            return from line in DataSource.ListLine.FindAll(l => l.IsDeleted == false)
+                   select line.Clone();
         }
 
         public IEnumerable<DO.Line> GetAllLineBy(Predicate<DO.Line> predicate)
         {
             if (predicate != null)
             {
-                return from line in DataSource.ListLine
+                return from line in DataSource.ListLine.FindAll(l => l.IsDeleted == false)
                        where predicate(line)
                        select line.Clone();
             }
@@ -261,7 +261,7 @@ namespace DL
         public void UpdateLine(DO.Line line)
         {
             DO.Line myLine = DataSource.ListLine.Find(l => l.Id == line.Id);
-            if (myLine != null)
+            if ((myLine != null) && (myLine.IsDeleted == false))
             {
                 DataSource.ListLine.Remove(myLine);
                 DataSource.ListLine.Add(line.Clone());
@@ -273,13 +273,12 @@ namespace DL
         public void UpdateLine(int id, Action<DO.Line> update)
         {
             var myLine = DataSource.ListLine.FirstOrDefault(predicate => predicate.Id == id);
-            if (myLine != null)
+            if ((myLine != null) && (myLine.IsDeleted == false))
             {
                 update(myLine);
             }
         }
-
-        
+     
         #endregion
         #region LineStation 
 
@@ -418,15 +417,16 @@ namespace DL
         public void AddStation(DO.Station station)
         {
             if (DataSource.ListStation.FirstOrDefault(s => s.Code == station.Code) != null)
-                throw new DO.BadStationIdException(station.Code, "this station already exists in the list of stations");
+                throw new DO.BadStationIdException(station.Code, "this station already exists in the list of stations or this code has been used for a deleted station");
             DataSource.ListStation.Add(station.Clone());
         }
         public void DeleteStation(int code)
         {
             DO.Station myStation = DataSource.ListStation.Find(s => s.Code == code);
-            if (myStation != null)
+            if ((myStation != null)&&(myStation.IsDeleted==false))
             {
-                DataSource.ListStation.Remove(myStation);
+                // DataSource.ListStation.Remove(myStation);
+                myStation.IsDeleted = true;
             }
             else
                 throw new DO.BadStationIdException(code, "this station doesn't exist in the list of station");
@@ -434,7 +434,7 @@ namespace DL
 
         public DO.Station GetStation(int code)
         {
-            DO.Station station = DataSource.ListStation.Find(s => s.Code == code);
+            DO.Station station = DataSource.ListStation.Find(s => (s.Code == code)&&(s.IsDeleted==false));
 
             if (station != null)
                 return station.Clone();
@@ -444,7 +444,7 @@ namespace DL
 
         public IEnumerable<DO.Station> GetAllStation()
         {
-            return from station in DataSource.ListStation
+            return from station in DataSource.ListStation.FindAll(s=>s.IsDeleted==false)
                    select station.Clone();
         }
 
@@ -452,7 +452,7 @@ namespace DL
         {
             if (predicate != null)
             {
-                return from station in DataSource.ListStation
+                return from station in DataSource.ListStation.FindAll(s => s.IsDeleted == false)
                        where predicate(station)
                        select station.Clone();
             }
@@ -462,7 +462,7 @@ namespace DL
         public void UpdateStation(DO.Station station)
         {
             DO.Station myStation = DataSource.ListStation.Find(s => s.Code == station.Code);
-            if (myStation != null)
+            if ((myStation != null)&&(myStation.IsDeleted==false))
             {
                 DataSource.ListStation.Remove(myStation);
                 DataSource.ListStation.Add(station.Clone());
@@ -473,7 +473,7 @@ namespace DL
         public void UpdateStation(int code, Action<DO.Station> update)
         {
             var myStation = DataSource.ListStation.FirstOrDefault(predicate => predicate.Code == code);
-            if (myStation != null)
+            if ((myStation != null) && (myStation.IsDeleted == false))
             {
                 update(myStation);
             }

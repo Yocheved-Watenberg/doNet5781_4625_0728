@@ -36,7 +36,12 @@ namespace BL.BO
     {
         public BadCodeException(string message) : base(message) { }
     public override string ToString() => "Your code's content must be only numbers";
-}
+    }
+
+    public class BadFormatException : Exception
+    {
+        public BadFormatException(string message) : base(message) {}
+    }
 
     //a revoir en cas d erreur
 
