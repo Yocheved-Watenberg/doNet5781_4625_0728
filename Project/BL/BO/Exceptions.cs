@@ -27,11 +27,16 @@ namespace BL.BO
         public override string ToString() => base.ToString() + $", bad station code: {code}";
     }
     [Serializable]
-    public class LessThanTwoStationsException : Exception
+    public class LessThanTwoStationsException: Exception
     {
         public LessThanTwoStationsException(string message) : base(message){}
         public override string ToString() => "You must choose at least two stations to create a line";
     }
+    public class BadCodeException : Exception
+    {
+        public BadCodeException(string message) : base(message) { }
+    public override string ToString() => "Your code's content must be only numbers";
+}
 
     //a revoir en cas d erreur
 

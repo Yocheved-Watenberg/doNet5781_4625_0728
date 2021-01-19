@@ -43,15 +43,23 @@ namespace PL
             int s = lbListOfStations.SelectedItems.Count;
             if  (s< 2)
             {
-                throw new LessThanTwoStationsException("you have to select more stations");
+                throw new LessThanTwoStationsException("You have to select more stations");
             }
             BL.BO.Line newline = new BL.BO.Line();
             newline.Area = (BL.BO.Enum.Areas)cbAreas.SelectedItem;   //cbAreas.SelectedItem as BL.BO.Enum.Areas;
-            newline.Code = ;
+            int isNum;
+            int.TryParse(tbCode.Text, out isNum);
+            if (isNum==1)
+            { 
+                newline.Code = int.Parse(tbCode.Text);
+            }
+            else
+            {
+                throw new BadCodeException("You have to put only numbers for the code!");
+            }
             newline.Id = Static.GetCounterDO();
             newline.ListOfStations = (IEnumerable<LineStation>)lbListOfStations.SelectedItems;
-            bl.AddLine(newline);
-         
+            bl.AddLine(newline);      
         }
 
         
