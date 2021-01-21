@@ -38,11 +38,11 @@ namespace BL.BO
     public override string ToString() => "Your code's content must be only numbers";
     }
 }
-public class ExistingLineCodeException: Exception
-    {
-    public ExistingLineCodeException(string message) : base(message) { }
-    public override string ToString() => "Your code is already used for another line";
-}
+//public class ExistingLineCodeException: Exception
+//    {
+//    public ExistingLineCodeException(string message) : base(message) { }
+//    public override string ToString() => "Your code is already used for another line";
+//}
 
     public class BadFormatException : Exception
     {
@@ -77,4 +77,4 @@ public class ExistingLineCodeException: Exception
 
     //    }
 
-}
+

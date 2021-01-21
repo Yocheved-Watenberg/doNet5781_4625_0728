@@ -13,7 +13,7 @@ namespace BLAPI
        #region Line
        BL.BO.Line LineDoBoAdapter(DO.Line lineDO);
         BL.BO.LineStation LineStationDoBoAdapter(DO.LineStation lineDO);
-        void AddLine(Line line);                  //allows only after the user entered two stations
+        void AddLine(int myCode, BL.BO.Enum.Areas myArea, IEnumerable<LineStation> myListOfStations);              //allows only after the user entered two stations
        void DeleteLine(int id);
        void AddStationToLine(LineStation lineStation, LineStation previous);
        void DeleteStationOfLine(int stationId, int lineId);

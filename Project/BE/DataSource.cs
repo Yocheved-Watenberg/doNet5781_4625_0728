@@ -40,7 +40,7 @@ namespace DS
                     FromDate = DateTime.Parse("19.12.18"),
                     TotalTrip=17000,
                     FuelRemain=670,
-                    BusState= (State) 1,
+                    BusState= (Enums.State) 1,
                     MaxTravellers=35,
                  },
                 new Bus
@@ -49,7 +49,7 @@ namespace DS
                     FromDate = DateTime.Parse("24.03.19"),
                     TotalTrip=17000,
                     FuelRemain=1000,
-                    BusState= (State) 1,
+                    BusState= (Enums.State) 1,
                     MaxTravellers=40,
                 },
 
@@ -59,7 +59,7 @@ namespace DS
                     FromDate = DateTime.Parse("30.11.18"),
                     TotalTrip=18000,
                     FuelRemain=500,
-                    BusState=(State)1,
+                    BusState=(Enums.State)1,
                     MaxTravellers=35,
                 },
                  new Bus
@@ -68,7 +68,7 @@ namespace DS
                     FromDate = DateTime.Parse("15.08.20"),
                     TotalTrip=6000,
                     FuelRemain=250,
-                    BusState=(State)1,
+                    BusState=(Enums.State)1,
                     MaxTravellers=45,
                  },
 
@@ -78,7 +78,7 @@ namespace DS
                     FromDate = DateTime.Parse("19.12.18"),
                     TotalTrip=17990,
                     FuelRemain=670,
-                    BusState=(State)1,
+                    BusState=(Enums.State)1,
                     MaxTravellers=35,
                  },
 
@@ -88,7 +88,7 @@ namespace DS
                     FromDate = DateTime.Parse("15.10.19"),
                     TotalTrip=17060,
                     FuelRemain=680,
-                    BusState= (State) 1,
+                    BusState= (Enums.State) 1,
                     MaxTravellers=40,
                  },
                 new Bus
@@ -97,7 +97,7 @@ namespace DS
                     FromDate = DateTime.Parse("25.04.19"),
                     TotalTrip=17006,
                     FuelRemain=555,
-                    BusState= (State) 1,
+                    BusState= (Enums.State) 1,
                     MaxTravellers=40,
                  },
                 new Bus
@@ -106,7 +106,7 @@ namespace DS
                     FromDate = DateTime.Parse("01.01.21"),
                     TotalTrip=19009,
                     FuelRemain=1000,
-                    BusState= (State) 1,
+                    BusState= (Enums.State) 1,
                     MaxTravellers=50,
                  },
                 new Bus
@@ -115,7 +115,7 @@ namespace DS
                     FromDate = DateTime.Parse("03.10.18"),
                     TotalTrip=17059,
                     FuelRemain=587,
-                    BusState= (State) 1,
+                    BusState= (Enums.State) 1,
                     MaxTravellers=35,
                  },
                 new Bus
@@ -124,7 +124,7 @@ namespace DS
                     FromDate = DateTime.Parse("31.01.20"),
                     TotalTrip=19007,
                     FuelRemain=670,
-                    BusState= (State) 1,
+                    BusState= (Enums.State) 1,
                     MaxTravellers=40,
                  },
 
@@ -134,7 +134,7 @@ namespace DS
                     FromDate = DateTime.Parse("06.05.18"),
                     TotalTrip=17690,
                     FuelRemain=700,
-                    BusState= (State) 1,
+                    BusState= (Enums.State) 1,
                     MaxTravellers=35,
                  },
                 new Bus
@@ -143,7 +143,7 @@ namespace DS
                     FromDate = DateTime.Parse("04.06.18"),
                     TotalTrip=17990,
                     FuelRemain=700,
-                    BusState= (State) 1,
+                    BusState= (Enums.State) 1,
                     MaxTravellers=35,
                  },new Bus
                 {
@@ -151,7 +151,7 @@ namespace DS
                     FromDate = DateTime.Parse("19.12.18"),
                     TotalTrip=17500,
                     FuelRemain=750,
-                    BusState= (State) 0,
+                    BusState= (Enums.State) 0,
                     MaxTravellers=35,
                  },new Bus
                 {
@@ -159,7 +159,7 @@ namespace DS
                     FromDate = DateTime.Parse("27.12.19"),
                     TotalTrip=17000,
                     FuelRemain=690,
-                    BusState= (State) 0,
+                    BusState= (Enums.State) 0,
                     MaxTravellers=40,
                  },new Bus
                 {
@@ -167,7 +167,7 @@ namespace DS
                     FromDate = DateTime.Parse("03.01.21"),
                     TotalTrip=19000,
                     FuelRemain=1020,
-                    BusState= (State) 0,
+                    BusState= (Enums.State) 0,
                     MaxTravellers=50,
                  },new Bus
                 {
@@ -175,7 +175,7 @@ namespace DS
                     FromDate = DateTime.Parse("08.08.20"),
                     TotalTrip=19008,
                     FuelRemain=1004,
-                    BusState= (State) 0,
+                    BusState= (Enums.State) 0,
                     MaxTravellers=45,
                  },new Bus
                 {
@@ -183,7 +183,7 @@ namespace DS
                     FromDate = DateTime.Parse("11.11.18"),
                     TotalTrip=16000,
                     FuelRemain=400,
-                    BusState= (State) 0,
+                    BusState= (Enums.State) 0,
                     MaxTravellers=35,
                  },
                 new Bus
@@ -192,7 +192,7 @@ namespace DS
                     FromDate = DateTime.Parse("16.03.19"),
                     TotalTrip=17666,
                     FuelRemain=600,
-                    BusState= (State) 0,
+                    BusState= (Enums.State) 0,
                     MaxTravellers=40,
                  },
                 new Bus
@@ -201,7 +201,7 @@ namespace DS
                     FromDate = DateTime.Parse("25.07.20"),
                     TotalTrip=18500,
                     FuelRemain=1000,
-                    BusState= (State) 0,
+                    BusState= (Enums.State) 0,
                     MaxTravellers=45,
                  },
                 new Bus
@@ -210,7 +210,7 @@ namespace DS
                     FromDate = DateTime.Parse("27.08.19"),
                     TotalTrip=17590,
                     FuelRemain=570,
-                    BusState= (State) 0,
+                    BusState= (Enums.State) 0,
                     MaxTravellers=40,
                  },
 
@@ -1006,7 +1006,7 @@ Adress="Belly",          //Jerusalem
       {
             Id = Static.LineIdCounter++,
             Code = 21,
-            Area = (Areas)3, //Kiriat EKron
+            Area = (Enums.Areas)3, //Kiriat EKron
             FirstStation = 38832,//Herzl / Intersection Bilo
             LastStation = 38855,// Herzl/Goni
       },
@@ -1015,7 +1015,7 @@ Adress="Belly",          //Jerusalem
       {
             Id = Static.LineIdCounter++,//AUTOMATI
             Code =33 ,
-            Area = (Areas)3,//Rehovot,Geoulim
+            Area = (Enums.Areas)3,//Rehovot,Geoulim
             FirstStation = 35505,//Herzl Rotshild
             LastStation =38863,//Expand 2
       },
@@ -1023,14 +1023,14 @@ Adress="Belly",          //Jerusalem
       {
             Id = Static.LineIdCounter++,//AUTOMATI
             Code =45 ,
-            Area = (Areas)2,//Avigdor,Ofakim
+            Area = (Enums.Areas)2,//Avigdor,Ofakim
             FirstStation = 12550,//"Station on Sderot / Sdocks"
             LastStation =  10045,// Herzl/Angel Avenue",
      },
                new Line
       {                Id = Static.LineIdCounter++,//AUTOMATI
             Code =55 ,
-            Area = (Areas)4,//Jerusalem
+            Area = (Enums.Areas)4,//Jerusalem
             FirstStation = 844, //Uziel/Michlin,
             LastStation =  60413// Rachel's Tomb",
                },
@@ -1038,7 +1038,7 @@ Adress="Belly",          //Jerusalem
                  new Line
       {              Id = Static.LineIdCounter++,//AUTOMATI
             Code =58 ,
-            Area = (Areas)0,//Jerusalem
+            Area = (Enums.Areas)0,//Jerusalem
             FirstStation =20640,// Mahal / Rabbi Alenkawa,
     LastStation =  21030,// Derech Hashalom / Derech Yitzhak Rabin ",
                  },
@@ -1047,14 +1047,14 @@ Adress="Belly",          //Jerusalem
       {
                            Id = Static.LineIdCounter++,//AUTOMATI
             Code =36 ,
-            Area = (Areas)3,//Jerusalem
+            Area = (Enums.Areas)3,//Jerusalem
             FirstStation =60945, //Sha'ar HaGai / Zionism Road,
     LastStation =  63425,// "Moriah / Beautiful view",",
                        },
                                                 new Line
       { Id = Static.LineIdCounter++,//AUTOMATI
             Code =44 ,
-            Area = (Areas)1,//North
+            Area = (Enums.Areas)1,//North
             FirstStation =63407, // Barkan / Halamish Road,
     LastStation =  58007,//  David Elazar, Yeffe Nof,
     },
@@ -1062,21 +1062,21 @@ Adress="Belly",          //Jerusalem
               new Line
       {  Id = Static.LineIdCounter++,//AUTOMATI
             Code =42 ,//way back a changer
-            Area = (Areas)1,//North,Tzfat/Mifalei Barkan
+            Area = (Enums.Areas)1,//North,Tzfat/Mifalei Barkan
             FirstStation =63422,//"Shaham / Ivory",
     LastStation =  57964,// Nof Habashan Two,
               },
                  new Line
       {     Id = Static.LineIdCounter++,//AUTOMATI
             Code =22 ,
-            Area = (Areas)3,//Kiriat Ekron
+            Area = (Enums.Areas)3,//Kiriat Ekron
             FirstStation =30770,// King Hassan II / Bossi St. George,
             LastStation =  38855 , //Herzl/Goni
                 },
                   new Line
       {     Id = Static.LineIdCounter++,//AUTOMATI
             Code = 34,
-            Area = (Areas)3,//Jerusalem
+            Area = (Enums.Areas)3,//Jerusalem
             FirstStation =60028,// Rabbi Pardes/Zocarman,
             LastStation =  73 ,// Golda Meir Boulevard / The Poet Acej
      },
@@ -1735,35 +1735,35 @@ new AdjacentStations {
             ListLineStation = new List<LineStation>{
             //1st line
                 new LineStation{
-        LineId=ListLine[0].Id,
+        LineId=ListLine[0].Code,
         StationCode= 38832,
         LineStationIndex=0,
         PrevStation= 0,                 //No previous station  bcz it s the first station                     
         NextStation= 38838,
         },
              new LineStation{
-        LineId=ListLine[0].Id,
+        LineId=ListLine[0].Code,
         StationCode= 38838,
         LineStationIndex=1,
         PrevStation= 38832,
         NextStation= 38839,
         },
              new LineStation{
-        LineId=ListLine[0].Id,
+        LineId=ListLine[0].Code,
         StationCode= 38839,
         LineStationIndex=2,
         PrevStation= 38838,
         NextStation= 38840,
         },
              new LineStation{
-        LineId=ListLine[0].Id,
+        LineId=ListLine[0].Code,
         StationCode= 38840,
         LineStationIndex=3,
         PrevStation= 38839,
         NextStation= 38841,
         },
               new LineStation{
-        LineId=ListLine[0].Id,
+        LineId=ListLine[0].Code,
         StationCode= 38841,
         LineStationIndex=4,
         PrevStation= 38840,
@@ -1771,35 +1771,35 @@ new AdjacentStations {
         },
 
               new LineStation{
-        LineId=ListLine[0].Id,
+        LineId=ListLine[0].Code,
         StationCode= 38842,
         LineStationIndex=5,
         PrevStation= 38841,
         NextStation= 38844,
         },
                new LineStation{
-        LineId=ListLine[0].Id,
+        LineId=ListLine[0].Code,
         StationCode= 38844,
         LineStationIndex=6,
         PrevStation= 38842,
         NextStation= 38845,
         },
                 new LineStation{
-        LineId=ListLine[0].Id,
+        LineId=ListLine[0].Code,
         StationCode= 38845,
         LineStationIndex=7,
         PrevStation= 38844,
         NextStation= 38846,
         },
                 new LineStation{
-        LineId=ListLine[0].Id,
+        LineId=ListLine[0].Code,
         StationCode= 38846,
         LineStationIndex=8,
         PrevStation= 38845,
         NextStation= 38855,
         },
                  new LineStation{
-        LineId=ListLine[0].Id,
+        LineId=ListLine[0].Code,
         StationCode= 38855,
         LineStationIndex=9,
         PrevStation= 38846,
@@ -1807,63 +1807,63 @@ new AdjacentStations {
         },
                  //2nd line
                    new LineStation{
-        LineId=ListLine[1].Id,
+        LineId=ListLine[1].Code,
         StationCode= 35505,
         LineStationIndex=0,
         PrevStation= 0,
         NextStation= 38834,
         },
                      new LineStation{
-        LineId=ListLine[1].Id,
+        LineId=ListLine[1].Code,
         StationCode= 38834,
         LineStationIndex=1,
         PrevStation= 35505,
         NextStation= 38837,
         },
                        new LineStation{
-        LineId=ListLine[1].Id,
+        LineId=ListLine[1].Code,
         StationCode= 38837,
         LineStationIndex=2,
         PrevStation= 38834,
         NextStation= 38852,
         },
                          new LineStation{
-        LineId=ListLine[1].Id,
+        LineId=ListLine[1].Code,
         StationCode= 38852,
         LineStationIndex=4,
         PrevStation= 38837,
         NextStation= 38856,
         },
                            new LineStation{
-        LineId=ListLine[1].Id,
+        LineId=ListLine[1].Code,
         StationCode= 38856,
         LineStationIndex=5,
         PrevStation= 38852,
         NextStation= 38833,
         },
                              new LineStation{
-        LineId=ListLine[1].Id,
+        LineId=ListLine[1].Code,
         StationCode= 38833,
         LineStationIndex=6,
         PrevStation= 38856,
         NextStation= 38847,
         },
                                new LineStation{
-        LineId=ListLine[1].Id,
+        LineId=ListLine[1].Code,
         StationCode= 38847,
         LineStationIndex=7,
         PrevStation= 38833,
         NextStation= 38862,
         },
                                new LineStation{
-        LineId=ListLine[1].Id,
+        LineId=ListLine[1].Code,
         StationCode= 38862,
         LineStationIndex=8,
         PrevStation= 38847,
         NextStation= 38863,
         },
                                  new LineStation{
-        LineId=ListLine[1].Id,
+        LineId=ListLine[1].Code,
         StationCode= 38863,
         LineStationIndex=9,
         PrevStation= 38862,
@@ -1871,49 +1871,49 @@ new AdjacentStations {
         },
                                  //3rd line
  new LineStation{
-        LineId=ListLine[2].Id,
+        LineId=ListLine[2].Code,
         StationCode= 12550,
         LineStationIndex=0,
         PrevStation= 0,
         NextStation= 18317,
         },
  new LineStation{
-        LineId=ListLine[2].Id,
+        LineId=ListLine[2].Code,
         StationCode= 18317,
         LineStationIndex=1,
         PrevStation= 12550,
         NextStation= 18112,
         },
  new LineStation{
-        LineId=ListLine[2].Id,
+        LineId=ListLine[2].Code,
         StationCode= 18112,
         LineStationIndex=2,
         PrevStation= 18317,
         NextStation= 18111,
         },
  new LineStation{
-        LineId=ListLine[2].Id,
+        LineId=ListLine[2].Code,
         StationCode= 18111,
         LineStationIndex=3,
         PrevStation= 18112,
         NextStation= 12551,
         },
  new LineStation{
-        LineId=ListLine[2].Id,
+        LineId=ListLine[2].Code,
         StationCode= 12551,
         LineStationIndex=4,
         PrevStation= 18111,
         NextStation= 10030 ,
         },
  new LineStation{
-        LineId=ListLine[2].Id,
+        LineId=ListLine[2].Code,
         StationCode= 10030 ,
         LineStationIndex=5,
         PrevStation= 12551,
         NextStation= 10038,
         },
  new LineStation{
-        LineId=ListLine[2].Id,
+        LineId=ListLine[2].Code,
         StationCode= 10038,
         LineStationIndex=6,
         PrevStation= 10030,
@@ -1921,21 +1921,21 @@ new AdjacentStations {
         },
 
  new LineStation{
-        LineId=ListLine[2].Id,
+        LineId=ListLine[2].Code,
         StationCode= 10039,
         LineStationIndex=7,
         PrevStation= 10038,
         NextStation= 10040,
         },
  new LineStation{
-        LineId=ListLine[2].Id,
+        LineId=ListLine[2].Code,
         StationCode= 10040,
         LineStationIndex=8,
         PrevStation= 10039,
         NextStation= 10045,
         },
  new LineStation{
-        LineId=ListLine[2].Id,
+        LineId=ListLine[2].Code,
         StationCode= 10045,
         LineStationIndex=9,
         PrevStation= 10040,
@@ -1943,70 +1943,70 @@ new AdjacentStations {
         },
  //4th line
  new LineStation{
-        LineId=ListLine[3].Id,
+        LineId=ListLine[3].Code,
         StationCode= 844,
         LineStationIndex=0,
         PrevStation= 0,
         NextStation= 1493,
         },
   new LineStation{
-        LineId=ListLine[3].Id,
+        LineId=ListLine[3].Code,
         StationCode= 1493,
         LineStationIndex=1,
         PrevStation= 844,
         NextStation= 60028,
         },
    new LineStation{
-        LineId=ListLine[3].Id,
+        LineId=ListLine[3].Code,
         StationCode= 60028,
         LineStationIndex=2,
         PrevStation= 1493,
         NextStation= 61157,
         },
     new LineStation{
-        LineId=ListLine[3].Id,
+        LineId=ListLine[3].Code,
         StationCode= 61157,
         LineStationIndex=3,
         PrevStation= 60028,
         NextStation= 62000,
         },
  new LineStation{
-        LineId=ListLine[3].Id,
+        LineId=ListLine[3].Code,
         StationCode= 62000,
         LineStationIndex=4,
         PrevStation= 61157,
         NextStation= 1130,
         },
  new LineStation{
-        LineId=ListLine[3].Id,
+        LineId=ListLine[3].Code,
         StationCode= 1130,
         LineStationIndex=5,
         PrevStation= 62000,
         NextStation= 20637,
         },
  new LineStation{
-        LineId=ListLine[3].Id,
+        LineId=ListLine[3].Code,
         StationCode= 20637,
         LineStationIndex=6,
         PrevStation= 1130,
         NextStation= 6117,
         },
  new LineStation{
-        LineId=ListLine[3].Id,
+        LineId=ListLine[3].Code,
         StationCode= 6117,
         LineStationIndex=7,
         PrevStation= 20637,
         NextStation= 6116,
         },
  new LineStation{
-        LineId=ListLine[3].Id,
+        LineId=ListLine[3].Code,
         StationCode= 6116,
         LineStationIndex=8,
         PrevStation= 6117,
         NextStation= 6114,
         },
  new LineStation{
-        LineId=ListLine[3].Id,
+        LineId=ListLine[3].Code,
         StationCode= 6114,
         LineStationIndex=9,
         PrevStation= 6116,
@@ -2014,70 +2014,70 @@ new AdjacentStations {
         },
  //5th line
  new LineStation{
-        LineId=ListLine[4].Id,
+        LineId=ListLine[4].Code,
         StationCode= 20640,
         LineStationIndex=0,
         PrevStation= 0,
         NextStation= 20641,
         },
  new LineStation{
-        LineId=ListLine[4].Id,
+        LineId=ListLine[4].Code,
         StationCode= 20641,
         LineStationIndex=1,
         PrevStation= 20640,
         NextStation= 20902,
         },
  new LineStation{
-        LineId=ListLine[4].Id,
+        LineId=ListLine[4].Code,
         StationCode= 20902,
         LineStationIndex=2,
         PrevStation= 20641,
         NextStation= 21000,
         },
  new LineStation{
-        LineId=ListLine[4].Id,
+        LineId=ListLine[4].Code,
         StationCode= 21000,
         LineStationIndex=3,
         PrevStation= 20902,
         NextStation= 21005,
         },
  new LineStation{
-        LineId=ListLine[4].Id,
+        LineId=ListLine[4].Code,
         StationCode= 21005,
         LineStationIndex=4,
         PrevStation= 21000,
         NextStation= 21006,
         },
  new LineStation{
-        LineId=ListLine[4].Id,
+        LineId=ListLine[4].Code,
         StationCode= 21006,
         LineStationIndex=5,
         PrevStation= 21005,
         NextStation= 21022,
         },
  new LineStation{
-        LineId=ListLine[4].Id,
+        LineId=ListLine[4].Code,
         StationCode= 21022,
         LineStationIndex=6,
         PrevStation= 21006,
         NextStation= 21024,
         },
  new LineStation{
-        LineId=ListLine[4].Id,
+        LineId=ListLine[4].Code,
         StationCode= 21024,
         LineStationIndex=7,
         PrevStation= 21022,
         NextStation= 21028,
         },
  new LineStation{
-        LineId=ListLine[4].Id,
+        LineId=ListLine[4].Code,
         StationCode= 21028,
         LineStationIndex=8,
         PrevStation= 21024,
         NextStation= 21030,
         },
  new LineStation{
-        LineId=ListLine[4].Id,
+        LineId=ListLine[4].Code,
         StationCode= 21030,
         LineStationIndex=9,
         PrevStation= 21028,
@@ -2085,70 +2085,70 @@ new AdjacentStations {
         },
  //6th line
  new LineStation{
-        LineId=ListLine[5].Id,
+        LineId=ListLine[5].Code,
         StationCode= 60945,
         LineStationIndex=0,
         PrevStation= 0,
         NextStation= 63097,
         },
  new LineStation{
-        LineId=ListLine[5].Id,
+        LineId=ListLine[5].Code,
         StationCode= 63097,
         LineStationIndex=1,
         PrevStation= 60945,
         NextStation= 63125,
         },
  new LineStation{
-        LineId=ListLine[5].Id,
+        LineId=ListLine[5].Code,
         StationCode= 63125,
         LineStationIndex=2,
         PrevStation= 63097,
         NextStation= 63410,
         },
  new LineStation{
-        LineId=ListLine[5].Id,
+        LineId=ListLine[5].Code,
         StationCode= 63410,
         LineStationIndex=3,
         PrevStation=63125 ,
         NextStation= 63411,
         },
  new LineStation{
-        LineId=ListLine[5].Id,
+        LineId=ListLine[5].Code,
         StationCode= 63411,
         LineStationIndex=4,
         PrevStation= 63410,
         NextStation= 63412,
         },
  new LineStation{
-        LineId=ListLine[5].Id,
+        LineId=ListLine[5].Code,
         StationCode= 63412,
         LineStationIndex=5,
         PrevStation= 63411,
         NextStation= 63413,
         },
  new LineStation{
-        LineId=ListLine[5].Id,
+        LineId=ListLine[5].Code,
         StationCode= 63413,
         LineStationIndex=6,
         PrevStation= 63412,
         NextStation= 63414,
         },
  new LineStation{
-        LineId=ListLine[5].Id,
+        LineId=ListLine[5].Code,
         StationCode= 63414,
         LineStationIndex=7,
         PrevStation= 63413,
         NextStation= 63424,
         },
  new LineStation{
-        LineId=ListLine[5].Id,
+        LineId=ListLine[5].Code,
         StationCode= 63424,
         LineStationIndex=8,
         PrevStation= 63414,
         NextStation= 63425,
         },
  new LineStation{
-        LineId=ListLine[5].Id,
+        LineId=ListLine[5].Code,
         StationCode= 63425,
         LineStationIndex=9,
         PrevStation= 63424,
@@ -2156,70 +2156,70 @@ new AdjacentStations {
         },
  //7th line 
   new LineStation{
-        LineId=ListLine[6].Id,
+        LineId=ListLine[6].Code,
         StationCode= 63407,
         LineStationIndex=0,
         PrevStation= 0,
         NextStation= 63415,
         },
    new LineStation{
-        LineId=ListLine[6].Id,
+        LineId=ListLine[6].Code,
         StationCode= 63415,
         LineStationIndex=1,
         PrevStation= 63407,
         NextStation= 63417,
         },
    new LineStation{
-        LineId=ListLine[6].Id,
+        LineId=ListLine[6].Code,
         StationCode= 63417,
         LineStationIndex=2,
         PrevStation= 63415,
         NextStation= 63419,
         },
    new LineStation{
-        LineId=ListLine[6].Id,
+        LineId=ListLine[6].Code,
         StationCode= 63419,
         LineStationIndex=3,
         PrevStation= 63417,
         NextStation= 63421,
         },
    new LineStation{
-        LineId=ListLine[6].Id,
+        LineId=ListLine[6].Code,
         StationCode= 63421,
         LineStationIndex=4,
         PrevStation= 63419,
         NextStation= 63434,
         },
    new LineStation{
-        LineId=ListLine[6].Id,
+        LineId=ListLine[6].Code,
         StationCode= 63434,
         LineStationIndex=5,
         PrevStation= 63421,
         NextStation= 63434,
         },
    new LineStation{
-        LineId=ListLine[6].Id,
+        LineId=ListLine[6].Code,
         StationCode= 63435,
         LineStationIndex=6,
         PrevStation= 63434,
         NextStation= 57962,
         },
    new LineStation{
-        LineId=ListLine[6].Id,
+        LineId=ListLine[6].Code,
         StationCode= 57962,
         LineStationIndex=7,
         PrevStation= 63435,
         NextStation= 57963,
         },
    new LineStation{
-        LineId=ListLine[6].Id,
+        LineId=ListLine[6].Code,
         StationCode= 57963,
         LineStationIndex=8,
         PrevStation= 57962,
         NextStation= 58007,
         },
    new LineStation{
-        LineId=ListLine[6].Id,
+        LineId=ListLine[6].Code,
         StationCode= 58007,
         LineStationIndex=9,
         PrevStation= 57963,
@@ -2227,35 +2227,35 @@ new AdjacentStations {
         },
    //8th line
    new LineStation{
-        LineId=ListLine[7].Id,
+        LineId=ListLine[7].Code,
         StationCode= 63422,
         LineStationIndex=0,
         PrevStation= 0,
         NextStation= 63420,
         },
    new LineStation{
-        LineId=ListLine[7].Id,
+        LineId=ListLine[7].Code,
         StationCode= 63420,
         LineStationIndex=1,
         PrevStation= 63422,
         NextStation= 63418,
         },
 new LineStation{
-        LineId=ListLine[7].Id,
+        LineId=ListLine[7].Code,
         StationCode= 63418,
         LineStationIndex=2,
         PrevStation= 63420,
         NextStation= 63416,
         },
 new LineStation{
-        LineId=ListLine[7].Id,
+        LineId=ListLine[7].Code,
         StationCode= 63416,
         LineStationIndex=3,
         PrevStation= 63418,
         NextStation= 63408 ,
         },
 new LineStation{
-        LineId=ListLine[7].Id,
+        LineId=ListLine[7].Code,
         StationCode= 63408 ,
         LineStationIndex=4,
         PrevStation= 63416,
@@ -2263,35 +2263,35 @@ new LineStation{
         },
 
 new LineStation{
-        LineId=ListLine[7].Id,
+        LineId=ListLine[7].Code,
         StationCode= 58006,
         LineStationIndex=5,
         PrevStation= 63408,
         NextStation= 58005,
         },
 new LineStation{
-        LineId=ListLine[7].Id,
+        LineId=ListLine[7].Code,
         StationCode= 58005,
         LineStationIndex=6,
         PrevStation= 58006,
         NextStation= 58002,
         },
 new LineStation{
-        LineId=ListLine[7].Id,
+        LineId=ListLine[7].Code,
         StationCode= 58002,
         LineStationIndex=7,
         PrevStation= 58005,
         NextStation= 57965,
         },
 new LineStation{
-        LineId=ListLine[7].Id,
+        LineId=ListLine[7].Code,
         StationCode= 57965,
         LineStationIndex=8,
         PrevStation= 58002,
         NextStation= 57964,
         },
 new LineStation{
-        LineId=ListLine[7].Id,
+        LineId=ListLine[7].Code,
         StationCode= 57964,
         LineStationIndex=9,
         PrevStation= 57965 ,
