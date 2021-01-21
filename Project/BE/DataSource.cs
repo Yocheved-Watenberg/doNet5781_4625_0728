@@ -27,7 +27,7 @@ namespace DS
             InitAllLists();//pour initialiser ttes les lists
         }
 
-       
+
 
         static void InitAllLists() //a faire
         {
@@ -2299,70 +2299,70 @@ new LineStation{
         },
 //9th line
 new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[8].Code,
         StationCode= 30770 ,
         LineStationIndex=0,
         PrevStation= 0 ,
         NextStation= 31088,
         },
 new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[8].Code,
         StationCode= 31088,
         LineStationIndex=1,
         PrevStation= 30770  ,
         NextStation= 31089,
         },
                 new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[8].Code,
         StationCode= 31089,
         LineStationIndex=2,
         PrevStation= 31088 ,
         NextStation= 31090,
         },
                 new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[8].Code,
         StationCode= 31090 ,
         LineStationIndex=3,
         PrevStation= 31089 ,
         NextStation= 31403,
         },
                 new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[8].Code,
         StationCode= 31403,
         LineStationIndex=4,
         PrevStation= 31090  ,
         NextStation= 34751,
         },
                 new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[8].Code,
         StationCode= 34751,
         LineStationIndex=5,
         PrevStation= 31403 ,
         NextStation= 38844,
         },
                 new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[8].Code,
         StationCode= 38844,
         LineStationIndex=6,
         PrevStation= 34751 ,
         NextStation= 38845,
         },
                 new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[8].Code,
         StationCode= 38845,
         LineStationIndex=7,
         PrevStation= 38844 ,
         NextStation= 38846,
         },
                 new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[8].Code,
         StationCode= 38846,
         LineStationIndex=8,
         PrevStation= 38845 ,
         NextStation= 38855,
         },
                 new LineStation{
-        LineId=ListLine[8].Id,
+        LineId=ListLine[8].Code,
         StationCode= 38855,
         LineStationIndex=9,
         PrevStation= 38846 ,
@@ -2371,70 +2371,70 @@ new LineStation{
                 //10th line
                
   new LineStation{
-        LineId=ListLine[9].Id,
+        LineId=ListLine[9].Code,
         StationCode= 60028,
         LineStationIndex=0,
         PrevStation= 0 ,
         NextStation= 61157,
          },
     new LineStation{
-        LineId=ListLine[9].Id,
+        LineId=ListLine[9].Code,
         StationCode= 61157,
         LineStationIndex=1,
         PrevStation= 60028 ,
         NextStation= 60413,
         },
       new LineStation{
-        LineId=ListLine[9].Id,
+        LineId=ListLine[9].Code,
         StationCode= 60413,
         LineStationIndex=2,
         PrevStation= 61157 ,
         NextStation= 20638,
         },
         new LineStation{
-        LineId=ListLine[9].Id,
+        LineId=ListLine[9].Code,
         StationCode= 20638,
         LineStationIndex=3,
         PrevStation= 60413 ,
         NextStation= 84 ,
         },
           new LineStation{
-        LineId=ListLine[9].Id,
+        LineId=ListLine[9].Code,
         StationCode= 84 ,
         LineStationIndex=4,
         PrevStation= 20638 ,
         NextStation= 83 ,
         },
             new LineStation{
-        LineId=ListLine[9].Id,
+        LineId=ListLine[9].Code,
         StationCode= 83 ,
         LineStationIndex=5,
         PrevStation= 84  ,
         NextStation= 78,
         },
               new LineStation{
-        LineId=ListLine[9].Id,
+        LineId=ListLine[9].Code,
         StationCode= 78,
         LineStationIndex=6,
         PrevStation= 83  ,
         NextStation= 77,
         },
                 new LineStation{
-        LineId=ListLine[9].Id,
+        LineId=ListLine[9].Code,
         StationCode= 77,
         LineStationIndex=7,
         PrevStation= 78 ,
         NextStation= 76,
         },
                   new LineStation{
-        LineId=ListLine[9].Id,
+        LineId=ListLine[9].Code,
         StationCode= 76,
         LineStationIndex=8,
         PrevStation= 77 ,
         NextStation= 0,
         },
                     new LineStation{
-        LineId=ListLine[9].Id,
+        LineId=ListLine[9].Code,
         StationCode= 73,
         LineStationIndex=9,
         PrevStation= 76 ,
@@ -2590,5 +2590,5 @@ new LineTrip
 //    Frequency = TimeSpan.Parse("00.10.00"),
 //    FinishedAt = TimeSpan.Parse("00.15.00"),
 //},
-    
+
 
