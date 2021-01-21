@@ -145,32 +145,38 @@ namespace BL
             lineStationDO.CopyPropertiesTo(lineStation);
             dl.AddLineStation(lineStationDO);
         }
-        public void AddLine(BO.Line line)
+        public void AddLine(int myCode, BO.Enum.Areas myArea, IEnumerable<BO.LineStation> myListOfStations)
         {
-            List<LineStation> listStations = line.ListOfStations.ToList();
+            BO.Line BoLine = new BO.Line();
+            BoLine.Id = Static.GetLineIdCounterDO();
+            BoLine.Code = myCode;
+            BoLine.Area = myArea; //(DO.Enums.Areas)myArea; 
+            BoLine.ListOfStations = myListOfStations;
+
+
+
             DO.Line DoLine = new DO.Line();
-            line.CopyPropertiesTo(DoLine);
+            BoLine.CopyPropertiesTo(DoLine);
+            DoLine.FirstStation = myListOfStations.First().StationCode;
+            DoLine.LastStation = myListOfStations.Last().StationCode;
 
-            //DO.LineStation LineStationDO1, LineStationDO2;   
-            //LineStationDO1 = (DO.LineStation) dl.GetLineStation((listStations)[0].LineId, (listStations)[0].StationCode);
-            //LineStationDO2 = (DO.LineStation) dl.GetLineStation((listStations).Last().LineId, listStations.Last().StationCode);
 
+            //create the adjacents stations
+            List<LineStation> listStations = myListOfStations.ToList(); 
             for (int i = 0; i < listStations.Count() - 1; i++)
             {
-                DO.AdjacentStations adjStat = dl.GetAdjacentStations(listStations[i].StationCode, listStations[i + 1].StationCode);
-                if (adjStat == null)                                        //meaning there aren't already two Adjacents Stations 
+                if (!(DataSource.ListAdjacentStations.Exists(adj=> (adj.Station1== listStations[i].StationCode) && (adj.Station2 == listStations[i + 1].StationCode))))                                        //meaning there aren't already two Adjacents Stations 
                 {
                     DO.AdjacentStations newAdjStat = new DO.AdjacentStations();
                     newAdjStat.Station1 = listStations[i].StationCode;
                     newAdjStat.Station2 = listStations[i + 1].StationCode;
                     newAdjStat.Distance = GetDistanceTo(StationLineStationAdapter(listStations[i]), StationLineStationAdapter(listStations[i + 1])) * 1.5;
-                    int timeSec = (int)newAdjStat.Distance * (rand.Next() % 5) / (rand.Next() % 5);
+                    int timeSec = (int)newAdjStat.Distance * (rand.Next()+1 % 5) / (rand.Next()+1 % 5);
                     newAdjStat.Time = new TimeSpan(00, 00, timeSec);
                     dl.AddAdjacentStations(newAdjStat);
                 }
             }
-            DoLine.FirstStation = listStations[0].StationCode;
-            DoLine.LastStation = (listStations.Last()).StationCode;
+       
             dl.AddLine(DoLine);
         }
 
@@ -210,7 +216,7 @@ namespace BL
         {
             try
             {
-                IEnumerable<DO.LineStation> lineStationDO = dl.GetAllLineStationBy(l => l.LineId == line.Id);
+                IEnumerable<DO.LineStation> lineStationDO = dl.GetAllLineStationBy(l => l.LineId == line.Code);
                 return from item in lineStationDO 
                 select LineStationDoBoAdapter(item);
 

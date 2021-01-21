@@ -38,10 +38,11 @@ namespace PL
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            int s = lbListOfStations.SelectedItems.Count;
+          
+            int s = lbListOfStations.SelectedItems.Count;  //s=number of stations that user selected for his line 
             try
             {
-                if (s < 2)
+                if (s < 2)                                 //if there is less than two stations=> error 
                 {
                     LessThanTwoStationsException lt2se = new LessThanTwoStationsException("You have to select more stations");
                     throw lt2se;
@@ -50,54 +51,41 @@ namespace PL
             catch (LessThanTwoStationsException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-            }            
-            BL.BO.Line newline = new BL.BO.Line();
-            newline.Area = (BL.BO.Enum.Areas)cbAreas.SelectedItem;   //cbAreas.Selec tedItem as BL.BO.Enum.Areas;
-            bool isNum = int.TryParse(tbCode.Text, out int theNum);
-            if (isNum)
-            {
-                newline.Code = theNum;
             }
-            else
+            bool isNum = int.TryParse(tbCode.Text, out int theNum);         //checks if the code is composed only of digits 
+            try
             {
-                throw new BadCodeException("You have to put only numbers for the code!");
+                if (!isNum)
+                {
+                    throw new BadCodeException("You have to put only numbers for the code!");       //else =>error 
+                }
             }
-            newline.Id = Static.GetLineIdCounterDO();
-            //creer d abord les lines stations et les mettre ds le sade listOfStations
-            // for(int i=0; i< (lbListOfStations.SelectedItems).Count; i++)
-            //IEnumerable<Line> lineInStation = from ls in dl.GetAllLineStationBy(ls => ls.StationCode == s.Code)
-            //                                      //searches all the LineStations which have the same code than the station sent 
-            //                                  let line = dl.GetLine(ls.LineId)
-            //                                  //creates a line from the Id of the LineStation
-            //                                  select LineDoBoAdapter(line);
-            //return lineInStation;
-
-
-
-
-            IEnumerable<LineStation> newLineStation;
-            from allLs in lbListOfStations.SelectedItems
-            select ls = new LineStation
+            catch (BadCodeException ex)
             {
-                LineId = allLs.LineId,
-                StationCode = allLs.StationCode,
-              //  DistanceFromLastStation=,
-           //     TimeFromLastStation =          ,
-                StationName = allLs.StationName,
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
+            IEnumerable<LineStation> newList = from Station eachLs in lbListOfStations.SelectedItems  //put the selected Line Stations into the list of stations of the line
+                                               let ls = new LineStation
+                                               {
+                                                   LineId = theNum,
+                                                   StationCode = eachLs.Code,
+            //DistanceFromLastStation=,
+            //TimeFromLastStation =,
+            StationName = eachLs.Name,
+                                                       }
+                                                    select ls;
+          //  MessageBox.Show("newlist.firststation" + newList.First());//a degager c pr verifier qqch 
 
+            bl.AddLine(theNum, (BL.BO.Enum.Areas)cbAreas.SelectedItem, newList);  //create the line 
+            MessageBox.Show("The line has been added succesfully!");
+            MessageBox.Show(bl.GetLine(theNum).ToString());
 
-       //  newline.ListOfStations = lbListOfStations.SelectedItems;
-
-       bl.AddLine(newline);
         }
 
         private void btnSelectStations_Click(object sender, RoutedEventArgs e)
         {
             lbListOfStations.DataContext = bl.GetStationByArea((BL.BO.Enum.Areas)cbAreas.SelectedItem);
         }
-
-
 
         //private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
