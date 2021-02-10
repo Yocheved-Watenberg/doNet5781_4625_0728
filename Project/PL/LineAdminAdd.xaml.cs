@@ -15,7 +15,7 @@ using BL.BO;
 using BLAPI;
 
 
-
+//attention on est pas obligé de fr throw exeption, on peut faire juste un try, a linterieur du try on met le truc qui va pas forcement marcher (genre parse) et ensuite catch msgboxshow"error"
 namespace PL
 {
     /// <summary>
@@ -64,6 +64,8 @@ namespace PL
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
+
+
             IEnumerable<LineStation> newList = from Station eachLs in lbListOfStations.SelectedItems  //put the selected Line Stations into the list of stations of the line
                                                let ls = new LineStation
                                                {

@@ -25,7 +25,6 @@ namespace BL
                     propTo.SetValue(to, value);
             }
         }
-
         //transforme le type de "from" en type "type"
         public static object CopyPropertiesToNew<S>(this S from, Type type)
         {
