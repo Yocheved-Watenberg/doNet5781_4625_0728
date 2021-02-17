@@ -58,9 +58,6 @@
     <Compile Include="LineAdminAdd.xaml.cs">
       <DependentUpon>LineAdminAdd.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LineAdminDelete.xaml.cs">
-      <DependentUpon>LineAdminDelete.xaml</DependentUpon>
-    </Compile>
     <Compile Include="LineAdminUpdate.xaml.cs">
       <DependentUpon>LineAdminUpdate.xaml</DependentUpon>
     </Compile>
@@ -79,10 +76,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LineAdminAdd.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LineAdminDelete.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

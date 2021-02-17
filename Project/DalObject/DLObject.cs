@@ -216,8 +216,8 @@ namespace DL
         #region Line 
         public void AddLine(DO.Line line)
         {
-            if (DataSource.ListLine.FirstOrDefault(l => l.Id == line.Id) != null)
-                throw new DO.BadLineIdException(line.Id, "this line already exists in the list of lines or this id has been used for a deleted line");
+            if ((DataSource.ListLine.FirstOrDefault(l => l.Id == line.Id) != null) || (DataSource.ListLine.FirstOrDefault(l => l.Code == line.Code) != null))
+                    throw new DO.BadLineIdException(line.Id, "this line already exists in the list of lines or this id has been used for a deleted line");
             DataSource.ListLine.Add(line.Clone());
         }
         public void DeleteLine(int code)

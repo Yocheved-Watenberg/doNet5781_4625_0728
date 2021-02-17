@@ -60,6 +60,9 @@ namespace PL
         {
             LineAdminAdd win = new LineAdminAdd(bl);
             win.ShowDialog();
+            RefreshAllLineComboBox();
+            //if (curLine != null)
+            //    RefreshAllLinesGrid();
         }
         private void butUpdate_Click(object sender, RoutedEventArgs e)
         {
@@ -69,8 +72,9 @@ namespace PL
         }
         private void butDelete_Click(object sender, RoutedEventArgs e)
         {
-            LineAdminDelete win = new LineAdminDelete(bl);
-            win.ShowDialog();
+            bl.DeleteLine(curLine.Code);
+            MessageBox.Show($"The line {curLine.Code} is deleted!");
+            RefreshAllLineComboBox();
         }
 
 

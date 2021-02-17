@@ -18,7 +18,6 @@ namespace BLAPI
        void AddStationToLine(LineStation lineStation, LineStation previous);
        void DeleteStationOfLine(int stationId, int lineId);
        Line GetLine(int myCode, Station FirstStation, Station LastStation);
-      //je viens de rajouter ca
         Line GetLine(int myCode);
         IEnumerable<Line> GetAllLine();
        IEnumerable<LineStation> GetAllLineStationsInLine(Line line);
