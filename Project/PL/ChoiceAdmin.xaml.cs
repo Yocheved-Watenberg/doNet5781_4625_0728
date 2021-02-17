@@ -30,8 +30,8 @@ namespace PL
 
         private void btnStation_Click(object sender, RoutedEventArgs e)
         {
-            StationAdmin win = new StationAdmin(bl);
-            win.Show();
+            StationAdmin win1 = new StationAdmin(bl);
+            win1.Show();
         }
 
         private void btnLine_Click(object sender, RoutedEventArgs e)
