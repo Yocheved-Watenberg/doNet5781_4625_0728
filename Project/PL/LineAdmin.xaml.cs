@@ -73,9 +73,19 @@ namespace PL
         }
         private void butDelete_Click(object sender, RoutedEventArgs e)
         {
-            bl.DeleteLine(curLine.Code);
-            MessageBox.Show($"The line {curLine.Code} is deleted!");
-            RefreshAllLineComboBox();
+            curLine = (BL.BO.Line)cbLines.SelectedItem;
+            if (curLine == null) 
+                MessageBox.Show("You have to select the line that you want to delete");
+            else
+            {
+                MessageBoxResult res = MessageBox.Show("Are you sure to delete this line?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (res == MessageBoxResult.No)
+                    return;
+                bl.DeleteLine(curLine.Code);
+                MessageBox.Show($"The line {curLine.Code} is deleted!");
+                RefreshAllLineComboBox();
+            }
+
         }
 
 

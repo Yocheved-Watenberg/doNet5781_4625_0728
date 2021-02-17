@@ -65,9 +65,18 @@ namespace PL
    
         private void btDeleteStation_Click(object sender, RoutedEventArgs e)
         {
-            bl.DeleteStation(curStation.Code);
-            MessageBox.Show($"The station {curStation.Code} is deleted!");
-            RefreshAllStationComboBox();
+            curStation = (cbStationCode.SelectedItem as BL.BO.Station);
+            if (curStation == null)
+                MessageBox.Show("You have to select the station that you want to delete");
+            else
+            {
+                MessageBoxResult res = MessageBox.Show("Are you sure to delete this station?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (res == MessageBoxResult.No)
+                    return;
+                bl.DeleteStation(curStation.Code);
+                MessageBox.Show($"The station {curStation.Code} is deleted!");
+                RefreshAllStationComboBox();
+            }       
         }
         private void btAddStation_Click(object sender, RoutedEventArgs e)
         {
