@@ -32,7 +32,7 @@ namespace BL.BO
         public LessThanTwoStationsException(string message) : base(message){}
         public override string ToString() => "You must choose at least two stations to create a line";
     }
-    public class BadCodeException : Exception
+    public class BadCodeException  : Exception
     {
         public BadCodeException(string message) : base(message) { }
     public override string ToString() => "Your code's content must be only numbers";
@@ -48,6 +48,12 @@ namespace BL.BO
     {
         public BadFormatException(string message) : base(message) {}
     }
+public class  NotSelectedAreaException: Exception
+    {
+    public NotSelectedAreaException(string message) : base(message) { }
+    public override string ToString() => "You haven't selected any area for this line";
+    }
+
 
     //a revoir en cas d erreur
 

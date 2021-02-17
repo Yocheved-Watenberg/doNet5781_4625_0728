@@ -63,7 +63,8 @@ namespace PL
         }
         private void butUpdate_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            LineAdminUpdate win = new LineAdminUpdate(bl);
+            win.Show();
         }
 
 

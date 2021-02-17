@@ -233,8 +233,7 @@ namespace DL
         }
         public DO.Line GetLine(int id)
         {
-            DO.Line line = DataSource.ListLine.Find(l => (l.Id == id) && (l.IsDeleted == false)
-);
+            DO.Line line = DataSource.ListLine.Find(l => (l.Id == id) && (l.IsDeleted == false));
             if (line != null)
                 return line.Clone();
             else
