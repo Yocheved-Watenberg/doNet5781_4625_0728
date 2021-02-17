@@ -584,7 +584,7 @@ namespace DL
                        where predicate(user)
                        select user.Clone();
             }
-            return GetAllUser();
+            else return GetAllUser();
         }
         public void UpdateUser(DO.User user)
         {

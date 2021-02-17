@@ -31,69 +31,21 @@ namespace PL
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
             Station newStation = new Station();
-            //if (int.TryParse(tbCode.Text, out int theCode))
-            //{
-            //    newStation.Code = theCode;
-            //}
-            //else
-            //{
-            //    throw new BadFormatException("You have to put only numbers for the code!");
-            //}
-
             try            
             {
-                int.TryParse(tbCode.Text, out int theCode);   
-                newStation.Code = theCode;
+                newStation.Code = int.Parse(tbCode.Text);             //verifier que le code n'existe pas deja      ATTENTIONNNNNN  
+                newStation.Name = tbName.Text;
+                newStation.Adress = tbAdress.Text;
+                newStation.Longitude = double.Parse(tbLongitude.Text);
+                newStation.Latitude = double.Parse(tbLatitude.Text);
             }
             catch
             {
-                MessageBox.Show("You have to put only numbers for the code!");
+                MessageBox.Show("You have to put valid fields!");
             }
-
-            //verifier que le code n'existe pas deja 
-            newStation.Name = tbName.Text;
-            newStation.Adress = tbAdress.Text;
-
-            //if (double.TryParse(tbLongitude.Text, out double theLongitude))
-            //{
-            //    newStation.Longitude = theLongitude;
-            //}
-            //else
-            //{
-            //    throw new BadFormatException("You have to put a valid num for the longitude!");
-            //}
-
-            try 
-            {
-                double.TryParse(tbLongitude.Text, out double theLongitude);
-                newStation.Longitude = theLongitude;
-            }
-            catch
-            {
-                MessageBox.Show("You have to put a valid num for the longitude!");
-            }
-
-
-            //if (double.TryParse(tbLatitude.Text, out double theLatitude))
-            //{
-            //    newStation.Latitude = theLatitude;
-            //}
-            //else
-            //{
-            //    throw new BadFormatException("You have to put a valid num for the latitude!");
-            //}
-
-            try
-            {
-                double.TryParse(tbLatitude.Text, out double theLatitude);
-                newStation.Latitude = theLatitude;
-            }
-            catch
-            {
-                MessageBox.Show("You have to put a valid num for the latitude!");
-            }
-
             bl.AddStation(newStation);
+            MessageBox.Show("The station has been added successfully");
+            this.Close(); 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
