@@ -59,7 +59,7 @@ namespace PL
         private void butAdd_Click(object sender, RoutedEventArgs e)
         {
             LineAdminAdd win = new LineAdminAdd(bl);
-            win.Show();
+            win.ShowDialog();
         }
         private void butUpdate_Click(object sender, RoutedEventArgs e)
         {

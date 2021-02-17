@@ -32,7 +32,7 @@ namespace PL
             if (rbAdmin.IsChecked == true)
             {
                 ChoiceAdmin win = new ChoiceAdmin(bl);  
-                win.Show();
+                win.ShowDialog();
             }
             else
             {

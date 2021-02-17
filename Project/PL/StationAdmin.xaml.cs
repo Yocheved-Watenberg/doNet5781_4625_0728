@@ -77,7 +77,7 @@ namespace PL
         private void btAddStation_Click(object sender, RoutedEventArgs e)
         {
             StationAdminAdd win = new StationAdminAdd(bl);
-            win.Show();
+            win.ShowDialog();
         }
         private void btUpdateStation_Click(object sender, RoutedEventArgs e)
         {

@@ -29,7 +29,30 @@ namespace PL
            InitializeComponent();
             bl = _bl;
             cbAreas.ItemsSource = System.Enum.GetValues(typeof(BL.BO.Enum.Areas));
+            //this.btnCreate.MouseEnter += btnCreate_MouseEnter;
+            //this.btnCreate.MouseLeave += btnCreate_MouseLeave;
+
         }
+//POUR AGRANDIR LE BOUTON QUAND ON SAPPROCHE 
+        //private void btnCreate_MouseEnter(object sender, MouseEventArgs e)
+        //{
+        //    Button b = sender as Button;
+        //    if (b != null)
+        //    {
+        //        b.Height += b.Height;
+        //        b.Width += b.Width;
+        //    }
+        //}
+        //private void btnCreate_MouseLeave(object sender, MouseEventArgs e)
+        //{
+        //    Button b = sender as Button;
+        //    if (b != null)
+        //    {
+        //        b.Height = b.Height / 2;
+        //        b.Width = b.Width / 2;
+        //    }
+        //}
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -78,7 +101,7 @@ namespace PL
 
             bl.AddLine(theNum, (BL.BO.Enum.Areas)cbAreas.SelectedItem, newList);  //create the line 
             MessageBox.Show("The line has been added succesfully!");
-            MessageBox.Show(bl.GetLine(theNum).ToString());
+           // MessageBox.Show(bl.GetLine(theNum).ToString());
 
         }
 
