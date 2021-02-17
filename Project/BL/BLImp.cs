@@ -183,10 +183,11 @@ namespace BL
         {
             try
             {
-                dl.DeleteLine(code);      //first delete the line itself
+                dl.DeleteLine(code);     //delete the line itself
                 IEnumerable<DO.LineStation> lineStation = dl.GetAllLineStationBy(ls => ls.LineCode == code);
-                foreach (DO.LineStation item in lineStation) { dl.DeleteLineStation(item.LineCode, item.StationCode); }
-              //  but also all the lineStations which are related to this line
+                foreach (var item in lineStation) { dl.DeleteLineStation(item.LineCode, item.StationCode); }
+                //  but also all the lineStations which are related to this line
+
             }
             catch (DO.BadStationIdException ex)
             {

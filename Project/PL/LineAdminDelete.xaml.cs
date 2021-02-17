@@ -22,16 +22,17 @@ namespace PL
     {
         IBL bl;
         BL.BO.Line curLineToDelete;
-        public LineAdminDelete(IBL bl)
+        public LineAdminDelete(IBL _bl)
         {
             InitializeComponent();
+            bl = _bl;
             DataContext = bl.GetAllLine();
         }
 
-        private void cbLinesToDelete_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lbLineToDelete_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            curLineToDelete = cbLinesToDelete.SelectedItem as BL.BO.Line;
-            bl.DeleteLine(curLineToDelete.Code);
+            curLineToDelete = lbLineToDelete.SelectedItem as BL.BO.Line;
+            bl.DeleteLine(curLineToDelete.Code);   
         }
     }
 }
