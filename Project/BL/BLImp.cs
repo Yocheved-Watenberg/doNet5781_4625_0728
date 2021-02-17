@@ -17,7 +17,6 @@ namespace BL
     {
         IDAL dl = DLFactory.GetDL();
         Random rand = new Random(DateTime.Now.Millisecond);
-
         #region Station
         public void AddStation(BO.Station station)   //tres simple creer juste la station, pas bsn de dire les lignes qui pasent par cette station
                                                      //pr creer ou leadken les lignes qui passent par cette station jle fais direct par line
