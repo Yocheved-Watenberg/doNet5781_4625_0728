@@ -54,28 +54,28 @@ namespace PL
                 }
                 if (cbAreas.SelectedItem == null)
                 {
-
                     throw new NotSelectedAreaException("You have not selected an area!");
                 }
 
-                IEnumerable<LineStation> newList = from Station eachLs in lbListOfStations.SelectedItems  //put the selected Line Stations into the list of stations of the line
-                                                   let ls = new LineStation
+                List<LineStation> newList = (from Station eachLs in lbListOfStations.SelectedItems  //put the selected Line Stations into the list of stations of the line
+                                                   select new LineStation
                                                    {
                                                        LineCode = theNum,
                                                        StationCode = eachLs.Code,
                                                        //DistanceFromLastStation=,
                                                        //TimeFromLastStation =,
                                                        StationName = eachLs.Name,
-                                                   }
-                                                   select ls;
-               
-
-
-                bl.AddLine(theNum, (BL.BO.Enum.Areas)cbAreas.SelectedItem, newList);  //create the line 
-                MessageBox.Show("The line has been added succesfully!");
-                //MessageBox.Show(bl.GetLine(theNum).ToString());
-                LineAdmin win = new LineAdmin(bl);
-                win.Show();
+                                                   }).ToList();
+                try
+                {
+                    bl.AddLine(theNum, (BL.BO.Enum.Areas)cbAreas.SelectedItem, newList);  //create the line 
+                    MessageBox.Show("The line has been added succesfully!");
+                }
+                catch (BadLineException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                }
+                this.Close(); 
             }
             catch (LessThanTwoStationsException ex)
             {
@@ -116,8 +116,6 @@ namespace PL
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
-
-
 
         }
 

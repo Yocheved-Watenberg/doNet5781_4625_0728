@@ -176,7 +176,14 @@ namespace BL
                 }
             }
        
-            dl.AddLine(DoLine);
+            try
+            {
+                dl.AddLine(DoLine);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineException("This line already exist", ex);
+            }
         }
 
         public void DeleteLine(int code)
@@ -184,16 +191,14 @@ namespace BL
             try
             {
                 dl.DeleteLine(code);     //delete the line itself
-                IEnumerable<DO.LineStation> lineStation = dl.GetAllLineStationBy(ls => ls.LineCode == code);
-                foreach (var item in lineStation) { dl.DeleteLineStation(item.LineCode, item.StationCode); }
+                //IEnumerable<DO.LineStation> lineStation = dl.GetAllLineStationBy(ls => ls.LineCode == code);  //on na pas le droit de creer un inumerable, mettre une liste a la place 
+                //foreach (var item in lineStation) { dl.DeleteLineStation(item.LineCode, item.StationCode); }
                 //  but also all the lineStations which are related to this line
-
             }
             catch (DO.BadStationIdException ex)
             {
                 throw new BO.BadStationException("This station does not exist", ex);
             }
-
         }
         public void DeleteStationOfLine(int stationId, int lineId)
         {
@@ -216,10 +221,8 @@ namespace BL
         {
             try
             {
-                IEnumerable<DO.LineStation> lineStationDO = dl.GetAllLineStationBy(l => l.LineCode == line.Code);
-                return from item in lineStationDO 
-                select LineStationDoBoAdapter(item);
-
+                return from item in dl.GetAllLineStationBy(l => l.LineCode == line.Code)
+                       select LineStationDoBoAdapter(item);
             }
             catch(DO.BadLineIdException ex)
             {
