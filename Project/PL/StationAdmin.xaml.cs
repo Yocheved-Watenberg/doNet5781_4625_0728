@@ -74,6 +74,9 @@ namespace PL
         {
             //MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
 
+            bl.DeleteStation(curStation.Code);
+            MessageBox.Show($"The station {curStation.Code} is deleted!");
+            RefreshAllStationComboBox();
         }
         private void btAddStation_Click(object sender, RoutedEventArgs e)
         {

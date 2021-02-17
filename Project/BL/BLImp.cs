@@ -52,22 +52,20 @@ namespace BL
             }
 
         }
-        public IEnumerable<BO.Line> GetAllLineInStation(BO.Station s)   //a revoir renvoie t elle vrmnt bo.line, ps plutot do.line
+        public IEnumerable<BO.Line> GetAllLineInStation(BO.Station s)   
         {
             try
             {
-                IEnumerable<Line> lineInStation = from ls in dl.GetAllLineStationBy(ls => ls.StationCode == s.Code)
-                                                      //searches all the LineStations which have the same code than the station sent 
-                                                  let line = dl.GetLine(ls.LineCode)
-                                                  //creates a line from the Id of the LineStation
-                                                  select LineDoBoAdapter(line);
-                return lineInStation;
+                return from ls in dl.GetAllLineStationBy(l => l.StationCode == s.Code)
+                      //searches all the LineStations which have the same code than the station sent 
+                       let line = dl.GetLine(ls.LineCode)
+                       //creates a line from the code of the LineStation
+                       select LineDoBoAdapter(line);    
             }
             catch (DO.BadStationIdException ex)
             {
                 throw new BO.BadStationException("This station does not exist", ex);
             }
-
         }
         public IEnumerable<BO.Station> GetAllStation()
         {
