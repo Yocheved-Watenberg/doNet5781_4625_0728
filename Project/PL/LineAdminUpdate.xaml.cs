@@ -38,23 +38,23 @@ namespace PL
             cbLines.DataContext = bl.GetAllLine();
         }
 
-        void RefreshAllLinesGrid()
-        {
-            lbLineStations.DataContext = bl.GetAllLineStationsInLine(curLine);
-        }
+        //void RefreshAllLinesGrid()
+        //{
+        //    lbLineStations.DataContext = bl.GetAllLineStationsInLine(curLine);
+        //}
 
-        private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            curLine = cbLines.SelectedItem as BL.BO.Line;
-            tbArea.DataContext = curLine;
+        //private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    curLine = cbLines.SelectedItem as BL.BO.Line;
+        //    tbArea.DataContext = curLine;
 
-            if (curLine != null)
-            {
-                RefreshAllLinesGrid();
-            }
-        }
+        //    if (curLine != null)
+        //    {
+        //        RefreshAllLinesGrid();
+        //    }
+        //}
 
-    }
+   
 
     private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -65,7 +65,7 @@ namespace PL
         {
             MessageBox.Show("this method is under construction");
         }
-
+         
         private void lbListOfStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             MessageBox.Show("this method is under construction");
@@ -81,4 +81,5 @@ namespace PL
 
         }
     }
+}
 
