@@ -47,7 +47,8 @@ namespace PL
 
         private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            curLine = cbLines.SelectedItem as BL.BO.Line;
+            // curLine = cbLines.SelectedItem as BL.BO.Line;
+            curLine = (BL.BO.Line) cbLines.SelectedItem;
             tbArea.DataContext = curLine;
 
             if (curLine != null)
