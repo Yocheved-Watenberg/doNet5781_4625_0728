@@ -56,11 +56,9 @@ namespace BL
         {
             try
             {
-                return from ls in dl.GetAllLineStationBy(l => l.StationCode == s.Code)
-                      //searches all the LineStations which have the same code than the station sent 
-                       let line = dl.GetLine(ls.LineCode)
-                       //creates a line from the code of the LineStation
-                       select LineDoBoAdapter(line);    
+                return from ls in dl.GetAllLineStationBy(ls => ls.StationCode == s.Code)  //searches all the LineStations which have the same code than the station sent 
+                       let line = dl.GetLine(ls.LineCode)                                 //creates a line from the Id of the LineStation
+                       select LineDoBoAdapter(line);
             }
             catch (DO.BadStationIdException ex)
             {
@@ -191,7 +189,7 @@ namespace BL
                 dl.DeleteLine(code);     //delete the line itself
                 //IEnumerable<DO.LineStation> lineStation = dl.GetAllLineStationBy(ls => ls.LineCode == code);  //on na pas le droit de creer un inumerable, mettre une liste a la place 
                 //foreach (var item in lineStation) { dl.DeleteLineStation(item.LineCode, item.StationCode); }
-                //  but also all the lineStations which are related to this line
+                // but also all the lineStations which are related to this line
             }
             catch (DO.BadStationIdException ex)
             {
