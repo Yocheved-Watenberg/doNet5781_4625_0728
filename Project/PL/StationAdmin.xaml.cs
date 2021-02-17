@@ -39,7 +39,6 @@ namespace PL
             cbStationCode.DataContext = bl.GetAllStation();
         }
 
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -48,11 +47,10 @@ namespace PL
             // stationViewSource.Source = [source de données générique]
         }
 
-        private void stationCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-
-        }
+        //private void stationCheckBox_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         private void cbStationCode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -64,16 +62,9 @@ namespace PL
                 lbLineStations.DataContext = bl.GetAllLineInStation(curStation);
             }
         }
-
-        //private void lbLineStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
    
         private void btDeleteStation_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-
             bl.DeleteStation(curStation.Code);
             MessageBox.Show($"The station {curStation.Code} is deleted!");
             RefreshAllStationComboBox();
@@ -82,6 +73,7 @@ namespace PL
         {
             StationAdminAdd win = new StationAdminAdd(bl);
             win.ShowDialog();
+            RefreshAllStationComboBox();
         }
         private void btUpdateStation_Click(object sender, RoutedEventArgs e)
         {
@@ -99,7 +91,6 @@ namespace PL
                 MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close(); 
