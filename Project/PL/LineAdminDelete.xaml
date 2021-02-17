@@ -19,13 +19,22 @@
                    Width="513" 
                    BorderBrush="#FF2DD1C9" 
                    Foreground="Blue"    />
-        <ComboBox x:Name="cbLinesToDelete" 
-                      HorizontalAlignment="Stretch" 
-                      VerticalAlignment="Stretch" 
-                      Margin="271,176,326,204" 
-                      ItemsSource="{Binding}" 
-                      DisplayMemberPath ="Code" 
-                      Foreground="Blue" 
-                      FontSize="10" SelectionChanged="cbLinesToDelete_SelectionChanged"  />
+
+        <ListBox x:Name="lbLineToDelete" 
+                 HorizontalAlignment="Left" 
+                 Height="211" 
+                 Margin="167,128,0,0" 
+                 VerticalAlignment="Top" 
+                 ItemsSource="{Binding}" 
+                 Width="384" 
+                 FontFamily="Segoe UI Black" 
+                 FontSize="14" 
+                 FontWeight="Bold" 
+                 Foreground="Blue"
+                 SelectionChanged="lbLineToDelete_SelectionChanged">
+            <ListBox.Background>
+                <ImageBrush/>
+            </ListBox.Background>
+        </ListBox>
     </Grid>
 </Window>

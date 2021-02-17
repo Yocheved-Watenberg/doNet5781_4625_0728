@@ -18,22 +18,21 @@ namespace PL
     /// <summary>
     /// Logique d'interaction pour LineAdminDelete.xaml
     /// </summary>
-     
     public partial class LineAdminDelete : Window
     {
-        
-        BL.BO.Line curLineToDelete;
         IBL bl;
+        BL.BO.Line curLineToDelete;
         public LineAdminDelete(IBL _bl)
         {
             InitializeComponent();
+            bl = _bl;
             DataContext = bl.GetAllLine();
         }
 
-        private void cbLinesToDelete_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lbLineToDelete_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //curLineToDelete = (BL.BO.Line)(cbLinesToDelete.SelectedItem );
-            bl.DeleteLine(((BL.BO.Line)cbLinesToDelete.SelectedItem).Code);
+            curLineToDelete = lbLineToDelete.SelectedItem as BL.BO.Line;
+            bl.DeleteLine(curLineToDelete.Code);   
         }
     }
 }

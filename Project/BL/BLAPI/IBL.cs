@@ -14,7 +14,7 @@ namespace BLAPI
        BL.BO.Line LineDoBoAdapter(DO.Line lineDO);
         BL.BO.LineStation LineStationDoBoAdapter(DO.LineStation lineDO);
         void AddLine(int myCode, BL.BO.Enum.Areas myArea, IEnumerable<LineStation> myListOfStations);              //allows only after the user entered two stations
-       void DeleteLine(int id);
+       void DeleteLine(int code);
        void AddStationToLine(LineStation lineStation, LineStation previous);
        void DeleteStationOfLine(int stationId, int lineId);
        Line GetLine(int myCode, Station FirstStation, Station LastStation);

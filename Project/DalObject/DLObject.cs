@@ -259,19 +259,19 @@ namespace DL
 
         public void UpdateLine(DO.Line line)
         {
-            DO.Line myLine = DataSource.ListLine.Find(l => l.Id == line.Id);
+            DO.Line myLine = DataSource.ListLine.Find(l => l.Code == line.Code);
             if ((myLine != null) && (myLine.IsDeleted == false))
             {
                 DataSource.ListLine.Remove(myLine);
                 DataSource.ListLine.Add(line.Clone());
             }
             else
-                throw new DO.BadLineIdException(line.Id, $"bad line id : {line.Id}");
+                throw new DO.BadLineIdException(line.Code, $"bad line code : {line.Code}");
         }
 
-        public void UpdateLine(int id, Action<DO.Line> update)
+        public void UpdateLine(int code, Action<DO.Line> update)
         {
-            var myLine = DataSource.ListLine.FirstOrDefault(predicate => predicate.Id == id);
+            var myLine = DataSource.ListLine.FirstOrDefault(predicate => predicate.Code == code);
             if ((myLine != null) && (myLine.IsDeleted == false))
             {
                 update(myLine);
@@ -288,15 +288,15 @@ namespace DL
                 throw new DO.BadLineStationIdException(lineStation.LineCode, lineStation.StationCode, "this line station already exists in the list of line station");
             DataSource.ListLineStation.Add(lineStation.Clone());
         }
-        public void DeleteLineStation(int id, int station)
+        public void DeleteLineStation(int line, int station)
         {
-            DO.LineStation myLineStation = DataSource.ListLineStation.Find(l => (l.LineCode == id)&&(l.StationCode==station));
+            DO.LineStation myLineStation = DataSource.ListLineStation.Find(ls => (ls.LineCode == line)&&(ls.StationCode==station));
             if (myLineStation != null)
             {
                 DataSource.ListLineStation.Remove(myLineStation);
             }
             else
-                throw new DO.BadLineStationIdException(id, station, "this line station doesn't exist in the list of line station");
+                throw new DO.BadLineStationIdException(line, station, "this line station doesn't exist in the list of line station");
         }
         public IEnumerable<DO.LineStation> GetAllLineStation()
         {
@@ -320,7 +320,7 @@ namespace DL
                        where predicate(lineStation)
                        select lineStation.Clone();
             }
-            return GetAllLineStation();
+           else return GetAllLineStation();
         }
         public void UpdateLineStation(DO.LineStation lineStation)
         {
