@@ -85,7 +85,19 @@ namespace PL
         }
         private void btUpdateStation_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            
+            try
+            {
+                if (curStation != null)
+                    bl.UpdateStation(curStation);
+                MessageBox.Show("The station has been changed!");
+                RefreshAllStationComboBox();
+
+            }
+            catch (BL.BO.BadStationException ex)
+            {
+                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
