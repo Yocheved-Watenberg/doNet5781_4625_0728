@@ -29,9 +29,9 @@ namespace PL
             InitializeComponent();
             bl = _bl;
 
-            cbLines.DisplayMemberPath = "Code";//show only specific Property of object                  // verifier si fo pas enlever car dit deux fois (ds cs et xml) 
-            cbLines.SelectedValuePath = "Id";//selection return only specific Property of object
-            cbLines.SelectedIndex = 0; //index of the object to be selected
+            cbLines.DisplayMemberPath = "Code"; //show only specific Property of object                  // verifier si fo pas enlever car dit deux fois (ds cs et xml) 
+            cbLines.SelectedValuePath = "Id";   //selection return only specific Property of object
+            cbLines.SelectedIndex = 0;          //index of the object to be selected
             RefreshAllLineComboBox();
         }
 
