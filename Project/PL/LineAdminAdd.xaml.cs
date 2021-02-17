@@ -100,8 +100,6 @@ namespace PL
 
             //  MessageBox.Show("newlist.firststation" + newList.First());//a degager c pr verifier qqch 
 
-
-
         }
 
         private void btnSelectStations_Click(object sender, RoutedEventArgs e)
