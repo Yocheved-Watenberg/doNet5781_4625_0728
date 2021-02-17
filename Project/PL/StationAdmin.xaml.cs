@@ -72,7 +72,8 @@ namespace PL
    
         private void btDeleteStation_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            //MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
         }
         private void btAddStation_Click(object sender, RoutedEventArgs e)
         {
