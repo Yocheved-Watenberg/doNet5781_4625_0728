@@ -58,7 +58,7 @@ namespace BL
             {
                 IEnumerable<Line> lineInStation = from ls in dl.GetAllLineStationBy(ls => ls.StationCode == s.Code)
                                                       //searches all the LineStations which have the same code than the station sent 
-                                                  let line = dl.GetLine(ls.LineId)
+                                                  let line = dl.GetLine(ls.LineCode)
                                                   //creates a line from the Id of the LineStation
                                                   select LineDoBoAdapter(line);
                 return lineInStation;
@@ -179,13 +179,13 @@ namespace BL
             dl.AddLine(DoLine);
         }
 
-        public void DeleteLine(int id)
+        public void DeleteLine(int code)
         {
             try
             {
-                dl.DeleteLine(id);      //first delete the line itself
-                IEnumerable<DO.LineStation> lineStation = dl.GetAllLineStationBy(l => l.LineId == id);
-                foreach (DO.LineStation item in lineStation) { dl.DeleteLineStation(item.LineId, item.StationCode); }
+                dl.DeleteLine(code);      //first delete the line itself
+                IEnumerable<DO.LineStation> lineStation = dl.GetAllLineStationBy(ls => ls.LineCode == code);
+                foreach (DO.LineStation item in lineStation) { dl.DeleteLineStation(item.LineCode, item.StationCode); }
               //  but also all the lineStations which are related to this line
             }
             catch (DO.BadStationIdException ex)
@@ -215,7 +215,7 @@ namespace BL
         {
             try
             {
-                IEnumerable<DO.LineStation> lineStationDO = dl.GetAllLineStationBy(l => l.LineId == line.Code);
+                IEnumerable<DO.LineStation> lineStationDO = dl.GetAllLineStationBy(l => l.LineCode == line.Code);
                 return from item in lineStationDO 
                 select LineStationDoBoAdapter(item);
 
@@ -276,7 +276,7 @@ namespace BL
         {
             BO.Line lineBO = new BO.Line();
             lineDO.CopyPropertiesTo(lineBO);
-            lineBO.ListOfStations = from allStation in dl.GetAllLineStationBy(l => l.LineId == lineDO.Id)
+            lineBO.ListOfStations = from allStation in dl.GetAllLineStationBy(ls => ls.LineCode == lineDO.Code)
                                  //   let station = dl.GetStation(allStation.LineId)
                                     select LineStationDoBoAdapter(allStation);
             return lineBO;
@@ -326,7 +326,7 @@ namespace BL
 
         private Line LineStationLineAdapter (LineStation l)
         {
-            return LineDoBoAdapter(dl.GetLine(l.LineId));
+            return LineDoBoAdapter(dl.GetLine(l.LineCode));
         }
 
 

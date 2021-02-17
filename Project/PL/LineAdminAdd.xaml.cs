@@ -61,7 +61,7 @@ namespace PL
                 IEnumerable<LineStation> newList = from Station eachLs in lbListOfStations.SelectedItems  //put the selected Line Stations into the list of stations of the line
                                                    let ls = new LineStation
                                                    {
-                                                       LineId = theNum,
+                                                       LineCode = theNum,
                                                        StationCode = eachLs.Code,
                                                        //DistanceFromLastStation=,
                                                        //TimeFromLastStation =,
