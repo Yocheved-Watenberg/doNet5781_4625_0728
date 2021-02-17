@@ -54,9 +54,9 @@ namespace PL
         //    }
         //}
 
-   
 
-    private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             MessageBox.Show("this method is under construction");
         }
@@ -65,7 +65,7 @@ namespace PL
         {
             MessageBox.Show("this method is under construction");
         }
-         
+
         private void lbListOfStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             MessageBox.Show("this method is under construction");

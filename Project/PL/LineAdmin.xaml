@@ -86,12 +86,17 @@
                 <ImageBrush ImageSource="870x489_capture2_0.jpg"/>
             </Image.OpacityMask>
         </Image>
-        <Button x:Name="butAdd" Content="Add a new Line" HorizontalAlignment="Left" Margin="290,123.8,0,0" Grid.Row="2" VerticalAlignment="Top" Width="138" Height="43" RenderTransformOrigin="0.5,0.5" FontFamily="Harrington" FontSize="18" FontWeight="Bold" Foreground="#FF132CB4" Click="butAdd_Click">
+        <Button x:Name="butAdd" Content="Add a new line" HorizontalAlignment="Left" Margin="258,124,0,0" Grid.Row="2" VerticalAlignment="Top" Width="138" Height="43" RenderTransformOrigin="0.5,0.5" FontFamily="Harrington" FontSize="18" FontWeight="Bold" Foreground="#FF132CB4" Click="butAdd_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
         </Button>
-        <Button x:Name="butUpdate" Content="Update a Line" HorizontalAlignment="Left" Margin="568,123.8,0,0" Grid.Row="2" VerticalAlignment="Top" Width="138" Height="43" RenderTransformOrigin="0.5,0.5" FontFamily="Harrington" FontSize="18" FontWeight="Bold" Foreground="#FF132CB4" Click="butUpdate_Click">
+        <Button x:Name="butUpdate" Content="Update a line" HorizontalAlignment="Left" Margin="415,124,0,0" Grid.Row="2" VerticalAlignment="Top" Width="138" Height="43" RenderTransformOrigin="0.5,0.5" FontFamily="Harrington" FontSize="18" FontWeight="Bold" Foreground="#FF132CB4" Click="butUpdate_Click">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+        <Button x:Name="butDelete" Content="Delete a line" HorizontalAlignment="Left" Margin="574,124,0,0" Grid.Row="2" VerticalAlignment="Top" Width="138" Height="43" RenderTransformOrigin="0.5,0.5" FontFamily="Harrington" FontSize="18" FontWeight="Bold" Foreground="#FF132CB4" Click="butDelete_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>

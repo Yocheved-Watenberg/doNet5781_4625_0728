@@ -63,9 +63,16 @@ namespace PL
         }
         private void butUpdate_Click(object sender, RoutedEventArgs e)
         {
-            LineAdminUpdate win = new LineAdminUpdate(bl);
-            win.Show();
+            //LineAdminUpdate win = new LineAdminUpdate(bl);
+            //win.Show();
+            MessageBox.Show("this method is under construction");
         }
+        private void butDelete_Click(object sender, RoutedEventArgs e)
+        {
+            LineAdminDelete win = new LineAdminDelete(bl);
+            win.ShowDialog();
+        }
+
 
 
         #region  student example 
