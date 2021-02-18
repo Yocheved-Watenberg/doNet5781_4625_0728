@@ -39,6 +39,16 @@ namespace BLAPI
         IEnumerable<Station> GetAllStationBy(Predicate<Station> predicate);
 
         #endregion
+        #region LineTrip
+        //Station StationDoBoAdapter(DO.Station stationDO); peut etre a fr pr line trip
+        void AddLineTrip(LineTrip lineTrip);
+        void DeleteLineTrip(int code);
+        IEnumerable<LineTrip> GetAllLineTrip();
+        void UpdateLineTrip(Station station);
+        Station GetLineTrip(int code);
+        IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
+
+        #endregion
 
     }
 }

@@ -111,5 +111,6 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad user name: {name}";
     }
+   
 }
 

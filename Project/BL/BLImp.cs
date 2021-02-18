@@ -299,8 +299,8 @@ namespace BL
         {
            return GetAllStationsInLines(GetAllLineBy(l => (BL.BO.Enum.Areas)l.Area == myArea));
         }
-            #endregion
-            #region adjacentStation
+        #endregion
+        #region adjacentStation
         public BL.BO.AdjacentStations adjacentStationsDoBoAdapter(DO.AdjacentStations adjDO)
         {
             BL.BO.AdjacentStations adjBO = new BL.BO.AdjacentStations();
@@ -313,6 +313,7 @@ namespace BL
                    select adjacentStationsDoBoAdapter(item);
         }
         #endregion
+        #region global functions
 
         private double GetDistanceTo(Station s1, Station s2)           //donne la distance a vol doiseau entre deux stations
         {
@@ -327,6 +328,19 @@ namespace BL
         {
             return LineDoBoAdapter(dl.GetLine(l.LineCode));
         }
+        #endregion
+        #region LineTrip
+        public void AddLineTrip(LineTrip lineTrip)
+        {
+
+        }
+        public void DeleteLineTrip(int code);
+        public IEnumerable<LineTrip> GetAllLineTrip();
+        public void UpdateLineTrip(Station station);
+        public Station GetLineTrip(int code);
+        public IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
+       
+
 
 
     }
