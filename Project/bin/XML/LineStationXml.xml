@@ -1,203 +1,203 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfLineStations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <LineStation>
-    <LineId>1</LineId>
-    <StationKey>38832</StationKey>
-    <RankInLine>1</RankInLine>
+    <LineCode>1</LineCode>
+    <StationCode>38832</StationCode>
+    <LineStationIndex>1</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>1</LineId>
-    <StationKey>38838</StationKey>
-    <RankInLine>2</RankInLine>
+    <LineCode>1</LineCode>
+    <StationCode>38838</StationCode>
+    <LineStationIndex>2</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>1</LineId>
-    <StationKey>38839</StationKey>
-    <RankInLine>3</RankInLine>
+    <LineCode>1</LineCode>
+    <StationCode>38839</StationCode>
+    <LineStationIndex>3</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>1</LineId>
-    <StationKey>38846</StationKey>
-    <RankInLine>4</RankInLine>
+    <LineCode>1</LineCode>
+    <StationCode>38846</StationCode>
+    <LineStationIndex>4</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>1</LineId>
-    <StationKey>38849</StationKey>
-    <RankInLine>5</RankInLine>
+    <LineCode>1</LineCode>
+    <StationCode>38849</StationCode>
+    <LineStationIndex>5</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>1</LineId>
-    <StationKey>38855</StationKey>
-    <RankInLine>6</RankInLine>
+    <LineCode>1</LineCode>
+    <StationCode>38855</StationCode>
+    <LineStationIndex>6</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>1</LineId>
-    <StationKey>38861</StationKey>
-    <RankInLine>7</RankInLine>
+    <LineCode>1</LineCode>
+    <StationCode>38861</StationCode>
+    <LineStationIndex>7</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>1</LineId>
-    <StationKey>38864</StationKey>
-    <RankInLine>8</RankInLine>
+    <LineCode>1</LineCode>
+    <StationCode>38864</StationCode>
+    <LineStationIndex>8</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>1</LineId>
-    <StationKey>38866</StationKey>
-    <RankInLine>9</RankInLine>
+    <LineCode>1</LineCode>
+    <StationCode>38866</StationCode>
+    <LineStationIndex>9</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>1</LineId>
-    <StationKey>38872</StationKey>
-    <RankInLine>10</RankInLine>
+    <LineCode>1</LineCode>
+    <StationCode>38872</StationCode>
+    <LineStationIndex>10</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>4</LineId>
-    <StationKey>38831</StationKey>
-    <RankInLine>1</RankInLine>
+    <LineCode>4</LineCode>
+    <StationCode>38831</StationCode>
+    <LineStationIndex>1</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>4</LineId>
-    <StationKey>38836</StationKey>
-    <RankInLine>2</RankInLine>
+    <LineCode>4</LineCode>
+    <StationCode>38836</StationCode>
+    <LineStationIndex>2</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>4</LineId>
-    <StationKey>38839</StationKey>
-    <RankInLine>3</RankInLine>
+    <LineCode>4</LineCode>
+    <StationCode>38839</StationCode>
+    <LineStationIndex>3</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>4</LineId>
-    <StationKey>38891</StationKey>
-    <RankInLine>4</RankInLine>
+    <LineCode>4</LineCode>
+    <StationCode>38891</StationCode>
+    <LineStationIndex>4</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>4</LineId>
-    <StationKey>38893</StationKey>
-    <RankInLine>5</RankInLine>
+    <LineCode>4</LineCode>
+    <StationCode>38893</StationCode>
+    <LineStationIndex>5</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>4</LineId>
-    <StationKey>38895</StationKey>
-    <RankInLine>6</RankInLine>
+    <LineCode>4</LineCode>
+    <StationCode>38895</StationCode>
+    <LineStationIndex>6</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>4</LineId>
-    <StationKey>38901</StationKey>
-    <RankInLine>7</RankInLine>
+    <LineCode>4</LineCode>
+    <StationCode>38901</StationCode>
+    <LineStationIndex>7</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>4</LineId>
-    <StationKey>38905</StationKey>
-    <RankInLine>8</RankInLine>
+    <LineCode>4</LineCode>
+    <StationCode>38905</StationCode>
+    <LineStationIndex>8</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>4</LineId>
-    <StationKey>38906</StationKey>
-    <RankInLine>9</RankInLine>
+    <LineCode>4</LineCode>
+    <StationCode>38906</StationCode>
+    <LineStationIndex>9</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>4</LineId>
-    <StationKey>38908</StationKey>
-    <RankInLine>10</RankInLine>
+    <LineCode>4</LineCode>
+    <StationCode>38908</StationCode>
+    <LineStationIndex>10</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>8</LineId>
-    <StationKey>38831</StationKey>
-    <RankInLine>1</RankInLine>
+    <LineCode>8</LineCode>
+    <StationCode>38831</StationCode>
+    <LineStationIndex>1</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>8</LineId>
-    <StationKey>38836</StationKey>
-    <RankInLine>2</RankInLine>
+    <LineCode>8</LineCode>
+    <StationCode>38836</StationCode>
+    <LineStationIndex>2</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>8</LineId>
-    <StationKey>38838</StationKey>
-    <RankInLine>3</RankInLine>
+    <LineCode>8</LineCode>
+    <StationCode>38838</StationCode>
+    <LineStationIndex>3</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>8</LineId>
-    <StationKey>38840</StationKey>
-    <RankInLine>4</RankInLine>
+    <LineCode>8</LineCode>
+    <StationCode>38840</StationCode>
+    <LineStationIndex>4</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>8</LineId>
-    <StationKey>38889</StationKey>
-    <RankInLine>5</RankInLine>
+    <LineCode>8</LineCode>
+    <StationCode>38889</StationCode>
+    <LineStationIndex>5</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>8</LineId>
-    <StationKey>38892</StationKey>
-    <RankInLine>6</RankInLine>
+    <LineCode>8</LineCode>
+    <StationCode>38892</StationCode>
+    <LineStationIndex>6</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>8</LineId>
-    <StationKey>38893</StationKey>
-    <RankInLine>7</RankInLine>
+    <LineCode>8</LineCode>
+    <StationCode>38893</StationCode>
+    <LineStationIndex>7</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>8</LineId>
-    <StationKey>38894</StationKey>
-    <RankInLine>8</RankInLine>
+    <LineCode>8</LineCode>
+    <StationCode>38894</StationCode>
+    <LineStationIndex>8</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>3</LineId>
-    <StationKey>38832</StationKey>
-    <RankInLine>1</RankInLine>
+    <LineCode>3</LineCode>
+    <StationCode>38832</StationCode>
+    <LineStationIndex>1</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>3</LineId>
-    <StationKey>38905</StationKey>
-    <RankInLine>2</RankInLine>
+    <LineCode>3</LineCode>
+    <StationCode>38905</StationCode>
+    <LineStationIndex>2</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>3</LineId>
-    <StationKey>38831</StationKey>
-    <RankInLine>3</RankInLine>
+    <LineCode>3</LineCode>
+    <StationCode>38831</StationCode>
+    <LineStationIndex>3</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>3</LineId>
-    <StationKey>38907</StationKey>
-    <RankInLine>4</RankInLine>
+    <LineCode>3</LineCode>
+    <StationCode>38907</StationCode>
+    <LineStationIndex>4</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>3</LineId>
-    <StationKey>38911</StationKey>
-    <RankInLine>5</RankInLine>
+    <LineCode>3</LineCode>
+    <StationCode>38911</StationCode>
+    <LineStationIndex>5</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>3</LineId>
-    <StationKey>38912</StationKey>
-    <RankInLine>6</RankInLine>
+    <LineCode>3</LineCode>
+    <StationCode>38912</StationCode>
+    <LineStationIndex>6</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>3</LineId>
-    <StationKey>38913</StationKey>
-    <RankInLine>7</RankInLine>
+    <LineCode>3</LineCode>
+    <StationCode>38913</StationCode>
+    <LineStationIndex>7</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>3</LineId>
-    <StationKey>38914</StationKey>
-    <RankInLine>8</RankInLine>
+    <LineCode>3</LineCode>
+    <StationCode>38914</StationCode>
+    <LineStationIndex>8</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>3</LineId>
-    <StationKey>38916</StationKey>
-    <RankInLine>9</RankInLine>
+    <LineCode>3</LineCode>
+    <StationCode>38916</StationCode>
+    <LineStationIndex>9</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>3</LineId>
-    <StationKey>38917</StationKey>
-    <RankInLine>10</RankInLine>
+    <LineCode>3</LineCode>
+    <StationCode>38917</StationCode>
+    <LineStationIndex>10</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>3</LineId>
-    <StationKey>38919</StationKey>
-    <RankInLine>11</RankInLine>
+    <LineCode>3</LineCode>
+    <StationCode>38919</StationCode>
+    <LineStationIndex>11</LineStationIndex>
   </LineStation>
   <LineStation>
-    <LineId>3</LineId>
-    <StationKey>38921</StationKey>
-    <RankInLine>12</RankInLine>
+    <LineCode>3</LineCode>
+    <StationCode>38921</StationCode>
+    <LineStationIndex>12</LineStationIndex>
   </LineStation>
 </ArrayOfLineStations>
