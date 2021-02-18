@@ -329,16 +329,17 @@ namespace BL
             return LineDoBoAdapter(dl.GetLine(l.LineCode));
         }
         #endregion
-        #region LineTrip
-        public void AddLineTrip(LineTrip lineTrip)
-        {
+       //Afr??
+       //#region LineTrip
+        //public void AddLineTrip(LineTrip lineTrip)
+        //{
 
-        }
-        public void DeleteLineTrip(int code);
-        public IEnumerable<LineTrip> GetAllLineTrip();
-        public void UpdateLineTrip(Station station);
-        public Station GetLineTrip(int code);
-        public IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
+        //}
+        //public void DeleteLineTrip(int code);
+        //public IEnumerable<LineTrip> GetAllLineTrip();
+        //public void UpdateLineTrip(Station station);
+        //public Station GetLineTrip(int code);
+        //public IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
        
 
 
