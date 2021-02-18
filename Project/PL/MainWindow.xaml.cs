@@ -34,9 +34,10 @@ namespace PL
                 ChoiceAdmin win = new ChoiceAdmin(bl);  
                 win.ShowDialog();
             }
-            else
+            else if (rbUser.IsChecked == true)
             {
-                MessageBox.Show("This method is under construction!", "TBD", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                ChoiceUser win = new ChoiceUser(bl);
+                win.ShowDialog();
             }
         }
 

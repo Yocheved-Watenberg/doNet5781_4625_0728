@@ -42,21 +42,21 @@ namespace PL
             int s = lbListOfStations.SelectedItems.Count;  //s=number of stations that user selected for his line 
             try
             {
-                if (s < 2)                                 //if there is less than two stations=> error 
-                {
-                    LessThanTwoStationsException lt2se = new LessThanTwoStationsException("You have to select more stations");
-                    throw lt2se;
-                }
+               
                 bool isNum = int.TryParse(tbCode.Text, out int theNum);         //checks if the code is composed only of digits 
                 if (!isNum)
                 {
-                    throw new BadCodeException("You have to put only numbers for the code!");       //else =>error 
+                    throw new BadCodeException("You have to put a valid number for the code!");       //else =>error 
                 }
                 if (cbAreas.SelectedItem == null)
                 {
                     throw new NotSelectedAreaException("You have not selected an area!");
                 }
-
+                if (s < 2)                                 //if there is less than two stations=> error 
+                {
+                    LessThanTwoStationsException lt2se = new LessThanTwoStationsException("You have to select more stations");
+                    throw lt2se;
+                }
                 List<LineStation> newList = (from Station eachLs in lbListOfStations.SelectedItems  //put the selected Line Stations into the list of stations of the line
                                                    select new LineStation
                                                    {
@@ -81,14 +81,6 @@ namespace PL
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
-            //bool isNum = int.TryParse(tbCode.Text, out int theNum);         //checks if the code is composed only of digits 
-            //try
-            //{
-            //    if (!isNum)
-            //    {
-            //        throw new BadCodeException("You have to put only numbers for the code!");       //else =>error 
-            //    }
-            //}
             catch (BadCodeException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
@@ -97,9 +89,6 @@ namespace PL
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
-
-            //  MessageBox.Show("newlist.firststation" + newList.First());//a degager c pr verifier qqch 
-
         }
 
         private void btnSelectStations_Click(object sender, RoutedEventArgs e)
