@@ -48,10 +48,10 @@ namespace DL
                             }
                             ).FirstOrDefault();
 
-                if (p == null)
-                    throw new DO.BadPersonIdException(id, $"bad person id: {id}");
+                if (l == null)
+                    throw new DO.BadLineIdException(code, $"bad line code: {code}");
 
-                return p;
+                return l;
             }
         }
     }
