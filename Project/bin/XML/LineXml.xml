@@ -4,32 +4,32 @@
     <Id>1</Id>
     <Code>72</Code>
     <Area>Jerusalem</Area>
-    <FirstStationKey>38832</FirstStationKey>
-    <LastStationKey>38872</LastStationKey>
+    <FirstStation>38832</FirstStation>
+    <LastStation>38872</LastStation>
     <TotalTime>PT0S</TotalTime>
   </BusLine>
   <BusLine>
     <Id>4</Id>
     <Code>40</Code>
     <Area>North</Area>
-    <FirstStationKey>38831</FirstStationKey>
-    <LastStationKey>38903</LastStationKey>
+    <FirstStation>38831</FirstStation>
+    <LastStation>38903</LastStation>
     <TotalTime>PT0S</TotalTime>
   </BusLine>
   <BusLine>
     <Id>8</Id>
     <Code>26</Code>
     <Area>Center</Area>
-    <FirstStationKey>38831</FirstStationKey>
-    <LastStationKey>38894</LastStationKey>
+    <FirstStation>38831</FirstStation>
+    <LastStation>38894</LastStation>
     <TotalTime>PT5H16M19.632S</TotalTime>
   </BusLine>
   <BusLine>
     <Id>3</Id>
     <Code>3</Code>
     <Area>South</Area>
-    <FirstStationKey>38905</FirstStationKey>
-    <LastStationKey>38921</LastStationKey>
+    <FirstStation>38905</FirstStation>
+    <LastStation>38921</LastStation>
     <TotalTime>PT20H23M53.664S</TotalTime>
   </BusLine>
 </ArrayOfBusLines>
