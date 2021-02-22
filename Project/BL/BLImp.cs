@@ -329,19 +329,101 @@ namespace BL
             return LineDoBoAdapter(dl.GetLine(l.LineCode));
         }
         #endregion
-       //Afr??
-       //#region LineTrip
-        //public void AddLineTrip(LineTrip lineTrip)
-        //{
+        //Afr??
+        #region LineTrip
+        public void AddLineTrip(LineTrip lineTrip)
+        {
+            try
+            {
+                dl.GetLineTrip(lineTrip.Id,lineTrip.StartAt);
+            }
+            catch (DO.BadLineTripIdException ex)
+            {
+                throw new BO.BadLineTripIdException("This line trip doesn't exist", ex);
+            }
+            DO.LineTrip lineTripDO = new DO.LineTrip();
+            lineTripDO.CopyPropertiesTo(lineTrip);
+            dl.AddLineTrip(lineTripDO);
+        }
+        public void DeleteLineTrip(LineTrip lineTrip)
+        {
+            try
+            {
+                dl.DeleteLineTrip(lineTrip.Id, lineTrip.StartAt);
+                                                                                                                           //ENLEVER cette station de la liste des lines                                                                                                                                                                                              
+            }
+            catch (DO.BadLineTripIdException ex)
+            {
+                throw new BO.BadLineTripIdException("This line trip does not exist", ex);
+            }
 
-        //}
-        //public void DeleteLineTrip(int code);
-        //public IEnumerable<LineTrip> GetAllLineTrip();
-        //public void UpdateLineTrip(Station station);
-        //public Station GetLineTrip(int code);
-        //public IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
-       
+        }
+        public IEnumerable<LineTrip> GetAllLineTrip()
+        {
+            return from item in dl.GetAllLineTrip()
+                   select LineTripDoBoAdapter(item);
+        }
+        public void UpdateLineTrip(LineTrip lineTrip)
+        {
+            DO.LineTrip lineTripDO = new DO.LineTrip();
+            lineTrip.CopyPropertiesTo(lineTripDO);
+            try
+            {
+                dl.UpdateLineTrip(lineTripDO);
+            }
+            catch (DO.BadLineTripIdException ex)
+            {
+                throw new BO.BadLineTripIdException("This line trip doesn't exist", ex);
+            }
 
+
+        }
+        public LineTrip GetLineTrip(int id, TimeSpan startAt)
+        {
+            DO.LineTrip lineTripDO;
+            try
+            {
+                lineTripDO = dl.GetLineTrip(id,startAt);
+            }
+            catch (DO.BadStationIdException ex)
+            {
+                throw new BO.BadStationException("The code of the station does not exist", ex);
+            }
+            return LineTripDoBoAdapter(lineTripDO);
+        }
+
+        public IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate)
+        {
+            if (predicate != null)
+            {
+                return from lineTrip in dl.GetAllLineTripBy((Predicate<DO.LineTrip>)predicate)
+                       select LineTripDoBoAdapter(lineTrip);
+            }
+            else
+            {
+                return GetAllLineTrip();
+            }
+        }
+
+        public BO.LineTrip LineTripDoBoAdapter(DO.LineTrip DoLineTrip)
+        {
+            BO.LineTrip lineTripBO = new BO.LineTrip();
+            DO.Line lineDO;
+            int id = DoLineTrip.Id;
+            try
+            {
+                lineDO = dl.GetLine(id);
+            }
+            catch (DO.BadLineTripIdException ex)
+            {
+                throw new BO.BadLineTripIdException("Line Trip ID is illegal", ex);
+            }
+            lineDO.CopyPropertiesTo(lineTripBO);
+            DoLineTrip.CopyPropertiesTo(lineTripBO);
+            return lineTripBO;
+
+        }
+      
 
 
     }

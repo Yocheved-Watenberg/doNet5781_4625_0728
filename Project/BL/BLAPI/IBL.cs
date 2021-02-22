@@ -40,14 +40,14 @@ namespace BLAPI
 
         #endregion
         #region LineTrip
-        //Station StationDoBoAdapter(DO.Station stationDO); peut etre a fr pr line trip
-        void AddLineTrip(LineTrip lineTrip);
-        void DeleteLineTrip(int code);
-        IEnumerable<LineTrip> GetAllLineTrip();
-        void UpdateLineTrip(Station station);
-        Station GetLineTrip(int code);
-        IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
 
+        void AddLineTrip(LineTrip lineTrip);
+        void DeleteLineTrip(LineTrip lineTrip);
+        IEnumerable<LineTrip> GetAllLineTrip();
+        void UpdateLineTrip(LineTrip lineTrip);
+        LineTrip GetLineTrip(int id, TimeSpan startAt);
+       IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
+        LineTrip LineTripDoBoAdapter(DO.LineTrip DoLineTrip);
         #endregion
 
     }
