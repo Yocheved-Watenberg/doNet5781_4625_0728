@@ -33,6 +33,14 @@ namespace BL.BO
         public override string ToString() => base.ToString() + $", bad station code: {code}";
     }
     [Serializable]
+    public class  BadLineTripIdException : Exception
+    {
+        public int id;
+        public BadLineTripIdException(string message, Exception innerException) :
+        base(message, innerException) => id = ((DO.BadLineTripIdException)innerException).code;
+    public override string ToString() => base.ToString() + $", bad line trip id : {id}";
+}
+[Serializable]
     public class LessThanTwoStationsException: Exception
     {
         public LessThanTwoStationsException(string message) : base(message){}
