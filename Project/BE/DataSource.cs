@@ -2508,6 +2508,7 @@ new User
             {
                 new LineTrip
 {
+    Id = Static.LineTripIdCounter++,
     LineId=ListLine[0].Id,
     StartAt= new TimeSpan(06,00,00),
     Frequency= new TimeSpan(00,20,00),
@@ -2515,6 +2516,7 @@ new User
 },
 new LineTrip
 {
+    Id = Static.LineTripIdCounter++,
     LineId=ListLine[1].Id,
     StartAt= new TimeSpan(07,00,00),
     Frequency=new TimeSpan(00,10,00),
@@ -2522,20 +2524,23 @@ new LineTrip
 },
 new LineTrip
 {
+    Id = Static.LineTripIdCounter++,
     LineId=ListLine[2].Id,
     StartAt= new TimeSpan(06,25,00),
     Frequency= new TimeSpan(00,30,00),
     FinishedAt=new TimeSpan(01,00,00),
 },
 new LineTrip
-{
+{  
+    Id = Static.LineTripIdCounter++,
     LineId=ListLine[3].Id,
     StartAt=new TimeSpan(07,40, 00),
     Frequency= new TimeSpan(00,15,00),
     FinishedAt=new TimeSpan(01,30,00),
 },
 new LineTrip
-{
+{  
+    Id = Static.LineTripIdCounter++,
     LineId=ListLine[4].Id,
     StartAt= new TimeSpan(07,20,00),
     Frequency= new TimeSpan(00,15,00),
@@ -2543,6 +2548,7 @@ new LineTrip
 },
 new LineTrip
 {
+    Id = Static.LineTripIdCounter++,
     LineId=ListLine[5].Id,
     StartAt= new TimeSpan(05,30,00),
     Frequency= new TimeSpan(00,20,00),
@@ -2550,27 +2556,31 @@ new LineTrip
 },
 new LineTrip
 {
+    Id = Static.LineTripIdCounter++,
     LineId=ListLine[6].Id,
     StartAt= new TimeSpan(05,45,00),
     Frequency= new TimeSpan(00,40,00),
     FinishedAt=new TimeSpan(00,30,00),
 },
 new LineTrip
-{
+{  
+    Id = Static.LineTripIdCounter++,
     LineId=ListLine[7].Id,
     StartAt= new TimeSpan(08,00,00),
     Frequency= new TimeSpan(00,15,00),
     FinishedAt=new TimeSpan(00,40,00),
 },
 new LineTrip
-{
+{  
+    Id = Static.LineTripIdCounter++,
     LineId=ListLine[8].Id,
     StartAt= new TimeSpan(09,00,00),
     Frequency= new TimeSpan(00,18,00),
     FinishedAt=new TimeSpan(00,20,00),
 },
 new LineTrip
-{
+{   
+    Id = Static.LineTripIdCounter++,
     LineId=ListLine[9].Id,
     StartAt= new TimeSpan(07,00,00),
     Frequency= new TimeSpan(00,10,00),

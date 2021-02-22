@@ -10,6 +10,7 @@ namespace DAL.DO
     {
        public static int LineIdCounter { get; set; } = 0;
        public static int BusOnTripIdCounter { get; set; } = 0;
+        public static int LineTripIdCounter { get; set; } = 0;
     }
 }
 
