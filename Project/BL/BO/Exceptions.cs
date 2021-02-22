@@ -15,7 +15,13 @@ namespace BL.BO
             public override string ToString() => base.ToString() + $", bad line id: {ID}";
     }
     //a revoir en cas d erreur
-
+    public class BadLineTripException : Exception
+    {
+        public int ID;
+        public BadLineTripException(string message, Exception innerException) :
+            base(message, innerException) => ID = ((DO.BadLineIdException)innerException).ID;
+        public override string ToString() => base.ToString() + $", bad lineTrip id: {ID}";
+    }
 
 
     [Serializable]

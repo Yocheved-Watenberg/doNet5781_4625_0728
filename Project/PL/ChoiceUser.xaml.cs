@@ -1,4 +1,5 @@
-﻿using BLAPI;
+﻿using BL.BO;
+using BLAPI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,58 +26,91 @@ namespace PL
     {
         IBL bl = BLFactory.GetBL("1");
         private Stopwatch stopWatch;
-        private bool isTimerRun;
         BackgroundWorker timerworker;
+
+        Station station;
+        IEnumerable<IGrouping<TimeSpan, LineTiming>> listTest;
+        TimeSpan startHour;
+
 
         public ChoiceUser(IBL _bl)
         {
+            InitializeComponent();  
             bl = _bl;
-            InitializeComponent();
-
-            stopWatch = new Stopwatch();
+            stopWatch = new Stopwatch(); 
             timerworker = new BackgroundWorker();
             timerworker.DoWork += Worker_DoWork;
             timerworker.ProgressChanged += Worker_ProgressChanged;
+            timerworker.RunWorkerCompleted += Timing_RunWorkerCompleted;
             timerworker.WorkerReportsProgress = true;
+            timerworker.WorkerSupportsCancellation = true;
+            stopWatch.Restart();
+            timerworker.RunWorkerAsync(station); //copié de tirtsa 
+
+        }
+
+        private void Timing_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
         }
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            string timerText = stopWatch.Elapsed.ToString();
+            string timerText = stopWatch.Elapsed.ToString();  //tirtsa : string timerText = (startHour + TimeSpan.FromTicks(stopwatch.Elapsed.Ticks * 60)).ToString();
             timerText = timerText.Substring(0, 8);
             this.timerTextBlock.Text = timerText;
+            LineTripDataGrid.ItemsSource = listTest;
         }
 
-        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)//revoir, g recopie de tirtsa 
         {
-            while (isTimerRun)
+            station = e.Argument as Station;
+            try
             {
-                timerworker.ReportProgress(55);
-                Thread.Sleep(1000);
+                startHour = DateTime.Now.TimeOfDay;
+                while (timerworker.CancellationPending == false)
+                {
+                    TimeSpan simulatedHourNow = startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * 60);
+                    listTest = PL.BoPoLineTimingAdapter(bl.StationTiming(station, simulatedHourNow), simulatedHourNow);
+                    timerworker.ReportProgress(1);
+                    Thread.Sleep(1);
+                }
+                e.Result = 1;
+            }
+            catch (BadLineTripException ex)
+            {
+                MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        private void startTimerButton_Click(object sender, RoutedEventArgs e)
+
+        // bool isTimerRun = false; 
+        //private void startTimerButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (!isTimerRun)
+        //    {
+        //        stopWatch.Restart();
+        //        isTimerRun = true;
+        //        timerworker.RunWorkerAsync();
+        //    }
+        //}
+        //private void stopTimerButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (isTimerRun)
+        //    {
+        //        stopWatch.Stop();
+        //        isTimerRun = false;
+        //    }
+        //}
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
-            if (!isTimerRun)
-            {
-                stopWatch.Restart();
-                isTimerRun = true;
-                timerworker.RunWorkerAsync();
-            }
-        }
-        private void stopTimerButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (isTimerRun)
-            {
-                stopWatch.Stop();
-                isTimerRun = false;
-            }
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+            timerworker.CancelAsync();
             this.Close();
         }
 
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            timerworker.CancelAsync();
+        }
+       
 
         //bool isNum = int.TryParse(tbSimulationSpeed.Text, out int theNum);         //checks if the meirout simulation is composed only of digits 
         //if (!isNum) throw new BadCodeException("You have to put a valid num");      
