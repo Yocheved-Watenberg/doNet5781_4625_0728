@@ -329,8 +329,8 @@ namespace BL
             return LineDoBoAdapter(dl.GetLine(l.LineCode));
         }
         #endregion
-       //Afr??
-       //#region LineTrip
+        //Afr??
+        //#region LineTrip
         //public void AddLineTrip(LineTrip lineTrip)
         //{
 
@@ -340,10 +340,97 @@ namespace BL
         //public void UpdateLineTrip(Station station);
         //public Station GetLineTrip(int code);
         //public IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
-       
 
+
+        //copié coller entierement de tirtsa 
+        public IEnumerable<IGrouping<TimeSpan, LineTiming>> StationTiming(Station station, TimeSpan hour)
+        {
+            //if (station.LinesThatPass == null)
+          //  throw new BO.BadLineTripException("There is any trip during these hours for the requested line", ex);
+            try
+            {
+                List<LineTiming> timing = new List<LineTiming>();
+                foreach (var lineId in GetAllLineInStation(station))
+                {
+                    foreach (var item in ListArrivalOfLine(lineId.Code, hour, station.Code))
+                        timing.Add(item);
+                }
+
+                return from item in timing
+                       group item by item.ExpectedTimeTillArrive;
+            }
+            catch (DO.BadLineTripIdException ex)
+            {
+                throw new BO.BadLineTripException("There is any trip during these hours for the requested line", ex);
+            }
+
+        }
+
+        //copier coller entierement de tirtsa
+
+        public IEnumerable<LineTiming> ListArrivalOfLine(int lineId, TimeSpan hour, int stationKey)
+        {
+            //Calcul of TravelTime between first station of line and our station
+            Line line = GetLine(lineId);
+            TimeSpan durationOfTravel = DurationOfTravel(line, stationKey);
+
+            DO.LineTrip myLineTrip = dl.GetLineTrip(lineId, hour);
+
+
+            List<LineTiming> listTiming = new List<LineTiming>(); //initialize list of all timing for the specified line
+            while (myLineTrip.StartAt + durationOfTravel < hour)
+                myLineTrip.StartAt += myLineTrip.Frequency; //we can change value of StartTimeRange thanks to Clone() 
+            for (TimeSpan i = myLineTrip.StartAt; i <= hour;)
+            {
+                listTiming.Add(new LineTiming
+                {
+                    TripStart = i,
+                    LineId = myLineTrip.LineId,
+                    ExpectedTimeTillArrive = i + durationOfTravel
+                });
+                i += myLineTrip.Frequency;
+            }
+            //if station is the first we want to show 2 nexts departures
+            if (stationKey == line.ListOfStations.First().StationCode)
+            {
+                listTiming.Add(new LineTiming
+                {
+                    TripStart = myLineTrip.StartAt,
+                    LineId = myLineTrip.LineId,
+                    ExpectedTimeTillArrive = myLineTrip.StartAt
+                });
+                myLineTrip.StartAt += myLineTrip.Frequency;
+                listTiming.Add(new LineTiming
+                {
+                    TripStart = myLineTrip.StartAt,
+                    LineId = myLineTrip.LineId,
+                    ExpectedTimeTillArrive = myLineTrip.StartAt
+                });
+            }
+            return listTiming;
+
+        }
+
+        //copié coller entierement de tirtsa
+        internal TimeSpan DurationOfTravel(Line line, int stationKey)
+        {
+            int indexOfStation = dl.GetLineStation(line.Id, stationKey).LineStationIndex;
+            IEnumerable<DO.LineStation> stations = (from lineStat in dl.GetAllLineStationBy(l => l.LineCode == line.Code).ToList()
+                                                    where lineStat.LineStationIndex <= indexOfStation
+                                                    select lineStat).ToList();
+
+            TimeSpan travelDuration = new TimeSpan();
+            for (int i = 0; i < stations.Count() - 1; i++)
+            {
+                travelDuration += dl.GetAdjacentStations(stations.ElementAt(i).StationCode, stations.ElementAt(i + 1).StationCode).Time;
+            }
+            return travelDuration;
+        }
 
 
     }
+
+
 }
+
 

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace PL
 
-//jme suis trompee c line timing
 //entierement copier coller de tirtsa 
 {
     class LineTiming
@@ -30,18 +29,18 @@ namespace PL
             List<LineTiming> timing = new List<LineTiming>();
             foreach (var element in listTiming)
             {
-                //foreach (var item in element)
-                //{
-                //    Line line = bl.GetLine(item.LineId);
-                //    timing.Add(new LineTiming
-                //    {
-                //        LineId = item.LineId,
-                //        LineNumber = line.Code,
-                //        LastStation = bl.GetStation(line.LastStation).StationName,
-                //        TripStart = item.TripStart,
-                //        Timing = item.ExpectedTimeTillArrive - hour
-                //    });
-               // }
+                foreach (var item in element)
+                {
+                    Line line = bl.GetLine(item.LineId);
+                    timing.Add(new LineTiming
+                    {
+                        LineId = item.LineId,
+                        LineNumber = line.Code,
+                        LastStation = bl.GetStation(line.ListOfStations.Last().StationCode).Name,
+                        TripStart = item.TripStart,
+                       // Timing = item.ExpectedTimeTillArrive - hour
+                    });
+                }
             }
 
             return from item in timing

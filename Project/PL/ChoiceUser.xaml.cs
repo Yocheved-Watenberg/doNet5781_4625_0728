@@ -70,7 +70,7 @@ namespace PL
                 while (timerworker.CancellationPending == false)
                 {
                     TimeSpan simulatedHourNow = startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * 60);
-                    listTest = pl.BoPoLineTimingAdapter(bl.StationTiming(station, simulatedHourNow), simulatedHourNow);
+                    listTest = PL.BoPoLineTimingAdapter(bl.StationTiming(station, simulatedHourNow), simulatedHourNow);
                     timerworker.ReportProgress(1);
                     Thread.Sleep(1);
                 }
