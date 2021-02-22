@@ -25,9 +25,10 @@ namespace PL
     public partial class ChoiceUser : Window
     {
         IBL bl = BLFactory.GetBL("1");
+        static PLClass pl = new PLClass(); 
         private Stopwatch stopWatch;
         BackgroundWorker timerworker;
-
+       
         Station station;
         IEnumerable<IGrouping<TimeSpan, LineTiming>> listTest;
         TimeSpan startHour;
@@ -70,7 +71,7 @@ namespace PL
                 while (timerworker.CancellationPending == false)
                 {
                     TimeSpan simulatedHourNow = startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * 60);
-                    listTest = PL.BoPoLineTimingAdapter(bl.StationTiming(station, simulatedHourNow), simulatedHourNow);
+                    listTest = pl.BoPoLineTimingAdapter(bl.StationTiming(station, simulatedHourNow), simulatedHourNow);
                     timerworker.ReportProgress(1);
                     Thread.Sleep(1);
                 }

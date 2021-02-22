@@ -50,7 +50,7 @@ namespace BLAPI
             #endregion
         */
 
-        IEnumerable<IGrouping<TimeSpan, LineTiming>> StationTiming(Station station, TimeSpan hour);
+        IEnumerable<IGrouping<TimeSpan, LineTiming>> StationTiming(BL.BO.Station station, TimeSpan hour);
 
     }
 }

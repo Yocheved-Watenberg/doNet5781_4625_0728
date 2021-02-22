@@ -19,12 +19,12 @@ namespace PL
         public TimeSpan Timing { get; set; }
     }
 
-    public class PL
+    public class PLClass
     {
         static IBL bl = BLFactory.GetBL("1");
 
         internal IEnumerable<IGrouping<TimeSpan, LineTiming>> BoPoLineTimingAdapter
-            (IEnumerable<IGrouping<TimeSpan, LineTiming>> listTiming, TimeSpan hour)
+            (IEnumerable<IGrouping<TimeSpan, BL.BO.LineTiming>> listTiming, TimeSpan hour)
         {
             List<LineTiming> timing = new List<LineTiming>();
             foreach (var element in listTiming)

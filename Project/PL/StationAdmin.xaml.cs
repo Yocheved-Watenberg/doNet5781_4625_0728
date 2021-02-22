@@ -42,9 +42,9 @@ namespace PL
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
-            // Charger les données en définissant la propriété CollectionViewSource.Source :
-            // stationViewSource.Source = [source de données générique]
+            System.Windows.Data.CollectionViewSource stationviewsource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationviewsource")));
+            // charger les données en définissant la propriété collectionviewsource.source :
+            // stationviewsource.source = [source de données générique]
         }
 
         //private void stationCheckBox_Checked(object sender, RoutedEventArgs e)

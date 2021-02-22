@@ -343,7 +343,7 @@ namespace BL
 
 
         //copié coller entierement de tirtsa 
-        public IEnumerable<IGrouping<TimeSpan, LineTiming>> StationTiming(Station station, TimeSpan hour)
+        public IEnumerable<IGrouping<TimeSpan, LineTiming>> StationTiming(BL.BO.Station station, TimeSpan hour)
         {
             //if (station.LinesThatPass == null)
           //  throw new BO.BadLineTripException("There is any trip during these hours for the requested line", ex);
