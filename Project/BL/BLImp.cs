@@ -423,14 +423,14 @@ namespace BL
             return lineTripBO;
 
         }
-      
+
         //}
         //public void DeleteLineTrip(int code);
         //public IEnumerable<LineTrip> GetAllLineTrip();
         //public void UpdateLineTrip(Station station);
         //public Station GetLineTrip(int code);
         //public IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
-
+        #endregion
 
         //copié coller entierement de tirtsa 
         public IEnumerable<IGrouping<TimeSpan, LineTiming>> StationTiming(BL.BO.Station station, TimeSpan hour)
@@ -504,7 +504,7 @@ namespace BL
         //copié coller entierement de tirtsa
         internal TimeSpan DurationOfTravel(Line line, int stationKey)
         {
-            int indexOfStation = dl.GetLineStation(line.Id, stationKey).LineStationIndex;
+            int indexOfStation = dl.GetLineStation(line.Code, stationKey).LineStationIndex;
             IEnumerable<DO.LineStation> stations = (from lineStat in dl.GetAllLineStationBy(l => l.LineCode == line.Code).ToList()
                                                     where lineStat.LineStationIndex <= indexOfStation
                                                     select lineStat).ToList();
@@ -522,5 +522,3 @@ namespace BL
 
 
 }
-
-

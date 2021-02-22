@@ -64,7 +64,8 @@ namespace PL
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)//revoir, g recopie de tirtsa 
         {
-            station = e.Argument as Station;
+            //station = e.Argument as Station;
+            Station station = bl.GetAllStation().First();
             try
             {
                 startHour = DateTime.Now.TimeOfDay;
