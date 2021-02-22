@@ -27,6 +27,12 @@ namespace DL
             string lineStationPath = @"LineStationXml.xml"; //XMLSerializer
             string adjacentStationPath = @"AdjacentsStationXml.xml"; //XMLSerializer
             string lineTripPath= @"LineTripXml.xml"; //XMLSerializer
+            string tripPath= @"tripPathXml.xml"; //XMLSerializer
+            string busPath = @"BusPathXml.xml"; //XMLSerializer
+            string busOnTripPath = @"BusOnTripPathXml.xml"; //XMLSerializer
+           string userPath = @"UserPathXml.xml"; //XMLSerializer
+
+
 
 
         #endregion
@@ -54,7 +60,7 @@ namespace DL
 
                 return l;
             }
-        public IEnumerable<DO.Line> GetAllLines()
+        public IEnumerable<DO.Line> GetAllLine()
         {
             XElement LinesRootElem = XMLTools.LoadListFromXMLElement(linePath);
 
@@ -70,7 +76,7 @@ namespace DL
                     }
                    );
         }
-        public IEnumerable<DO.Line> GetAllLinesBy(Predicate<DO.Line> predicate)
+        public IEnumerable<DO.Line> GetAllLineBy(Predicate<DO.Line> predicate)
         {
             XElement LinesRootElem = XMLTools.LoadListFromXMLElement(linePath);
 
@@ -149,10 +155,27 @@ namespace DL
             else
                 throw new DO.BadLineIdException(Line.Code, $"bad Line code: {Line.Code}");
         }
-    
-    #endregion
-            #region Station
-    public void AddStation(DO.Station station)
+        public void UpdateLine(int code, Action<DO.Line> update)
+        //{   XElement LinesRootElem = XMLTools.LoadListFromXMLElement(linePath);
+
+        //    //XElement l1 = (from l in LinesRootElem.Elements()
+
+        //    //               select predicate => predicate.Code == code).FirstOrDefault();
+
+
+        //    var myLine = LinesRootElem.FirstOrDefault(predicate => predicate.Code == code);
+        //    if ((myLine != null) && (myLine.IsDeleted == false))
+        //    {
+        //        update(myLine);
+        //    }
+        {
+            throw new NotImplementedException();
+        }
+   
+
+        #endregion
+        #region Station
+        public void AddStation(DO.Station station)
     {
         List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
 
@@ -167,7 +190,7 @@ namespace DL
             DO.Station myStation = ListStations.Find(s => s.Code == code);
         if ((myStation != null) && (myStation.IsDeleted == false))
         {
-            // DataSource.ListStation.Remove(myStation);
+            //  ListStation.Remove(myStation);
             myStation.IsDeleted = true;
         }
         else
@@ -234,124 +257,147 @@ namespace DL
         #region Bus
         public void AddBus(DO.Bus bus)
         {
-            List<Bus> ListStations = XMLTools.LoadListFromXMLSerializer<Bus>(stationPath);
-            if (DataSource.ListBus.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum) != null)
+            List<Bus> ListBus = XMLTools.LoadListFromXMLSerializer<Bus>(busPath);
+            if ( ListBus.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum) != null)
                 throw new DO.BadBusIdException(bus.LicenseNum, "this bus already exists in the list of bus");
-            DataSource.ListBus.Add(bus.Clone());
+             ListBus.Add(bus);
+            XMLTools.SaveListToXMLSerializer(ListBus, busPath);
         }
         public void DeleteBus(int licenseNum)
         {
-            DO.Bus myBus = DataSource.ListBus.Find(b => b.LicenseNum == licenseNum);
+            List<Bus> ListBus = XMLTools.LoadListFromXMLSerializer<Bus>(busPath);
+            DO.Bus myBus =  ListBus.Find(b => b.LicenseNum == licenseNum);
             if (myBus != null)
             {
-                DataSource.ListBus.Remove(myBus);
+                 ListBus.Remove(myBus);
             }
             else
-                throw new DO.BadBusIdException(licenseNum, $"bad person id: {licenseNum}");
+                throw new DO.BadBusIdException(licenseNum, $"bad bus id: {licenseNum}");
+            XMLTools.SaveListToXMLSerializer(ListBus, busPath);
+
+
         }
         public DO.Bus GetBus(int licenseNum)
         {
-            DO.Bus bus = DataSource.ListBus.Find(b => b.LicenseNum == licenseNum);
+            List<Bus> ListBus = XMLTools.LoadListFromXMLSerializer<Bus>(busPath);
+            DO.Bus bus =  ListBus.Find(b => b.LicenseNum == licenseNum);
 
             if (bus != null)
-                return bus.Clone();
+                return bus ;
             else
                 throw new DO.BadBusIdException(licenseNum, $"bad bus license num : {licenseNum}");
         }
         public IEnumerable<DO.Bus> GetAllBus()
         {
-            return from bus in DataSource.ListBus
-                   select bus.Clone();
+            List<Bus> ListBus = XMLTools.LoadListFromXMLSerializer<Bus>(busPath);
+            return from bus in  ListBus
+                   select bus ;
         }
         public IEnumerable<DO.Bus> GetAllBusBy(Predicate<DO.Bus> predicate)
         {
+            List<Bus> ListBus = XMLTools.LoadListFromXMLSerializer<Bus>(busPath);
             if (predicate != null)
             {
-                return from bus in DataSource.ListBus
+                return from bus in  ListBus
                        where predicate(bus)
-                       select bus.Clone();
+                       select bus ;
             }
             return GetAllBus();
         }
         public void UpdateBus(DO.Bus bus)
         {
-            DO.Bus myBus = DataSource.ListBus.Find(b => b.LicenseNum == bus.LicenseNum);
+            List<Bus> ListBus = XMLTools.LoadListFromXMLSerializer<Bus>(busPath);
+            DO.Bus myBus =  ListBus.Find(b => b.LicenseNum == bus.LicenseNum);
             if (myBus != null)
             {
-                DataSource.ListBus.Remove(myBus);
-                DataSource.ListBus.Add(bus.Clone());
+                 ListBus.Remove(myBus);
+                 ListBus.Add(bus );
             }
             else
                 throw new DO.BadBusIdException(bus.LicenseNum, $"bad bus license num: {bus.LicenseNum}");
+            XMLTools.SaveListToXMLSerializer(ListBus, busPath);
         }
         public void UpdateBus(int licenseNum, Action<DO.Bus> update)
         {
-            var myBus = DataSource.ListBus.FirstOrDefault(predicate => predicate.LicenseNum == licenseNum);
+            List<Bus> ListBus = XMLTools.LoadListFromXMLSerializer<Bus>(busPath);
+            var myBus =  ListBus.FirstOrDefault(predicate => predicate.LicenseNum == licenseNum);
             if (myBus != null)
             {
                 update(myBus);
             }
+            XMLTools.SaveListToXMLSerializer(ListBus, busPath);
         }
         #endregion
         #region BusOnTrip
         public void AddBusOnTrip(DO.BusOnTrip busOnTrip)
         {
-            if (DataSource.ListBusOnTrip.FirstOrDefault(b => b.Id == busOnTrip.Id) != null)
+            List<BusOnTrip> ListBusOnTrip = XMLTools.LoadListFromXMLSerializer<BusOnTrip>(busOnTripPath);
+            if ( ListBusOnTrip.FirstOrDefault(b => b.Id == busOnTrip.Id) != null)
                 throw new DO.BadBusOnTripIdException(busOnTrip.Id, "this busOnTrip already exists in the list of busOnTrip");
-            DataSource.ListBusOnTrip.Add(busOnTrip.Clone());
+             ListBusOnTrip.Add(busOnTrip );
+            XMLTools.SaveListToXMLSerializer(ListBusOnTrip, busOnTripPath);
         }
         public void DeleteBusOnTrip(int Id)
         {
-            DO.BusOnTrip myBusOnTrip = DataSource.ListBusOnTrip.Find(b => b.Id == Id);
+            List<BusOnTrip> ListBusOnTrip = XMLTools.LoadListFromXMLSerializer<BusOnTrip>(busOnTripPath);
+            DO.BusOnTrip myBusOnTrip =  ListBusOnTrip.Find(b => b.Id == Id);
             if (myBusOnTrip != null)
             {
-                DataSource.ListBusOnTrip.Remove(myBusOnTrip);
+                 ListBusOnTrip.Remove(myBusOnTrip);
             }
             else
                 throw new DO.BadBusOnTripIdException(Id, $"bad busOnTrip id: {Id}");
+            XMLTools.SaveListToXMLSerializer(ListBusOnTrip, busOnTripPath);
         }
         public IEnumerable<DO.BusOnTrip> GetAllBusOnTrip()
         {
-            return from busOnTrip in DataSource.ListBusOnTrip
-                   select busOnTrip.Clone();
+            List<BusOnTrip> ListBusOnTrip = XMLTools.LoadListFromXMLSerializer<BusOnTrip>(busOnTripPath);
+            return from busOnTrip in  ListBusOnTrip
+                   select busOnTrip ;
         }
         public DO.BusOnTrip GetBusOnTrip(int Id)
         {
-            DO.BusOnTrip busOnTrip = DataSource.ListBusOnTrip.Find(b => b.Id == Id);
+            List<BusOnTrip> ListBusOnTrip = XMLTools.LoadListFromXMLSerializer<BusOnTrip>(busOnTripPath);
+            DO.BusOnTrip busOnTrip =  ListBusOnTrip.Find(b => b.Id == Id);
 
             if (busOnTrip != null)
-                return busOnTrip.Clone();
+                return busOnTrip ;
             else
                 throw new DO.BadBusOnTripIdException(Id, $"bad busOnTrip id: {Id}");
         }
         public IEnumerable<DO.BusOnTrip> GetAllBusOnTripBy(Predicate<DO.BusOnTrip> predicate)
         {
+            List<BusOnTrip> ListBusOnTrip = XMLTools.LoadListFromXMLSerializer<BusOnTrip>(busOnTripPath);
             if (predicate != null)
             {
-                return from busOnTrip in DataSource.ListBusOnTrip
+                return from busOnTrip in  ListBusOnTrip
                        where predicate(busOnTrip)
-                       select busOnTrip.Clone();
+                       select busOnTrip ;
             }
             return GetAllBusOnTrip();
         }
         public void UpdateBusOnTrip(DO.BusOnTrip busOnTrip)
         {
-            DO.BusOnTrip myBusOnTrip = DataSource.ListBusOnTrip.Find(b => b.Id == busOnTrip.Id);
+            List<BusOnTrip> ListBusOnTrip = XMLTools.LoadListFromXMLSerializer<BusOnTrip>(busOnTripPath);
+            DO.BusOnTrip myBusOnTrip =  ListBusOnTrip.Find(b => b.Id == busOnTrip.Id);
             if (myBusOnTrip != null)
             {
-                DataSource.ListBusOnTrip.Remove(myBusOnTrip);
-                DataSource.ListBusOnTrip.Add(busOnTrip.Clone());
+                 ListBusOnTrip.Remove(myBusOnTrip);
+                 ListBusOnTrip.Add(busOnTrip );
             }
             else
                 throw new DO.BadBusOnTripIdException(busOnTrip.Id, $"bad busOnTrip id: {busOnTrip.Id}");
+            XMLTools.SaveListToXMLSerializer(ListBusOnTrip, busOnTripPath);
         }
         public void UpdateBusOnTrip(int Id, Action<DO.BusOnTrip> update)
         {
-            var myBusOnTrip = DataSource.ListBusOnTrip.FirstOrDefault(predicate => predicate.Id == Id);
+            List<BusOnTrip> ListBusOnTrip = XMLTools.LoadListFromXMLSerializer<BusOnTrip>(busOnTripPath);
+            var myBusOnTrip =  ListBusOnTrip.FirstOrDefault(predicate => predicate.Id == Id);
             if (myBusOnTrip != null)
             {
                 update(myBusOnTrip);
             }
+            XMLTools.SaveListToXMLSerializer(ListBusOnTrip, busOnTripPath);
         }
         #endregion
         #region AdjacentStations 
@@ -531,65 +577,78 @@ namespace DL
 
         public void AddTrip(DO.Trip trip)
         {
-            if (DataSource.ListTrip.FirstOrDefault(t => t.Id == trip.Id) != null)
+            List<Trip> ListTrip= XMLTools.LoadListFromXMLSerializer<Trip>(tripPath);
+
+            if (ListTrip.FirstOrDefault(t => t.Id == trip.Id) != null)
                 throw new DO.BadTripIdException(trip.Id, "this trip already exists in the list of trips");
-            DataSource.ListTrip.Add(trip.Clone());
+            ListTrip.Add(trip);
+            XMLTools.SaveListToXMLSerializer(ListTrip, tripPath);
+
         }
 
         public void DeleteTrip(int id)
         {
-            DO.Trip myTrip = DataSource.ListTrip.Find(t => t.Id == id);
+            List<Trip> ListTrip = XMLTools.LoadListFromXMLSerializer<Trip>(tripPath);
+            DO.Trip myTrip = ListTrip.Find(t => t.Id == id);
             if (myTrip != null)
             {
-                DataSource.ListTrip.Remove(myTrip);
+                 ListTrip.Remove(myTrip);
             }
             else
                 throw new DO.BadTripIdException(id, "this trip doesn't exist in the list of trip");
+            XMLTools.SaveListToXMLSerializer(ListTrip, tripPath);
         }
         public DO.Trip GetTrip(int id)
         {
-            DO.Trip trip = DataSource.ListTrip.Find(t => t.Id == id);
+            List<Trip> ListTrip = XMLTools.LoadListFromXMLSerializer<Trip>(tripPath);
+            DO.Trip trip =  ListTrip.Find(t => t.Id == id);
 
             if (trip != null)
-                return trip.Clone();
+                return trip ;
             else
                 throw new DO.BadTripIdException(id, "this trip doesn't exist in the list of trip");
         }
         public IEnumerable<DO.Trip> GetAllTrip()
         {
-            return from trip in DataSource.ListTrip
-                   select trip.Clone();
+            List<Trip> ListTrip = XMLTools.LoadListFromXMLSerializer<Trip>(tripPath);
+            return from trip in  ListTrip
+                   select trip ;
         }
 
         public IEnumerable<DO.Trip> GetAllTripBy(Predicate<DO.Trip> predicate)
         {
+            List<Trip> ListTrip = XMLTools.LoadListFromXMLSerializer<Trip>(tripPath);
             if (predicate != null)
             {
-                return from trip in DataSource.ListTrip
+                return from trip in  ListTrip
                        where predicate(trip)
-                       select trip.Clone();
+                       select trip ;
             }
             return GetAllTrip();
         }
         public void UpdateTrip(DO.Trip trip)
         {
-            DO.Trip myTrip = DataSource.ListTrip.Find(t => t.Id == trip.Id);
+            List<Trip> ListTrip = XMLTools.LoadListFromXMLSerializer<Trip>(tripPath);
+            DO.Trip myTrip =  ListTrip.Find(t => t.Id == trip.Id);
             if (myTrip != null)
             {
-                DataSource.ListTrip.Remove(myTrip);
-                DataSource.ListTrip.Add(trip.Clone());
+                 ListTrip.Remove(myTrip);
+                 ListTrip.Add(trip );
             }
             else
                 throw new DO.BadTripIdException(trip.Id, $"bad trip id: {trip.Id}");
+            XMLTools.SaveListToXMLSerializer(ListTrip, tripPath);
         }
 
         public void UpdateTrip(int id, Action<DO.Trip> update)
         {
-            var myTrip = DataSource.ListTrip.FirstOrDefault(predicate => predicate.Id == id);
+            List<Trip> ListTrip = XMLTools.LoadListFromXMLSerializer<Trip>(tripPath);
+            var myTrip =  ListTrip.FirstOrDefault(predicate => predicate.Id == id);
             if (myTrip != null)
             {
                 update(myTrip);
             }
+            XMLTools.SaveListToXMLSerializer(ListTrip, tripPath);
         }
 
         #endregion
@@ -597,63 +656,151 @@ namespace DL
 
         public void AddUser(DO.User user)
         {
-            if (DataSource.ListUser.FirstOrDefault(u => u.UserName == user.UserName) != null)
+            List<User> ListUser = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            if ( ListUser.FirstOrDefault(u => u.UserName == user.UserName) != null)
                 throw new DO.BadUserIdException(user.UserName, "this user already exists in the list of user");
-            DataSource.ListUser.Add(user.Clone());
+             ListUser.Add(user );
+            XMLTools.SaveListToXMLSerializer(ListUser, userPath);
         }
         public void DeleteUser(string name)
         {
-            DO.User myUser = DataSource.ListUser.Find(u => u.UserName == name);
+            List<User> ListUser = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            DO.User myUser =  ListUser.Find(u => u.UserName == name);
             if (myUser != null)
             {
-                DataSource.ListUser.Remove(myUser);
+                 ListUser.Remove(myUser);
             }
             else
                 throw new DO.BadUserIdException(name, "this user doesn't exist in the list of users");
+            XMLTools.SaveListToXMLSerializer(ListUser, userPath);
         }
         public DO.User GetUser(string name)
         {
-            DO.User user = DataSource.ListUser.Find(u => u.UserName == name);
+            List<User> ListUser = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            DO.User user =  ListUser.Find(u => u.UserName == name);
 
             if (user != null)
-                return user.Clone();
+                return user ;
             else
                 throw new DO.BadUserIdException(name, "this user doesn't exist in the list of users");
         }
         public IEnumerable<DO.User> GetAllUser()
         {
-            return from user in DataSource.ListUser
-                   select user.Clone();
+            List<User> ListUser = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            return from user in  ListUser
+                   select user ;
         }
         public IEnumerable<DO.User> GetAllUserBy(Predicate<DO.User> predicate)
         {
+            List<User> ListUser = XMLTools.LoadListFromXMLSerializer<User>(userPath);
             if (predicate != null)
             {
-                return from user in DataSource.ListUser
+                return from user in  ListUser
                        where predicate(user)
-                       select user.Clone();
+                       select user ;
             }
             else return GetAllUser();
         }
         public void UpdateUser(DO.User user)
         {
-            DO.User myUser = DataSource.ListUser.Find(u => u.UserName == user.UserName);
+            List<User> ListUser = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            DO.User myUser =  ListUser.Find(u => u.UserName == user.UserName);
             if (myUser != null)
             {
-                DataSource.ListUser.Remove(myUser);
-                DataSource.ListUser.Add(user.Clone());
+                 ListUser.Remove(myUser);
+                 ListUser.Add(user );
             }
             else
                 throw new DO.BadUserIdException(user.UserName, "this user doesn't exist in the list of users");
+            XMLTools.SaveListToXMLSerializer(ListUser, userPath);
 
         }
         public void UpdateUser(string userName, Action<DO.User> update)
         {
-            var myUser = DataSource.ListUser.FirstOrDefault(predicate => predicate.UserName == userName);
+            List<User> ListUser = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            var myUser =  ListUser.FirstOrDefault(predicate => predicate.UserName == userName);
             if (myUser != null)
             {
                 update(myUser);
             }
+            XMLTools.SaveListToXMLSerializer(ListUser, userPath);
+        }
+
+        #endregion
+        #region LineStation 
+
+        public void AddLineStation(DO.LineStation lineStation)
+        {
+            List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
+            List<DO.LineStation> myList =  ListLineStation.FindAll(s => s.LineCode == lineStation.LineCode);
+            if (myList.FirstOrDefault(l => l.StationCode == lineStation.StationCode) != null)
+                throw new DO.BadLineStationIdException(lineStation.LineCode, lineStation.StationCode, "this line station already exists in the list of line station");
+             ListLineStation.Add(lineStation );
+            XMLTools.SaveListToXMLSerializer(ListLineStation, lineStationPath);
+        }
+        public void DeleteLineStation(int line, int station)
+        {
+            List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
+            DO.LineStation myLineStation =  ListLineStation.Find(ls => (ls.LineCode == line) && (ls.StationCode == station));
+            if (myLineStation != null)
+            {
+                 ListLineStation.Remove(myLineStation);
+            }
+            else
+                throw new DO.BadLineStationIdException(line, station, "this line station doesn't exist in the list of line station");
+            XMLTools.SaveListToXMLSerializer(ListLineStation, lineStationPath);
+        }
+        public IEnumerable<DO.LineStation> GetAllLineStation()
+        {
+            List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
+            return from lineStation in  ListLineStation
+                   select lineStation ;
+        }
+        public DO.LineStation GetLineStation(int id, int station)
+        {
+            List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
+            DO.LineStation lineStation =  ListLineStation.Find(l => (l.LineCode == id) && (l.StationCode == station));
+
+            if (lineStation != null)
+                return lineStation ;
+            else
+                throw new DO.BadLineStationIdException(id, station, "this line station doesn't exist in the list of line station");
+        }
+        public IEnumerable<DO.LineStation> GetAllLineStationBy(Predicate<DO.LineStation> predicate)
+        {
+            List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
+            if (predicate != null)
+            {
+                return from lineStation in  ListLineStation
+                       where predicate(lineStation)
+                       select lineStation ;
+            }
+            else return GetAllLineStation();
+        }
+        public void UpdateLineStation(DO.LineStation lineStation)
+        {
+            List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
+            DO.LineStation myLineStation =  ListLineStation.Find(l => (l.LineCode == lineStation.LineCode) && (l.StationCode == lineStation.StationCode));
+            if (myLineStation != null)
+            {
+                 ListLineStation.Remove(myLineStation);
+                 ListLineStation.Add(lineStation );
+            }
+            else
+                throw new DO.BadLineStationIdException(lineStation.LineCode, lineStation.StationCode, "this line station doesn't exist in the list of line station");
+            XMLTools.SaveListToXMLSerializer(ListLineStation, lineStationPath);
+        }
+
+
+        public void UpdateLineStation(int LineId, int station, Action<DO.LineStation> update)
+        {
+            List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
+            var myLineStation =  ListLineStation.FirstOrDefault(predicate => (predicate.LineCode == LineId) && (predicate.StationCode == station));
+            if (myLineStation != null)
+            {
+                update(myLineStation);
+            }
+            XMLTools.SaveListToXMLSerializer(ListLineStation, lineStationPath);
         }
 
         #endregion
