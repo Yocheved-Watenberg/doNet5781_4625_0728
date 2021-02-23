@@ -192,5 +192,8 @@
   <ItemGroup>
     <Resource Include="station-de-bus-ht.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="plan-reseau-pastel-scaled.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

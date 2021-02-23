@@ -59,17 +59,14 @@ namespace PL
 
         private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show("this method is under construction");
         }
 
         private void cbAreas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show("this method is under construction");
         }
 
         private void lbListOfStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show("this method is under construction");
         }
 
         private void btnAddStations_Click(object sender, RoutedEventArgs e)

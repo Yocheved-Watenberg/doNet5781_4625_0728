@@ -69,7 +69,6 @@ namespace PL
         {
             LineAdminUpdate win = new LineAdminUpdate(bl);
             win.Show();
-           // MessageBox.Show("this method is under construction");
         }
         private void butDelete_Click(object sender, RoutedEventArgs e)
         {

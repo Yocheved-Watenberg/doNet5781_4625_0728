@@ -8,9 +8,9 @@
         Title="ChoiceAdmin" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
-            <ImageBrush Opacity="0.5" ImageSource="ligne de bus VRAI.jpg"/>
+            <ImageBrush Opacity="0.25" ImageSource="plan-reseau-pastel-scaled.jpg"/>
         </Grid.Background>
-        <Button x:Name="btnLine" Click="btnLine_Click" Margin="10,10,583.6,242" Foreground="{x:Null}">
+        <Button x:Name="btnLine" Click="btnLine_Click" Margin="116,65,478,188" Foreground="{x:Null}">
             <Button.Template>
                 <ControlTemplate>
                     <Border CornerRadius="100" BorderThickness="5" BorderBrush="#FF4496CF" Margin="0,0,0,0">
@@ -20,6 +20,7 @@
                                        Height="40"
                                        TextAlignment="Center"
                                        TextWrapping="Wrap"
+                                       Background="AliceBlue"
                                        FontFamily="Kristen ITC"
                                        FontWeight="Bold" 
                                        FontSize="16">
@@ -29,7 +30,7 @@
             </Button.Template>
         </Button>
 
-        <Button x:Name="btnStation" Background="#FF4496CF" Click="btnStation_Click" Margin="508,238,58.6,42">
+        <Button x:Name="btnStation" Background="#FF4496CF" Click="btnStation_Click" Margin="424,228,142,51">
             <Button.Template>
                 <ControlTemplate>
                     <Border CornerRadius="100" BorderThickness="5" BorderBrush="#FF4496CF" Margin="0,-38,24,0">
@@ -39,6 +40,7 @@
                                        TextAlignment="Center"
                                        TextWrapping="Wrap"
                                        FontFamily="Kristen ITC"
+                                      Background="AliceBlue"
                                        FontWeight="Bold"
                                        FontSize="16">
                         </TextBlock>
