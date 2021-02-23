@@ -456,7 +456,6 @@ namespace BL
         }
 
         //copier coller entierement de tirtsa
-
         public IEnumerable<LineTiming> ListArrivalOfLine(int lineId, TimeSpan hour, int stationKey)
         {
             //Calcul of TravelTime between first station of line and our station

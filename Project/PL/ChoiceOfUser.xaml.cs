@@ -25,7 +25,7 @@ namespace PL
     public partial class ChoiceOfUser : Window
     {
         IBL bl = BLFactory.GetBL("1");
-        static PLClass pl = new PLClass(); 
+       // static PLClass pl = new PLClass(); 
         private Stopwatch stopWatch;
         BackgroundWorker timerworker;
        
@@ -38,6 +38,7 @@ namespace PL
         {
             InitializeComponent();  
             bl = _bl;
+            cbStationChoice.DataContext = bl.GetAllStation();
             stopWatch = new Stopwatch(); 
             timerworker = new BackgroundWorker();
             timerworker.DoWork += Worker_DoWork;
@@ -63,15 +64,16 @@ namespace PL
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)//revoir, g recopie de tirtsa 
         {
-            //station = e.Argument as Station;
-            Station station = bl.GetAllStation().First();
+          // station = e.Argument as Station;
+          // station = bl.GetStation((int)cbStationChoice.SelectedItem);
+           station = bl.GetAllStation().First();
             try
             {
                 startHour = DateTime.Now.TimeOfDay;
                 while (timerworker.CancellationPending == false)
                 {
                     TimeSpan simulatedHourNow = startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * 60);
-                    listTest = pl.BoPoLineTimingAdapter(bl.StationTiming(station, simulatedHourNow), simulatedHourNow);
+                    listTest = bl.StationTiming(station, simulatedHourNow);    //listTest = pl.BoPoLineTimingAdapter(bl.StationTiming(station, simulatedHourNow), simulatedHourNow);
                     timerworker.ReportProgress(1);
                     Thread.Sleep(1);
                 }
@@ -91,6 +93,17 @@ namespace PL
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             timerworker.CancelAsync();
+        }
+
+        private void cbStationChoice_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            timerworker.CancelAsync();
+            timerworker.RunWorkerAsync(station); //copié de tirtsa 
         }
         //bool isNum = int.TryParse(tbSimulationSpeed.Text, out int theNum);         //checks if the meirout simulation is composed only of digits 
         //if (!isNum) throw new BadCodeException("You have to put a valid num");      
