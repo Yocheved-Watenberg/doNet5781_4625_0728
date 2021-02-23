@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="LineAdminUpdate" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="111*"/>
+            <RowDefinition Height="308*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition/>
@@ -15,7 +19,7 @@
             <ImageBrush ImageSource="fond.jpg" Opacity="0.5"/>
         </Grid.Background>
 
-        <Label x:Name="LINE" Content="Choose a line to update:" Margin="45,28,489.6,359" FontSize="16" FontFamily="Segoe UI Black" Grid.ColumnSpan="2">
+        <Label x:Name="LINE" Content="Choose a line to update:" Margin="45,28,475,30" FontSize="16" FontFamily="Segoe UI Black" Grid.ColumnSpan="2">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
@@ -28,7 +32,7 @@
                  
                       HorizontalAlignment="Stretch" 
                       VerticalAlignment="Stretch" 
-                      Margin="449,28,202.6,359" 
+                      Margin="449,28,203,51" 
                       ItemsSource="{Binding}" 
                       DisplayMemberPath ="Code" 
                       SelectionChanged="cbLines_SelectionChanged"
@@ -44,7 +48,7 @@
         </-->
 
 
-        <Label Content="Select the stations you want to add to the line:" Margin="45,119,285.6,262" FontSize="16" FontFamily="Segoe UI Black" Grid.ColumnSpan="2">
+        <Label Content="Click on Add button to add stations:" Margin="45,108,436,267" FontSize="16" FontFamily="Segoe UI Black" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
@@ -55,11 +59,23 @@
 
 
 
-        <!--ComboBox x:Name="cbAreas" HorizontalAlignment="Left" Margin="453,73,0,0" VerticalAlignment="Top" Width="120" Height="27" SelectionChanged="cbAreas_SelectionChanged" Grid.ColumnSpan="2"/-->
-        <ListBox x:Name="lbListOfStations" HorizontalAlignment="Left" Height="179" Margin="45,157,0,0" VerticalAlignment="Top" Width="678" ItemsSource="{Binding}" SelectionMode="Multiple" SelectionChanged="lbListOfStations_SelectionChanged" Grid.ColumnSpan="2" />
-        <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="319,351,0,0" VerticalAlignment="Top" Width="146" Height="44" Background="#FFDDDDDB" FontFamily="Harrington" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" FontSize="18" Foreground="#FF132CB4" Click="btnCreate_Click" Grid.ColumnSpan="2"/>
 
-        <Button x:Name ="btnSelectStations" Content="select stations for the line" HorizontalAlignment="Left" Margin="474,126,0,0" VerticalAlignment="Top" Width="75" Click="btnSelectStations_Click" Grid.ColumnSpan="2" />
+        <!--ComboBox x:Name="cbAreas" HorizontalAlignment="Left" Margin="453,73,0,0" VerticalAlignment="Top" Width="120" Height="27" SelectionChanged="cbAreas_SelectionChanged" Grid.ColumnSpan="2"/-->
+        <ListBox x:Name="lbListOfAddStations" HorizontalAlignment="Left" Height="179" Margin="45,46,0,0" VerticalAlignment="Top" Width="337" ItemsSource="{Binding}" SelectionMode="Multiple" SelectionChanged="lbListOfStations_SelectionChanged" Grid.ColumnSpan="2" Grid.Row="1" />
+        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="319,240,0,0" VerticalAlignment="Top" Width="146" Height="44" Background="#FFDDDDDB" FontFamily="Harrington" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" FontSize="18" Foreground="#FF132CB4" Click="btnCreate_Click" Grid.ColumnSpan="2" Grid.Row="1"/>
+
+        <Button x:Name ="btnAddStations" Content="Add" HorizontalAlignment="Left" Margin="156,240,0,0" VerticalAlignment="Top" Width="74" Click="btnAddStations_Click" Grid.ColumnSpan="2" Grid.Row="1" />
+
+        <ListBox x:Name="lbListOfDeleteStations" HorizontalAlignment="Left" Height="179" Margin="414,46,0,0" VerticalAlignment="Top" Width="337" ItemsSource="{Binding}" SelectionMode="Multiple" SelectionChanged="lbListOfStations_SelectionChanged" Grid.ColumnSpan="2" Grid.Row="1" />
+        <Label Content=" Click on Delete button to delete stations:" Margin="414,108,41,267" FontSize="16" FontFamily="Segoe UI Black" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <Label.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF43C0E7" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Foreground>
+        </Label>
+        <Button x:Name ="btndDelete" Content="Delete" HorizontalAlignment="Left" Margin="578,245,0,0" VerticalAlignment="Top" Width="74" Click="btnDeleteStations_Click" Grid.ColumnSpan="2" Grid.Row="1" />
 
     </Grid>
 </Window>

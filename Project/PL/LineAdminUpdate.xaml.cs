@@ -72,20 +72,19 @@ namespace PL
             MessageBox.Show("this method is under construction");
         }
 
-        private void btnSelectStations_Click(object sender, RoutedEventArgs e)
+        private void btnAddStations_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                
+                BL.BO.Line selectedLine = cbLines.SelectedItem as BL.BO.Line;
                     List<Station> myList = new List<Station>();
-                    List < Station >myList2= new List<Station>();
-                if (cbLines.SelectedItem != null)
+                    List < Station >myList2= myList;//liste de ttes les stations qui sont dans line et dans la area de la line
+                if (selectedLine != null)
                 {
-                    myList = (bl.GetStationByArea((BL.BO.Enum.Areas)(cbLines.SelectedItem as BL.BO.Line).Area)).ToList();
+                    myList = (bl.GetStationByArea((BL.BO.Enum.Areas)(selectedLine).Area)).ToList();
                     foreach (Station item in myList)
-                        if (bl.GetLineStation((cbLines.SelectedItem as BL.BO.Line).Id, item.Code) == null)
-                            myList2.Add(item);
-                    lbListOfStations.DataContext = myList2;
+                        myList2.Remove(((bl.GetAllStationInLine(selectedLine)).ToList()).Find(s => s.Code == item.Code));
+                    lbListOfAddStations.DataContext = myList2;
                 }
                    else throw new NotSelectedLineException("You have not selected a line!"); 
             }
@@ -93,11 +92,34 @@ namespace PL
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
-           
+
         }
+       
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void btnDeleteStations_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                BL.BO.Line selectedLine = cbLines.SelectedItem as BL.BO.Line;
+                List<Station> myList = new List<Station>();
+                
+                if (selectedLine != null)
+                {
+                    myList = (bl.GetStationByArea((BL.BO.Enum.Areas)(selectedLine).Area)).ToList();
+
+                    lbListOfDeleteStations.DataContext = myList;
+                }
+                else throw new NotSelectedLineException("You have not selected a line!");
+            }
+            catch (NotSelectedLineException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
 
         }
     }
