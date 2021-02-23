@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="ChoiceOfUser" Height="450" Width="800"  WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="119*"/>
+            <ColumnDefinition Width="79*"/>
+        </Grid.ColumnDefinitions>
         <Button Content="Back" HorizontalAlignment="Left" Margin="20,380,0,0" VerticalAlignment="Top" Width="80" Click="ButtonBack_Click"/>
         <Grid HorizontalAlignment="Left" Height="132" Margin="20,100,0,0" VerticalAlignment="Top" Width="179">
             <Grid.RowDefinitions>
@@ -26,10 +30,8 @@
             <TextBox Grid.Column="1"  Grid.Row="2" TextWrapping="Wrap" Text=""/>
         </Grid>
         <TextBox Text="tbSimulationSpeed" MaxLength="3" HorizontalAlignment="Left" Height="24" Margin="20,35,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="startTimerButton" Content="Run" Margin="0,249,692,95"  FontSize="42" />
-        <Button x:Name="stopTimerButton" Content="Stop" Margin="105,251,593,95"  FontSize="42" />
-        <TextBlock x:Name="timerTextBlock" Text="00:00:00" FontSize="30" Foreground="DarkCyan"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="464,35,0,0" Height="46" Width="108"/>
-        <DataGrid  x:Name="LineTripDataGrid" IsReadOnly="True" HorizontalAlignment="Left" Height="224" Margin="234,100,0,0" VerticalAlignment="Top" Width="548" >
+        <TextBlock x:Name="timerTextBlock" Text="00:00:00" FontSize="30" Foreground="DarkCyan"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="464,35,0,0" Height="46" Width="108" Grid.ColumnSpan="2"/>
+        <DataGrid  x:Name="LineTripDataGrid" IsReadOnly="True" HorizontalAlignment="Left" Height="224" Margin="234,100,0,0" VerticalAlignment="Top" Width="548" Grid.ColumnSpan="2" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="LineNumberColumn" Width="Auto" Header="Line Number" 
                                                 Binding="{Binding LineNumber}"/>

@@ -377,12 +377,12 @@ namespace BL
 
 
         }
-        public LineTrip GetLineTrip(int id, TimeSpan startAt)
+        public LineTrip GetLineTrip(int id, TimeSpan now)
         {
             DO.LineTrip lineTripDO;
             try
             {
-                lineTripDO = dl.GetLineTrip(id,startAt);
+                lineTripDO = dl.GetLineTrip(id,now);
             }
             catch (DO.BadStationIdException ex)
             {
@@ -422,7 +422,7 @@ namespace BL
             return lineTripBO;
 
         }
-      
+        #endregion
         //}
         //public void DeleteLineTrip(int code);
         //public IEnumerable<LineTrip> GetAllLineTrip();

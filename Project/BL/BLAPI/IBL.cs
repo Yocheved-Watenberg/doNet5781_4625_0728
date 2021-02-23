@@ -49,9 +49,8 @@ namespace BLAPI
        IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
         LineTrip LineTripDoBoAdapter(DO.LineTrip DoLineTrip);
         #endregion
-        IEnumerable<IGrouping<TimeSpan, LineTiming>> StationTiming(BL.BO.Station station, TimeSpan hour)
+        IEnumerable<IGrouping<TimeSpan, LineTiming>> StationTiming(BL.BO.Station station, TimeSpan hour);
 
-            #endregion
     }
 }
 

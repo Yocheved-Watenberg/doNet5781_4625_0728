@@ -371,14 +371,18 @@ namespace DL
                    select lineTrip.Clone();
         }
 
-        public DO.LineTrip GetLineTrip(int id, TimeSpan startAt)
+        public DO.LineTrip GetLineTrip(int id, TimeSpan now)
         {
-            DO.LineTrip lineTrip = DataSource.ListLineTrip.Find(l => (l.LineId == id) && (l.StartAt == startAt));
+             DO.LineTrip trip = DataSource.ListLineTrip.Find(s => (s.LineId == id));
 
-            if (lineTrip != null)
-                return lineTrip.Clone();
-            else
-                throw new DO.BadLineTripIdException(id, (int)startAt.TotalMilliseconds, "this line trip doesn't exists in the list of line trip");
+                if (trip != null  && trip.StartAt <= now && trip.FinishedAt >= now)
+                {
+                    return trip.Clone();
+                }
+                else
+                {
+                throw new DO.BadLineTripIdException(id, (int)now.TotalMilliseconds, "this line trip doesn't exists in the list of line trip");
+                }
         }
         public IEnumerable<DO.LineTrip> GetAllLineTripBy(Predicate<DO.LineTrip> predicate)
         {

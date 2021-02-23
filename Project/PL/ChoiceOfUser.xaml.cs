@@ -20,9 +20,9 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Logique d'interaction pour ChoiceUser.xaml
+    /// Logique d'interaction pour ChoiceOfUser.xaml
     /// </summary>
-    public partial class ChoiceUser : Window
+    public partial class ChoiceOfUser : Window
     {
         IBL bl = BLFactory.GetBL("1");
         static PLClass pl = new PLClass(); 
@@ -34,7 +34,7 @@ namespace PL
         TimeSpan startHour;
 
 
-        public ChoiceUser(IBL _bl)
+        public ChoiceOfUser(IBL _bl)
         {
             InitializeComponent();  
             bl = _bl;
@@ -47,7 +47,6 @@ namespace PL
             timerworker.WorkerSupportsCancellation = true;
             stopWatch.Restart();
             timerworker.RunWorkerAsync(station); //copié de tirtsa 
-
         }
 
         private void Timing_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -56,7 +55,7 @@ namespace PL
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            string timerText = stopWatch.Elapsed.ToString();  //tirtsa : string timerText = (startHour + TimeSpan.FromTicks(stopwatch.Elapsed.Ticks * 60)).ToString();
+            string timerText = (startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * 60)).ToString();
             timerText = timerText.Substring(0, 8);
             this.timerTextBlock.Text = timerText;
             LineTripDataGrid.ItemsSource = listTest;
@@ -84,36 +83,15 @@ namespace PL
             }
         }
 
-        // bool isTimerRun = false; 
-        //private void startTimerButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (!isTimerRun)
-        //    {
-        //        stopWatch.Restart();
-        //        isTimerRun = true;
-        //        timerworker.RunWorkerAsync();
-        //    }
-        //}
-        //private void stopTimerButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (isTimerRun)
-        //    {
-        //        stopWatch.Stop();
-        //        isTimerRun = false;
-        //    }
-        //}
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
-            timerworker.CancelAsync();
             this.Close();
         }
-
+       
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             timerworker.CancelAsync();
         }
-       
-
         //bool isNum = int.TryParse(tbSimulationSpeed.Text, out int theNum);         //checks if the meirout simulation is composed only of digits 
         //if (!isNum) throw new BadCodeException("You have to put a valid num");      
     }
