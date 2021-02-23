@@ -30,15 +30,16 @@ namespace PL
         BackgroundWorker timerworker;
        
         Station station;
-        IEnumerable<IGrouping<TimeSpan, LineTiming>> listTest;
+        IEnumerable<IGrouping<TimeSpan, LineTiming>> nextBusesInStation;
         TimeSpan startHour;
+        int simulatedSpeed; 
 
-
-        public ChoiceOfUser(IBL _bl)
+        public ChoiceOfUser(IBL _bl, Station _station, int _simulatedSpeed)
         {
             InitializeComponent();  
             bl = _bl;
-            cbStationChoice.DataContext = bl.GetAllStation();
+            station = _station;
+            simulatedSpeed = _simulatedSpeed;
             stopWatch = new Stopwatch(); 
             timerworker = new BackgroundWorker();
             timerworker.DoWork += Worker_DoWork;
@@ -47,7 +48,8 @@ namespace PL
             timerworker.WorkerReportsProgress = true;
             timerworker.WorkerSupportsCancellation = true;
             stopWatch.Restart();
-            timerworker.RunWorkerAsync(station); //copié de tirtsa 
+            timerworker.RunWorkerAsync();
+         
         }
 
         private void Timing_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -56,11 +58,9 @@ namespace PL
 
         public void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            int simulation = 10; //int.Parse(tbSimulationSpeed.Text);
-            string timerText = (startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * simulation)).ToString();
-            timerText = timerText.Substring(0, 8);
-            this.timerTextBlock.Text = timerText;
-            LineTripDataGrid.ItemsSource = listTest;
+            string timerText = (startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * simulatedSpeed)).ToString();
+            timerTextBlock.Text = timerText.Substring(0, 8);
+            LineTripDataGrid.ItemsSource = nextBusesInStation;
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)//revoir, g recopie de tirtsa 
@@ -73,8 +73,8 @@ namespace PL
                 startHour = DateTime.Now.TimeOfDay;
                 while (timerworker.CancellationPending == false)
                 {
-                    TimeSpan simulatedHourNow = startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * 60);
-                    listTest = bl.StationTiming(station, simulatedHourNow);    //listTest = pl.BoPoLineTimingAdapter(bl.StationTiming(station, simulatedHourNow), simulatedHourNow);
+                    TimeSpan simulatedHourNow = startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * simulatedSpeed);
+                    nextBusesInStation = bl.StationTiming(station, simulatedHourNow);   
                     timerworker.ReportProgress(1);
                     Thread.Sleep(1);
                 }
@@ -107,13 +107,7 @@ namespace PL
             timerworker.RunWorkerAsync(station); //copié de tirtsa 
         }
         //bool isNum = int.TryParse(tbSimulationSpeed.Text, out int theNum);         //checks if the meirout simulation is composed only of digits 
-        //if (!isNum) throw new BadCodeException("You have to put a valid num");      
-    public void SimulatedSpeed()
-        {
-            
-        }
-    
-    
+        //if (!isNum) throw new BadCodeException("You have to put a valid num");        
     
     }
 

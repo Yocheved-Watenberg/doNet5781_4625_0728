@@ -58,6 +58,9 @@
     <Compile Include="ChoiceOfUser.xaml.cs">
       <DependentUpon>ChoiceOfUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChoiceUser.xaml.cs">
+      <DependentUpon>ChoiceUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LineAdminAdd.xaml.cs">
       <DependentUpon>LineAdminAdd.xaml</DependentUpon>
     </Compile>
@@ -76,6 +79,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChoiceOfUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChoiceUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

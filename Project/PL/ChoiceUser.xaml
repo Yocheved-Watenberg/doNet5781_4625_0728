@@ -1,0 +1,17 @@
+﻿<Window x:Class="PL.ChoiceUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="ChoiceUser" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <ComboBox  x:Name="cbStationChoice" HorizontalAlignment="Left" Margin="275,116,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding}" DisplayMemberPath ="Code"  RenderTransformOrigin="0.499,5.826" Height="43" />
+        <TextBox x:Name="tbSimulationSpeed" MaxLength="4" HorizontalAlignment="Left" Height="42" Margin="275,231,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label" Content="" HorizontalAlignment="Left" Height="41" Margin="56,34,0,0" VerticalAlignment="Top" Width="658"/>
+        <Label x:Name="stationLabel" Content="In which station are you?" HorizontalAlignment="Left" Height="43" Margin="36,116,0,0" VerticalAlignment="Top" Width="215"/>
+        <Label x:Name="label1" Content="simulation" HorizontalAlignment="Left" Height="52" Margin="36,231,0,0" VerticalAlignment="Top" Width="171"/>
+        <Button x:Name="buttonGo" Content="go" HorizontalAlignment="Left" Margin="583,330,0,0" VerticalAlignment="Top" Width="75" Click="buttonGo_Click"/>
+    </Grid>
+</Window>
