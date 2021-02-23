@@ -26,8 +26,8 @@ namespace PL
     {
         IBL bl = BLFactory.GetBL("1");
         static PLClass pl = new PLClass(); 
-        private Stopwatch stopWatch;
-        BackgroundWorker timerworker;
+        public Stopwatch stopWatch;
+        public BackgroundWorker timerworker;
        
         Station station;
         IEnumerable<IGrouping<TimeSpan, LineTiming>> listTest;
@@ -38,7 +38,7 @@ namespace PL
         {
             InitializeComponent();  
             bl = _bl;
-            stopWatch = new Stopwatch(); 
+            stopWatch = new Stopwatch();
             timerworker = new BackgroundWorker();
             timerworker.DoWork += Worker_DoWork;
             timerworker.ProgressChanged += Worker_ProgressChanged;
@@ -53,9 +53,10 @@ namespace PL
         {
         }
 
-        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        public void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            string timerText = (startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * 60)).ToString();
+            int simulation = int.Parse(tbSimulationSpeed.Text);
+            string timerText = (startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * simulation)).ToString();
             timerText = timerText.Substring(0, 8);
             this.timerTextBlock.Text = timerText;
             LineTripDataGrid.ItemsSource = listTest;
@@ -94,6 +95,13 @@ namespace PL
         }
         //bool isNum = int.TryParse(tbSimulationSpeed.Text, out int theNum);         //checks if the meirout simulation is composed only of digits 
         //if (!isNum) throw new BadCodeException("You have to put a valid num");      
+    public void SimulatedSpeed()
+        {
+            
+        }
+    
+    
+    
     }
 
 }
