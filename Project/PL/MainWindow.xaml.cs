@@ -36,7 +36,7 @@ namespace PL
             }
             else if (rbUser.IsChecked == true)
             {
-                ChoiceUser win = new ChoiceUser(bl);
+                ChoiceOfUser win = new ChoiceOfUser(bl);
                 win.ShowDialog();
             }
         }

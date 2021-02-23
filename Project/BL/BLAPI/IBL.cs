@@ -10,7 +10,7 @@ namespace BLAPI
 {
     public interface IBL
     {
-        #region Line
+       #region Line
        BL.BO.Line LineDoBoAdapter(DO.Line lineDO);
         BL.BO.LineStation LineStationDoBoAdapter(DO.LineStation lineDO);
         void AddLine(int myCode, BL.BO.Enum.Areas myArea, IEnumerable<LineStation> myListOfStations);              //allows only after the user entered two stations
@@ -25,6 +25,7 @@ namespace BLAPI
         IEnumerable<Station> GetAllStationInLine(Line l);
 
         #endregion
+
         #region Station
         Station StationDoBoAdapter(DO.Station stationDO);
        void AddStation(Station station);       
@@ -48,8 +49,15 @@ namespace BLAPI
        IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
         LineTrip LineTripDoBoAdapter(DO.LineTrip DoLineTrip);
         #endregion
+        #region Timing
         IEnumerable<IGrouping<TimeSpan, LineTiming>> StationTiming(BL.BO.Station station, TimeSpan hour);
+        IEnumerable<LineTiming> ListArrivalOfLine(int lineId, TimeSpan hour, int stationKey);
+        //A METTRE?
+        //TimeSpan DurationOfTravel(Line line, int stationKey)
 
+
+
+            #endregion
     }
 }
 

@@ -2,9 +2,11 @@
 using BLAPI;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PL
 
@@ -45,6 +47,16 @@ namespace PL
 
             return from item in timing
                    group item by item.Timing;
+        }
+
+        internal class StationAdmin
+        {
+            public RoutedEventHandler Loaded { get; internal set; }
+        }
+
+        internal class ChoiceOfUser
+        {
+            public CancelEventHandler Closing { get; internal set; }
         }
     }
 }
