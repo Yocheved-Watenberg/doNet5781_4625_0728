@@ -462,13 +462,13 @@ namespace BL
         {
             //Calcul of TravelTime between first station of line and our station
             Line line = GetLine(lineId);
-            TimeSpan durationOfTravel = DurationOfTravel(line, stationKey);
+            TimeSpan travelTime = TravelTime(line, stationKey);
 
             DO.LineTrip myLineTrip = dl.GetLineTrip(lineId, hour);
 
 
             List<LineTiming> listTiming = new List<LineTiming>(); //initialize list of all timing for the specified line
-            while (myLineTrip.StartAt + durationOfTravel < hour)
+            while (myLineTrip.StartAt + travelTime < hour)
                 myLineTrip.StartAt += myLineTrip.Frequency; //we can change value of StartTimeRange thanks to Clone() 
             for (TimeSpan i = myLineTrip.StartAt; i <= hour;)
             {
@@ -476,7 +476,7 @@ namespace BL
                 {
                     TripStart = i,
                     LineId = myLineTrip.LineId,
-                    ExpectedTimeTillArrive = i + durationOfTravel
+                    ExpectedTimeTillArrive = i + travelTime
                 });
                 i += myLineTrip.Frequency;
             }
@@ -502,7 +502,7 @@ namespace BL
         }
 
         //copié coller entierement de tirtsa
-        internal TimeSpan DurationOfTravel(Line line, int stationKey)
+        internal TimeSpan TravelTime(Line line, int stationKey)
         {
             int indexOfStation = dl.GetLineStation(line.Code, stationKey).LineStationIndex;
             IEnumerable<DO.LineStation> stations = (from lineStat in dl.GetAllLineStationBy(l => l.LineCode == line.Code).ToList()
