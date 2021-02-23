@@ -67,7 +67,7 @@ namespace PL
         {
             string timerText = (startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * simulatedSpeed)).ToString();
             timerTextBlock.Text = timerText.Substring(0, 8);
-            LineTripDataGrid.DataContext = nextBusesInStation;
+            LineTripDataGrid.ItemsSource = nextBusesInStation;            
             //lbDepartureTime.DataContext = nextBusesInStation;
             //lbDestinations.DataContext = nextBusesInStation;
             //lbLineNumber.DataContext = nextBusesInStation;

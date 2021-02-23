@@ -13,7 +13,7 @@
              x:Name="LineTripDataGrid" IsReadOnly="True" HorizontalAlignment="Left" Height="224" Margin="88,118,0,0" VerticalAlignment="Top" Width="548">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="LineNumberColumn" Width="Auto" Header="Line Number" 
-                                                Binding="{Binding LineCode}"/>
+                                                Binding="{Binding LineNumber}"/>
                 <DataGridTextColumn x:Name="LastStationColumn" Width="Auto" Header="Destination"
                                                 Binding="{Binding LastStation}"/>
                 <DataGridTextColumn x:Name="TripStartColumn" Width="Auto" Header="Departure from the first station" 
