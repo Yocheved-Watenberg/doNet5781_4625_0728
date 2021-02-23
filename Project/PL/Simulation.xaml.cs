@@ -42,6 +42,7 @@ namespace PL
             bl = _bl;
             station = _station;
             simulatedSpeed = _simulatedSpeed;
+            labelStation.Content = "Station " + station.Name + " " + station.Code;
         //    TimeSpan simulatedHourNow = startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * simulatedSpeed);
          //   nextBusesInStation = bl.NextBusesInAStation(station, simulatedHourNow);
             stopWatch = new Stopwatch(); 

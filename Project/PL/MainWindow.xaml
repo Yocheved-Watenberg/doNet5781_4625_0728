@@ -9,15 +9,18 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="870x489_capture2_0.jpg" Opacity="0.5"/>
+            <ImageBrush ImageSource="870x489_capture2_0.jpg" Opacity="0.3"/>
         </Grid.Background>
-        <Label Content="Welcome !" HorizontalAlignment="Left" Margin="276,48,0,0" VerticalAlignment="Top" Height="66" Width="196" FontWeight="Bold" FontStyle="Italic" FontSize="30" Foreground="#FF00B4C8" Background="{x:Null}"/>
-        <GroupBox Header="" HorizontalAlignment="Left" Height="222" Margin="159,114,0,0" VerticalAlignment="Top" Width="380" FontSize="16" FontStyle="Italic" FontWeight="SemiBold">
-            <StackPanel Margin="21,20,29,24">
-                <RadioButton x:Name ="rbAdmin" Content="I'm an admin" Height="50" HorizontalAlignment="Left" IsChecked="True" FontSize="25" FontFamily="Aharoni" Background="#FF00B4C8" />
-                <RadioButton x:Name ="rbUser" Content="I'm a user" Height="50" Margin="0,0,-10.8,0" HorizontalAlignment="Left" FontSize="25" FontWeight="Normal" FontFamily="Aharoni" FontStyle="Normal" Background="#FF00B4C8"/>
-            </StackPanel>
-        </GroupBox>
-        <Button x:Name="btnGO" Content="GO" HorizontalAlignment="Left" Height="42" Margin="230,346,0,0" VerticalAlignment="Top" Width="105" Background="#FF00B4C8" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click"/>
+        <Label Content="Welcome! " FontFamily="Segoe UI Black" HorizontalAlignment="Left" Margin="77,24,0,0" FontSize="40" VerticalAlignment="Top">
+            <Label.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF43C0E7" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Foreground>
+        </Label>
+        <RadioButton x:Name ="rbAdmin"  Content="I'm an admin" Height="50" HorizontalAlignment="Left" IsChecked="True" FontSize="30" FontFamily="Segoe UI Black" Background="#FF00B4C8" Margin="254,129,0,240" FontWeight="Bold" Width="226" />
+        <RadioButton x:Name ="rbUser" Content="I'm a user" Height="50" Margin="254,179,0,190" HorizontalAlignment="Left" FontSize="30" FontFamily="Segoe UI Black" Background="#FF00B4C8" FontWeight="Bold" Width="210"/>
+        <Button x:Name="btnGO" Content="GO" HorizontalAlignment="Left" Height="50" Margin="502,266,0,0" VerticalAlignment="Top" Width="90" Background="#FF00B4C8" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click" Foreground="Black"/>
     </Grid>
 </Window>

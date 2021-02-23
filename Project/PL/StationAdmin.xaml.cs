@@ -43,7 +43,7 @@ namespace PL
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            System.Windows.Data.CollectionViewSource stationviewsource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationviewsource")));
+            //System.Windows.Data.CollectionViewSource stationviewsource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationviewsource")));
             // charger les données en définissant la propriété collectionviewsource.source :
             // stationviewsource.source = [source de données générique]
         }

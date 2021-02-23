@@ -189,5 +189,8 @@
   <ItemGroup>
     <Resource Include="ligne de bus VRAI.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="station-de-bus-ht.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
