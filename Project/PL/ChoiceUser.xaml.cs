@@ -31,12 +31,16 @@ namespace PL
 
         private void buttonGo_Click(object sender, RoutedEventArgs e)
         {
-            if (cbStationChoice.SelectedItem == null)
-                cbStationChoice.SelectedItem = bl.GetAllStation().First();
-            if (tbSimulationSpeed.Text == null)
-                tbSimulationSpeed.Text = "50";      
-            ChoiceOfUser win = new ChoiceOfUser(bl, bl.GetStation((cbStationChoice.SelectedItem as Station).Code), int.Parse(tbSimulationSpeed.Text)) ;
-            win.ShowDialog();
+            Simulation win;
+            if ((cbStationChoice.SelectedItem != null) && (tbSimulationSpeed.Text == null))
+            {
+                win = new Simulation(bl, bl.GetStation((cbStationChoice.SelectedItem as Station).Code), int.Parse(tbSimulationSpeed.Text));
+                win.ShowDialog();
+            }
+           else
+            {
+                MessageBox.Show("You have to put the station's code and a simulation speed", "error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

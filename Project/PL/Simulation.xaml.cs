@@ -22,7 +22,7 @@ namespace PL
     /// <summary>
     /// Logique d'interaction pour ChoiceOfUser.xaml
     /// </summary>
-    public partial class ChoiceOfUser : Window
+    public partial class Simulation : Window
     {
         IBL bl = BLFactory.GetBL("1");
         private Stopwatch stopWatch;
@@ -33,7 +33,7 @@ namespace PL
         TimeSpan startHour;
         int simulatedSpeed; 
 
-        public ChoiceOfUser(IBL _bl, Station _station, int _simulatedSpeed)
+        public Simulation(IBL _bl, Station _station, int _simulatedSpeed)
         {
             InitializeComponent();  
             bl = _bl;

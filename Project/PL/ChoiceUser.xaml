@@ -11,6 +11,6 @@
         <Label x:Name="simulationSpeedLabel" Content="Simulation Speed" FontSize="30"  HorizontalAlignment="Left" Height="52" Margin="36,231,0,0" VerticalAlignment="Top" Width="295"/>
         <ComboBox  x:Name="cbStationChoice" HorizontalAlignment="Left" Margin="429,116,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding}" DisplayMemberPath ="Code"  RenderTransformOrigin="0.499,5.826" Height="43" />
         <TextBox x:Name="tbSimulationSpeed" MaxLength="4" HorizontalAlignment="Left" Height="42" Margin="429,241,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="buttonGo" Content="GO" HorizontalAlignment="Left" Margin="583,330,0,0" VerticalAlignment="Top" Width="75" Click="buttonGo_Click"/>
+        <Button x:Name="buttonGo" Content="SIMULATE" HorizontalAlignment="Left" Margin="583,330,0,0" VerticalAlignment="Top" Width="75" Click="buttonGo_Click"/>
     </Grid>
 </Window>
