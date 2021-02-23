@@ -30,7 +30,7 @@ namespace PL
         BackgroundWorker timerworker;
        
         Station station;
-        IEnumerable<IGrouping<TimeSpan, LineTiming>> listTest;
+        IEnumerable<IGrouping<TimeSpan, LineTiming>> nextBusesInStation;
         TimeSpan startHour;
 
 
@@ -47,7 +47,7 @@ namespace PL
             timerworker.WorkerReportsProgress = true;
             timerworker.WorkerSupportsCancellation = true;
             stopWatch.Restart();
-            timerworker.RunWorkerAsync(station); //copié de tirtsa 
+            timerworker.RunWorkerAsync(); 
         }
 
         private void Timing_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -56,26 +56,28 @@ namespace PL
 
         public void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            int simulation = 10; //int.Parse(tbSimulationSpeed.Text);
+            int simulation = 10;   //int.Parse(tbSimulationSpeed.Text);
             string timerText = (startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * simulation)).ToString();
-            timerText = timerText.Substring(0, 8);
-            this.timerTextBlock.Text = timerText;
-            LineTripDataGrid.ItemsSource = listTest;
+            timerTextBlock.Text = timerText.Substring(0, 8);
+            LineTripDataGrid.ItemsSource = nextBusesInStation;
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)//revoir, g recopie de tirtsa 
         {
           // station = e.Argument as Station;
-          // station = bl.GetStation((int)cbStationChoice.SelectedItem);
-           station = bl.GetAllStation().First();
+          if (cbStationChoice.SelectedItem!=null)
+                station = bl.GetStation((int)cbStationChoice.SelectedItem);
+         else
+                station = bl.GetAllStation().First();
             try
             {
                 startHour = DateTime.Now.TimeOfDay;
                 while (timerworker.CancellationPending == false)
                 {
-                    TimeSpan simulatedHourNow = startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * 60);
-                    listTest = bl.StationTiming(station, simulatedHourNow);    //listTest = pl.BoPoLineTimingAdapter(bl.StationTiming(station, simulatedHourNow), simulatedHourNow);
-                    timerworker.ReportProgress(1);
+                    int simulation = 10;
+                    TimeSpan simulatedHourNow = startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * simulation);
+                    nextBusesInStation = bl.NextBusesInAStation(station, simulatedHourNow);
+                    timerworker.ReportProgress(1); 
                     Thread.Sleep(1);
                 }
                 e.Result = 1;
@@ -103,8 +105,9 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            station = cbStationChoice.SelectedItem as BL.BO.Station;
             timerworker.CancelAsync();
-            timerworker.RunWorkerAsync(station); //copié de tirtsa 
+            timerworker.RunWorkerAsync();
         }
         //bool isNum = int.TryParse(tbSimulationSpeed.Text, out int theNum);         //checks if the meirout simulation is composed only of digits 
         //if (!isNum) throw new BadCodeException("You have to put a valid num");      
