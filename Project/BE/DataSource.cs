@@ -1175,6 +1175,13 @@ Adress="Belly",          //Jerusalem
          Distance=625,
          Time=new TimeSpan(00,05,00),
       },
+
+           new AdjacentStations {       //attention je lai rajoute pr maider 
+         Station1=38847,
+         Station2=38862,
+         Distance=625,
+         Time=new TimeSpan(00,05,00),
+      },
             new AdjacentStations {
          Station1=38854,
          Station2=38862,
@@ -2510,7 +2517,7 @@ new User
 {
     Id = Static.LineTripIdCounter++,
     LineId=ListLine[0].Id,
-    StartAt= new TimeSpan(06,00,00),
+    StartAt= new TimeSpan(07,00,00),  
     Frequency= new TimeSpan(00,20,00),
     FinishedAt= new TimeSpan(00,00,00),
 },
@@ -2518,7 +2525,7 @@ new LineTrip
 {
     Id = Static.LineTripIdCounter++,
     LineId=ListLine[1].Id,
-    StartAt= new TimeSpan(07,00,00),
+    StartAt= new TimeSpan(07,00,00), 
     Frequency=new TimeSpan(00,10,00),
     FinishedAt=new TimeSpan(00,00,00),
 },

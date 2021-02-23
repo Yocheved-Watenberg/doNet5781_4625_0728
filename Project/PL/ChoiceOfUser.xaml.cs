@@ -20,21 +20,21 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Logique d'interaction pour ChoiceOfUser.xaml
+    /// Logique d'interaction pour ChoiceUser.xaml
     /// </summary>
-    public partial class ChoiceOfUser : Window
+    public partial class ChoiceUser : Window
     {
         IBL bl = BLFactory.GetBL("1");
-        static PL pl = new PL();
+        static PLClass pl = new PLClass(); 
         private Stopwatch stopWatch;
         BackgroundWorker timerworker;
-
+       
         Station station;
         IEnumerable<IGrouping<TimeSpan, LineTiming>> listTest;
         TimeSpan startHour;
 
-    
-        public ChoiceOfUser(IBL _bl)
+
+        public ChoiceUser(IBL _bl)
         {
             InitializeComponent();  
             bl = _bl;
@@ -64,7 +64,8 @@ namespace PL
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)//revoir, g recopie de tirtsa 
         {
-            station = e.Argument as Station;
+            //station = e.Argument as Station;
+            Station station = bl.GetAllStation().First();
             try
             {
                 startHour = DateTime.Now.TimeOfDay;

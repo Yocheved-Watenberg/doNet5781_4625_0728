@@ -21,7 +21,7 @@ namespace PL
         public TimeSpan Timing { get; set; }
     }
 
-    public class PL
+    public class PLClass
     {
         static IBL bl = BLFactory.GetBL("1");
 
