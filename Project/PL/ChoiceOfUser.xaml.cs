@@ -20,11 +20,12 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Logique d'interaction pour ChoiceUser.xaml
+    /// Logique d'interaction pour ChoiceOfUser.xaml
     /// </summary>
-    public partial class ChoiceUser : Window
+    public partial class ChoiceOfUser : Window
     {
         IBL bl = BLFactory.GetBL("1");
+        static PL pl = new PL();
         private Stopwatch stopWatch;
         BackgroundWorker timerworker;
 
@@ -32,8 +33,8 @@ namespace PL
         IEnumerable<IGrouping<TimeSpan, LineTiming>> listTest;
         TimeSpan startHour;
 
-
-        public ChoiceUser(IBL _bl)
+    
+        public ChoiceOfUser(IBL _bl)
         {
             InitializeComponent();  
             bl = _bl;
@@ -70,7 +71,7 @@ namespace PL
                 while (timerworker.CancellationPending == false)
                 {
                     TimeSpan simulatedHourNow = startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * 60);
-                    listTest = PL.BoPoLineTimingAdapter(bl.StationTiming(station, simulatedHourNow), simulatedHourNow);
+                    listTest = pl.BoPoLineTimingAdapter(bl.StationTiming(station, simulatedHourNow), simulatedHourNow);
                     timerworker.ReportProgress(1);
                     Thread.Sleep(1);
                 }

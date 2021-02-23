@@ -37,7 +37,7 @@ namespace BL.BO
     {
         public int id;
         public BadLineTripIdException(string message, Exception innerException) :
-        base(message, innerException) => id = ((DO.BadLineTripIdException)innerException).code;
+        base(message, innerException) => id = ((DO.BadLineTripIdException)innerException).lineId;
     public override string ToString() => base.ToString() + $", bad line trip id : {id}";
 }
 [Serializable]

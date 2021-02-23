@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BLAPI;
+using System.Linq;
+
 
 namespace PL
 {
@@ -21,7 +22,7 @@ namespace PL
     public partial class StationAdmin : Window
     {
         //we don't allow to upadate the station code, because it's the id 
-        IBL bl;
+        static IBL bl;
         BL.BO.Station curStation;
         public StationAdmin(IBL _bl)
         {
