@@ -49,13 +49,7 @@ namespace BLAPI
        IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
         LineTrip LineTripDoBoAdapter(DO.LineTrip DoLineTrip);
         #endregion
-        #region Timing
-        IEnumerable<IGrouping<TimeSpan, LineTiming>> StationTiming(BL.BO.Station station, TimeSpan hour);
-        IEnumerable<LineTiming> ListArrivalOfLine(int lineId, TimeSpan hour, int stationKey);
-        //A METTRE?
-        //TimeSpan DurationOfTravel(Line line, int stationKey)
-
-
+        IEnumerable<IGrouping<TimeSpan, LineTiming>> StationTiming(BL.BO.Station station, TimeSpan hour)
 
             #endregion
     }
