@@ -56,7 +56,7 @@ namespace PL
 
         public void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            int simulation = int.Parse(tbSimulationSpeed.Text);
+            int simulation = 10; //int.Parse(tbSimulationSpeed.Text);
             string timerText = (startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * simulation)).ToString();
             timerText = timerText.Substring(0, 8);
             this.timerTextBlock.Text = timerText;
