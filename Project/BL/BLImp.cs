@@ -422,7 +422,7 @@ namespace BL
             return lineTripBO;
 
         }
-      
+        #endregion
         //}
         //public void DeleteLineTrip(int code);
         //public IEnumerable<LineTrip> GetAllLineTrip();

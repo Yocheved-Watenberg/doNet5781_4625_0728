@@ -22,7 +22,7 @@ namespace PL
     /// <summary>
     /// Logique d'interaction pour ChoiceUser.xaml
     /// </summary>
-    public partial class ChoiceUser : Window
+    public partial class ChoiceOfUser : Window
     {
         IBL bl = BLFactory.GetBL("1");
         static PLClass pl = new PLClass(); 
@@ -34,7 +34,7 @@ namespace PL
         TimeSpan startHour;
 
 
-        public ChoiceUser(IBL _bl)
+        public ChoiceOfUser(IBL _bl)
         {
             InitializeComponent();  
             bl = _bl;
