@@ -67,7 +67,7 @@ namespace PL
         {
           // station = e.Argument as Station;
           // station = bl.GetStation((int)cbStationChoice.SelectedItem);
-           station = bl.GetAllStation().First();
+          // station = bl.GetAllStation().First();
             try
             {
                 startHour = DateTime.Now.TimeOfDay;
