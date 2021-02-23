@@ -8,7 +8,6 @@
         Title="ChoiceOfUser" Height="450" Width="800"  WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
         <Button Content="Back" HorizontalAlignment="Left" Margin="20,380,0,0" VerticalAlignment="Top" Width="80" Click="ButtonBack_Click"/>
-        <TextBox x:Name="tbSimulationSpeed" MaxLength="3" HorizontalAlignment="Left" Height="24" Margin="20,35,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBlock x:Name="timerTextBlock" Text="00:00:00" FontSize="30" Foreground="DarkCyan"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="464,35,0,0" Height="46" Width="108" Grid.ColumnSpan="2"/>
         <DataGrid  x:Name="LineTripDataGrid" IsReadOnly="True" HorizontalAlignment="Left" Height="224" Margin="88,118,0,0" VerticalAlignment="Top" Width="548" >
             <DataGrid.Columns>
@@ -23,7 +22,5 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox  x:Name="cbStationChoice" HorizontalAlignment="Left" Margin="275,59,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding}" DisplayMemberPath ="Code" SelectionChanged="cbStationChoice_SelectionChanged" />
-        <Button Content="changer de station" HorizontalAlignment="Left" Margin="395,86,0,0" VerticalAlignment="Top" Width="135" Click="Button_Click"/>
     </Grid>
 </Window>

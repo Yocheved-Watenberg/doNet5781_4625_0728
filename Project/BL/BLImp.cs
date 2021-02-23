@@ -500,17 +500,18 @@ namespace BL
         }
 
         //copié coller entierement de tirtsa
+        //calcule le temps entre 1ere tahana et cette station
         internal TimeSpan TravelTime(Line line, int stationKey)
         {
             int indexOfStation = dl.GetLineStation(line.Code, stationKey).LineStationIndex;
             IEnumerable<DO.LineStation> stations = (from lineStat in dl.GetAllLineStationBy(l => l.LineCode == line.Code).ToList()
                                                     where lineStat.LineStationIndex <= indexOfStation
-                                                    select lineStat).ToList();
+                                                    select lineStat).ToList(); //recupere ttes les lignes stations qui st avt celle la
 
             TimeSpan travelDuration = new TimeSpan();
             for (int i = 0; i < stations.Count() - 1; i++)
             {
-                travelDuration += dl.GetAdjacentStations(stations.ElementAt(i).StationCode, stations.ElementAt(i + 1).StationCode).Time;
+                travelDuration += dl.GetAdjacentStations(stations.ElementAt(i).StationCode, stations.ElementAt(i + 1).StationCode).Time;//calcule temps final de la 1ere station a celle la
             }
             return travelDuration;
         }

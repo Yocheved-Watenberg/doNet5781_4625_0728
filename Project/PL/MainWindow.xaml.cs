@@ -36,9 +36,9 @@ namespace PL
             }
             else if (rbUser.IsChecked == true)
             {
-                ChoiceOfUser win = new ChoiceOfUser(bl);
+                ChoiceUser win = new ChoiceUser(bl);
                 win.ShowDialog();
-                win.SimulatedSpeed();
+                
             }
         }
 
