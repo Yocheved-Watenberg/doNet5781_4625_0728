@@ -54,9 +54,10 @@ namespace PL
         {
         }
 
-        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        public void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            string timerText = (startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * 60)).ToString();
+            int simulation = int.Parse(tbSimulationSpeed.Text);
+            string timerText = (startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * simulation)).ToString();
             timerText = timerText.Substring(0, 8);
             this.timerTextBlock.Text = timerText;
             LineTripDataGrid.ItemsSource = listTest;
@@ -107,6 +108,13 @@ namespace PL
         }
         //bool isNum = int.TryParse(tbSimulationSpeed.Text, out int theNum);         //checks if the meirout simulation is composed only of digits 
         //if (!isNum) throw new BadCodeException("You have to put a valid num");      
+    public void SimulatedSpeed()
+        {
+            
+        }
+    
+    
+    
     }
 
 }

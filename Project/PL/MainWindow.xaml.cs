@@ -38,6 +38,7 @@ namespace PL
             {
                 ChoiceOfUser win = new ChoiceOfUser(bl);
                 win.ShowDialog();
+                win.SimulatedSpeed();
             }
         }
 
