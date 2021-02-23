@@ -1570,6 +1570,12 @@ new AdjacentStations {
          Time=new TimeSpan(00,05,30),
       },
 new AdjacentStations {
+         Station1=60413,
+         Station2=20638,
+         Distance=700,
+         Time=new TimeSpan(00,04,30),
+      },
+new AdjacentStations {
          Station1=61157,
          Station2=20638 ,
          Distance=800,

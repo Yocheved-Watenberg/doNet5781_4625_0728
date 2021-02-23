@@ -25,7 +25,6 @@ namespace PL
     public partial class ChoiceOfUser : Window
     {
         IBL bl = BLFactory.GetBL("1");
-       // static PLClass pl = new PLClass(); 
         private Stopwatch stopWatch;
         BackgroundWorker timerworker;
        
@@ -67,14 +66,14 @@ namespace PL
         {
           // station = e.Argument as Station;
           // station = bl.GetStation((int)cbStationChoice.SelectedItem);
-           station = bl.GetAllStation().First();
+        //   station = bl.GetAllStation().First();
             try
             {
                 startHour = DateTime.Now.TimeOfDay;
                 while (timerworker.CancellationPending == false)
                 {
                     TimeSpan simulatedHourNow = startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * simulatedSpeed);
-                    nextBusesInStation = bl.StationTiming(station, simulatedHourNow);   
+                    nextBusesInStation = bl.NextBusesInAStation(station, simulatedHourNow);   
                     timerworker.ReportProgress(1);
                     Thread.Sleep(1);
                 }
@@ -94,18 +93,6 @@ namespace PL
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             timerworker.CancelAsync();
-        }
-
-        private void cbStationChoice_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            station = cbStationChoice.SelectedItem as BL.BO.Station;
-            timerworker.CancelAsync();
-            timerworker.RunWorkerAsync();
         }
         //bool isNum = int.TryParse(tbSimulationSpeed.Text, out int theNum);         //checks if the meirout simulation is composed only of digits 
         //if (!isNum) throw new BadCodeException("You have to put a valid num");        
