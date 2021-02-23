@@ -40,6 +40,15 @@ namespace BL.BO
         base(message, innerException) => id = ((DO.BadLineTripIdException)innerException).lineId;//attention c vrmt lineId?
     public override string ToString() => base.ToString() + $", bad line trip id : {id}";
 }
+    [Serializable]
+    public class LineStationIdException : Exception
+    {
+        public int id;
+        public LineStationIdException(string message, Exception innerException) :
+                base(message, innerException) => id = ((DO.BadLineTripIdException)innerException).lineId;
+
+        public override string ToString() => base.ToString() + $", bad linestation id : {id}";
+    }
 [Serializable]
     public class LessThanTwoStationsException: Exception
     {
@@ -62,39 +71,45 @@ namespace BL.BO
     {
         public BadFormatException(string message) : base(message) {}
     }
-public class  NotSelectedAreaException: Exception
+public class  NotSelectedAreaException : Exception
     {
     public NotSelectedAreaException(string message) : base(message) { }
     public override string ToString() => "You haven't selected any area for this line";
     }
+public class  NotSelectedLineException: Exception
+    {
+    public NotSelectedLineException(string message) : base(message) { }
+    public override string ToString() => "You haven't selected any line ";
+    }
 
 
-    //a revoir en cas d erreur
+
+//a revoir en cas d erreur
 
 
-    //[Serializable]
-    //public class BadLecturerIdException : Exception
-    //{
-    //    public int ID;
-    //    public BadLecturerIdException(string message, Exception innerException) :
-    //        base(message, innerException) => ID = ((DO.BadPersonIdException)innerException).ID;
-    //    public override string ToString() => base.ToString() + $", bad student id: {ID}";
-    //}
+//[Serializable]
+//public class BadLecturerIdException : Exception
+//{
+//    public int ID;
+//    public BadLecturerIdException(string message, Exception innerException) :
+//        base(message, innerException) => ID = ((DO.BadPersonIdException)innerException).ID;
+//    public override string ToString() => base.ToString() + $", bad student id: {ID}";
+//}
 
-    //        [Serializable]
-    //        public class BadStudentIdCourseIDException : Exception
-    //        {
-    //            public int personID;
-    //            public int courseID;
-    //            public BadStudentIdCourseIDException(string message, Exception innerException) :
-    //                base(message, innerException)
-    //            {
-    //                personID = ((DO.BadPersonIdCourseIDException)innerException).personID;
-    //                courseID = ((DO.BadPersonIdCourseIDException)innerException).courseID;
-    //            }
-    //            public override string ToString() => base.ToString() + $", bad student id: {personID} and course ID: {courseID}";
-    //        }
+//        [Serializable]
+//        public class BadStudentIdCourseIDException : Exception
+//        {
+//            public int personID;
+//            public int courseID;
+//            public BadStudentIdCourseIDException(string message, Exception innerException) :
+//                base(message, innerException)
+//            {
+//                personID = ((DO.BadPersonIdCourseIDException)innerException).personID;
+//                courseID = ((DO.BadPersonIdCourseIDException)innerException).courseID;
+//            }
+//            public override string ToString() => base.ToString() + $", bad student id: {personID} and course ID: {courseID}";
+//        }
 
-    //    }
+//    }
 
 

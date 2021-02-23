@@ -299,6 +299,20 @@ namespace BL
         {
            return GetAllStationsInLines(GetAllLineBy(l => (BL.BO.Enum.Areas)l.Area == myArea));
         }
+       public  LineStation GetLineStation(int id, int station)
+        {
+            LineStation lineStation;
+            try
+            {
+               lineStation= LineStationDoBoAdapter(dl.GetLineStation(id, station));
+
+            }
+            catch(DO.BadLineIdException ex)
+            {
+                throw new BO.LineStationIdException("this lineStation doesn't exist",ex);
+            }
+            return lineStation;
+        }
         #endregion
         #region adjacentStation
         public BL.BO.AdjacentStations adjacentStationsDoBoAdapter(DO.AdjacentStations adjDO)
@@ -515,6 +529,7 @@ namespace BL
             }
             return travelDuration;
         }
+        
 
 
     }
