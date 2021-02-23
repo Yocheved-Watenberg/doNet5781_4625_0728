@@ -62,7 +62,7 @@
 
         <!--ComboBox x:Name="cbAreas" HorizontalAlignment="Left" Margin="453,73,0,0" VerticalAlignment="Top" Width="120" Height="27" SelectionChanged="cbAreas_SelectionChanged" Grid.ColumnSpan="2"/-->
         <ListBox x:Name="lbListOfAddStations" HorizontalAlignment="Left" Height="179" Margin="45,46,0,0" VerticalAlignment="Top" Width="337" ItemsSource="{Binding}" SelectionMode="Multiple" SelectionChanged="lbListOfStations_SelectionChanged" Grid.ColumnSpan="2" Grid.Row="1" />
-        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="319,240,0,0" VerticalAlignment="Top" Width="146" Height="44" Background="#FFDDDDDB" FontFamily="Harrington" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" FontSize="18" Foreground="#FF132CB4" Click="btnCreate_Click" Grid.ColumnSpan="2" Grid.Row="1"/>
+        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="319,240,0,0" VerticalAlignment="Top" Width="146" Height="44" Background="#FFDDDDDB" FontFamily="Harrington" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" FontSize="18" Foreground="#FF132CB4" Click="btnUpdate_Click" Grid.ColumnSpan="2" Grid.Row="1"/>
 
         <Button x:Name ="btnAddStations" Content="Add" HorizontalAlignment="Left" Margin="156,240,0,0" VerticalAlignment="Top" Width="74" Click="btnAddStations_Click" Grid.ColumnSpan="2" Grid.Row="1" />
 

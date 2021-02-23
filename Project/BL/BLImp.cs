@@ -326,6 +326,20 @@ namespace BL
             return from item in dl.GetAllAdjacentStations()
                    select adjacentStationsDoBoAdapter(item);
         }
+        public void AddAdjacentStations(AdjacentStations adjacentStations)
+        {
+            DO.AdjacentStations AdjDo = new DO.AdjacentStations();
+            adjacentStations.CopyPropertiesTo(AdjDo);
+            try
+            {
+                dl.AddAdjacentStations(AdjDo);
+            }
+            catch (DO.BadStationIdException ex)
+            {
+                throw new BO.BadStationException("Those Adjacents stations already exist", ex);
+            }
+        }
+       
         #endregion
         #region global functions
 
