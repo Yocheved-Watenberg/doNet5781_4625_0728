@@ -10,7 +10,7 @@ namespace BLAPI
 {
     public interface IBL
     {
-       #region Line
+        #region Line
        BL.BO.Line LineDoBoAdapter(DO.Line lineDO);
         BL.BO.LineStation LineStationDoBoAdapter(DO.LineStation lineDO);
         void AddLine(int myCode, BL.BO.Enum.Areas myArea, IEnumerable<LineStation> myListOfStations);              //allows only after the user entered two stations
@@ -25,7 +25,6 @@ namespace BLAPI
         IEnumerable<Station> GetAllStationInLine(Line l);
 
         #endregion
-
         #region Station
         Station StationDoBoAdapter(DO.Station stationDO);
        void AddStation(Station station);       

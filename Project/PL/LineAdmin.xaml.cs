@@ -88,8 +88,6 @@ namespace PL
 
         }
 
-
-
         #region  student example 
         //private void btUpdateStudent_Click(object sender, RoutedEventArgs e)
         //{

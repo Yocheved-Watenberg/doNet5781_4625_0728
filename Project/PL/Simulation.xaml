@@ -9,10 +9,12 @@
     <Grid>
         <Button Content="Back" HorizontalAlignment="Left" Margin="20,380,0,0" VerticalAlignment="Top" Width="80" Click="ButtonBack_Click"/>
         <TextBlock x:Name="timerTextBlock" Text="00:00:00" FontSize="30" Foreground="DarkCyan"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="464,35,0,0" Height="46" Width="108" Grid.ColumnSpan="2"/>
-        <DataGrid  x:Name="LineTripDataGrid" IsReadOnly="True" HorizontalAlignment="Left" Height="224" Margin="88,118,0,0" VerticalAlignment="Top" Width="548" >
+        <DataGrid 
+             x:Name="LineTripDataGrid" IsReadOnly="True" HorizontalAlignment="Left" Height="224" Margin="88,118,0,0" VerticalAlignment="Top" Width="548">
+            <!--   AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}"  RowDetailsVisibilityMode="VisibleWhenSelected" RenderTransformOrigin="0.5,0.5"-->
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="LineNumberColumn" Width="Auto" Header="Line Number" 
-                                                Binding="{Binding LineNumber}"/>
+                                                Binding="{Binding LineCode}"/>
                 <DataGridTextColumn x:Name="LastStationColumn" Width="Auto" Header="Destination"
                                                 Binding="{Binding LastStation}"/>
                 <DataGridTextColumn x:Name="TripStartColumn" Width="Auto" Header="Departure from the first station" 
@@ -22,5 +24,6 @@
 
             </DataGrid.Columns>
         </DataGrid>
+      
     </Grid>
 </Window>

@@ -39,6 +39,8 @@ namespace PL
             bl = _bl;
             station = _station;
             simulatedSpeed = _simulatedSpeed;
+        //    TimeSpan simulatedHourNow = startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * simulatedSpeed);
+         //   nextBusesInStation = bl.NextBusesInAStation(station, simulatedHourNow);
             stopWatch = new Stopwatch(); 
             timerworker = new BackgroundWorker();
             timerworker.DoWork += Worker_DoWork;
@@ -48,7 +50,13 @@ namespace PL
             timerworker.WorkerSupportsCancellation = true;
             stopWatch.Restart();
             timerworker.RunWorkerAsync();
-         
+           // LineTripDataGrid.DataContext = nextBusesInStation;
+            //lbDepartureTime.DataContext = nextBusesInStation;
+            //lbDestinations.DataContext = nextBusesInStation;
+            //lbLineNumber.DataContext = nextBusesInStation;
+            //lbStationTime.DataContext = nextBusesInStation;
+
+
         }
 
         private void Timing_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -59,7 +67,11 @@ namespace PL
         {
             string timerText = (startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * simulatedSpeed)).ToString();
             timerTextBlock.Text = timerText.Substring(0, 8);
-            LineTripDataGrid.ItemsSource = nextBusesInStation;
+            LineTripDataGrid.DataContext = nextBusesInStation;
+            //lbDepartureTime.DataContext = nextBusesInStation;
+            //lbDestinations.DataContext = nextBusesInStation;
+            //lbLineNumber.DataContext = nextBusesInStation;
+            //lbStationTime.DataContext = nextBusesInStation;
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)//revoir, g recopie de tirtsa 
@@ -89,7 +101,6 @@ namespace PL
         {
             this.Close();
         }
-       
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             timerworker.CancelAsync();
