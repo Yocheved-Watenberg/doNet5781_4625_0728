@@ -11,7 +11,6 @@ namespace DL
 {
     class XMLTools
     {
-
         static string dir = @"xml\";
         static XMLTools()
         {
@@ -52,7 +51,6 @@ namespace DL
             }
         }
         #endregion
-
         #region SaveLoadWithXMLSerializer
         public static void SaveListToXMLSerializer<T>(List<T> list, string filePath)
         {

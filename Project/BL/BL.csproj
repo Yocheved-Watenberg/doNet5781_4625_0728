@@ -75,8 +75,5 @@
   <ItemGroup>
     <None Include="Properties\DataSources\BLImp.datasource" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="BLAPI\LineXml.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
