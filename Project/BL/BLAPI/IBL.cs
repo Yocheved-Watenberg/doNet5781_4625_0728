@@ -23,6 +23,7 @@ namespace BLAPI
        IEnumerable<LineStation> GetAllLineStationsInLine(Line line);
         IEnumerable<Station> GetStationByArea(BL.BO.Enum.Areas myArea);
         IEnumerable<Station> GetAllStationInLine(Line l);
+        LineStation GetLineStation(int id, int station);
 
         #endregion
 
@@ -39,6 +40,7 @@ namespace BLAPI
         IEnumerable<Station> GetAllStationBy(Predicate<Station> predicate);
 
         #endregion
+        
         #region LineTrip
 
         void AddLineTrip(LineTrip lineTrip);

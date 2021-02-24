@@ -73,7 +73,26 @@ namespace PL
 
         private void btnSelectStations_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("this method is under construction");
+            try
+            {
+                
+                    List<Station> myList = new List<Station>();
+                    List < Station >myList2= new List<Station>();
+                if (cbLines.SelectedItem != null)
+                {
+                    myList = (bl.GetStationByArea((BL.BO.Enum.Areas)(cbLines.SelectedItem as BL.BO.Line).Area)).ToList();
+                    foreach (Station item in myList)
+                        if (bl.GetLineStation((cbLines.SelectedItem as BL.BO.Line).Id, item.Code) == null)
+                            myList2.Add(item);
+                    lbListOfStations.DataContext = myList2;
+                }
+                   else throw new NotSelectedLineException("You have not selected a line!"); 
+            }
+            catch (NotSelectedLineException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+           
         }
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
