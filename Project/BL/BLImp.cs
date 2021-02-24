@@ -446,76 +446,64 @@ namespace BL
 
 
         //copié coller entierement de tirtsa 
-        public IEnumerable<IGrouping<TimeSpan, LineTiming>> NextBusesInAStation(BL.BO.Station station, TimeSpan hour)
+       public IEnumerable<LineTiming> NextBusesInAStation(BL.BO.Station station, TimeSpan hour)
+      // public IEnumerable<IGrouping<TimeSpan, LineTiming>> NextBusesInAStation(BL.BO.Station station, TimeSpan hour)
+
         {
-            //if (station.LinesThatPass == null)
-          //  throw new BO.BadLineTripException("There is any trip during these hours for the requested line", ex);
             try
             {
-                List<LineTiming> timing = new List<LineTiming>();
-                foreach (var lineId in GetAllLineInStation(station))
+                List<LineTiming> nextBusesList = new List<LineTiming>();
+                foreach (var oneLine in GetAllLineInStation(station))
                 {
-                    foreach (var item in ListArrivalOfLine(lineId.Code, hour, station.Code))
-                        timing.Add(item);
+                    foreach (var item in NextBusesOfOneLineInAStation(oneLine.Code, hour, station.Code))
+                        nextBusesList.Add(item);
                 }
-
-                return from item in timing
-                       group item by item.ExpectedTimeTillArrive;
+                //return from item in timing
+                //       group item by item.ExpectedTimeTillArrive;
+                return nextBusesList;
             }
             catch (DO.BadLineTripIdException ex)
             {
                 throw new BO.BadLineTripException("There is any trip during these hours for the requested line", ex);
             }
-
         }
 
-        //copier coller entierement de tirtsa
-        public IEnumerable<LineTiming> ListArrivalOfLine(int lineId, TimeSpan hour, int stationKey)
+        public IEnumerable<LineTiming> NextBusesOfOneLineInAStation(int lineCode, TimeSpan hour, int stationKey)
         {
-            //Calcul of TravelTime between first station of line and our station
-            Line line = GetLine(lineId);
-            TimeSpan travelTime = TravelTime(line, stationKey);
-
-            DO.LineTrip myLineTrip = dl.GetLineTrip(lineId, hour);
-
+            Line line = GetLine(lineCode);
+            DO.LineTrip myLineTrip = dl.GetLineTrip(lineCode, hour);
+            TimeSpan travelTime = TravelTime(line, stationKey);             //Calcul of TravelTime between first station of line and our station
 
             List<LineTiming> listTiming = new List<LineTiming>(); //initialize list of all timing for the specified line
             while (myLineTrip.StartAt + travelTime < hour)
                 myLineTrip.StartAt += myLineTrip.Frequency; //we can change value of StartTimeRange thanks to Clone() 
-            for (TimeSpan i = myLineTrip.StartAt; i <= hour;)
+            for (TimeSpan i = myLineTrip.StartAt; i <= hour; i += myLineTrip.Frequency )
             {
                 listTiming.Add(new LineTiming
-                {
+                {   LineCode = myLineTrip.LineId,
+                    LastStation = line.ListOfStations.Last().StationName,
                     TripStart = i,
-                    LineId = myLineTrip.LineId,
-                    ExpectedTimeTillArrive = i + travelTime
-                });
-                i += myLineTrip.Frequency;
+                    ExpectedTimeTillArrive = i + travelTime,
+                } ) ;           
             }
-            //if station is the first we want to show 2 nexts departures
-            if (stationKey == line.ListOfStations.First().StationCode)
+            if (stationKey == line.ListOfStations.First().StationCode)   //if station is the first we want to show 5 nexts departures
             {
-                listTiming.Add(new LineTiming
+                for (int j = 0; j < 5; j ++)
                 {
-                    TripStart = myLineTrip.StartAt,
-                    LineId = myLineTrip.LineId,
-                    ExpectedTimeTillArrive = myLineTrip.StartAt
-                });
-                myLineTrip.StartAt += myLineTrip.Frequency;
-                listTiming.Add(new LineTiming
-                {
-                    TripStart = myLineTrip.StartAt,
-                    LineId = myLineTrip.LineId,
-                    ExpectedTimeTillArrive = myLineTrip.StartAt
-                });
+                    listTiming.Add(new LineTiming
+                    {
+                        LineCode = myLineTrip.LineId,
+                        LastStation = line.ListOfStations.Last().StationName,
+                        TripStart = myLineTrip.StartAt,
+                        ExpectedTimeTillArrive = myLineTrip.StartAt
+                    });
+                    myLineTrip.StartAt += myLineTrip.Frequency;
+                }
             }
             return listTiming;
-
         }
 
-        //copié coller entierement de tirtsa
-        //calcule le temps entre 1ere tahana et cette station
-        internal TimeSpan TravelTime(Line line, int stationKey)
+        public TimeSpan TravelTime(Line line, int stationKey) //Calcul of time between first station of line and our station
         {
             int indexOfStation = dl.GetLineStation(line.Code, stationKey).LineStationIndex;
             IEnumerable<DO.LineStation> stations = (from lineStat in dl.GetAllLineStationBy(l => l.LineCode == line.Code).ToList()

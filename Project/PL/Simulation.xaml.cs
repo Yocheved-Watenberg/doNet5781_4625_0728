@@ -29,9 +29,12 @@ namespace PL
         BackgroundWorker timerworker;
        
         Station station;
-        IEnumerable<IGrouping<TimeSpan, LineTiming>> nextBusesInStation;
+        //   IEnumerable<IGrouping<TimeSpan, LineTiming>> nextBusesInStation;
+        IEnumerable<LineTiming> nextBusesInStation;
+
         TimeSpan startHour;
-        int simulatedSpeed; 
+        int simulatedSpeed;
+        
 
         public Simulation(IBL _bl, Station _station, int _simulatedSpeed)
         {
@@ -67,11 +70,7 @@ namespace PL
         {
             string timerText = (startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * simulatedSpeed)).ToString();
             timerTextBlock.Text = timerText.Substring(0, 8);
-            LineTripDataGrid.ItemsSource = nextBusesInStation;            
-            //lbDepartureTime.DataContext = nextBusesInStation;
-            //lbDestinations.DataContext = nextBusesInStation;
-            //lbLineNumber.DataContext = nextBusesInStation;
-            //lbStationTime.DataContext = nextBusesInStation;
+            LineTripDataGrid.ItemsSource = nextBusesInStation;
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)//revoir, g recopie de tirtsa 
@@ -105,10 +104,12 @@ namespace PL
         {
             timerworker.CancelAsync();
         }
+
+        
+        }
         //bool isNum = int.TryParse(tbSimulationSpeed.Text, out int theNum);         //checks if the meirout simulation is composed only of digits 
         //if (!isNum) throw new BadCodeException("You have to put a valid num");        
-    
+
     }
 
-}
 

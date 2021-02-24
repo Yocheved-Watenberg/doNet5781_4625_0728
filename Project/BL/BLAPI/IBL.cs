@@ -50,8 +50,10 @@ namespace BLAPI
        IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
         LineTrip LineTripDoBoAdapter(DO.LineTrip DoLineTrip);
         #endregion
-        IEnumerable<IGrouping<TimeSpan, LineTiming>> NextBusesInAStation (BL.BO.Station station, TimeSpan hour);
-
+        //  IEnumerable<IGrouping<TimeSpan, LineTiming>> NextBusesInAStation (BL.BO.Station station, TimeSpan hour);
+        IEnumerable<LineTiming> NextBusesInAStation(BL.BO.Station station, TimeSpan hour);
+        IEnumerable<LineTiming> NextBusesOfOneLineInAStation(int lineCode, TimeSpan hour, int stationKey);
+        TimeSpan TravelTime(Line line, int stationKey); //Calcul of time between first station of line and our station
     }
 }
 
