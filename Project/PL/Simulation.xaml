@@ -7,16 +7,20 @@
         mc:Ignorable="d"
         Title="ChoiceOfUser" Height="450" Width="800"  WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="fond.jpg" Opacity="0.5"/>
+        </Grid.Background>
         <Button Content="Back" HorizontalAlignment="Left" Margin="20,380,0,0" VerticalAlignment="Top" Width="80" Click="ButtonBack_Click"/>
-        <TextBlock x:Name="timerTextBlock" Text="00:00:00" FontSize="30" Foreground="DarkCyan"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="464,35,0,0" Height="46" Width="108" Grid.ColumnSpan="2"/>
-        <DataGrid x:Name="LineTripDataGrid" IsReadOnly="True" HorizontalAlignment="Left" Height="224" Margin="88,118,0,0" VerticalAlignment="Top" Width="548" >
-            <DataGrid.Columns>
-                <DataGridTextColumn  Width = "Auto" Header = "Line Number" Binding = "{Binding LineCode}" />
-                <DataGridTextColumn Width = "Auto" Header = "Destination"   Binding = "{Binding LastStation}" />
-                <DataGridTextColumn Width = "Auto" Header = "Departure from the first station"   Binding = "{Binding TripStart}"/>
-                <DataGridTextColumn Width = "Auto" Header = "Estimated time of arrival"    Binding = "{Binding ExpectedTimeTillArrive}" />
-            </DataGrid.Columns >
-        </DataGrid>
-      
+        <TextBlock x:Name="timerTextBlock" Text="00:00:00" FontSize="30" Foreground="DarkCyan"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="538,36,0,0" Height="46" Width="120"/>
+        <DataGrid x:Name="LineTripDataGrid" IsReadOnly="True" HorizontalAlignment="Left" Height="224" Margin="130,130,0,0" VerticalAlignment="Top" Width="548"/>
+        <Label x:Name="labelStation"  FontFamily="Segoe UI Black" HorizontalAlignment="Left" Margin="130,100" FontSize="20" VerticalAlignment="Top">
+             <Label.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF43C0E7" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Foreground>
+        </Label>
+
     </Grid>
 </Window>

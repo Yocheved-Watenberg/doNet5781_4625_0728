@@ -32,7 +32,7 @@ namespace PL
         private void buttonGo_Click(object sender, RoutedEventArgs e)
         {
             Simulation win;
-            if ((cbStationChoice.SelectedItem != null) && (tbSimulationSpeed.Text != null))
+            if ((cbStationChoice.SelectedItem != null) && (tbSimulationSpeed.Text != ""))
             {
                 win = new Simulation(bl, bl.GetStation((cbStationChoice.SelectedItem as Station).Code), int.Parse(tbSimulationSpeed.Text));
                 win.ShowDialog();
@@ -41,6 +41,11 @@ namespace PL
             {
                 MessageBox.Show("You have to put the station's code and a simulation speed", "error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
