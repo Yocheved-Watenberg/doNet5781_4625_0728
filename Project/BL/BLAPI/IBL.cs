@@ -26,14 +26,18 @@ namespace BLAPI
         LineStation GetLineStation(int id, int station);
 
         #endregion
+        #region adjacentStation
+        BL.BO.AdjacentStations adjacentStationsDoBoAdapter(DO.AdjacentStations adjDO);
+        void AddAdjacentStations(AdjacentStations adjacentStations);
+        IEnumerable<AdjacentStations> GetAllAdjacentStations();
+        #endregion
         #region Station
         Station StationDoBoAdapter(DO.Station stationDO);
        void AddStation(Station station);       
        void DeleteStation(int code);
        IEnumerable<Station> GetAllStation();
        IEnumerable<BL.BO.Line> GetAllLineInStation(Station s);
-       IEnumerable<AdjacentStations> GetAllAdjacentStations();
-        BL.BO.AdjacentStations adjacentStationsDoBoAdapter(DO.AdjacentStations adjDO);
+      
        void UpdateStation(Station station);
        Station GetStation(int code);
         IEnumerable<Station> GetAllStationBy(Predicate<Station> predicate);
@@ -50,6 +54,7 @@ namespace BLAPI
        IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
         LineTrip LineTripDoBoAdapter(DO.LineTrip DoLineTrip);
         #endregion
+         
         //  IEnumerable<IGrouping<TimeSpan, LineTiming>> NextBusesInAStation (BL.BO.Station station, TimeSpan hour);
         IEnumerable<LineTiming> NextBusesInAStation(BL.BO.Station station, TimeSpan hour);
         IEnumerable<LineTiming> NextBusesOfOneLineInAStation(int lineCode, TimeSpan hour, int stationKey);

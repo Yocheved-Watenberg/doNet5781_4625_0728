@@ -24,6 +24,7 @@ namespace PL
     {
         IBL bl;
         BL.BO.Line curLine;
+        BL.BO.Line selectedLine;
         public LineAdminUpdate(IBL _bl)
         {
             bl = _bl;
@@ -76,12 +77,14 @@ namespace PL
         {
             try
             {
-                BL.BO.Line selectedLine = cbLines.SelectedItem as BL.BO.Line;
+                 selectedLine = cbLines.SelectedItem as BL.BO.Line;
                     List<Station> myList = new List<Station>();
-                    List < Station >myList2= myList;//liste de ttes les stations qui sont dans line et dans la area de la line
+                    List < Station > myList2 = myList;//liste de ttes les stations qui sont dans line et dans la area de la line
+              
                 if (selectedLine != null)
                 {
                     myList = (bl.GetStationByArea((BL.BO.Enum.Areas)(selectedLine).Area)).ToList();
+                   //myList2 = myList;
                     foreach (Station item in myList)
                         myList2.Remove(((bl.GetAllStationInLine(selectedLine)).ToList()).Find(s => s.Code == item.Code));
                     lbListOfAddStations.DataContext = myList2;
@@ -96,21 +99,59 @@ namespace PL
         }
        
 
-        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            selectedLine = cbLines.SelectedItem as BL.BO.Line;
+            if (lbListOfAddStations.SelectedItem != null)
+            {
+                List<LineStation> lineStationsInMyLine = bl.GetLine(selectedLine.Code).ListOfStations.ToList(); // All the stations in the line before modifications
+               // First create the new adjacents stations(ie the last station of the stations already existing in my line and the first new selected station)
+                AdjacentStations newAdj = new AdjacentStations();
+                newAdj.Station1 = lineStationsInMyLine.Last().StationCode;
+                newAdj.Station2 = (lbListOfAddStations.SelectedItems[0] as LineStation).StationCode;
+                newAdj.Time = new TimeSpan(10);
 
+
+                //for (int i = 0; i < lbListOfAddStations.SelectedItems.Count; i++)  //put the selected Line Stations into the list of stations of the line
+                //    new AdjacentStations
+                //    {
+                //        Station1 = (lbListOfAddStations.SelectedItems[i] as LineStation).StationCode,
+                //        Station2 = (lbListOfAddStations.SelectedItems[i + 1] as LineStation).StationCode,
+                //        Time = new TimeSpan(10),
+                //    };
+                //bl.AddAdjacentsStations();
+
+
+               List <LineStation> newList = (from Station eachLs in lbListOfAddStations.SelectedItems  //put the selected Line Stations into the list of stations of the line
+                                             select new LineStation
+                                             {
+                                                 LineCode = selectedLine.Code,
+                                                 StationCode = eachLs.Code,
+                                                 //DistanceFromLastStation=,
+                                                 //TimeFromLastStation =,
+                                                 StationName = eachLs.Name,
+                                             }).ToList();
+                 foreach (LineStation  item in newList)             // add all the new linestation to the line
+                    lineStationsInMyLine.Add(item);
+               
+                
+                
+                
+               
+
+            }
         }
 
         private void btnDeleteStations_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                BL.BO.Line selectedLine = cbLines.SelectedItem as BL.BO.Line;
+                 selectedLine = cbLines.SelectedItem as BL.BO.Line;
                 List<Station> myList = new List<Station>();
                 
                 if (selectedLine != null)
                 {
-                    myList = (bl.GetStationByArea((BL.BO.Enum.Areas)(selectedLine).Area)).ToList();
+                    myList = bl.GetAllStationInLine(selectedLine).ToList();
 
                     lbListOfDeleteStations.DataContext = myList;
                 }
