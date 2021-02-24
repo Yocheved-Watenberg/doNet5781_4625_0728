@@ -79,15 +79,21 @@ namespace PL
             {
                  selectedLine = cbLines.SelectedItem as BL.BO.Line;
                     List<Station> myList = new List<Station>();
-                    List < Station > myList2 = myList;//liste de ttes les stations qui sont dans line et dans la area de la line
+                   //liste de ttes les stations qui sont dans line et dans la area de la line
               
                 if (selectedLine != null)
                 {
                     myList = (bl.GetStationByArea((BL.BO.Enum.Areas)(selectedLine).Area)).ToList();
-                   //myList2 = myList;
+                    //myList2 = myList;
+                    List<Station> myList2 = (bl.GetStationByArea((BL.BO.Enum.Areas)(selectedLine).Area)).ToList();
+
                     foreach (Station item in myList)
-                        myList2.Remove(((bl.GetAllStationInLine(selectedLine)).ToList()).Find(s => s.Code == item.Code));
-                    lbListOfAddStations.DataContext = myList2;
+                        foreach (Station st in bl.GetAllStationInLine(selectedLine))
+                            if (item.Code == st.Code)
+                                myList2.Remove(bl.GetStation(item.Code));
+                       // ((bl.GetAllStationInLine(selectedLine)).ToList()).Find(s => s.Code == item.Code);
+                       // myList2.Remove(
+                                lbListOfAddStations.DataContext = myList2;
                 }
                    else throw new NotSelectedLineException("You have not selected a line!"); 
             }
@@ -111,18 +117,18 @@ namespace PL
                 newAdj.Station2 = (lbListOfAddStations.SelectedItems[0] as LineStation).StationCode;
                 newAdj.Time = new TimeSpan(10);
 
+               // bl.AddAdjacentsStations(newAdj);
+                for (int i = 0; i < lbListOfAddStations.SelectedItems.Count; i++)  //put the selected Line Stations into the list of stations of the line
+                    new AdjacentStations
+                    {
+                        Station1 = (lbListOfAddStations.SelectedItems[i] as LineStation).StationCode,
+                        Station2 = (lbListOfAddStations.SelectedItems[i + 1] as LineStation).StationCode,
+                        Time = new TimeSpan(10),
+                    };
+               // bl.AddAdjacentsStations();
 
-                //for (int i = 0; i < lbListOfAddStations.SelectedItems.Count; i++)  //put the selected Line Stations into the list of stations of the line
-                //    new AdjacentStations
-                //    {
-                //        Station1 = (lbListOfAddStations.SelectedItems[i] as LineStation).StationCode,
-                //        Station2 = (lbListOfAddStations.SelectedItems[i + 1] as LineStation).StationCode,
-                //        Time = new TimeSpan(10),
-                //    };
-                //bl.AddAdjacentsStations();
 
-
-               List <LineStation> newList = (from Station eachLs in lbListOfAddStations.SelectedItems  //put the selected Line Stations into the list of stations of the line
+                List <LineStation> newList = (from Station eachLs in lbListOfAddStations.SelectedItems  //put the selected Line Stations into the list of stations of the line
                                              select new LineStation
                                              {
                                                  LineCode = selectedLine.Code,
