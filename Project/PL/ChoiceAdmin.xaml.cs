@@ -26,52 +26,7 @@ namespace PL
         {
             InitializeComponent();
             bl = _bl;
-            //this.btnLine.MouseEnter += btnLine_MouseEnter;
-            //this.btnStation.MouseEnter += btnStation_MouseEnter; 
-            //this.btnLine.MouseLeave += btnLine_MouseLeave;
-            //this.btnStation.MouseLeave += btnStation_MouseLeave; 
         }
-
-        //private void btnStation_MouseEnter(object sender, MouseEventArgs e)
-        //{
-        //    Button b = sender as Button;
-        //    if (b != null)
-        //    {
-        //        b.Height += b.Height;
-        //        b.Width += b.Width;
-        //    }
-        //}
-
-        //private void btnLine_MouseEnter(object sender, MouseEventArgs e)
-        //{
-        //    Button b = sender as Button;
-        //    if (b != null)
-        //    {
-        //        b.Height += b.Height;
-        //        b.Width += b.Width;
-        //    }
-        //}
-
-        //private void btnStation_MouseLeave(object sender, MouseEventArgs e)
-        //{
-        //    Button b = sender as Button;
-        //    if (b != null)
-        //    {
-        //        b.Height = b.Height / 2;
-        //        b.Width = b.Width / 2;
-        //    }
-        //}
-
-        //private void btnLine_MouseLeave(object sender, MouseEventArgs e)
-        //{
-        //    Button b = sender as Button;
-        //    if (b != null)
-        //    {
-        //        b.Height = b.Height / 2;
-        //        b.Width = b.Width / 2;
-        //    }
-        //}
-
 
         private void btnStation_Click(object sender, RoutedEventArgs e)
         {
@@ -89,7 +44,6 @@ namespace PL
         {
             this.Close(); 
         }
-
 
     }
 }

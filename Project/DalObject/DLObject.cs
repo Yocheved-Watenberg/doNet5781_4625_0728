@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DLAPI;
+using DO;
 using DS;
 
 namespace DL
@@ -215,8 +216,8 @@ namespace DL
         #region Line 
         public void AddLine(DO.Line line)
         {
-            if ((DataSource.ListLine.FirstOrDefault(l => l.Id == line.Id) != null) || (DataSource.ListLine.FirstOrDefault(l => l.Code == line.Code) != null))
-                    throw new DO.BadLineIdException(line.Id, "this line already exists in the list of lines or this id has been used for a deleted line");
+            if (DataSource.ListLine.Exists(l =>(l.Code == line.Code) && (l.IsDeleted==false)))
+                    throw new DO.BadLineIdException(line.Code, "this line already exists in the list of lines or this code has been used for a deleted line");
             DataSource.ListLine.Add(line.Clone());
         }
         public void DeleteLine(int code)
@@ -286,6 +287,14 @@ namespace DL
             if (myList.FirstOrDefault(l => l.StationCode == lineStation.StationCode) != null)
                 throw new DO.BadLineStationIdException(lineStation.LineCode, lineStation.StationCode, "this line station already exists in the list of line station");
             DataSource.ListLineStation.Add(lineStation.Clone());
+        }
+        public void AddLineStationWithFields(int lineCode, int stationCode, int index)
+        {
+            LineStation myLineStation = new LineStation();
+            myLineStation.LineCode = lineCode;
+            myLineStation.StationCode = stationCode; 
+            myLineStation.LineStationIndex = index;
+            AddLineStation(myLineStation);
         }
         public void DeleteLineStation(int line, int station)
         {
