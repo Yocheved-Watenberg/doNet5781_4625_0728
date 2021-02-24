@@ -49,9 +49,6 @@
     <Compile Include="XMLTools.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\DAL\DLAPI.csproj">
       <Project>{8ab13ebb-897a-4830-9eef-5e134801397f}</Project>
       <Name>DLAPI</Name>

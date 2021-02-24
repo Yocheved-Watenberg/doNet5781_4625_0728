@@ -22,7 +22,7 @@ namespace PL
     /// <summary>
     /// Logique d'interaction pour ChoiceOfUser.xaml
     /// </summary>
-    public partial class Simulation : Window
+    public partial  class Simulation : Window
     {
         IBL bl = BLFactory.GetBL("1");
         private Stopwatch stopWatch;

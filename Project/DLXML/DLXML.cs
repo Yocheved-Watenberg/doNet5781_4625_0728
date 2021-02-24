@@ -11,16 +11,17 @@ using DO;
 
 namespace DL
 {
-    sealed class DLXML : IDAL    //internal
+    internal sealed class DLXML : IDAL    
         {
-            #region singelton
+       
+        #region singelton
             static readonly DLXML instance = new DLXML();
             static DLXML() { }// static ctor to ensure instance init is done just before first usage
             DLXML() { } // default => private
             public static DLXML Instance { get => instance; }// The public Instance prolinety to use
             #endregion
 
-            #region DS XML Files
+        #region DS XML Files
 
             string linePath = @"LineXml.xml"; //XElement
             public string stationPath  = @"StationXml.xml"; //XMLSerializer
@@ -30,12 +31,9 @@ namespace DL
             string tripPath= @"tripPathXml.xml"; //XMLSerializer
             string busPath = @"BusPathXml.xml"; //XMLSerializer
             string busOnTripPath = @"BusOnTripPathXml.xml"; //XMLSerializer
-           string userPath = @"UserPathXml.xml"; //XMLSerializer
+            string userPath = @"UserPathXml.xml"; //XMLSerializer
 
-
-
-
-        #endregion
+            #endregion
 
         #region Line
         public DO.Line GetLine(int code)
@@ -186,8 +184,8 @@ namespace DL
     }
     public void DeleteStation(int code)
     {
-            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
-            DO.Station myStation = ListStations.Find(s => s.Code == code);
+         List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
+         DO.Station myStation = ListStations.Find(s => s.Code == code);
         if ((myStation != null) && (myStation.IsDeleted == false))
         {
             //  ListStation.Remove(myStation);
@@ -195,8 +193,8 @@ namespace DL
         }
         else
             throw new DO.BadStationIdException(code, "this station doesn't exist in the list of station");
-            XMLTools.SaveListToXMLSerializer(ListStations, stationPath);
-        }
+        XMLTools.SaveListToXMLSerializer(ListStations, stationPath);
+    }
 
     public DO.Station GetStation(int code)
     {
@@ -240,9 +238,8 @@ namespace DL
         }
         else
             throw new DO.BadStationIdException(station.Code, $"bad station code : {station.Code}");
-            XMLTools.SaveListToXMLSerializer(ListStations, stationPath);
-
-        }
+        XMLTools.SaveListToXMLSerializer(ListStations, stationPath);
+    }
     public void UpdateStation(int code, Action<DO.Station> update)
     {
             List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);

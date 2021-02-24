@@ -67,7 +67,6 @@
     <Compile Include="LineAdminUpdate.xaml.cs">
       <DependentUpon>LineAdminUpdate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LineTiming.cs" />
     <Compile Include="StationAdmin.xaml.cs">
       <DependentUpon>StationAdmin.xaml</DependentUpon>
     </Compile>
