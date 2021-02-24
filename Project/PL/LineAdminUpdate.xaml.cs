@@ -26,6 +26,7 @@ namespace PL
         BL.BO.Line curLine;
         public LineAdminUpdate(IBL _bl)
         {
+            bl = _bl;
             InitializeComponent();
             cbLines.DisplayMemberPath = "Code";//show only specific Property of object                  // verifier si fo pas enlever car dit deux fois (ds cs et xml) 
             cbLines.SelectedValuePath = "Id";//selection return only specific Property of object
