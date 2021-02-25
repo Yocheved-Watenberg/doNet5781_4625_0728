@@ -114,9 +114,9 @@ namespace PL
                 newAdj.Station2 = (lbListOfAddStations.SelectedItems[0] as LineStation).StationCode;
                 newAdj.Time = new TimeSpan(10);
 
-               // bl.AddAdjacentsStations(newAdj);
+                bl.AddAdjacentStations(newAdj);
                 for (int i = 0; i < lbListOfAddStations.SelectedItems.Count; i++)  //put the selected Line Stations into the list of stations of the line
-                    new AdjacentStations
+                     new AdjacentStations
                     {
                         Station1 = (lbListOfAddStations.SelectedItems[i] as LineStation).StationCode,
                         Station2 = (lbListOfAddStations.SelectedItems[i + 1] as LineStation).StationCode,
@@ -165,6 +165,11 @@ namespace PL
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
