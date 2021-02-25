@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen"  KeyDown="userPressEnter">
+  
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="870x489_capture2_0.jpg" Opacity="0.3"/>
         </Grid.Background>
+       
         <Label Content="Welcome! " FontFamily="Segoe UI Black" HorizontalAlignment="Left" Margin="77,24,0,0" FontSize="40" VerticalAlignment="Top">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

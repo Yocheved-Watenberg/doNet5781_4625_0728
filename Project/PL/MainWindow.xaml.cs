@@ -41,6 +41,13 @@ namespace PL
                 
             }
         }
+        private void userPressEnter(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                btnGO_Click(sender, e);
+            }
+        }
 
     }
 }
