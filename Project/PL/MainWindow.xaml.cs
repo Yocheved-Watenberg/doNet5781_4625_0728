@@ -48,7 +48,6 @@ namespace PL
                 btnGO_Click(sender, e);
             }
         }
-
     }
 }
 
