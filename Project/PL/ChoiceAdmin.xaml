@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="ChoiceAdmin" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="ChoiceAdmin" Height="450" Width="800" WindowStartupLocation="CenterScreen" KeyUp="userPressBack">
     <Grid>
         <Grid.Background>
             <ImageBrush Opacity="0.25" ImageSource="plan-reseau-pastel-scaled.jpg"/>

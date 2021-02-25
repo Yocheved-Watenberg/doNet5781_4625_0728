@@ -7,10 +7,6 @@ using System.Threading;
 using BL.BO;
 using DS;
 
-//let student = item as bool.Student
-//    orderby student.ID
-//    select student;
-
 namespace BL
 {
     class BLImp : IBL //internal
@@ -144,16 +140,13 @@ namespace BL
             BO.Line BoLine = new BO.Line();
             BoLine.Id = Static.GetLineIdCounterDO();
             BoLine.Code = myCode;
-            BoLine.Area = myArea; //(DO.Enums.Areas)myArea; 
+            BoLine.Area = myArea; 
             BoLine.ListOfStations = myListOfStations;
-
-
 
             DO.Line DoLine = new DO.Line();
             BoLine.CopyPropertiesTo(DoLine);
             DoLine.FirstStation = myListOfStations.First().StationCode;
             DoLine.LastStation = myListOfStations.Last().StationCode;
-
 
             //create the adjacents stations
             List<LineStation> listStations = myListOfStations.ToList(); 
@@ -170,7 +163,6 @@ namespace BL
                     dl.AddAdjacentStations(newAdjStat);
                 }
             }
-       
             try
             {
                 dl.AddLine(DoLine);
@@ -195,13 +187,19 @@ namespace BL
                 throw new BO.BadStationException("This station does not exist", ex);
             }
         }
-        public void DeleteStationOfLine(int stationId, int lineId)
+        public void DeleteStationOfLine(int stationCode, int lineCode)
         {
             try
             {
-                 dl.DeleteLineStation(lineId,stationId);
+                Line myLine = GetLine(lineCode);
+                BO.Enum.Areas myArea = myLine.Area;
+                List<LineStation> list = myLine.ListOfStations.ToList();
+                list.Remove(GetLineStation(lineCode, stationCode));
+                dl.DeleteLineStation(lineCode, stationCode);
+                DeleteLine(lineCode);
+                AddLine(lineCode, myArea, list); //this function creates also all the adj stations
             }
-            catch(DO.BadLineStationIdException ex)
+            catch (DO.BadLineStationIdException ex)
             {
                 throw new BO.BadStationException("This station does not exist", ex);
             }
@@ -284,8 +282,10 @@ namespace BL
         {
             BO.LineStation lineStationBO = new BO.LineStation();
             lineStationDO.CopyPropertiesTo(lineStationBO);
-            //il faut rajouter distance et time 
             lineStationBO.StationName = dl.GetStation(lineStationDO.StationCode).Name;
+            Random random = new Random();
+            lineStationBO.DistanceFromLastStation = random.Next(500)+100;
+            lineStationBO.TimeFromLastStation = new TimeSpan(00,random.Next(3),random.Next(60));
             return lineStationBO;
         }
 
@@ -299,17 +299,38 @@ namespace BL
         {
            return GetAllStationsInLines(GetAllLineBy(l => (BL.BO.Enum.Areas)l.Area == myArea));
         }
-       public  LineStation GetLineStation(int id, int station)
+      
+        #endregion
+
+        #region line station
+
+        public void AddLineStation(int lineCode, int stationCode, int index)
+        { 
+            DO.LineStation newDOLineStation = new DO.LineStation();
+            newDOLineStation.LineCode = lineCode;
+            newDOLineStation.StationCode = stationCode;
+            newDOLineStation.LineStationIndex = index;
+            
+            Line line = GetLine(lineCode);
+            List<LineStation> list = line.ListOfStations.ToList();
+            list.Insert(index, LineStationDoBoAdapter(newDOLineStation));
+            DeleteLine(lineCode);
+            AddLine(lineCode, line.Area, list);
+            newDOLineStation.PrevStation = GetLineStation(lineCode, line.ListOfStations.ToList()[index - 1].StationCode).StationCode;
+            newDOLineStation.NextStation = GetLineStation(lineCode, line.ListOfStations.ToList()[index + 1].StationCode).StationCode;
+            dl.AddLineStation(newDOLineStation);
+        }
+        public LineStation GetLineStation(int lineCode, int stationCode)
         {
             LineStation lineStation;
             try
             {
-               lineStation= LineStationDoBoAdapter(dl.GetLineStation(id, station));
+                lineStation = LineStationDoBoAdapter(dl.GetLineStation(lineCode, stationCode));
 
             }
-            catch(DO.BadLineIdException ex)
+            catch (DO.BadLineIdException ex)
             {
-                throw new BO.LineStationIdException("this lineStation doesn't exist",ex);
+                throw new BO.LineStationIdException("this lineStation doesn't exist", ex);
             }
             return lineStation;
         }

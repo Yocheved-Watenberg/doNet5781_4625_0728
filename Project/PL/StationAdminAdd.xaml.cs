@@ -52,5 +52,12 @@ namespace PL
         {
             this.Close();
         }
+        private void userPressBack(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Back)
+            {
+                this.Close();
+            }
+        }
     }
 }

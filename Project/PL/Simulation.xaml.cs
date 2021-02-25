@@ -106,8 +106,14 @@ namespace PL
             timerworker.CancelAsync();
         }
 
-        
+        private void userPressBack(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Back)
+            {
+                this.Close();
+            }
         }
+    }
         //bool isNum = int.TryParse(tbSimulationSpeed.Text, out int theNum);         //checks if the meirout simulation is composed only of digits 
         //if (!isNum) throw new BadCodeException("You have to put a valid num");        
 

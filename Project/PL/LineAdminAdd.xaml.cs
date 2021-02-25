@@ -105,6 +105,13 @@ namespace PL
             }
 
         }
+        private void userPressBack(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Back)
+            {
+                this.Close();
+            }
+        }
 
         //private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{

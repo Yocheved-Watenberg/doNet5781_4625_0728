@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="ChoiceUser" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="ChoiceUser" Height="450" Width="800" WindowStartupLocation="CenterScreen" KeyUp="userPressBack">
     <Grid>
         <Grid.Background>
             <ImageBrush Opacity="0.7" ImageSource="station-de-bus-ht.jpg"/>

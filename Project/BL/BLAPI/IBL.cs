@@ -16,14 +16,13 @@ namespace BLAPI
         void AddLine(int myCode, BL.BO.Enum.Areas myArea, IEnumerable<LineStation> myListOfStations);              //allows only after the user entered two stations
        void DeleteLine(int code);
        void AddStationToLine(LineStation lineStation, LineStation previous);
-       void DeleteStationOfLine(int stationId, int lineId);
+       void DeleteStationOfLine(int stationCode, int lineCode);
        Line GetLine(int myCode, Station FirstStation, Station LastStation);
         Line GetLine(int myCode);
         IEnumerable<Line> GetAllLine();
        IEnumerable<LineStation> GetAllLineStationsInLine(Line line);
         IEnumerable<Station> GetStationByArea(BL.BO.Enum.Areas myArea);
         IEnumerable<Station> GetAllStationInLine(Line l);
-        LineStation GetLineStation(int id, int station);
 
         #endregion
         #region adjacentStation
@@ -43,7 +42,10 @@ namespace BLAPI
         IEnumerable<Station> GetAllStationBy(Predicate<Station> predicate);
 
         #endregion
-        
+        #region linestation
+        void AddLineStation(int lineCode, int stationCode, int index);
+        LineStation GetLineStation(int lineCode, int stationCode);
+        #endregion
         #region LineTrip
 
         void AddLineTrip(LineTrip lineTrip);

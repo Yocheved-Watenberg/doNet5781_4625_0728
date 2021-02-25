@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="LineAdminUpdate" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="LineAdminUpdate" Height="450" Width="800" WindowStartupLocation="CenterScreen" KeyUp="userPressBack">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="111*"/>
@@ -28,8 +28,7 @@
             </Label.Foreground>
         </Label>
 
-        <ComboBox x:Name="cbLines" 
-                 
+        <ComboBox x:Name="cbLines"          
                       HorizontalAlignment="Stretch" 
                       VerticalAlignment="Stretch" 
                       Margin="449,28,203,51" 
@@ -37,16 +36,6 @@
                       DisplayMemberPath ="Code" 
                       SelectionChanged="cbLines_SelectionChanged"
                       FontSize="10" Grid.ColumnSpan="2"  />
-
-        <!--Label Content="" Margin="45,73,379.6,305" FontSize="16" FontFamily="Segoe UI Black" Grid.ColumnSpan="2">
-            <Label.Foreground>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0"/>
-                    <GradientStop Color="#FF43C0E7" Offset="1"/>
-                </LinearGradientBrush>
-            </Label.Foreground >
-        </-->
-
 
         <Label Content="Click on Add button to add stations:" Margin="45,108,436,267" FontSize="16" FontFamily="Segoe UI Black" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <Label.Foreground>
@@ -57,16 +46,6 @@
             </Label.Foreground>
         </Label>
 
-
-
-
-        <!--ComboBox x:Name="cbAreas" HorizontalAlignment="Left" Margin="453,73,0,0" VerticalAlignment="Top" Width="120" Height="27" SelectionChanged="cbAreas_SelectionChanged" Grid.ColumnSpan="2"/-->
-        <ListBox x:Name="lbListOfAddStations" HorizontalAlignment="Left" Height="179" Margin="45,46,0,0" VerticalAlignment="Top" Width="337" ItemsSource="{Binding}" SelectionMode="Multiple" SelectionChanged="lbListOfStations_SelectionChanged" Grid.ColumnSpan="2" Grid.Row="1" />
-        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="319,240,0,0" VerticalAlignment="Top" Width="146" Height="44" Background="#FFDDDDDB" FontFamily="Harrington" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" FontSize="18" Foreground="#FF132CB4" Click="btnUpdate_Click" Grid.ColumnSpan="2" Grid.Row="1"/>
-
-        <Button x:Name ="btnAddStations" Content="Add" HorizontalAlignment="Left" Margin="156,240,0,0" VerticalAlignment="Top" Width="74" Click="btnAddStations_Click" Grid.ColumnSpan="2" Grid.Row="1" />
-
-        <ListBox x:Name="lbListOfDeleteStations" HorizontalAlignment="Left" Height="179" Margin="414,46,0,0" VerticalAlignment="Top" Width="337" ItemsSource="{Binding}" SelectionMode="Multiple" SelectionChanged="lbListOfStations_SelectionChanged" Grid.ColumnSpan="2" Grid.Row="1" />
         <Label Content=" Click on Delete button to delete stations:" Margin="414,108,41,267" FontSize="16" FontFamily="Segoe UI Black" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -75,8 +54,21 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
-        <Button x:Name ="btndDelete" Content="Delete" HorizontalAlignment="Left" Margin="578,245,0,0" VerticalAlignment="Top" Width="74" Click="btnDeleteStations_Click" Grid.ColumnSpan="2" Grid.Row="1" />
+
+        <Label Content="To which place in the line do you want to add it ?" Margin="40,201,441,63" FontSize="12" FontFamily="Segoe UI Black" Grid.ColumnSpan="2" Grid.Row="1">
+            <Label.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF43C0E7" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.Foreground>
+        </Label>
+        <ListBox x:Name="lbListOfAddStations"    HorizontalAlignment="Left" Height="145" Margin="45,46,0,0"  VerticalAlignment="Top" Width="337" ItemsSource="{Binding}" Grid.ColumnSpan="2" Grid.Row="1" />
+        <ListBox x:Name="lbListOfDeleteStations" HorizontalAlignment="Left" Height="143" Margin="414,46,0,0" VerticalAlignment="Top" Width="337" ItemsSource="{Binding}" Grid.ColumnSpan="2" Grid.Row="1" />
+        <Button x:Name ="btnAddStations" Content="Add" HorizontalAlignment="Left" Margin="156,240,0,0" VerticalAlignment="Top" Width="74" Click="btnAddStations_Click" Grid.ColumnSpan="2" Grid.Row="1" />
+        <Button x:Name ="btndDelete" Content="Delete" HorizontalAlignment="Left" Margin="551,225,0,0" VerticalAlignment="Top" Width="74" Click="btnDeleteStations_Click" Grid.ColumnSpan="2" Grid.Row="1" />
         <Button Content="Back" HorizontalAlignment="Left" Margin="24,278,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76" Click="Button_Click" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbIndex" MaxLength="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="356,205,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="26"/>
 
     </Grid>
 </Window>
