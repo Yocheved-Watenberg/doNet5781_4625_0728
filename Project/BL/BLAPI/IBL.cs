@@ -33,7 +33,7 @@ namespace BLAPI
         IEnumerable<BL.BO.Line> GetAllLineInStation(Station s);
         void UpdateStation(Station station);
         Station StationDoBoAdapter(DO.Station stationDO);
-        Station StationLineStationAdapter(LineStation l)
+        Station StationLineStationAdapter(LineStation l);
         #endregion
         #region Line Station
         void AddLineStation(int lineCode, int stationCode, int index);
