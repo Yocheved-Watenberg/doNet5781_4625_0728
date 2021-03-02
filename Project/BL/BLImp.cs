@@ -186,7 +186,20 @@ namespace BL
                 throw new BO.BadStationIdException("This station does not exist", ex);
             }
         }
-
+        public void AddStationToLine(BO.LineStation lineStation, BO.LineStation previous)
+        {//can only add a Station which already exists
+            try
+            {
+                dl.GetStation(lineStation.StationCode);
+            }
+            catch (DO.BadStationIdException ex)
+            {
+                throw new BO.BadStationIdException("This station doesn't exist", ex);
+            }
+            DO.LineStation lineStationDO = new DO.LineStation();
+            lineStationDO.CopyPropertiesTo(lineStation);
+            dl.AddLineStation(lineStationDO);
+        }
         public void DeleteStationOfLine(int stationCode, int lineCode)
         {
             try
