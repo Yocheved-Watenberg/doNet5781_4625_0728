@@ -129,8 +129,9 @@ namespace BL
                 throw new BO.BadStationIdException("This station doesn't exist", ex);
             }
             DO.LineStation lineStationDO = new DO.LineStation();
-            lineStation.CopyPropertiesTo(lineStationDO);
-            
+            //lineStation.CopyPropertiesTo(lineStationDO);
+            lineStationDO.CopyPropertiesTo(lineStation);
+            //dl.AddLineStation(lineStationDO);
             dl.AddLineStation(lineStationDO);
         }
         public void AddLine(int myCode, BO.Enum.Areas myArea, IEnumerable<BO.LineStation> myListOfStations)
