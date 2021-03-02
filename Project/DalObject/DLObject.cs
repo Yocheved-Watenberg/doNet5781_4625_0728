@@ -295,14 +295,7 @@ namespace DL
             myLineStation.LineStationIndex = index;
             AddLineStation(myLineStation);
         }
-        public void AddLineStationAfter(DO.LineStation lineStation,DO.LineStation previous)
-        {
-            List<DO.LineStation> myList = DataSource.ListLineStation.FindAll(s => s.LineCode == lineStation.LineCode);
-            if (myList.FirstOrDefault(l => l.StationCode == lineStation.StationCode) != null)
-                throw new DO.BadLineStationIdException(lineStation.LineCode, lineStation.StationCode, "this line station already exists in the list of line station");
-          /* int indexPrevious=*/ LineStation find=myList.Find(s=>(s.LineCode==previous.LineCode&&s.StationCode==s.StationCode));
-          //  DataSource.ListLineStation.Insert(indexPrevious++, lineStation.Clone());
-        }
+        
         public void DeleteLineStation(int line, int station)
         {
             DO.LineStation myLineStation = DataSource.ListLineStation.Find(ls => (ls.LineCode == line)&&(ls.StationCode==station));
