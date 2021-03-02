@@ -22,7 +22,7 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-       IBL bl = BLFactory.GetBL("1");
+        IBL bl = BLFactory.GetBL("1");
         public MainWindow()
         {
             InitializeComponent();
@@ -31,14 +31,13 @@ namespace PL
         {
             if (rbAdmin.IsChecked == true)
             {
-                ChoiceAdmin win = new ChoiceAdmin(bl);  
+                ChoiceAdmin win = new ChoiceAdmin(bl);
                 win.ShowDialog();
             }
             else if (rbUser.IsChecked == true)
             {
                 ChoiceUser win = new ChoiceUser(bl);
                 win.ShowDialog();
-                
             }
         }
         private void userPressEnter(object sender, KeyEventArgs e)

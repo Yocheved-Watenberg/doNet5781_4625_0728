@@ -71,7 +71,7 @@ namespace PL
                     bl.AddLine(theNum, (BL.BO.Enum.Areas)cbAreas.SelectedItem, newList);  //create the line 
                     MessageBox.Show("The line has been added succesfully!");
                 }
-                catch (BadLineException ex)
+                catch (BadLineIdException ex)
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }

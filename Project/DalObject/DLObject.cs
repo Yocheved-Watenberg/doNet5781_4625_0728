@@ -226,7 +226,6 @@ namespace DL
             if (myLine != null)
             {
                 myLine.IsDeleted = true; 
-              //  DataSource.ListLine.Remove(myLine);
             }
             else
                 throw new DO.BadLineIdException(code, $"bad line code: {code}");
@@ -343,14 +342,14 @@ namespace DL
         }
     
 
-    public void UpdateLineStation(int LineId, int station, Action<DO.LineStation> update)
-    {
-        var myLineStation = DataSource.ListLineStation.FirstOrDefault(predicate => (predicate.LineCode == LineId) && (predicate.StationCode == station));
-        if (myLineStation != null)
+        public void UpdateLineStation(int LineId, int station, Action<DO.LineStation> update)
         {
-            update(myLineStation);
+            var myLineStation = DataSource.ListLineStation.FirstOrDefault(predicate => (predicate.LineCode == LineId) && (predicate.StationCode == station));
+            if (myLineStation != null)
+            {
+                update(myLineStation);
+            }
         }
-    }
 
         #endregion
         #region LineTrip 
@@ -436,7 +435,6 @@ namespace DL
             DO.Station myStation = DataSource.ListStation.Find(s => s.Code == code);
             if ((myStation != null)&&(myStation.IsDeleted==false))
             {
-                // DataSource.ListStation.Remove(myStation);
                 myStation.IsDeleted = true;
             }
             else
@@ -618,7 +616,6 @@ namespace DL
                 update(myUser);
             }
         }
-
         #endregion
     }
 }

@@ -91,7 +91,7 @@ namespace PL
                 }
                 e.Result = 1;
             }
-            catch (BadLineTripException ex)
+            catch (BadLineTripIdException ex)
             {
                 MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Error);
             }

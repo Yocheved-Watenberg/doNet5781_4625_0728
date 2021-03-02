@@ -96,7 +96,7 @@ namespace PL
                 RefreshAllStationComboBox();
 
             }
-            catch (BL.BO.BadStationException ex)
+            catch (BL.BO.BadStationIdException ex)
             {
                 MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }

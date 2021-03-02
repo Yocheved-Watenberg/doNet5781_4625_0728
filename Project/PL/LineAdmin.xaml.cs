@@ -21,7 +21,7 @@ namespace PL
     /// Logique d'interaction pour LineAdmin.xaml
     /// </summary>
     public partial class LineAdmin : Window
-    {      
+    {
         IBL bl;
         BL.BO.Line curLine;
         public LineAdmin(IBL _bl)
@@ -48,12 +48,12 @@ namespace PL
         private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // curLine = cbLines.SelectedItem as BL.BO.Line;
-            curLine = (BL.BO.Line) cbLines.SelectedItem;
+            curLine = (BL.BO.Line)cbLines.SelectedItem;
             tbArea.DataContext = curLine;
 
             if (curLine != null)
-            { 
-               RefreshAllLinesGrid();
+            {
+                RefreshAllLinesGrid();
             }
         }
 
@@ -73,7 +73,7 @@ namespace PL
         private void butDelete_Click(object sender, RoutedEventArgs e)
         {
             curLine = (BL.BO.Line)cbLines.SelectedItem;
-            if (curLine == null) 
+            if (curLine == null)
                 MessageBox.Show("You have to select the line that you want to delete");
             else
             {
@@ -89,7 +89,7 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close(); 
+            this.Close();
         }
         private void userPressBack(object sender, KeyEventArgs e)
         {

@@ -62,7 +62,7 @@ namespace DL
         {
             XElement LinesRootElem = XMLTools.LoadListFromXMLElement(linePath);
 
-            return (from l in LinesRootElem.Elements()
+            return from l in LinesRootElem.Elements()
                     select new Line()
                     {
                         Id = Int32.Parse(l.Element("ID").Value),
@@ -71,8 +71,7 @@ namespace DL
                         FirstStation = Int32.Parse(l.Element("FirstStation").Value),
                         LastStation = Int32.Parse(l.Element("LastStation").Value),
 
-                    }
-                   );
+                    };
         }
         public IEnumerable<DO.Line> GetAllLineBy(Predicate<DO.Line> predicate)
         {
@@ -112,7 +111,6 @@ namespace DL
 
             XMLTools.SaveListToXMLElement(LinesRootElem, linePath);
         }
-
         public void DeleteLine(int code)
         {
             XElement LinesRootElem = XMLTools.LoadListFromXMLElement(linePath);
@@ -130,7 +128,6 @@ namespace DL
             else
                 throw new DO.BadLineIdException(code, $"bad Line code: {code}");
         }
-
         public void UpdateLine(DO.Line Line)
         {
             XElement LinesRootElem = XMLTools.LoadListFromXMLElement(linePath);
@@ -154,7 +151,8 @@ namespace DL
                 throw new DO.BadLineIdException(Line.Code, $"bad Line code: {Line.Code}");
         }
         public void UpdateLine(int code, Action<DO.Line> update)
-        //{   XElement LinesRootElem = XMLTools.LoadListFromXMLElement(linePath);
+        //{
+        //    XElement LinesRootElem = XMLTools.LoadListFromXMLElement(linePath);
 
         //    //XElement l1 = (from l in LinesRootElem.Elements()
 
@@ -174,82 +172,78 @@ namespace DL
         #endregion
         #region Station
         public void AddStation(DO.Station station)
-    {
+        {
         List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
 
         if (ListStations.FirstOrDefault(s => s.Code == station.Code) != null)
             throw new DO.BadStationIdException(station.Code, "this station already exists in the list of stations or this code has been used for a deleted station");
             ListStations.Add(station);
             XMLTools.SaveListToXMLSerializer(ListStations, stationPath);
-    }
-    public void DeleteStation(int code)
-    {
-         List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
-         DO.Station myStation = ListStations.Find(s => s.Code == code);
-        if ((myStation != null) && (myStation.IsDeleted == false))
-        {
-            //  ListStation.Remove(myStation);
-            myStation.IsDeleted = true;
         }
-        else
-            throw new DO.BadStationIdException(code, "this station doesn't exist in the list of station");
-        XMLTools.SaveListToXMLSerializer(ListStations, stationPath);
-    }
-
-    public DO.Station GetStation(int code)
-    {
-            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
-            DO.Station station = ListStations.Find(s => (s.Code == code) && (s.IsDeleted == false));
-
-        if (station != null)
-            return station;
-        else
-            throw new DO.BadStationIdException(code, "this station doesn't exist in the list of station");
-    }
-
-    public IEnumerable<DO.Station> GetAllStation()
-    {
-        List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
-
-        return from station in ListStations.FindAll(s => s.IsDeleted == false)
-               select station;
-    }
-
-    public IEnumerable<DO.Station> GetAllStationBy(Predicate<DO.Station> predicate)
-    {
-            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
-            if (predicate != null)
+        public void DeleteStation(int code)
         {
+             List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
+             DO.Station myStation = ListStations.Find(s => s.Code == code);
+            if ((myStation != null) && (myStation.IsDeleted == false))
+            {
+                //  ListStation.Remove(myStation);
+                myStation.IsDeleted = true;
+            }
+            else
+                throw new DO.BadStationIdException(code, "this station doesn't exist in the list of station");
+            XMLTools.SaveListToXMLSerializer(ListStations, stationPath);
+        }
+        public DO.Station GetStation(int code)
+        {
+                List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
+                DO.Station station = ListStations.Find(s => (s.Code == code) && (s.IsDeleted == false));
+
+            if (station != null)
+                return station;
+            else
+                throw new DO.BadStationIdException(code, "this station doesn't exist in the list of station");
+        }
+        public IEnumerable<DO.Station> GetAllStation()
+        {
+            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
+
             return from station in ListStations.FindAll(s => s.IsDeleted == false)
-                   where predicate(station)
                    select station;
         }
-        return GetAllStation();
-    }
-
-    public void UpdateStation(DO.Station station)
-    {
-            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
-            DO.Station myStation = ListStations.Find(s => s.Code == station.Code);
-        if ((myStation != null) && (myStation.IsDeleted == false))
+        public IEnumerable<DO.Station> GetAllStationBy(Predicate<DO.Station> predicate)
         {
-            ListStations.Remove(myStation);
-            ListStations.Add(station);
+                List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
+                if (predicate != null)
+            {
+                return from station in ListStations.FindAll(s => s.IsDeleted == false)
+                       where predicate(station)
+                       select station;
+            }
+            return GetAllStation();
         }
-        else
-            throw new DO.BadStationIdException(station.Code, $"bad station code : {station.Code}");
-        XMLTools.SaveListToXMLSerializer(ListStations, stationPath);
-    }
-    public void UpdateStation(int code, Action<DO.Station> update)
-    {
-            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
-            var myStation = ListStations .FirstOrDefault(predicate => predicate.Code == code);
-        if ((myStation != null) && (myStation.IsDeleted == false))
+        public void UpdateStation(DO.Station station)
         {
-            update(myStation);
-        }
+                List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
+                DO.Station myStation = ListStations.Find(s => s.Code == station.Code);
+            if ((myStation != null) && (myStation.IsDeleted == false))
+            {
+                ListStations.Remove(myStation);
+                ListStations.Add(station);
+            }
+            else
+                throw new DO.BadStationIdException(station.Code, $"bad station code : {station.Code}");
             XMLTools.SaveListToXMLSerializer(ListStations, stationPath);
-    }
+        }
+        public void UpdateStation(int code, Action<DO.Station> update)
+        {
+                List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationPath);
+                var myStation = ListStations .FirstOrDefault(predicate => predicate.Code == code);
+            if ((myStation != null) && (myStation.IsDeleted == false))
+            {
+                update(myStation);
+            }
+                XMLTools.SaveListToXMLSerializer(ListStations, stationPath);
+        }
         #endregion
         #region Bus
         public void AddBus(DO.Bus bus)
@@ -406,7 +400,6 @@ namespace DL
                 throw new DO.BadAdjacentStationsIdException(adjacentStations.Station1, adjacentStations.Station2, "theses adjacent stations already exist in the list of adjacents stations");
            ListAdjacentStations.Add(adjacentStations);
             XMLTools.SaveListToXMLSerializer(ListAdjacentStations, adjacentStationPath);
-
         }
         public void DeleteAdjacentStations(int station1, int station2)
         {
@@ -491,7 +484,6 @@ namespace DL
         }
         #endregion
         #region LineTrip 
-
         public void AddLineTrip(DO.LineTrip lineTrip)
         {
             List<LineTrip> ListLineTrip = XMLTools.LoadListFromXMLSerializer<LineTrip>(lineTripPath);
@@ -515,14 +507,12 @@ namespace DL
             XMLTools.SaveListToXMLSerializer(ListLineTrip, lineTripPath);
 
         }
-
         public IEnumerable<DO.LineTrip> GetAllLineTrip()
         {
             List<LineTrip> ListLineTrip = XMLTools.LoadListFromXMLSerializer<LineTrip>(lineTripPath);
             return from lineTrip in ListLineTrip
                    select lineTrip;
         }
-
         public DO.LineTrip GetLineTrip(int id, TimeSpan startAt)
         {
             List<LineTrip> ListLineTrip = XMLTools.LoadListFromXMLSerializer<LineTrip>(lineTripPath);
@@ -544,7 +534,6 @@ namespace DL
             }
             return GetAllLineTrip();
         }
-
         public void UpdateLineTrip(DO.LineTrip lineTrip)
         {
             List<LineTrip> ListLineTrip = XMLTools.LoadListFromXMLSerializer<LineTrip>(lineTripPath);
@@ -571,7 +560,6 @@ namespace DL
         }
         #endregion
         #region Trip 
-
         public void AddTrip(DO.Trip trip)
         {
             List<Trip> ListTrip= XMLTools.LoadListFromXMLSerializer<Trip>(tripPath);
@@ -582,7 +570,6 @@ namespace DL
             XMLTools.SaveListToXMLSerializer(ListTrip, tripPath);
 
         }
-
         public void DeleteTrip(int id)
         {
             List<Trip> ListTrip = XMLTools.LoadListFromXMLSerializer<Trip>(tripPath);
@@ -611,7 +598,6 @@ namespace DL
             return from trip in  ListTrip
                    select trip ;
         }
-
         public IEnumerable<DO.Trip> GetAllTripBy(Predicate<DO.Trip> predicate)
         {
             List<Trip> ListTrip = XMLTools.LoadListFromXMLSerializer<Trip>(tripPath);
@@ -636,7 +622,6 @@ namespace DL
                 throw new DO.BadTripIdException(trip.Id, $"bad trip id: {trip.Id}");
             XMLTools.SaveListToXMLSerializer(ListTrip, tripPath);
         }
-
         public void UpdateTrip(int id, Action<DO.Trip> update)
         {
             List<Trip> ListTrip = XMLTools.LoadListFromXMLSerializer<Trip>(tripPath);
@@ -647,7 +632,6 @@ namespace DL
             }
             XMLTools.SaveListToXMLSerializer(ListTrip, tripPath);
         }
-
         #endregion
         #region User
 
@@ -725,7 +709,6 @@ namespace DL
 
         #endregion
         #region LineStation 
-
         public void AddLineStation(DO.LineStation lineStation)
         {
             List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
@@ -734,6 +717,10 @@ namespace DL
                 throw new DO.BadLineStationIdException(lineStation.LineCode, lineStation.StationCode, "this line station already exists in the list of line station");
              ListLineStation.Add(lineStation );
             XMLTools.SaveListToXMLSerializer(ListLineStation, lineStationPath);
+        }
+        public void AddLineStationWithFields(int lineCode, int stationCode, int index)
+        {
+            throw new NotImplementedException();
         }
         public void DeleteLineStation(int line, int station)
         {
@@ -787,8 +774,6 @@ namespace DL
                 throw new DO.BadLineStationIdException(lineStation.LineCode, lineStation.StationCode, "this line station doesn't exist in the list of line station");
             XMLTools.SaveListToXMLSerializer(ListLineStation, lineStationPath);
         }
-
-
         public void UpdateLineStation(int LineId, int station, Action<DO.LineStation> update)
         {
             List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationPath);
@@ -799,7 +784,6 @@ namespace DL
             }
             XMLTools.SaveListToXMLSerializer(ListLineStation, lineStationPath);
         }
-
         #endregion
     }
 

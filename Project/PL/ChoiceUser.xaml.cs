@@ -37,7 +37,7 @@ namespace PL
                 win = new Simulation(bl, bl.GetStation((cbStationChoice.SelectedItem as Station).Code), int.Parse(tbSimulationSpeed.Text));
                 win.ShowDialog();
             }
-           else
+            else
             {
                 MessageBox.Show("You have to put the station's code and a simulation speed", "error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
