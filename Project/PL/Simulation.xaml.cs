@@ -22,30 +22,25 @@ namespace PL
     /// <summary>
     /// Logique d'interaction pour ChoiceOfUser.xaml
     /// </summary>
-    public partial  class Simulation : Window
+    public partial class Simulation : Window
     {
         IBL bl = BLFactory.GetBL("1");
         private Stopwatch stopWatch;
         BackgroundWorker timerworker;
-       
-        Station station;
-        //   IEnumerable<IGrouping<TimeSpan, LineTiming>> nextBusesInStation;
-        IEnumerable<LineTiming> nextBusesInStation;
 
+        Station station;
+        IEnumerable<LineTiming> nextBusesInStation;
         TimeSpan startHour;
         int simulatedSpeed;
-        
 
         public Simulation(IBL _bl, Station _station, int _simulatedSpeed)
         {
-            InitializeComponent();  
+            InitializeComponent();
             bl = _bl;
             station = _station;
             simulatedSpeed = _simulatedSpeed;
             labelStation.Content = "Station " + station.Name + " " + station.Code;
-        //    TimeSpan simulatedHourNow = startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * simulatedSpeed);
-         //   nextBusesInStation = bl.NextBusesInAStation(station, simulatedHourNow);
-            stopWatch = new Stopwatch(); 
+            stopWatch = new Stopwatch();
             timerworker = new BackgroundWorker();
             timerworker.DoWork += Worker_DoWork;
             timerworker.ProgressChanged += Worker_ProgressChanged;
@@ -54,13 +49,6 @@ namespace PL
             timerworker.WorkerSupportsCancellation = true;
             stopWatch.Restart();
             timerworker.RunWorkerAsync();
-           // LineTripDataGrid.DataContext = nextBusesInStation;
-            //lbDepartureTime.DataContext = nextBusesInStation;
-            //lbDestinations.DataContext = nextBusesInStation;
-            //lbLineNumber.DataContext = nextBusesInStation;
-            //lbStationTime.DataContext = nextBusesInStation;
-
-
         }
 
         private void Timing_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -74,18 +62,15 @@ namespace PL
             LineTripDataGrid.ItemsSource = nextBusesInStation;
         }
 
-        private void Worker_DoWork(object sender, DoWorkEventArgs e)//revoir, g recopie de tirtsa 
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-          // station = e.Argument as Station;
-          // station = bl.GetStation((int)cbStationChoice.SelectedItem);
-        //   station = bl.GetAllStation().First();
             try
             {
                 startHour = DateTime.Now.TimeOfDay;
                 while (timerworker.CancellationPending == false)
                 {
                     TimeSpan simulatedHourNow = startHour + TimeSpan.FromTicks(stopWatch.Elapsed.Ticks * simulatedSpeed);
-                    nextBusesInStation = bl.NextBusesInAStation(station, simulatedHourNow);   
+                    nextBusesInStation = bl.NextBusesInAStation(station, simulatedHourNow);
                     timerworker.ReportProgress(1);
                     Thread.Sleep(1);
                 }
@@ -114,9 +99,5 @@ namespace PL
             }
         }
     }
-        //bool isNum = int.TryParse(tbSimulationSpeed.Text, out int theNum);         //checks if the meirout simulation is composed only of digits 
-        //if (!isNum) throw new BadCodeException("You have to put a valid num");        
-
-    }
-
+}
 

@@ -33,7 +33,7 @@ namespace PL
             Station newStation = new Station();
             try            
             {
-                newStation.Code = int.Parse(tbCode.Text);             //verifier que le code n'existe pas deja      ATTENTIONNNNNN  
+                newStation.Code = int.Parse(tbCode.Text);             
                 newStation.Name = tbName.Text;
                 newStation.Adress = tbAdress.Text;
                 newStation.Longitude = double.Parse(tbLongitude.Text);

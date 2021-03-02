@@ -28,10 +28,6 @@ namespace PL
         {
             InitializeComponent();
             bl = _bl;
-
-            cbLines.DisplayMemberPath = "Code"; //show only specific Property of object                  // verifier si fo pas enlever car dit deux fois (ds cs et xml) 
-            cbLines.SelectedValuePath = "Id";   //selection return only specific Property of object
-            cbLines.SelectedIndex = 0;          //index of the object to be selected
             RefreshAllLineComboBox();
         }
 
@@ -47,7 +43,6 @@ namespace PL
 
         private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // curLine = cbLines.SelectedItem as BL.BO.Line;
             curLine = (BL.BO.Line)cbLines.SelectedItem;
             tbArea.DataContext = curLine;
 
@@ -62,8 +57,6 @@ namespace PL
             LineAdminAdd win = new LineAdminAdd(bl);
             win.ShowDialog();
             RefreshAllLineComboBox();
-            //if (curLine != null)
-            //    RefreshAllLinesGrid();
         }
         private void butUpdate_Click(object sender, RoutedEventArgs e)
         {
@@ -84,7 +77,6 @@ namespace PL
                 MessageBox.Show($"The line {curLine.Code} is deleted!");
                 RefreshAllLineComboBox();
             }
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
