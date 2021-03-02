@@ -132,8 +132,6 @@ namespace BL
             lineStation.CopyPropertiesTo(lineStationDO);
             
             dl.AddLineStation(lineStationDO);
-            
-
         }
         public void AddLine(int myCode, BO.Enum.Areas myArea, IEnumerable<BO.LineStation> myListOfStations)
         {
