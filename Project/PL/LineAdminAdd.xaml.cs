@@ -15,7 +15,6 @@ using BL.BO;
 using BLAPI;
 
 
-//attention on est pas obligé de fr throw exeption, on peut faire juste un try, a linterieur du try on met le truc qui va pas forcement marcher (genre parse) et ensuite catch msgboxshow"error"
 namespace PL
 {
     /// <summary>
@@ -62,8 +61,6 @@ namespace PL
                                                    {
                                                        LineCode = theNum,
                                                        StationCode = eachLs.Code,
-                                                       //DistanceFromLastStation=,
-                                                       //TimeFromLastStation =,
                                                        StationName = eachLs.Name,
                                                    }).ToList();
                 try
@@ -112,28 +109,5 @@ namespace PL
                 this.Close();
             }
         }
-
-        //private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    curLine = cbLines.SelectedItem as BL.BO.Line;
-        //    tbArea.DataContext = curLine;
-
-        //    if (curLine != null)
-        //    {
-        //        RefreshAllLinesGrid();
-        //    }
-        //}
-
-        //    private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //    {
-
-        //        curArea = cbAreas.SelectedItem as BL.BO.Enum.Areas;
-        //        tbArea.DataContext = curLine;
-
-        //        if (curLine != null)
-        //        {
-        //            RefreshAllLinesGrid();
-        //        }
-        //    }
     }
 }
