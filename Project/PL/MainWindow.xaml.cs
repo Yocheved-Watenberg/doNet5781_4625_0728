@@ -20,6 +20,7 @@ namespace PL
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
+ 
     public partial class MainWindow : Window
     {
         IBL bl = BLFactory.GetBL("1");
