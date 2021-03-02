@@ -126,14 +126,19 @@ namespace BL
             try
             {
                 dl.GetStation(lineStation.StationCode);
+                dl.GetStation(previous.StationCode);
             }
             catch (DO.BadStationIdException ex)
             {
                 throw new BO.BadStationException("This station doesn't exist", ex);
             }
             DO.LineStation lineStationDO = new DO.LineStation();
-            lineStationDO.CopyPropertiesTo(lineStation);
-            dl.AddLineStation(lineStationDO);
+            lineStation.CopyPropertiesTo(lineStationDO);
+            DO.LineStation lineStationPreviousDO = new DO.LineStation();
+            previous.CopyPropertiesTo(lineStationPreviousDO);
+            dl.AddLineStationAfter(lineStationDO, lineStationPreviousDO);
+            
+
         }
         public void AddLine(int myCode, BO.Enum.Areas myArea, IEnumerable<BO.LineStation> myListOfStations)
         {

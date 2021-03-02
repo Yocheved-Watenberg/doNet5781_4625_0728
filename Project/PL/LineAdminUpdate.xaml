@@ -55,7 +55,7 @@
             </Label.Foreground>
         </Label>
 
-        <Label Content="To which place in the line do you want to add it ?" Margin="40,201,441,63" FontSize="12" FontFamily="Segoe UI Black" Grid.ColumnSpan="2" Grid.Row="1">
+        <Label Content="" Margin="40,201,441,63" FontSize="12" FontFamily="Segoe UI Black" Grid.ColumnSpan="2" Grid.Row="1">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
