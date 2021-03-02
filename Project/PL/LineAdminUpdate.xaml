@@ -54,18 +54,10 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
-
-        <Label Content="" Margin="40,201,441,63" FontSize="12" FontFamily="Segoe UI Black" Grid.ColumnSpan="2" Grid.Row="1">
-            <Label.Foreground>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0"/>
-                    <GradientStop Color="#FF43C0E7" Offset="1"/>
-                </LinearGradientBrush>
-            </Label.Foreground>
-        </Label>
+        
         <ListBox x:Name="lbListOfAddStations"    HorizontalAlignment="Left" Height="145" Margin="45,46,0,0"  VerticalAlignment="Top" Width="337" ItemsSource="{Binding}" Grid.ColumnSpan="2" Grid.Row="1" />
         <ListBox x:Name="lbListOfDeleteStations" HorizontalAlignment="Left" Height="143" Margin="414,46,0,0" VerticalAlignment="Top" Width="337" ItemsSource="{Binding}" Grid.ColumnSpan="2" Grid.Row="1" />
-        <Button x:Name ="btnAddStations" Content="Add" HorizontalAlignment="Left" Margin="156,240,0,0" VerticalAlignment="Top" Width="74" Click="btnAddStations_Click" Grid.ColumnSpan="2" Grid.Row="1" />
+        <Button x:Name ="btnAddStations" Content="Add" HorizontalAlignment="Left" Margin="177,225,0,0" VerticalAlignment="Top" Width="74" Click="btnAddStations_Click" Grid.ColumnSpan="2" Grid.Row="1" />
         <Button x:Name ="btndDelete" Content="Delete" HorizontalAlignment="Left" Margin="551,225,0,0" VerticalAlignment="Top" Width="74" Click="btnDeleteStations_Click" Grid.ColumnSpan="2" Grid.Row="1" />
         <Button Content="Back" HorizontalAlignment="Left" Margin="24,278,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76" Click="Button_Click" Grid.ColumnSpan="2"/>
 
