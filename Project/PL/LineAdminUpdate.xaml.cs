@@ -54,50 +54,51 @@ namespace PL
 
         private void btnAddStations_Click(object sender, RoutedEventArgs e)
         {
-            if (lbListOfAddStations.SelectedItem != null)
-            {
-                Station stationToAdd = lbListOfAddStations.SelectedItem as Station;
-                bl.AddLineStation(selectedLine.Code, stationToAdd.Code, 1); //creates a new line station 
-                LineStation newLineStation = bl.GetLineStation(selectedLine.Code, stationToAdd.Code);
-               
-                bl.AddStationToLine(newLineStation);
-                LineAdmin win= new LineAdmin(bl);
-                win.ShowDialog();
+            MessageBox.Show("this method is under construction", "sorry", MessageBoxButton.OK, MessageBoxImage.Warning );
+            //if (lbListOfAddStations.SelectedItem != null)
+            //{
+            //    Station stationToAdd = lbListOfAddStations.SelectedItem as Station;
+            //    bl.AddLineStation(selectedLine.Code, stationToAdd.Code, 1); //creates a new line station 
+            //    LineStation newLineStation = bl.GetLineStation(selectedLine.Code, stationToAdd.Code);
 
-                //List<LineStation> lineStationsInMyLine = bl.GetLine(selectedLine.Code).ListOfStations.ToList(); // All the stations in the line before modifications
-                //                                                                                                //First create the new adjacents stations(ie the last station of the stations already existing in my line and the first new selected station)
-                //AdjacentStations newAdj = new AdjacentStations();
-                //newAdj.Station1 = lineStationsInMyLine.Last().StationCode;
-                //newAdj.Station2 = (lbListOfAddStations.SelectedItems[0] as LineStation).StationCode;
-                //newAdj.Time = new TimeSpan(10);
+            //    bl.AddStationToLine(newLineStation);
+            //    LineAdmin win= new LineAdmin(bl);
+            //    win.ShowDialog();
 
-                //bl.AddAdjacentStations(newAdj);
-                //for (int i = 0; i < lbListOfAddStations.SelectedItems.Count; i++)  //put the selected Line Stations into the list of stations of the line
-                //    new AdjacentStations
-                //    {
-                //        Station1 = (lbListOfAddStations.SelectedItems[i] as LineStation).StationCode,
-                //        Station2 = (lbListOfAddStations.SelectedItems[i + 1] as LineStation).StationCode,
-                //        Time = new TimeSpan(10),
-                //    };
-                //// bl.AddAdjacentsStations();
+            //    //List<LineStation> lineStationsInMyLine = bl.GetLine(selectedLine.Code).ListOfStations.ToList(); // All the stations in the line before modifications
+            //    //                                                                                                //First create the new adjacents stations(ie the last station of the stations already existing in my line and the first new selected station)
+            //    //AdjacentStations newAdj = new AdjacentStations();
+            //    //newAdj.Station1 = lineStationsInMyLine.Last().StationCode;
+            //    //newAdj.Station2 = (lbListOfAddStations.SelectedItems[0] as LineStation).StationCode;
+            //    //newAdj.Time = new TimeSpan(10);
+
+            //    //bl.AddAdjacentStations(newAdj);
+            //    //for (int i = 0; i < lbListOfAddStations.SelectedItems.Count; i++)  //put the selected Line Stations into the list of stations of the line
+            //    //    new AdjacentStations
+            //    //    {
+            //    //        Station1 = (lbListOfAddStations.SelectedItems[i] as LineStation).StationCode,
+            //    //        Station2 = (lbListOfAddStations.SelectedItems[i + 1] as LineStation).StationCode,
+            //    //        Time = new TimeSpan(10),
+            //    //    };
+            //    //// bl.AddAdjacentsStations();
 
 
-                //List<LineStation> newList = (from Station eachLs in lbListOfAddStations.SelectedItems  //put the selected Line Stations into the list of stations of the line
-                //                             select new LineStation
-                //                             {
-                //                                 LineCode = selectedLine.Code,
-                //                                 StationCode = eachLs.Code,
-                //                                 //DistanceFromLastStation=,
-                //                                 //TimeFromLastStation =,
-                //                                 StationName = eachLs.Name,
-                //                             }).ToList();
-                //foreach (LineStation item in newList)             // add all the new linestation to the line
-                //    lineStationsInMyLine.Add(item);
-            }
-            else
-            {
-                MessageBox.Show("You have to select a station to add", "error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            //    //List<LineStation> newList = (from Station eachLs in lbListOfAddStations.SelectedItems  //put the selected Line Stations into the list of stations of the line
+            //    //                             select new LineStation
+            //    //                             {
+            //    //                                 LineCode = selectedLine.Code,
+            //    //                                 StationCode = eachLs.Code,
+            //    //                                 //DistanceFromLastStation=,
+            //    //                                 //TimeFromLastStation =,
+            //    //                                 StationName = eachLs.Name,
+            //    //                             }).ToList();
+            //    //foreach (LineStation item in newList)             // add all the new linestation to the line
+            //    //    lineStationsInMyLine.Add(item);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("You have to select a station to add", "error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
         }
         private void btnDeleteStations_Click(object sender, RoutedEventArgs e)
         {
@@ -105,6 +106,8 @@ namespace PL
             {
                 Station stationToDelete = lbListOfDeleteStations.SelectedItem as Station;
                 bl.DeleteStationOfLine(stationToDelete.Code, selectedLine.Code);
+                MessageBox.Show("the station has been deleted of the line");
+                lbListOfDeleteStations.DataContext = bl.GetAllStationInLine(selectedLine);  
             }
             else
             {
