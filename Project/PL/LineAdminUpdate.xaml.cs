@@ -33,13 +33,22 @@ namespace PL
 
         private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            int i = -1;
             selectedLine = cbLines.SelectedItem as BL.BO.Line;
             lbListOfDeleteStations.DataContext = bl.GetAllStationInLine(selectedLine);    //remplir grille des stations a deleter
-            IEnumerable<Station> stationsInArea = bl.GetStationByArea(selectedLine.Area); //put in stationsInArea all the stations of the area of the line selected
-            foreach (Station item in stationsInArea)
-                      foreach (Station st in bl.GetAllStationInLine(selectedLine))
-                            if (item.Code == st.Code)
-                                stationsInArea.ToList().Remove(bl.GetStation(item.Code));     //myList2  contains all the stations of the area selected without the stations of the line selected
+            List<Station> stationsInArea = bl.GetStationByArea(selectedLine.Area).ToList() ; //put in stationsInArea all the stations of the area of the line selected
+            foreach (Station item in bl.GetStationByArea(selectedLine.Area).ToList())
+            {
+                foreach (Station st in bl.GetAllStationInLine(selectedLine))
+                    if (item.Code == st.Code)
+                    {
+                        
+                        stationsInArea.Remove(stationsInArea.Find(s => s.Code == item.Code));
+                        break;
+                    }
+            }
+                     
+                                     //myList2  contains all the stations of the area selected without the stations of the line selected
           lbListOfAddStations.DataContext = stationsInArea;                  //remplir la grille des stations a ajouter potentiellement 
         }
 
@@ -53,7 +62,8 @@ namespace PL
                 LineStation newLineStation = bl.GetLineStation(selectedLine.Code, stationToAdd.Code);
                 LineStation previous = selectedLine.ListOfStations.ToList()[index - 1];  //find the previous station
                 bl.AddStationToLine(newLineStation, previous);
-
+                LineAdmin win= new LineAdmin(bl);
+                win.ShowDialog();
 
                 //List<LineStation> lineStationsInMyLine = bl.GetLine(selectedLine.Code).ListOfStations.ToList(); // All the stations in the line before modifications
                 //                                                                                                //First create the new adjacents stations(ie the last station of the stations already existing in my line and the first new selected station)

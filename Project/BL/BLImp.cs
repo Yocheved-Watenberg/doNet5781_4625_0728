@@ -116,6 +116,26 @@ namespace BL
         }
         #endregion
         #region Line
+
+        public void AddStationToLine(BO.LineStation lineStation, BO.LineStation previous)
+        {//can only add a Station which already exists
+            try
+            {
+                dl.GetStation(lineStation.StationCode);
+                dl.GetStation(previous.StationCode);
+            }
+            catch (DO.BadStationIdException ex)
+            {
+                throw new BO.BadStationException("This station doesn't exist", ex);
+            }
+            DO.LineStation lineStationDO = new DO.LineStation();
+            lineStation.CopyPropertiesTo(lineStationDO);
+            DO.LineStation lineStationPreviousDO = new DO.LineStation();
+            previous.CopyPropertiesTo(lineStationPreviousDO);
+            dl.AddLineStationAfter(lineStationDO, lineStationPreviousDO);
+            
+
+        }
         public void AddLine(int myCode, BO.Enum.Areas myArea, IEnumerable<BO.LineStation> myListOfStations)
         {
             BO.Line BoLine = new BO.Line();

@@ -61,6 +61,7 @@ namespace DLAPI
         #region LineStation
         void AddLineStation(LineStation lineStation);
         void AddLineStationWithFields(int lineCode, int stationCode, int index);
+        void AddLineStationAfter(DO.LineStation lineStation, DO.LineStation previous);
         LineStation GetLineStation(int line, int station);
         IEnumerable<LineStation> GetAllLineStation();
         IEnumerable<LineStation> GetAllLineStationBy(Predicate<LineStation> predicate);
