@@ -12,11 +12,10 @@ namespace BL.BO
         public int Id { get; set; }                                         //Isnt shown on Pl ,Busline number(rats automati)
         public int Code { get; set; }                                       //line number                                  
         public Areas Area { get; set; }                                     //in which area the bus travel
-   
-        public IEnumerable<BO.LineStation> ListOfStations { get; set; }                //has the list of all the Linestations
-                                                                                       //query on Do.lineStation withlineId=XXX
+        public IEnumerable<BO.LineStation> ListOfStations { get; set; }     //has the list of all the Linestations
+                                                                            //query on Do.lineStation withlineId=XXX
         public bool IsDeleted { get; set; } = false; 
-        public override string ToString()                                                //override ToString for a station
+        public override string ToString()                                   //override ToString for a station
         {
             return "Line number:" + Code + ", Area:" + Area ;
         }

@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace BL.BO
 {
-    public class LineStation                                           //a lineStation is a Station in which the line goes through
+    public class LineStation                                        
     {
-        public int LineCode { get; set; }                                //pour effacer une station ds une ligne mezae qui va m aider a le fr
-        public int StationCode { get; set; }                           //attention ca doit etre unique // number of the station //attribute feature
+        public int LineCode { get; set; }                             
+        public int StationCode { get; set; } 
         public double DistanceFromLastStation { get; set; }
         public TimeSpan TimeFromLastStation { get; set; }
-        public string StationName { get; set; }                               //name of the station
-        public override string ToString()                                                //override ToString for a Linestation
+        public string StationName { get; set; }                       
+        public override string ToString()                           
         {
             return "Station number: " + StationCode + ",  " + "Station name: " + StationName + " " + "Line number: " + LineCode;
-        }                                                  
+        }
     }
 }

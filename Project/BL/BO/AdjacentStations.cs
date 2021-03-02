@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace BL.BO
 {
-
     public class AdjacentStations
     {
         public int Station1 { get; set; }               //first station code

@@ -23,36 +23,36 @@ namespace DLAPI
         #endregion
         #region BusOnTrip
         void AddBusOnTrip(BusOnTrip busOnTrip);
+        BusOnTrip GetBusOnTrip(int Id);
         IEnumerable<BusOnTrip> GetAllBusOnTrip();
         IEnumerable<BusOnTrip> GetAllBusOnTripBy(Predicate<BusOnTrip> predicate);
-        BusOnTrip GetBusOnTrip(int Id);
         void UpdateBusOnTrip(BusOnTrip busOnTrip);
         void UpdateBusOnTrip(int Id, Action<BusOnTrip> update);
         void DeleteBusOnTrip(int Id);
         #endregion
         #region Station
         void AddStation(Station station);
+        Station GetStation(int code);
         IEnumerable<Station> GetAllStation();
         IEnumerable<Station> GetAllStationBy(Predicate<Station> predicate);
-        Station GetStation(int code);
         void UpdateStation(Station station);
         void UpdateStation(int code, Action<Station> update);
         void DeleteStation(int code);
         #endregion
         #region Line
         void AddLine(Line line);
+        Line GetLine(int code);
         IEnumerable<Line> GetAllLine();
         IEnumerable<Line> GetAllLineBy(Predicate<Line> predicate);
-        Line GetLine(int id);
         void UpdateLine(Line line);
         void UpdateLine(int Id, Action<Line> update);
-        void DeleteLine(int id);
+        void DeleteLine(int code);
         #endregion
         #region LineTrip
         void AddLineTrip(LineTrip lineTrip);
+        LineTrip GetLineTrip(int id, TimeSpan startAt);
         IEnumerable<LineTrip> GetAllLineTrip();
         IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate);
-        LineTrip GetLineTrip(int id, TimeSpan startAt);
         void UpdateLineTrip(LineTrip lineTrip);
         void UpdateLineTrip(int id, TimeSpan startAt, Action<LineTrip> update);
         void DeleteLineTrip(int id, TimeSpan startAt);
@@ -60,37 +60,37 @@ namespace DLAPI
         #endregion
         #region LineStation
         void AddLineStation(LineStation lineStation);
-        void AddLineStationAfter(DO.LineStation lineStation, DO.LineStation previous);
+        void AddLineStationWithFields(int lineCode, int stationCode, int index);
+        LineStation GetLineStation(int line, int station);
         IEnumerable<LineStation> GetAllLineStation();
         IEnumerable<LineStation> GetAllLineStationBy(Predicate<LineStation> predicate);
-        LineStation GetLineStation(int id, int station);
         void UpdateLineStation(LineStation lineStation);
         void UpdateLineStation(int LineId, int station, Action<DO.LineStation> update);
         void DeleteLineStation(int id, int station);
         #endregion
         #region Trip
         void AddTrip(Trip trip);
+        Trip GetTrip(int id);
         IEnumerable<Trip> GetAllTrip();
         IEnumerable<Trip> GetAllTripBy(Predicate<Trip> predicate);
-        Trip GetTrip(int id);
         void UpdateTrip(Trip trip);
         void UpdateTrip(int id, Action<Trip> update);
         void DeleteTrip(int id);
         #endregion
         #region User
         void AddUser(User user);
+        User GetUser(string userName);
         IEnumerable<User> GetAllUser();
         IEnumerable<User> GetAllUserBy(Predicate<User> predicate);
-        User GetUser(string userName);
         void UpdateUser(User user);
         void UpdateUser(string userName, Action<User> update);
         void DeleteUser(string userName);
         #endregion
         #region AdjacentStations
         void AddAdjacentStations(AdjacentStations adjacentStations);
+        AdjacentStations GetAdjacentStations(int Station1, int Station2);
         IEnumerable<AdjacentStations> GetAllAdjacentStations();
         IEnumerable<AdjacentStations> GetAllAdjacentStationsBy(Predicate<AdjacentStations> predicate);
-        AdjacentStations GetAdjacentStations(int Station1,int Station2);
         void UpdateAdjacentStations(AdjacentStations adjacentStations);
         void UpdateAdjacentStations(int Station1, int Station2, Action<AdjacentStations> update);
         void UpdateAdjacentStations(int StationToChange, Action<AdjacentStations> update);

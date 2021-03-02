@@ -15,7 +15,6 @@ namespace DO
             base(message) => ID = id;
         public BadBusIdException(int id, string message, Exception innerException) :
             base(message, innerException) => ID = id;
-
         public override string ToString() => base.ToString() + $", bad bus license number: {ID}";
     }
     public class BadLineIdException : Exception
@@ -26,7 +25,6 @@ namespace DO
             base(message) => ID = id;
         public BadLineIdException(int id, string message, Exception innerException) :
             base(message, innerException) => ID = id;
-
         public override string ToString() => base.ToString() + $", bad line id: {ID}";
     }
     public class BadBusOnTripIdException : Exception
@@ -37,7 +35,6 @@ namespace DO
             base(message) => ID = id;
         public BadBusOnTripIdException(int id, string message, Exception innerException) :
             base(message, innerException) => ID = id;
-
         public override string ToString() => base.ToString() + $", bad BusOnTrip id: {ID}";
     }
     public class BadAdjacentStationsIdException : Exception
@@ -51,7 +48,6 @@ namespace DO
         public BadAdjacentStationsIdException(int s1, int s2, string message, Exception innerException) :
             base(message, innerException)
         { station1 = s1; station2 = s2; }
-
         public override string ToString() => base.ToString() + $", bad adjacent stations id: {station1} and  id: {station2}";
     }
     public class BadLineStationIdException : Exception
@@ -63,7 +59,6 @@ namespace DO
         public BadLineStationIdException(int l, int s, string message, Exception innerException) :
             base(message, innerException)
         { lineId = l; station = s; }
-
         public override string ToString() => base.ToString() + $", bad line stations line id: {lineId} and  station: {station}";
     }
     public class BadLineTripIdException : Exception
@@ -75,7 +70,6 @@ namespace DO
         public BadLineTripIdException(int l, int s, string message, Exception innerException) :
             base(message, innerException)
         { lineId = l; startAt = s; }
-
         public override string ToString() => base.ToString() + $", bad line trip line id: {lineId} and startAt: {startAt}";
     }
     public class BadStationIdException : Exception
@@ -86,7 +80,6 @@ namespace DO
             base(message) => code = c;
         public BadStationIdException(int c, string message, Exception innerException) :
             base(message, innerException) => code = c;
-
         public override string ToString() => base.ToString() + $", bad station code: {code}";
     }
     public class BadTripIdException : Exception
@@ -97,7 +90,6 @@ namespace DO
             base(message) => ID = id;
         public BadTripIdException(int id, string message, Exception innerException) :
             base(message, innerException) => ID = id;
-
         public override string ToString() => base.ToString() + $", bad trip id: {ID}";
     }
     public class BadUserIdException : Exception
@@ -108,11 +100,8 @@ namespace DO
             base(message) => name = n;
         public BadUserIdException(string n, string message, Exception innerException) :
             base(message, innerException) => name = n;
-
         public override string ToString() => base.ToString() + $", bad user name: {name}";
     }
-
-
     public class XMLFileLoadCreateException : Exception
     {
         public string xmlFilePath;
@@ -123,9 +112,7 @@ namespace DO
         public XMLFileLoadCreateException(string xmlPath, string message, Exception innerException) :
             base(message, innerException)
         { xmlFilePath = xmlPath; }
-
         public override string ToString() => base.ToString() + $", fail to load or create xml file: {xmlFilePath}";
     }
-
 }
 
