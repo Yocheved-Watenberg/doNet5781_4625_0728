@@ -33,7 +33,7 @@ namespace PL
 
         private void cbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-          
+            int i = -1;
             selectedLine = cbLines.SelectedItem as BL.BO.Line;
             lbListOfDeleteStations.DataContext = bl.GetAllStationInLine(selectedLine);    //remplir grille des stations a deleter
             List<Station> stationsInArea = bl.GetStationByArea(selectedLine.Area).ToList() ; //put in stationsInArea all the stations of the area of the line selected
